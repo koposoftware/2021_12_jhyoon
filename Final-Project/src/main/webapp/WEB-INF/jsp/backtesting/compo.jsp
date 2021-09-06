@@ -246,6 +246,116 @@ select.slct_newport {
 	color: #666;
 }
 
+.box_temp{
+    width: 100%;
+    border: 1px solid #ddd;
+    padding: 20px;
+    box-sizing: border-box;
+}
+.btn_refresh {
+    display: inline-block;
+    width: 33px;
+    height: 33px;
+    background: #ddd;
+    border: 1px solid #ccc;
+    transition: 0.2s;
+    border-radius: 4px;
+
+}
+input[type=text].text_small {
+    width: 70px;
+    padding: 8px 10px;
+    border: 1px solid #bbb;
+    color: #333;
+    box-sizing: border-box;
+    border-radius: 3px;
+    }
+.tbl_horizon th.buy {
+    background: #e1f1f8;
+}   
+.tbl_horizon th {
+    background: #f1f3f5;
+    font-size: 13px;
+    font-weight: 600;
+    color: #424242;
+    padding: 20px 10px;
+} 
+th {
+    display: table-cell;
+    vertical-align: inherit;
+    font-weight: bold;
+    text-align: -internal-center;
+}
+.tbl_horizon {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+}
+
+select.slct_condi {
+	width: 100px;
+    margin-right: 10px;
+    margin-left: 10px;
+    cursor: pointer;
+    border: 1px solid #bbb;
+    color: #333;
+    border-radius: 3px;
+    height:33px;
+}
+.tbl_horizon td {
+    padding: 14px 14px;
+    color: #333;
+    letter-spacing: 0;
+    border: 1px solid #ddd;
+}
+
+.top1{
+	padding-left:10px;
+	color: #666;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 600;
+    color: #424242;
+}
+.btn_add{
+    outline: 0;
+    outline-style: none;
+    font-size: 15px;
+    width: 120px;
+    transition: 0.1s;
+    padding: 10px 0;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    vertical-align: middle;
+    line-height: 1.5;
+    margin-left:50px;
+}
+.box_sec{
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    height:33px;
+    float:left;
+}
+input[type=text].condi{
+	width:75px;
+	text-align: center;
+	font-size:15px;
+	font-weight:400;
+	border : #fff;
+	background-color: #ffe8e8;
+	border-radius: 1rem;
+}
+.cancel_img{
+width:15px;
+height:15px;
+}
+.addConBtn{
+ background-color: #fff;
+ border:#fff;
+}
+
+
 </style>
 <script
 	src="${ pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
@@ -263,6 +373,12 @@ select.slct_newport {
 		$('#tabMenu3').click(function() {
 			changeTab(3)
 		})
+		
+	
+	$('#btnBuyUndo').click(function() {
+			$('#input_condi').empty()
+		})
+
 	})
 	function changeTab(num) {
 		for (var i = 0; i < 4; i++) {
@@ -274,13 +390,28 @@ select.slct_newport {
 		document.getElementById("selection" + num.toString()).style.display = "";
 	}
 	function numberWithCommas(x, id) {
-		  x = x.replace(/(^0+)/g,'')
-		  x = x.replace(/[^0-9]/g,'');   // 입력값이 숫자가 아니면 공백
-		  x = x.replace(/,/g,'');          // ,값 공백처리
-		  $("#"+id).val(x.replace(/\B(?=(\d{3})+(?!\d))/g, ",")); // 정규식을 이용해서 3자리 마다 , 추가 
-		}
-	
+		x = x.replace(/(^0+)/g, '')
+		x = x.replace(/[^0-9]/g, ''); // 입력값이 숫자가 아니면 공백
+		x = x.replace(/,/g, ''); // ,값 공백처리
+		$("#" + id).val(x.replace(/\B(?=(\d{3})+(?!\d))/g, ",")); // 정규식을 이용해서 3자리 마다 , 추가 
+	}
 
+	function addCondition(val) {
+		if (document.getElementById(val)) {
+			alert('이미 추가된 내용입니다.')
+		} else {
+			newTag = "<input type='text' class='condi' id="+val+" name="+val+" readonly value="+val+">"
+					+ "<button id="
+					+ val
+					+ " onclick='removeCondition(this.id)' class='addConBtn'><img class='cancel_img' src='${pageContext.request.contextPath }/resources/img/icn_cancel.png' style='position: relative;'<button>"
+			$('#input_condi').append(newTag)
+		}
+
+	}
+	function removeCondition(id) {
+		$('#' + id).remove()
+		$('#' + id).remove()
+	}
 </script>
 <!-- Head 구성 끝 -->
 </head>
@@ -294,7 +425,6 @@ select.slct_newport {
 			<li class="fl">
 				<p class="fl title">내 백테스팅 포트 만들기</p>
 				<p class="fl info">다양한 조건을 넣어 나만의 주식투자 전략을 검증해보세요</p>
-
 			</li>
 			<li class="fr">
 				<p class="crumbs">
@@ -317,7 +447,7 @@ select.slct_newport {
 					</li>
 
 					<li id="tabMenu2" class="">
-						<p>Step 3. 가치측정 조건 설정</p> <span>기업의 가치를 판단할 팩터를 설정하세요</span>
+						<p>Step 3. 가치측정 조건 설정</p> <span>기업 가치를 판단할 조건을 설정하세요</span>
 					</li>
 
 					<li id="tabMenu3" style="cursor: pointer;" class="">
@@ -746,8 +876,6 @@ select.slct_newport {
 					</div>
 
 
-
-
 					<div class="btn-div">
 						<button class="btn btn_white"
 							onclick="changeTab(0);$('html,body').scrollTop(0);">이전
@@ -758,9 +886,71 @@ select.slct_newport {
 					</div>
 
 				</div>
+				<!--3번째 메뉴  -->
 				<div id="selection2" style="display: none">
 					
-					
+					<div class="row vertical-tab">
+						<span class="font_20px"><b>가치측정 조건식 설정</b></span><br> <span
+							class="font_16px">기업가치를 판단할 조건식을 선택해주세요. 선택하신 조건식으로 매수/매도가 진행됩니다.</span><br>
+						<div class="box_temp">
+							<div class="container">
+								<div class="col-md-1" style="text-align: center;vertical-align: middle;"><span class="top1" style="float:left;margin-right:10px"><b>조건식 :</b></span></div>
+								<div class="col-md-8 box_sec" id = "input_condi"></div>
+								<div class="col-md-3" style="float: left">
+									<button type="button" id="btnBuyUndo" class="btn_refresh">
+										<img src="${pageContext.request.contextPath}/resources/img/icn_undo.png">
+									</button>
+								</div>
+							</div>
+						</div>
+						<table class="tbl_horizon" style="margin-top: 10px;">
+                            <colgroup>
+                                <col style="width: 160px">
+                                <col>
+                            </colgroup>
+                            <tbody><tr>
+                                <th class="buy">매수 조건식 선택
+                                    <img src="${pageContext.request.contextPath}/resources/img/icn_tip.png" style="cursor: help; top: 3px; position: relative" title="조건식을 통해 선정된 종목의 매수 우선순위를 정할 수 있습니다."></th>
+                                <td>
+										<div class="container">
+
+											<div class="col-md-3"
+												style="float: left">
+												<span class="top1">밸류 팩터</span>
+												 <select id="valueFactor" class="slct_condi" >
+													<option value="PER" selected="selected">PER</option>
+													<option value="PBR" selected="selected">PBR</option>
+													<option value="PCR" selected="selected">PCR</option>
+													<option value="PSR" selected="selected">PSR</option>
+												</select>
+											</div>
+											<div class="col-md-3" style="border-right: 1px solid rgba(0, 0, 0, 0.125); float: left">
+												<button type="button" class="btn_hana btn_add"
+													style="line-height: 15px;  width: 100px;" onclick="addCondition($('#valueFactor').val())">조건식 추가</button>
+											</div>
+											<div class="col-md-3" style="float: left">
+												<span class="top1">퀄리티 팩터</span> <select id="QuailtyFactor"
+													class="slct_condi">
+													<option value="ROA" selected="selected">ROA</option>
+													<option value="ROE" selected="selected">ROE</option>
+													<option value="EV-EBITA" selected="selected">EV-EBITA</option>
+												</select>
+											</div>
+											<div class="col-md-3" style="float: left">
+												<button type="button" class="btn_hana btn_add"
+													style="line-height: 15px; width: 100px; " onclick="addCondition($('#QuailtyFactor').val())">조건식 추가</button>
+											</div>
+
+
+										</div>
+									</td>
+                            </tr>
+                        </tbody></table>
+						
+						
+						
+						
+					</div>
 					
 					
 
