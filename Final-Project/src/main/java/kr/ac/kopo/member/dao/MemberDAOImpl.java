@@ -15,6 +15,13 @@ public class MemberDAOImpl implements MemberDAO {
 	public MemberVO login(MemberVO member) {
 		return null;
 	}
+
+	@Override
+	public void userRegist(MemberVO memberVO) {
+		sqlSessionTemplate.insert("registMember", memberVO); 
+		
+	}
+	
 	
 	
 }

@@ -332,7 +332,6 @@ select.slct_condi {
     margin-left:50px;
 }
 .box_sec{
-    border: 1px solid #ddd;
     box-sizing: border-box;
     height:33px;
     float:left;
@@ -354,7 +353,9 @@ height:15px;
  background-color: #fff;
  border:#fff;
 }
-
+.card-selection{
+ padding-top:15px
+}
 
 </style>
 <script
@@ -400,7 +401,7 @@ height:15px;
 		if (document.getElementById(val)) {
 			alert('이미 추가된 내용입니다.')
 		} else {
-			newTag = "<input type='text' class='condi' id="+val+" name="+val+" readonly value="+val+">"
+			newTag = "<input type='text' class='condi' id="+val+" name='backCondiVal' readonly value="+val+">"
 					+ "<button id="
 					+ val
 					+ " onclick='removeCondition(this.id)' class='addConBtn'><img class='cancel_img' src='${pageContext.request.contextPath }/resources/img/icn_cancel.png' style='position: relative;'<button>"
@@ -412,6 +413,7 @@ height:15px;
 		$('#' + id).remove()
 		$('#' + id).remove()
 	}
+
 </script>
 <!-- Head 구성 끝 -->
 </head>
@@ -456,20 +458,22 @@ height:15px;
 				</ul>
 			</div>
 		</div>
+		
 		<div class="selection_Tab">
 			<div class="content-by-step">
+			<form action="${pageContext.request.contextPath}/backtest/compo" method="post">
 				<div id="selection0" class="container"
 					style="display: block; align-content: center;">
 					<!-- 첫번째 페이지 -->
 					<div class="row vertical-tab">
 						<div class="col-md-6" style="width: 50%">
 							<span class="font_20px" style="display: inline;"><b>내
-									포트명</b></span><br> <input type="text" style="width: 80%"
+									포트폴리오명</b></span><br> <input name="backTitle" type="text" style="width: 80%"
 								placeholder="포트 제목을 입력하세요" />
 						</div>
 						<div class="col-md-6" style="width: 50%">
-							<span class="font_20px"><b>포트 관리</b></span><br> <input
-								type="text" style="width: 80%"
+							<span class="font_20px"><b>포트폴리오 설명</b></span><br> <input
+								name="backDescript" type="text" style="width: 80%"
 								placeholder="포트 설명을 100자 이내로 작성해주세요" />
 						</div>
 					</div>
@@ -487,7 +491,7 @@ height:15px;
 										title="백테스트에 사용할 초기 운용자금을 입력">
 								</div>
 								<div class="card-body">
-									<input class="text_extrasmall" type="text"><span
+									<input name="backStartAsset" class="text_extrasmall" type="text"><span
 										class="top">만원</span>
 								</div>
 							</div>
@@ -501,13 +505,13 @@ height:15px;
 										title="백테스트를 실행할 기간을 선택">
 								</div>
 								<div class="card-body">
-									<input type="date" style="width: 35%"><span class="top"
-										style="margin-right: 10px;">부터</span> <input type="date"
+									<input name="backStartDate" type="date" style="width: 35%"><span class="top"
+										style="margin-right: 10px;">부터</span> <input name="backEndDate" type="date"
 										style="width: 35%"><span class="top">까지</span>
 								</div>
 							</div>
 						</div>
-						<div class="col-md-2">
+						<div class="col-md-3">
 							<div class="card">
 								<div class="card-header">
 									수수료율 <img class="tip_img"
@@ -516,12 +520,12 @@ height:15px;
 										title="증권사 매매 수수료 입력 (예 : A증권사 매매시 수수료가 0.1이면 매수, 매도 합산 0.2가 아닌 0.1을 입력)">
 								</div>
 								<div class="card-body">
-									<input class="text_extrasmall" type="text" value="0.15"><span
+									<input name="backFeeRate" class="text_extrasmall" type="text" value="0.15"><span
 										class="top">%</span>
 								</div>
 							</div>
 						</div>
-						<div class="col-md-2">
+						<div class="col-md-3">
 							<div class="card">
 								<div class="card-header">
 									거래세금 <img class="tip_img"
@@ -531,21 +535,7 @@ height:15px;
 
 								</div>
 								<div class="card-body">
-									<input class="text_extrasmall" type="text" value="0.3"><span
-										class="top">%</span>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-2">
-							<div class="card">
-								<div class="card-header">
-									슬리피지 <img class="tip_img"
-										src="${pageContext.request.contextPath }/resources/img/icn_tip.png"
-										style="cursor: help; position: relative;"
-										title="실제 금액과의 괴리율을 의미하며 설정시 백테스팅의 신뢰도가 높아집니다.">
-								</div>
-								<div class="card-body">
-									<input class="text_extrasmall" type="text" value="0.003"><span
+									<input name="backTaxRate" class="text_extrasmall" type="text" value="0.3"><span
 										class="top">%</span>
 								</div>
 							</div>
@@ -565,7 +555,7 @@ height:15px;
 										title="백테스트에 사용할 초기 운용자금을 입력">
 								</div>
 								<div class="card-body">
-									<select id="AARebalCycle" class="slct_newport">
+									<select name="backStockCnt" id="slct_stockCnt" class="slct_newport">
 										<option value="5">5</option>
 										<option value="10">10</option>
 										<option value="20">20</option>
@@ -582,7 +572,7 @@ height:15px;
 										title="백테스팅 조건의 재선정 주기를 선택해">
 								</div>
 								<div class="card-body">
-									<select id="AARebalCycle" class="slct_newport">
+									<select name="backRebalCycle" id="AARebalCycle" class="slct_newport">
 										<option value="1">1</option>
 										<option value="2">2</option>
 										<option value="3" selected="selected">3</option>
@@ -608,7 +598,7 @@ height:15px;
 										title="운용 자금의 몇 %까지 투자할 것인지 선택">
 								</div>
 								<div class="card-body">
-									<select id="AARebalCycle" class="slct_newport">
+									<select name="backInvestRate" id="slct_investRate" class="slct_newport">
 										<option value="0.9" selected="selected">90</option>
 										<option value="0.8">80</option>
 										<option value="0.7">70</option>
@@ -621,14 +611,13 @@ height:15px;
 						<div class="col-md-3">
 							<div class="card">
 								<div class="card-header">
-									거래세금 <img class="tip_img"
+									슬리피지 <img class="tip_img"
 										src="${pageContext.request.contextPath }/resources/img/icn_tip.png"
 										style="cursor: help; position: relative;"
-										title="증권 거래세금 0.15%, 미설정시 백테스팅 신뢰성이 떨어집니다.">
-
+										title="실제 금액과의 괴리율을 의미하며 설정시 백테스팅의 신뢰도가 높아집니다.">
 								</div>
 								<div class="card-body">
-									<input class="text_extrasmall" type="text" value="0.3"><span
+									<input name="backSlippage"class="text_extrasmall" type="text" value="0.003"><span
 										class="top">%</span>
 								</div>
 							</div>
@@ -637,8 +626,8 @@ height:15px;
 
 					<div class="btn-div">
 
-						<button class="btn btn_white">취소</button>
-						<button class="btn btn_hana"
+						<button class="btn btn_white" type="button">취소</button>
+						<button class="btn btn_hana" type="button"
 							onclick="changeTab(1);$('html,body').scrollTop(0);">다음
 							단계로</button>
 					</div>
@@ -658,7 +647,7 @@ height:15px;
 										title="KOSPI / KOSDAQ / KONEX / 전체시장 을 선택할 수 있습니다. ">
 								</div>
 								<div class="card-body">
-									<select id="AARebalCycle" class="slct_newport">
+									<select name="backMarket" id="slct_market" class="slct_newport">
 										<option value="ALL" selected="selected">ALL</option>
 										<option value="KOSPI">KOSPI</option>
 										<option value="KOSDAQ">KOSDAQ</option>
@@ -675,40 +664,40 @@ height:15px;
 										style="cursor: help; position: relative;"
 										title="매수/매도시 제외할 종목 선택">
 								</div>
-								<div class="card-body container">
+								<div class="card-body container card-selection">
 									<div class="col-md-3"
 										style="border-right: 1px solid rgba(0, 0, 0, 0.125); float: left">
 										<span class="top">관리종목</span><br> <input type="radio"
-											name="radio_care" id="careOff" class="css-radiobtn"
-											checked="checked"> <label for="careOff"
+											name="backCare" id="careOff" class="css-radiobtn"
+											checked="checked" value="Off"> <label for="careOff"
 											style="margin-right: 20px">제외</label> <input type="radio"
-											name="radio_care" id="careOn" class="css-radiobtn"> <label
+											name="backCare" id="careOn" class="css-radiobtn" value="On"> <label
 											for="careOn" style="margin-right: 0">포함</label>
 									</div>
 									<div class="col-md-3"
 										style="border-right: 1px solid rgba(0, 0, 0, 0.125); float: left">
 										<span class="top">감리종목</span><br> <input type="radio"
-											name="radio_manage" id="manageOff" class="css-radiobtn"
+											name="backManage" id="manageOff" class="css-radiobtn" value="Off"
 											checked="checked"> <label for="manageOff"
 											style="margin-right: 20px">제외</label> <input type="radio"
-											name="radio_manage" id="manageOn" class="css-radiobtn">
+											name="backManage" id="manageOn" class="css-radiobtn" value="On">
 										<label for="manageOn" style="margin-right: 0">포함</label>
 									</div>
 									<div class="col-md-3"
 										style="border-right: 1px solid rgba(0, 0, 0, 0.125); float: left;">
 										<span class="top">우선주 종목</span><br> <input type="radio"
-											name="radio_preferred" id="preferredOff" class="css-radiobtn"
-											checked="checked"> <label for="preferredOff"
+											name="backPreferred" id="preferredOff" class="css-radiobtn"
+											checked="checked" value="Off"> <label for="preferredOff"
 											style="margin-right: 20px">제외</label> <input type="radio"
-											name="radio_preferred" id="preferredOn" class="css-radiobtn">
+											name="backPreferred" id="preferredOn" class="css-radiobtn" value="On">
 										<label for="preferredOn" style="margin-right: 0">포함</label>
 									</div>
 									<div class="col-md-3" style="float: left;">
 										<span class="top">ETF 종목</span><br> <input type="radio"
-											name="radio_etf" id="etfOff" class="css-radiobtn"
-											checked="checked"> <label for="etfOff"
+											name="backEtf" id="etfOff" class="css-radiobtn"
+											checked="checked" value="Off"> <label for="etfOff"
 											style="margin-right: 20px">제외</label> <input type="radio"
-											name="radio_etf" id="etfOn" class="css-radiobtn"> <label
+											name="backEtf" id="etfOn" class="css-radiobtn" value="On"> <label
 											for="etfOn" style="margin-right: 0">포함</label>
 									</div>
 								</div>
@@ -728,23 +717,23 @@ height:15px;
 										src="${pageContext.request.contextPath }/resources/img/icn_tip.png"
 										style="cursor: help; position: relative;" title="재무 조건을 설정하세요">
 								</div>
-								<div class="card-body container">
+								<div class="card-body container card-selection">
 									<div class="col-md-6"
 										style="border-right: 1px solid rgba(0, 0, 0, 0.125); float: left">
 										<span class="top">영업 현금 흐름(+)</span><br> <input
-											type="radio" name="radio_cashflow" id="cashFlowOn"
-											class="css-radiobtn" checked="checked"> <label
+											type="radio" name="backCashFlow" id="cashFlowOn"
+											class="css-radiobtn" checked="checked" value="On"> <label
 											for="cashFlowOn" style="margin-right: 20px">포함</label> <input
-											type="radio" name="radio_cashflow" id="cashFlowOff"
+											type="radio" name="backCashFlow" id="cashFlowOff" value="Off"
 											class="css-radiobtn"> <label for="cashFlowOff"
 											style="margin-right: 0">미포함</label>
 									</div>
 									<div class="col-md-6" style="float: left">
 										<span class="top">당기 순이익(+)</span><br> <input
-											type="radio" name="radio_profit" id="profitOn"
+											type="radio" name="backProfit" id="profitOn" value="On"
 											class="css-radiobtn" checked="checked"> <label
 											for="profitOn" style="margin-right: 20px">포함</label> <input
-											type="radio" name="radio_manage" id="profitOff"
+											type="radio" name="backProfit" id="profitOff" value="Off"
 											class="css-radiobtn"> <label for="profitOff"
 											style="margin-right: 0">제외</label>
 									</div>
@@ -762,12 +751,12 @@ height:15px;
 								</div>
 								<div class="card-body">
 									<span class="top" style="margin-right: 10px;">1일 거래대금</span> <select
-										id="AARebalCycle" class="slct_newport">
-										<option value="＞" selected="selected">&gt;</option>
-										<option value="＜">&lt;</option>
-										<option value="≤">≤</option>
-										<option value="≥">≥</option>
-									</select> <input class="text_extrasmall" type="text" id="stockVolume" onkeyup="numberWithCommas(this.value, this.id)"><span
+										name="backAmt" id="slct_amount" class="slct_newport">
+										<option value="gt" selected="selected">&gt;</option>
+										<option value="lt">&lt;</option>
+										<option value="lte">≤</option>
+										<option value="gte">≥</option>
+									</select> <input name="backTransAmt" class="text_extrasmall" type="text" id="stockVolume" onkeyup="numberWithCommas(this.value, this.id)"><span
 										class="top">만원</span>
 								</div>
 							</div>
@@ -782,12 +771,12 @@ height:15px;
 								</div>
 								<div class="card-body">
 									<span class="top" style="margin-right: 10px;">시가 총액</span> <select
-										id="AARebalCycle" class="slct_newport">
-										<option value="＞" selected="selected">&gt;</option>
-										<option value="＜">&lt;</option>
-										<option value="≤">≤</option>
-										<option value="≥">≥</option>
-									</select> <input class="text_extrasmall" id="stockSize" type="text" onkeyup="numberWithCommas(this.value, this.id)"><span
+										name="backCap" id="slct_cap" class="slct_newport">
+										<option value="gt" selected="selected">&gt;</option>
+										<option value="lt">&lt;</option>
+										<option value="lte">≤</option>
+										<option value="gte">≥</option>
+									</select> <input name="backMarketCap"class="text_extrasmall" id="stockSize" type="text" onkeyup="numberWithCommas(this.value, this.id)"><span
 										class="top">만원</span><br>
 								</div>
 							</div>
@@ -810,21 +799,21 @@ height:15px;
 									<div class="col-md-6"
 										style="border-right: 1px solid rgba(0, 0, 0, 0.125); float: left;">
 										<span class="top" style="background-color: #ffe8e8">매수
-											금액 : </span> <select id="AARebalCycle" class="slct_newport"
+											금액 : </span> <select name="backBuyPrice" id="slct_prcie" class="slct_newport"
 											style="padding: 5px">
-											<option value="open_price" selected="selected">당일
+											<option value="open" selected="selected">당일
 												시초가</option>
-											<option value="avg_price">당일 평균가</option>
-											<option value="end_price">당일 종가</option>
+											<option value="avg">당일 평균가</option>
+											<option value="end">당일 종가</option>
 										</select>
 									</div>
 									<div class="col-md-6" style="float: left">
 										<span class="top" style="background-color: #e1f1f8">매도
-											금액 : </span> <select id="AARebalCycle" class="slct_newport">
-											<option value="open_price" selected="selected">당일
+											금액 : </span> <select name="backSellPrice" id="AARebalCycle" class="slct_newport">
+											<option value="open" selected="selected">당일
 												시초가</option>
-											<option value="avg_price">당일 평균가</option>
-											<option value="end_price">당일 종가</option>
+											<option value="avg">당일 평균가</option>
+											<option value="end">당일 종가</option>
 										</select>
 									</div>
 								</div>
@@ -839,18 +828,18 @@ height:15px;
 										title="매매할 주식의 최소가격을 설정합니다. ">
 								</div>
 								<div class="card-body">
-									<select id="AARebalCycle" class="slct_newport" style="width:76px;">
-										<option value="시가" selected="selected">시가</option>
-										<option value="종가">종가</option>
+									<select id="slct_minPrice" name="backMinPriceV" class="slct_newport" style="width:76px;">
+										<option value="open" selected="selected">시가</option>
+										<option value="end">종가</option>
 									</select> 
-									<select
-										id="AARebalCycle" class="slct_newport">
+									<select name="backMinPriceS"
+										id="slct_minSign" class="slct_newport">
 										<option value="＞" selected="selected">&gt;</option>
 										<option value="＜">&lt;</option>
 										<option value="≤">≤</option>
 										<option value="≥">≥</option>
 									</select>
-									<input class="text_extrasmall" type="text" style="width:85px;"id="min_price" onkeyup="numberWithCommas(this.value, this.id)"> <span
+									<input name="backMinPrice" class="text_extrasmall" type="text" style="width:85px;"id="min_price" onkeyup="numberWithCommas(this.value, this.id)"> <span
 										class="top" >원</span>
 								</div>
 							</div>
@@ -864,11 +853,11 @@ height:15px;
 										title="회사 시가총액으로 투자 회사의 규모를 설정할 수 있습니다. ">
 								</div>
 								<div class="card-body">
-									<span class="top">시가 총액(%)</span> <select
-										id="AARebalCycle" class="slct_newport"  style="width:76px;">
-										<option value="상위" selected="selected">상위</option>
-										<option value="하위">하위</option>
-									</select> <input class="text_extrasmall" type="text"  style="width:50px;"> <span
+									<span class="top">시가 총액(%)</span> <select name="backCapUpDawn"
+										id="slct_capUpDonw" class="slct_newport"  style="width:76px;">
+										<option value="asc" selected="selected">상위</option>
+										<option value="desc">하위</option>
+									</select> <input name="backCapRate" class="text_extrasmall" type="text"  style="width:50px;"> <span
 										class="top">%</span>
 								</div>
 							</div>
@@ -877,10 +866,10 @@ height:15px;
 
 
 					<div class="btn-div">
-						<button class="btn btn_white"
+						<button class="btn btn_white" type="button"
 							onclick="changeTab(0);$('html,body').scrollTop(0);">이전
 							단계로</button>
-						<button class="btn btn_hana"
+						<button class="btn btn_hana" type="button"
 							onclick="changeTab(2);$('html,body').scrollTop(0);">다음
 							단계로</button>
 					</div>
@@ -958,12 +947,11 @@ height:15px;
 						<button class="btn btn_white"
 							onclick="changeTab(1);$('html,body').scrollTop(0);">이전
 							단계로</button>
-						<button class="btn btn_hana"
-							onclick="changeTab(3);$('html,body').scrollTop(0);">다음
-							단계로</button>
+						<input type="submit"  class="btn btn_hana" value="백테스팅 시작하기">
 					</div>
 
 				</div>
+				</form>
 				<div id="selection3" style="display: none">네번째 페이지</div>
 
 			</div>

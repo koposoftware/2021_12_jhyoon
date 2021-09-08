@@ -252,7 +252,7 @@ a {
 
 /* line 265, src/assets/scss/_reboot.scss */
 a:hover {
-  color: #35289b;
+  color: #008562;
 }
 
 /* line 277, src/assets/scss/_reboot.scss */
@@ -2683,10 +2683,10 @@ progress {
 .form-control:focus {
   color: #212529;
   background-color: #fff;
-  border-color: #a199e1;
+  border-color: #00c292;
   outline: 0;
-  -webkit-box-shadow: 0 0 0 0.25rem rgba(66, 50, 194, 0.25);
-          box-shadow: 0 0 0 0.25rem rgba(66, 50, 194, 0.25);
+  -webkit-box-shadow: 0 0 0 0.25rem rgba(0, 194, 145, 0.25);
+          box-shadow: 0 0 0 0.25rem rgba(0, 194, 145, 0.25);
 }
 
 /* line 50, src/assets/scss/forms/_form-control.scss */
@@ -2918,10 +2918,10 @@ textarea.form-control-lg {
 
 /* line 26, src/assets/scss/forms/_form-select.scss */
 .form-select:focus {
-  border-color: #a199e1;
+  border-color: #00c292;
   outline: 0;
-  -webkit-box-shadow: 0 0 0 0.25rem rgba(66, 50, 194, 0.25);
-          box-shadow: 0 0 0 0.25rem rgba(66, 50, 194, 0.25);
+  -webkit-box-shadow: 0 0 0 0.25rem rgba(0, 194, 145, 0.25);
+          box-shadow: 0 0 0 0.25rem rgba(0, 194, 145, 0.25);
 }
 
 /* line 37, src/assets/scss/forms/_form-select.scss */
@@ -3020,10 +3020,10 @@ textarea.form-control-lg {
 
 /* line 44, src/assets/scss/forms/_form-check.scss */
 .form-check-input:focus {
-  border-color: #a199e1;
+  border-color: #00c292;
   outline: 0;
-  -webkit-box-shadow: 0 0 0 0.25rem rgba(66, 50, 194, 0.25);
-          box-shadow: 0 0 0 0.25rem rgba(66, 50, 194, 0.25);
+  -webkit-box-shadow: 0 0 0 0.25rem rgba(0, 194, 145, 0.25);
+          box-shadow: 0 0 0 0.25rem rgba(0, 194, 145, 0.25);
 }
 
 /* line 50, src/assets/scss/forms/_form-check.scss */
@@ -3078,7 +3078,7 @@ textarea.form-control-lg {
 
 /* line 117, src/assets/scss/forms/_form-check.scss */
 .form-switch .form-check-input:focus {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23a199e1'/%3e%3c/svg%3e");
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%2300c292'/%3e%3c/svg%3e");
 }
 
 /* line 121, src/assets/scss/forms/_form-check.scss */
@@ -3126,13 +3126,13 @@ textarea.form-control-lg {
 
 /* line 19, src/assets/scss/forms/_form-range.scss */
 .form-range:focus::-webkit-slider-thumb {
-  -webkit-box-shadow: 0 0 0 1px #fff, 0 0 0 0.25rem rgba(66, 50, 194, 0.25);
-          box-shadow: 0 0 0 1px #fff, 0 0 0 0.25rem rgba(66, 50, 194, 0.25);
+  -webkit-box-shadow: 0 0 0 1px #fff, 0 0 0 0.25rem rgba(0, 194, 145, 0.25);
+          box-shadow: 0 0 0 1px #fff, 0 0 0 0.25rem rgba(0, 194, 145, 0.25);
 }
 
 /* line 20, src/assets/scss/forms/_form-range.scss */
 .form-range:focus::-moz-range-thumb {
-  box-shadow: 0 0 0 1px #fff, 0 0 0 0.25rem rgba(66, 50, 194, 0.25);
+  box-shadow: 0 0 0 1px #fff, 0 0 0 0.25rem rgba(0, 194, 145, 0.25);
 }
 
 /* line 23, src/assets/scss/forms/_form-range.scss */
@@ -3680,8 +3680,8 @@ textarea.form-control-lg {
 /* line 27, src/assets/scss/_buttons.scss */
 .btn-check:focus + .btn, .btn:focus {
   outline: 0;
-  -webkit-box-shadow: 0 0 0 0.25rem rgba(66, 50, 194, 0.25);
-          box-shadow: 0 0 0 0.25rem rgba(66, 50, 194, 0.25);
+  -webkit-box-shadow: 0 0 0 0.25rem rgba(0, 194, 145, 0.25);
+          box-shadow: 0 0 0 0.25rem rgba(0, 194, 145, 0.25);
 }
 
 /* line 44, src/assets/scss/_buttons.scss */
@@ -3701,15 +3701,16 @@ fieldset:disabled .btn {
 /* line 25, src/assets/scss/mixins/_buttons.scss */
 .btn-primary:hover {
   color: #f6f9fe;
-  background-color: #382ba5;
-  border-color: #35289b;
+  background-color:#00856f;
+  border-color: #008562;
 }
+
 
 /* line 31, src/assets/scss/mixins/_buttons.scss */
 .btn-check:focus + .btn-primary, .btn-primary:focus {
   color: #f6f9fe;
-  background-color: #382ba5;
-  border-color: #35289b;
+  background-color: #00856f;
+  border-color: #008562;
   -webkit-box-shadow: 0 0 0 0.25rem rgba(93, 80, 203, 0.5);
           box-shadow: 0 0 0 0.25rem rgba(93, 80, 203, 0.5);
 }
@@ -3719,8 +3720,8 @@ fieldset:disabled .btn {
 .btn-check:active + .btn-primary, .btn-primary:active, .btn-primary.active,
 .show > .btn-primary.dropdown-toggle {
   color: #f6f9fe;
-  background-color: #35289b;
-  border-color: #322692;
+  background-color: #008562;
+  border-color: #268292;
 }
 
 /* line 55, src/assets/scss/mixins/_buttons.scss */
@@ -3748,15 +3749,15 @@ fieldset:disabled .btn {
 /* line 25, src/assets/scss/mixins/_buttons.scss */
 .btn-secondary:hover {
   color: #000;
-  background-color: #7a7ded;
-  border-color: #7275ec;
+  background-color: #008571;
+  border-color: #008571;
 }
 
 /* line 31, src/assets/scss/mixins/_buttons.scss */
 .btn-check:focus + .btn-secondary, .btn-secondary:focus {
   color: #000;
-  background-color: #7a7ded;
-  border-color: #7275ec;
+  background-color: #008571;
+  border-color: #008571;
   -webkit-box-shadow: 0 0 0 0.25rem rgba(83, 87, 199, 0.5);
           box-shadow: 0 0 0 0.25rem rgba(83, 87, 199, 0.5);
 }
@@ -3767,7 +3768,7 @@ fieldset:disabled .btn {
 .show > .btn-secondary.dropdown-toggle {
   color: #000;
   background-color: #8185ee;
-  border-color: #7275ec;
+  border-color: #008571;
 }
 
 /* line 55, src/assets/scss/mixins/_buttons.scss */
@@ -4396,7 +4397,7 @@ fieldset:disabled .btn {
 
 /* line 81, src/assets/scss/_buttons.scss */
 .btn-link:hover {
-  color: #35289b;
+  color: #008562;
 }
 
 /* line 90, src/assets/scss/_buttons.scss */
@@ -5833,10 +5834,10 @@ fieldset:disabled .btn {
 /* line 50, src/assets/scss/_accordion.scss */
 .accordion-button:focus {
   z-index: 3;
-  border-color: #a199e1;
+  border-color: #00c292;
   outline: 0;
-  -webkit-box-shadow: 0 0 0 0.25rem rgba(66, 50, 194, 0.25);
-          box-shadow: 0 0 0 0.25rem rgba(66, 50, 194, 0.25);
+  -webkit-box-shadow: 0 0 0 0.25rem rgba(0, 194, 145, 0.25);
+          box-shadow: 0 0 0 0.25rem rgba(0, 194, 145, 0.25);
 }
 
 /* line 58, src/assets/scss/_accordion.scss */
@@ -5965,7 +5966,7 @@ fieldset:disabled .btn {
 /* line 15, src/assets/scss/_pagination.scss */
 .page-link:hover {
   z-index: 2;
-  color: #35289b;
+  color: #008562;
   background-color: #e9ecef;
   border-color: #dee2e6;
 }
@@ -5973,11 +5974,11 @@ fieldset:disabled .btn {
 /* line 23, src/assets/scss/_pagination.scss */
 .page-link:focus {
   z-index: 3;
-  color: #35289b;
+  color: #008562;
   background-color: #e9ecef;
   outline: 0;
-  -webkit-box-shadow: 0 0 0 0.25rem rgba(66, 50, 194, 0.25);
-          box-shadow: 0 0 0 0.25rem rgba(66, 50, 194, 0.25);
+  -webkit-box-shadow: 0 0 0 0.25rem rgba(0, 194, 145, 0.25);
+          box-shadow: 0 0 0 0.25rem rgba(0, 194, 145, 0.25);
 }
 
 /* line 33, src/assets/scss/_pagination.scss */
@@ -6762,8 +6763,8 @@ fieldset:disabled .btn {
 /* line 24, src/assets/scss/_close.scss */
 .btn-close:focus {
   outline: none;
-  -webkit-box-shadow: 0 0 0 0.25rem rgba(66, 50, 194, 0.25);
-          box-shadow: 0 0 0 0.25rem rgba(66, 50, 194, 0.25);
+  -webkit-box-shadow: 0 0 0 0.25rem rgba(0, 194, 145, 0.25);
+          box-shadow: 0 0 0 0.25rem rgba(0, 194, 145, 0.25);
   opacity: 1;
 }
 
@@ -7941,7 +7942,7 @@ fieldset:disabled .btn {
 
 /* line 6, src/assets/scss/helpers/_colored-links.scss */
 .link-primary:hover, .link-primary:focus {
-  color: #35289b;
+  color: #008562;
 }
 
 /* line 2, src/assets/scss/helpers/_colored-links.scss */
