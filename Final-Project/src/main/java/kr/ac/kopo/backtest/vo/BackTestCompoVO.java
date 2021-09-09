@@ -3,37 +3,43 @@ package kr.ac.kopo.backtest.vo;
 import java.util.Arrays;
 
 public class BackTestCompoVO {
-
-	private String backTitle;				//	제목
-	private String backDescript;            //	설명
-	private String backStartAsset;          //	운용자금
-	private String backStartDate;           //	시작일
-	private String backEndDate;             //	종료일
-	private String backFeeRate;             //	수수료율
-	private String backSlippage;            //	슬리피지
-	private String backTaxRate;             //	거래세금
-	private String backStockCnt;            //	종목수
-	private String backRebalCycle;          //	리밸런싱 주기
-	private String backInvestRate;          //	투자비중
-	private String backMarket;              //	거래시장
-	private String backCare;                //	관리종목
-	private String backManage;              //	감리종목
-	private String backPreferred;           //	우선주 종목
-	private String backEtf;                 //	ETF	종목
-	private String backCashFlow;            //	영업현금흐름
-	private String backProfit;              //	당기순이익
-	private String backTransAmt;            //	거래대금
-	private String backAmt;                 //	거래대금 부등호
-	private String backMarketCap;           //	시가총액
-	private String backCap;                 //	시가총액 부등호
-	private String backBuyPrice;            //	매수 가격
-	private String backSellPrice;           //	매도 가격
-	private String backMinPriceS;           //	매매 가격 범위
-	private String backMinPriceV;           //	매매 가격범위종류(시가/종가)
-	private String backMinPrice;            //	매매 가격 
-	private String backCapUpDown;           //	시가총액 상/하위
-	private String backCapRate;             //	시가총액 비율
-	private String[] backCondiVal;            //	조건식
+	private String userId; // 유저아이디
+	private String backTitle; // 제목
+	private String backDescript; // 설명
+	private String backStartAsset; // 운용자금
+	private String backStartDate; // 시작일
+	private String backEndDate; // 종료일
+	private double backFeeRate; // 수수료율
+	private double backSlippage; // 슬리피지
+	private double backTaxRate; // 거래세금
+	private int backStockCnt; // 종목수
+	private int backRebalCycle; // 리밸런싱 주기
+	private double backInvestRate; // 투자비중
+	private String backMarket; // 거래시장
+	private int backCare; // 관리종목
+	private int backManage; // 감리종목
+	private int backPreferred; // 우선주 종목
+	private int backEtf; // ETF 종목
+	private int backCashFlow; // 영업현금흐름
+	private int backProfit; // 당기순이익
+	private String backTransAmt; // 거래대금
+	private String backAmt; // 거래대금 부등호
+	private String backMarketCap; // 시가총액
+	private String backCap; // 시가총액 부등호
+	private String backBuyPrice; // 매수 가격
+	private String backSellPrice; // 매도 가격
+	private String backMinPriceS; // 매매 가격 범위
+	private String backMinPriceV; // 매매 가격범위종류(시가/종가)
+	private String backMinPrice; // 매매 가격
+	private String backCapUpDown; // 시가총액 상/하위
+	private double backCapRate; // 시가총액 비율
+	private String backCondiVal; // 조건식
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 	public String getBackTitle() {
 		return backTitle;
 	}
@@ -64,40 +70,40 @@ public class BackTestCompoVO {
 	public void setBackEndDate(String backEndDate) {
 		this.backEndDate = backEndDate;
 	}
-	public String getBackFeeRate() {
+	public double getBackFeeRate() {
 		return backFeeRate;
 	}
-	public void setBackFeeRate(String backFeeRate) {
+	public void setBackFeeRate(double backFeeRate) {
 		this.backFeeRate = backFeeRate;
 	}
-	public String getBackSlippage() {
+	public double getBackSlippage() {
 		return backSlippage;
 	}
-	public void setBackSlippage(String backSlippage) {
+	public void setBackSlippage(double backSlippage) {
 		this.backSlippage = backSlippage;
 	}
-	public String getBackTaxRate() {
+	public double getBackTaxRate() {
 		return backTaxRate;
 	}
-	public void setBackTaxRate(String backTaxRate) {
+	public void setBackTaxRate(double backTaxRate) {
 		this.backTaxRate = backTaxRate;
 	}
-	public String getBackStockCnt() {
+	public int getBackStockCnt() {
 		return backStockCnt;
 	}
-	public void setBackStockCnt(String backStockCnt) {
+	public void setBackStockCnt(int backStockCnt) {
 		this.backStockCnt = backStockCnt;
 	}
-	public String getBackRebalCycle() {
+	public int getBackRebalCycle() {
 		return backRebalCycle;
 	}
-	public void setBackRebalCycle(String backRebalCycle) {
+	public void setBackRebalCycle(int backRebalCycle) {
 		this.backRebalCycle = backRebalCycle;
 	}
-	public String getBackInvestRate() {
+	public double getBackInvestRate() {
 		return backInvestRate;
 	}
-	public void setBackInvestRate(String backInvestRate) {
+	public void setBackInvestRate(double backInvestRate) {
 		this.backInvestRate = backInvestRate;
 	}
 	public String getBackMarket() {
@@ -106,40 +112,40 @@ public class BackTestCompoVO {
 	public void setBackMarket(String backMarket) {
 		this.backMarket = backMarket;
 	}
-	public String getBackCare() {
+	public int getBackCare() {
 		return backCare;
 	}
-	public void setBackCare(String backCare) {
+	public void setBackCare(int backCare) {
 		this.backCare = backCare;
 	}
-	public String getBackManage() {
+	public int getBackManage() {
 		return backManage;
 	}
-	public void setBackManage(String backManage) {
+	public void setBackManage(int backManage) {
 		this.backManage = backManage;
 	}
-	public String getBackPreferred() {
+	public int getBackPreferred() {
 		return backPreferred;
 	}
-	public void setBackPreferred(String backPreferred) {
+	public void setBackPreferred(int backPreferred) {
 		this.backPreferred = backPreferred;
 	}
-	public String getBackEtf() {
+	public int getBackEtf() {
 		return backEtf;
 	}
-	public void setBackEtf(String backEtf) {
+	public void setBackEtf(int backEtf) {
 		this.backEtf = backEtf;
 	}
-	public String getBackCashFlow() {
+	public int getBackCashFlow() {
 		return backCashFlow;
 	}
-	public void setBackCashFlow(String backCashFlow) {
+	public void setBackCashFlow(int backCashFlow) {
 		this.backCashFlow = backCashFlow;
 	}
-	public String getBackProfit() {
+	public int getBackProfit() {
 		return backProfit;
 	}
-	public void setBackProfit(String backProfit) {
+	public void setBackProfit(int backProfit) {
 		this.backProfit = backProfit;
 	}
 	public String getBackTransAmt() {
@@ -202,35 +208,34 @@ public class BackTestCompoVO {
 	public void setBackCapUpDown(String backCapUpDown) {
 		this.backCapUpDown = backCapUpDown;
 	}
-	public String getBackCapRate() {
+	public double getBackCapRate() {
 		return backCapRate;
 	}
-	public void setBackCapRate(String backCapRate) {
+	public void setBackCapRate(double backCapRate) {
 		this.backCapRate = backCapRate;
 	}
-	public String[] getBackCondiVal() {
+	public String getBackCondiVal() {
 		return backCondiVal;
 	}
-	public void setBackCondiVal(String[] backCondiVal) {
+	public void setBackCondiVal(String backCondiVal) {
 		this.backCondiVal = backCondiVal;
 	}
 	@Override
 	public String toString() {
-		return "BackTestCompoVO [backTitle=" + backTitle + ", backDescript=" + backDescript + ", backStartAsset="
-				+ backStartAsset + ", backStartDate=" + backStartDate + ", backEndDate=" + backEndDate
-				+ ", backFeeRate=" + backFeeRate + ", backSlippage=" + backSlippage + ", backTaxRate=" + backTaxRate
-				+ ", backStockCnt=" + backStockCnt + ", backRebalCycle=" + backRebalCycle + ", backInvestRate="
-				+ backInvestRate + ", backMarket=" + backMarket + ", backCare=" + backCare + ", backManage="
-				+ backManage + ", backPreferred=" + backPreferred + ", backEtf=" + backEtf + ", backCashFlow="
-				+ backCashFlow + ", backProfit=" + backProfit + ", backTransAmt=" + backTransAmt + ", backAmt="
-				+ backAmt + ", backMarketCap=" + backMarketCap + ", backCap=" + backCap + ", backBuyPrice="
-				+ backBuyPrice + ", backSellPrice=" + backSellPrice + ", backMinPriceS=" + backMinPriceS
-				+ ", backMinPriceV=" + backMinPriceV + ", backMinPrice=" + backMinPrice + ", backCapUpDown="
-				+ backCapUpDown + ", backCapRate=" + backCapRate + ", backCondiVal=" + Arrays.toString(backCondiVal)
+		return "BackTestCompoVO [userId=" + userId + ", backTitle=" + backTitle + ", backDescript=" + backDescript
+				+ ", backStartAsset=" + backStartAsset + ", backStartDate=" + backStartDate + ", backEndDate="
+				+ backEndDate + ", backFeeRate=" + backFeeRate + ", backSlippage=" + backSlippage + ", backTaxRate="
+				+ backTaxRate + ", backStockCnt=" + backStockCnt + ", backRebalCycle=" + backRebalCycle
+				+ ", backInvestRate=" + backInvestRate + ", backMarket=" + backMarket + ", backCare=" + backCare
+				+ ", backManage=" + backManage + ", backPreferred=" + backPreferred + ", backEtf=" + backEtf
+				+ ", backCashFlow=" + backCashFlow + ", backProfit=" + backProfit + ", backTransAmt=" + backTransAmt
+				+ ", backAmt=" + backAmt + ", backMarketCap=" + backMarketCap + ", backCap=" + backCap
+				+ ", backBuyPrice=" + backBuyPrice + ", backSellPrice=" + backSellPrice + ", backMinPriceS="
+				+ backMinPriceS + ", backMinPriceV=" + backMinPriceV + ", backMinPrice=" + backMinPrice
+				+ ", backCapUpDown=" + backCapUpDown + ", backCapRate=" + backCapRate + ", backCondiVal=" + backCondiVal
 				+ "]";
 	}
 
-	
-	
-	
+
+
 }

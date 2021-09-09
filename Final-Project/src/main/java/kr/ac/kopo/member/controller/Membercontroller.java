@@ -35,7 +35,7 @@ public class Membercontroller {
 		System.out.println("err :" + error);
 	}
 
-	@GetMapping("/member")
+	@GetMapping("/")
 	public void doMember() {
 		System.out.println("멤버로그인~");
 	}
@@ -47,14 +47,13 @@ public class Membercontroller {
 	
 	@GetMapping("/regist")
 	public String registForm() {
-		return "/member/regist";
+		return "/member/userregist";
 		
 	}
 	
 	@PostMapping("/regist")
 	public String registProcessing(MemberVO memberVO) {
 		service.userRegist(memberVO);
-		
 		
 		return "";
 	}

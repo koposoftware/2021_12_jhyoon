@@ -5,8 +5,8 @@
 <configuration>
  <typeAliases>
 	<typeAlias type="kr.ac.kopo.member.vo.MemberVO" alias="memberVO"/>
-	<!-- <typeAlias type="kr.ac.kopo.board.vo.BoardVO" alias="boardVO"/>
-	<typeAlias type="kr.ac.kopo.board.vo.ReplyVO" alias="replyVO"/> -->
+	<typeAlias type="kr.ac.kopo.backtest.vo.BackTestCompoVO" alias="backTestCompoVO"/>
+	 <!-- <typeAlias type="kr.ac.kopo.board.vo.ReplyVO" alias="replyVO"/> -->
 </typeAliases> 
 
 </configuration>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="backtest.backTestCompoVO">
+	<resultMap type="backTestCompoVO" id="compoMap">
+		<result column="user_id" property="userId" />
+		<result column="back_title" property="backTitle" />
+		<result column="back_descript" property="backDescript" />
+		<result column="back_start_asset" property="backStartAsset" />
+		<result column="back_start_date" property="backStartDate" />
+		<result column="back_end_date" property="backEndDate" />
+		<result column="back_fee_rate" property="backFeeRate" />
+		<result column="back_slippage" property="backSlippage" />
+		<result column="back_tax_rate" property="backTaxRate" />
+		<result column="back_stock_cnt" property="backStockCnt" />
+		<result column="back_rebal_cycle" property="backInvestRate" />
+		<result column="back_invest_rate" property="backInvestRate" />
+		<result column="back_market" property="backMarket" />
+		<result column="back_care" property="backCare" />
+		<result column="back_manage" property="backManage" />
+		<result column="back_preferred" property="backPreferred" />
+		<result column="back_etf" property="backEtf" />
+		<result column="back_cashFlow" property="backCashFlow" />
+		<result column="back_profit" property="backProfit" />
+		<result column="back_trans_amt" property="backTransAmt" />
+		<result column="back_Amt" property="backAmt" />
+		<result column="back_Market_Cap" property="backMarketCap" />
+		<result column="back_Cap" property="backCap" />
+		<result column="back_Buy_Price" property="backBuyPrice" />
+		<result column="back_Sell_Price" property="backSellPrice" />
+		<result column="back_Min_PriceS" property="backMinPriceS" />
+		<result column="back_Min_PriceV" property="backMinPriceV" />
+		<result column="back_Min_Price" property="backMinPrice" />
+		<result column="back_Cap_UpDown" property="backCapUpDown" />
+		<result column="back_Cap_Rate" property="backCapRate" />
+		<result column="back_Condi_Val" property="backCondiVal" />
+	</resultMap>
+	<insert id="insertCompo" parameterType="backTestCompoVO">
+		INSERT INTO T_BACKPORT_CONDI(port_no, user_id, back_title, back_descript, back_start_asset, back_start_date , back_end_date, back_fee_rate,
+									back_slippage, back_tax_rate, back_stock_cnt, back_rebal_cycle,back_invest_rate ,back_Market,
+									back_Care, back_Manage,	back_Preferred,	back_Etf,back_CashFlow,	back_Profit ,back_Trans_Amt,back_Amt,back_Market_Cap,back_Cap,
+									back_Buy_Price,	back_Sell_Price,back_Min_PriceS,back_Min_PriceV,back_Min_Price,	back_Cap_UpDown,back_Cap_Rate,back_Condi_Val ) 
+    		   VALUES(seq_backtest_condi_port.NEXTVAL, #{userId},#{backTitle},#{backDescript},#{backStartAsset},#{backStartDate},#{backEndDate},#{backFeeRate},	#{backSlippage},
+					#{backTaxRate},	#{backStockCnt},#{backRebalCycle},#{backInvestRate},#{backMarket},#{backCare},#{backManage},#{backPreferred},#{backEtf},
+					#{backCashFlow},#{backProfit},#{backTransAmt},#{backAmt},#{backMarketCap},#{backCap},#{backBuyPrice},#{backSellPrice},	#{backMinPriceS},
+					#{backMinPriceV},#{backMinPrice},#{backCapUpDown},#{backCapRate},#{backCondiVal})	
+	</insert>
+
+
+
+</mapper>

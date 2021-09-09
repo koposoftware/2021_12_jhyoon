@@ -462,6 +462,7 @@ height:15px;
 		<div class="selection_Tab">
 			<div class="content-by-step">
 			<form action="${pageContext.request.contextPath}/backtest/compo" method="post">
+			<input type="hidden" name="userId" value = "dhfkdlxm">
 				<div id="selection0" class="container"
 					style="display: block; align-content: center;">
 					<!-- 첫번째 페이지 -->
@@ -669,35 +670,35 @@ height:15px;
 										style="border-right: 1px solid rgba(0, 0, 0, 0.125); float: left">
 										<span class="top">관리종목</span><br> <input type="radio"
 											name="backCare" id="careOff" class="css-radiobtn"
-											checked="checked" value="Off"> <label for="careOff"
+											checked="checked" value="0"> <label for="careOff"
 											style="margin-right: 20px">제외</label> <input type="radio"
-											name="backCare" id="careOn" class="css-radiobtn" value="On"> <label
+											name="backCare" id="careOn" class="css-radiobtn" value="1"> <label
 											for="careOn" style="margin-right: 0">포함</label>
 									</div>
 									<div class="col-md-3"
 										style="border-right: 1px solid rgba(0, 0, 0, 0.125); float: left">
 										<span class="top">감리종목</span><br> <input type="radio"
-											name="backManage" id="manageOff" class="css-radiobtn" value="Off"
+											name="backManage" id="manageOff" class="css-radiobtn" value="0"
 											checked="checked"> <label for="manageOff"
 											style="margin-right: 20px">제외</label> <input type="radio"
-											name="backManage" id="manageOn" class="css-radiobtn" value="On">
+											name="backManage" id="manageOn" class="css-radiobtn" value="1">
 										<label for="manageOn" style="margin-right: 0">포함</label>
 									</div>
 									<div class="col-md-3"
 										style="border-right: 1px solid rgba(0, 0, 0, 0.125); float: left;">
 										<span class="top">우선주 종목</span><br> <input type="radio"
 											name="backPreferred" id="preferredOff" class="css-radiobtn"
-											checked="checked" value="Off"> <label for="preferredOff"
+											checked="checked" value="0"> <label for="preferredOff"
 											style="margin-right: 20px">제외</label> <input type="radio"
-											name="backPreferred" id="preferredOn" class="css-radiobtn" value="On">
+											name="backPreferred" id="preferredOn" class="css-radiobtn" value="1">
 										<label for="preferredOn" style="margin-right: 0">포함</label>
 									</div>
 									<div class="col-md-3" style="float: left;">
 										<span class="top">ETF 종목</span><br> <input type="radio"
 											name="backEtf" id="etfOff" class="css-radiobtn"
-											checked="checked" value="Off"> <label for="etfOff"
+											checked="checked" value="0"> <label for="etfOff"
 											style="margin-right: 20px">제외</label> <input type="radio"
-											name="backEtf" id="etfOn" class="css-radiobtn" value="On"> <label
+											name="backEtf" id="etfOn" class="css-radiobtn" value="1"> <label
 											for="etfOn" style="margin-right: 0">포함</label>
 									</div>
 								</div>
@@ -722,18 +723,18 @@ height:15px;
 										style="border-right: 1px solid rgba(0, 0, 0, 0.125); float: left">
 										<span class="top">영업 현금 흐름(+)</span><br> <input
 											type="radio" name="backCashFlow" id="cashFlowOn"
-											class="css-radiobtn" checked="checked" value="On"> <label
+											class="css-radiobtn" checked="checked" value="1"> <label
 											for="cashFlowOn" style="margin-right: 20px">포함</label> <input
-											type="radio" name="backCashFlow" id="cashFlowOff" value="Off"
+											type="radio" name="backCashFlow" id="cashFlowOff" value="0"
 											class="css-radiobtn"> <label for="cashFlowOff"
 											style="margin-right: 0">미포함</label>
 									</div>
 									<div class="col-md-6" style="float: left">
 										<span class="top">당기 순이익(+)</span><br> <input
-											type="radio" name="backProfit" id="profitOn" value="On"
+											type="radio" name="backProfit" id="profitOn" value="1"
 											class="css-radiobtn" checked="checked"> <label
 											for="profitOn" style="margin-right: 20px">포함</label> <input
-											type="radio" name="backProfit" id="profitOff" value="Off"
+											type="radio" name="backProfit" id="profitOff" value="0"
 											class="css-radiobtn"> <label for="profitOff"
 											style="margin-right: 0">제외</label>
 									</div>
@@ -834,10 +835,10 @@ height:15px;
 									</select> 
 									<select name="backMinPriceS"
 										id="slct_minSign" class="slct_newport">
-										<option value="＞" selected="selected">&gt;</option>
-										<option value="＜">&lt;</option>
-										<option value="≤">≤</option>
-										<option value="≥">≥</option>
+										<option value="gt" selected="selected">&gt;</option>
+										<option value="lt">&lt;</option>
+										<option value="lte">≤</option>
+										<option value="gte">≥</option>
 									</select>
 									<input name="backMinPrice" class="text_extrasmall" type="text" style="width:85px;"id="min_price" onkeyup="numberWithCommas(this.value, this.id)"> <span
 										class="top" >원</span>
@@ -853,8 +854,8 @@ height:15px;
 										title="회사 시가총액으로 투자 회사의 규모를 설정할 수 있습니다. ">
 								</div>
 								<div class="card-body">
-									<span class="top">시가 총액(%)</span> <select name="backCapUpDawn"
-										id="slct_capUpDonw" class="slct_newport"  style="width:76px;">
+									<span class="top">시가 총액(%)</span> <select name="backCapUpDown"
+										id="slct_capUpDown" class="slct_newport"  style="width:76px;">
 										<option value="asc" selected="selected">상위</option>
 										<option value="desc">하위</option>
 									</select> <input name="backCapRate" class="text_extrasmall" type="text"  style="width:50px;"> <span
