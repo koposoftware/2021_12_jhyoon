@@ -763,7 +763,7 @@ progress {
 @media (min-width: 1400px) {
   /* line 20, src/assets/scss/_containers.scss */
   .container, .container-sm, .container-md, .container-lg, .container-xl, .container-xxl {
-    max-width: 1320px;
+    max-width: 95%;
   }
 }
 
@@ -4770,7 +4770,7 @@ fieldset:disabled .btn {
 /* line 197, src/assets/scss/_dropdown.scss */
 .dropdown-menu-dark {
   color: #dee2e6;
-  background-color: #343a40;
+  background-color: #ffff;
   border-color: rgba(0, 0, 0, 0.15);
 }
 
@@ -4781,8 +4781,8 @@ fieldset:disabled .btn {
 
 /* line 206, src/assets/scss/_dropdown.scss */
 .dropdown-menu-dark .dropdown-item:hover, .dropdown-menu-dark .dropdown-item:focus {
-  color: #fff;
-  background-color: rgba(255, 255, 255, 0.15);
+  color: #dee2e6;
+  background-color: rgba(0, 132, 133);
 }
 
 /* line 212, src/assets/scss/_dropdown.scss */

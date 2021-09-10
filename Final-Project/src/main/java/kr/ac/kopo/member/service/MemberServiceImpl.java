@@ -12,8 +12,9 @@ public class MemberServiceImpl implements MemberService  {
 	private MemberDAO memberDAO;
 	
 	
-	public MemberVO login(MemberVO member) {
-		return null;
+	public MemberVO login(MemberVO memberVO) {
+		MemberVO userVO = memberDAO.login(memberVO);
+		return userVO;
 	}
 
 	
@@ -21,6 +22,13 @@ public class MemberServiceImpl implements MemberService  {
 	@Override
 	public void userRegist(MemberVO memberVO) {
 		memberDAO.userRegist(memberVO);
+	}
+
+
+
+	@Override
+	public int registIdCheck(String checkId) {
+		return memberDAO.registIdCheck(checkId);
 	}
 	
 

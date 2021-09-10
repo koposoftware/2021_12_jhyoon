@@ -40,16 +40,16 @@ h1, h2, h3, h4, h5, h6, input, button, textarea, select {font-family: 'Noto Sans
 
 /* 회원가입 입력 */
 #register_form {
-	max-width: 600px; margin: 50px auto 0; padding: 70px 40px;
-	background: #fff; border: 1px solid #d8d9de; border-radius: 4px;
+	max-width: 750px; margin: 50px auto; padding: 70px 70px;
+	background: #fff; border: 1px solid #d8d9de; border-radius: 20px;
 }
-#fregisterform .form_01 div, #fregisterform .form_01 li  { margin: 0; }
+#fregisterform .form_01 div, #fregisterform .form_01 li  { margin: 0; margin-left: 20px; }
 
 #register_form h3, #register_agree h3 {
-	position: relative; padding: 0 0 10px 0;
-	font-size: 16px; color: #2d2f43; font-weight: 500; border-bottom: 2px solid #3d435f;
+	position: relative; padding: 0 0 15px 0;
+	font-size: 30px; color: #2d2f43; font-weight: 500; border-bottom: 2px solid #3d435f;
 }
-#register_form h3 { margin-bottom: 10px; }
+#register_form h3 { margin-bottom: 30px; }
 #register_form h3:after { content: ""; display: block; clear: both; visibility: hidden; }
 /*
 #register_form h3 span { float: right; } 
@@ -90,8 +90,8 @@ h1, h2, h3, h4, h5, h6, input, button, textarea, select {font-family: 'Noto Sans
 	word-break: break-all; word-wrap: break-word;
 }
 input[type=text].reg_input, input[type=password].reg_input, select.reg_input, .reg_input {
-	padding: 0;
-	width: 100%; height: 50px; line-height: 50px;
+	padding: 0; margin-bottom:10px;
+	width: 60%; height: 50px; line-height: 50px;
 	font-size: 14px; color: #444; font-weight: normal;
 	 background: #fff; border: 0 !important; border-bottom: 1px solid #d8d9df !important;
 	vertical-align: top; box-shadow: none !important; outline: none !important
@@ -99,7 +99,7 @@ input[type=text].reg_input, input[type=password].reg_input, select.reg_input, .r
 .regi_table select.reg_input {
 	text-align:center;
 	-webkit-appearance: none; -moz-appearance: none; appearance: none;
-	background-image: url(/Web-YB-Bank/resources/img/arr_down3.png);
+	background-image: url(../img/arr_down3.png);
 	background-position: right 10px center;
 	background-repeat: no-repeat;	
 	background-color: #fff;
@@ -116,9 +116,10 @@ input[type=text].reg_input, input[type=password].reg_input, select.reg_input, .r
 .regi_table #reg_mb_name, .regi_table #reg_mb_zip, .regi_table #reg_mb_id { width: 180px; }
 
 .emailselect_wrap { position: relative; }
-.emailselect_wrap:before { content: ""; display: block; position: absolute;  left: 0; bottom: 0; width: 100%; height: 1px; background: #d8d9df; z-index: 2; }
+
 .emailselect_wrap:after, .telselect_wrap:after { content: ""; display: block; clear: both; visibility: hidden; }
-#hp1, #hp2, #hp3, #email1, #email2, #email3, #reg_mb_resist1, #reg_mb_resist2 { float: left; width: 30%; }
+#hp1, #hp2, #hp3, #email1, #email2, #email3 { float: left; width: 30%; }
+#reg_mb_resist1, #reg_mb_resist2 {width: 45%; }
 .emailselect_wrap b { float: left; width: 5%; text-align: center; }
 .telselect_wrap b { float: left; width: 5%; text-align: center; }
 
@@ -200,7 +201,6 @@ input[type=text].reg_input, input[type=password].reg_input, select.reg_input, .r
 	display: block; position: relative;
 	margin: 0; margin-top: -1px; line-height: 30px;
 	font-size: 0.833em; color: #2d2f43; font-weight: normal;
-	border-top: 1px solid #d8d9df;
 	z-index: 2;
 }
 #fregisterform .reg_msg.nok { color: #e5433e !important; border-color: #e5433e !important; }
@@ -233,7 +233,7 @@ input[type=text].reg_input, input[type=password].reg_input, select.reg_input, .r
 	overflow: hidden; clip:rect(0,0,0,0); border: 0
 }
 .checks input[type="checkbox"] + label {
-	display: inline-block; position: relative; cursor: pointer;
+	margin-left : 30px; display: inline-block; position: relative; cursor: pointer;
 	-webkit-user-select: none; -moz-user-select: none; -ms-user-select: none;
 }
 .checks input[type="checkbox"] + label:before {	/* 가짜 체크박스 */
@@ -244,7 +244,7 @@ input[type=text].reg_input, input[type=password].reg_input, select.reg_input, .r
 	text-align: center; vertical-align: middle;
 }
 .checks input[type="checkbox"]:checked + label:before {	/* 체크박스를 체크했을때 */
-	background: url(/Web-YB-Bank/resources/img/chk.png) no-repeat 50% 50% #3a8afd; border-color: #3a8afd;
+	background: url(../img/chk.png) no-repeat 50% 50% #3a8afd; border-color: #3a8afd;
 }
 
 .checks2 { position: relative; }
@@ -260,5 +260,5 @@ input[type=text].reg_input, input[type=password].reg_input, select.reg_input, .r
 	text-align: center; cursor: pointer;
 }
 .checks2 input[type="checkbox"]:checked + label:before {
-	background: url(/Web-YB-Bank/resources/img/chk.png) no-repeat 50% 50% #3a8afd; border-color:#3a8afd;
+	background: url(../img/chk.png) no-repeat 50% 50% #3a8afd; border-color:#3a8afd;
 }

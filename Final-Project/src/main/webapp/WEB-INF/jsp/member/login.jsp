@@ -45,18 +45,17 @@
 				<div class="modal-body p-5 pt-0">
 					<form action="${pageContext.request.contextPath }/member/login" method="post">
 						<div class="form-floating mb-3">
-							<input type="text" class="form-control rounded-4" name="username"
+							<input type="text" class="form-control rounded-4" name="userId"
 								id="floatingInput" placeholder="아이디"> <label
 								for="floatingInput">아이디</label>
 						</div>
 						<div class="form-floating mb-3">
-							<input type="password" class="form-control rounded-4" name="password"
+							<input type="password" class="form-control rounded-4" name="userPwd"
 								id="floatingPassword" placeholder="비밀번호"> <label
 								for="floatingPassword" >비밀번호</label>
 						</div>
 						<input class="w-100 mb-2 btn btn-lg rounded-4 btn-primary"
 							type="submit" value="로그인 하기">
-						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 						<a href="#"><small class="text-muted">비밀번호를 잊으셨나요?</small></a>
 						<a href="#"><small class="text-muted">회원가입 하러가기</small></a>
 						<hr class="my-4">

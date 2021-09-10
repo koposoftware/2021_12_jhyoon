@@ -17,17 +17,19 @@
 		<result column="emp_id" property="empId" />
 		<result column="user_auth" property="userAuth" />
 	</resultMap>
-	<select id="login" parameterType="memberVO"	resultType="memberVO">
-		select id, password
-		from t_member1
-		where id=#{id} and password=#{password}
+	<select id="login" parameterType="memberVO"	resultMap="memberMap" resultType="memberVO">
+		select user_id, user_pwd, user_name from user_table
+		where user_id=#{userId} and user_pwd=#{userPwd}
 	</select>
 	<insert id="registMember" parameterType="memberVO">
-		insert into t_user_table(user_id, user_pwd, user_resistnum, user_name, user_post, user_addr, user_addr2
-		,user_tel, user_email, user_regdate, enabled) values(#{userId}, #{userPwd}, #{userResistNum}, 
-		#{userName}, #{userPost}, #{userAddr}, #{userAddr2}, #{userTel}, #{userEmail}, sysdate, 1)
+		insert into user_table(USER_ID, USER_PWD, USER_RESISTNUM, USER_NAME, USER_POST, USER_ADDR, USER_ADDR2, USER_TEL, USER_EMAIL, USER_REGDATE)
+        values(#{userId}, #{userPwd}, #{userResistNum}, #{userName}, #{userPost}, #{userAddr}, #{userAddr2}, 
+        #{userTel}, #{userEmail}, sysdate)
+		
 	</insert>
-
+	<select id="checkId" parameterType="String" resultType="int">
+		select count(*)	from user_table	where user_id=#{checkId}
+	</select>
 
 
 </mapper>

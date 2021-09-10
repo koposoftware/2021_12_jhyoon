@@ -13,7 +13,12 @@
 <!-- meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0"/ -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>회원가입 이용 약관</title>
-
+<link href="${pageContext.request.contextPath}/resources/css/style.css"
+	rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/css/style2.css"
+	rel="stylesheet">
+	<script
+	src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 <!-- Head 구성 끝 -->
 </head>
 <body>
@@ -27,7 +32,7 @@
 
 
 			<form name="fregister" id="fregister"
-				action="${pageContext.request.contextPath}/member/regist"
+				action="${pageContext.request.contextPath}/member/registagree"
 				onsubmit="return fregister_submit(this);" method="POST"
 				autocomplete="off">
 

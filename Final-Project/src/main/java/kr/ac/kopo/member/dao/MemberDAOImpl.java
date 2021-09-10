@@ -12,8 +12,11 @@ public class MemberDAOImpl implements MemberDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
 
-	public MemberVO login(MemberVO member) {
-		return null;
+	public MemberVO login(MemberVO memberVO) {
+		System.out.println("입력 : " + memberVO);
+		MemberVO userVO = sqlSessionTemplate.selectOne("login", memberVO);
+		System.out.println("출력 : " + userVO);
+		return userVO;
 	}
 
 	@Override
@@ -21,6 +24,14 @@ public class MemberDAOImpl implements MemberDAO {
 		sqlSessionTemplate.insert("registMember", memberVO); 
 		
 	}
+
+	@Override
+	public int registIdCheck(String checkId) {
+		int result = sqlSessionTemplate.selectOne("checkId", checkId);
+		
+		return result;
+	}
+	
 	
 	
 	
