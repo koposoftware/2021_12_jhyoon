@@ -9,4 +9,6 @@ public interface MemberDAO {
 	void userRegist(MemberVO memberVO);
 
 	int registIdCheck(String checkId);
+
+	void updateBacktestCnt(MemberVO memberVO);
 }

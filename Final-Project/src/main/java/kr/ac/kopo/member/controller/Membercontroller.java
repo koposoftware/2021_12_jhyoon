@@ -37,7 +37,6 @@ public class Membercontroller {
 
 	@PostMapping("/login")
 	public String loginProcessing(String error, MemberVO memberVO, Model model,HttpSession session) {
-		System.out.println("login-processing!");
 		MemberVO userVO = service.login(memberVO);
 		//로그인 실패
 		System.out.println(userVO);

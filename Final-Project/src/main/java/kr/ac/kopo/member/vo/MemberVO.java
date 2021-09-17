@@ -13,8 +13,10 @@ public class MemberVO {
 	private String userEmail;
 	private String userRegDate;
 	private String empId;
-	private String userAuth;
-	private int enabled;
+	private String subscribeGrade;
+	private String subscribeDate;
+	private int backtestCnt;
+	
 	public String getUserId() {
 		return userId;
 	}
@@ -81,26 +83,34 @@ public class MemberVO {
 	public void setEmpId(String empId) {
 		this.empId = empId;
 	}
-	public String getUserAuth() {
-		return userAuth;
+	public String getSubscribeGrade() {
+		return subscribeGrade;
 	}
-	public void setUserAuth(String userAuth) {
-		this.userAuth = userAuth;
+	public void setSubscribeGrade(String subscribeGrade) {
+		this.subscribeGrade = subscribeGrade;
 	}
-	public int getEnabled() {
-		return enabled;
+	public String getSubscribeDate() {
+		return subscribeDate;
 	}
-	public void setEnabled(int enabled) {
-		this.enabled = enabled;
+	public void setSubscribeDate(String subscribeDate) {
+		this.subscribeDate = subscribeDate;
+	}
+	public int getBacktestCnt() {
+		return backtestCnt;
+	}
+	public void setBacktestCnt(int backtestCnt) {
+		this.backtestCnt = backtestCnt;
 	}
 	@Override
 	public String toString() {
 		return "MemberVO [userId=" + userId + ", userPwd=" + userPwd + ", userResistNum=" + userResistNum
 				+ ", userName=" + userName + ", userPost=" + userPost + ", userAddr=" + userAddr + ", userAddr2="
 				+ userAddr2 + ", userTel=" + userTel + ", userEmail=" + userEmail + ", userRegDate=" + userRegDate
-				+ ", empId=" + empId + ", userAuth=" + userAuth + ", enabled=" + enabled + "]";
+				+ ", empId=" + empId + ", subscribeGrade=" + subscribeGrade + ", subscribeDate=" + subscribeDate
+				+ ", backtestCnt=" + backtestCnt + "]";
 	}
-	
+
+
 	
 	
 }

@@ -3,10 +3,17 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+<settings>
+	<setting name="jdbcTypeForNull" value="NULL"/>
+</settings>
  <typeAliases>
 	<typeAlias type="kr.ac.kopo.member.vo.MemberVO" alias="memberVO"/>
 	<typeAlias type="kr.ac.kopo.backtest.vo.BackTestCompoVO" alias="backTestCompoVO"/>
-	 <!-- <typeAlias type="kr.ac.kopo.board.vo.ReplyVO" alias="replyVO"/> -->
+	<typeAlias type="kr.ac.kopo.backtest.vo.BackTestResultFlucVO" alias="backTestResultFlucVO"/>
+	<typeAlias type="kr.ac.kopo.backtest.vo.BackTestResultSetVO" alias="backTestResultSetVO"/>
+	<typeAlias type="kr.ac.kopo.backtest.vo.BackTestResultAccVO" alias="backTestResultAccVO"/>
+	<typeAlias type="kr.ac.kopo.backtest.vo.BackTestTransResultVO" alias="backTestTransResultVO"/>
+	 
 </typeAliases> 
 
 </configuration>

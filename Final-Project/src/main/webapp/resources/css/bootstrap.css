@@ -5275,7 +5275,7 @@ fieldset:disabled .btn {
   }
 }
 
-@media (min-width: 1530px) {
+@media (min-width: 2000px) {
   /* line 159, src/assets/scss/_navbar.scss */
   .navbar-expand-lg {
     -ms-flex-wrap: nowrap;
@@ -5440,7 +5440,7 @@ fieldset:disabled .btn {
 /* line 206, src/assets/scss/_navbar.scss */
 .navbar-light .navbar-nav .nav-link {
   color: rgba(0, 0, 0, 0.55);
-  font-size: 18px;
+  font-size: 25px;
     font-weight: bold
 }
 
@@ -11257,7 +11257,7 @@ fieldset:disabled .btn {
   }
 }
 
-@media (min-width: 1530px) {
+@media (min-width: 1760px) {
   /* line 50, src/assets/scss/mixins/_utilities.scss */
   .float-lg-start {
     float: left !important;

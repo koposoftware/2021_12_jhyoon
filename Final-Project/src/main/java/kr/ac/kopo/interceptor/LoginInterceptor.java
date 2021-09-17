@@ -27,6 +27,13 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		response.sendRedirect(request.getContextPath()+"/member/login");
 		return false;
 		}
+		
+		
+		
+		
+		
+		
+		
 		return true;
 	}
 

@@ -30,6 +30,14 @@ public class MemberServiceImpl implements MemberService  {
 	public int registIdCheck(String checkId) {
 		return memberDAO.registIdCheck(checkId);
 	}
+
+
+
+	@Override
+	public void updateBacktestCnt(MemberVO memberVO) {
+		memberDAO.updateBacktestCnt(memberVO);
+		
+	}
 	
 
 }

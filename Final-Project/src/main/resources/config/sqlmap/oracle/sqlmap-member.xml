@@ -15,21 +15,28 @@
 		<result column="user_email" property="userEmail" />
 		<result column="user_regdate" property="userRegDate" />
 		<result column="emp_id" property="empId" />
-		<result column="user_auth" property="userAuth" />
+		<result column="SUBSCRIBE_GRADE" property="subscribeGrade" />
+		<result column="SUBSCRIBE_DATE" property="subscribeDate" />
+		<result column="BACKTEST_CNT" property="backtestCnt" />
+		
 	</resultMap>
 	<select id="login" parameterType="memberVO"	resultMap="memberMap" resultType="memberVO">
-		select user_id, user_pwd, user_name from user_table
+		select user_id, user_name, EMP_ID, SUBSCRIBE_GRADE, SUBSCRIBE_GRADE, SUBSCRIBE_DATE, BACKTEST_CNT from user_table
 		where user_id=#{userId} and user_pwd=#{userPwd}
 	</select>
 	<insert id="registMember" parameterType="memberVO">
-		insert into user_table(USER_ID, USER_PWD, USER_RESISTNUM, USER_NAME, USER_POST, USER_ADDR, USER_ADDR2, USER_TEL, USER_EMAIL, USER_REGDATE)
+		insert into user_table(USER_ID, USER_PWD, USER_RESISTNUM, USER_NAME, USER_POST, USER_ADDR, USER_ADDR2, USER_TEL, USER_EMAIL, USER_REGDATE, SUBSCRIBE_DATE)
         values(#{userId}, #{userPwd}, #{userResistNum}, #{userName}, #{userPost}, #{userAddr}, #{userAddr2}, 
-        #{userTel}, #{userEmail}, sysdate)
+        #{userTel}, #{userEmail}, SYSDATE, SYSDATE)
 		
 	</insert>
 	<select id="checkId" parameterType="String" resultType="int">
 		select count(*)	from user_table	where user_id=#{checkId}
 	</select>
+
+	<update id="updateBacktestCnt" parameterType="memberVO">
+	 	update user_table set BACKTEST_CNT = #{backtestCnt} where user_id=#{userId} 
+</update>
 
 
 </mapper>

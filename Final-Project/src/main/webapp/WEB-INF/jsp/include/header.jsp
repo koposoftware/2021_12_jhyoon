@@ -22,7 +22,7 @@
 		<div
 			class="align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-between"
 			id="navbar-toggler-success">
-			<div class="flex-fill mx-xl-5 mb-2" style="padding:0 150px;">
+			<div class="flex-fill mx-xl-5 mb-2" >
 				<ul
 					class="nav navbar-nav d-flex justify-content-between mx-xl-5 text-center text-dark">
 					<li class="nav-item"><a
@@ -66,13 +66,6 @@
 					class='bx bx-user-circle bx-sm bx-tada-hover text-primary'></i></a>
 				<%-- <a class="nav-link" href="${ pageContext.request.contextPath}/member/login"><i class='bx bxs-user-circle bx-sm text-primary'></i></a> --%>
 				<%-- <a class="nav-link" href="${ pageContext.request.contextPath}/member/logOut"><i class='bx bx-log-out bx-sm text-primary'></i></a> --%>
-			</div>
-			<div class="navbar align-self-center d-flex">
-				<form class="d-flex">
-					<input class="form-control me-2" type="search" placeholder="Search"
-						aria-label="Search">
-					<button class="btn btn-outline-success" type="submit">Search</button>
-				</form>
 			</div>
 		</div>
 	</div>

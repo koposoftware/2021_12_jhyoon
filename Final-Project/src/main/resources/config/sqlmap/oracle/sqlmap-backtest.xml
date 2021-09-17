@@ -4,6 +4,8 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="backtest.backTestCompoVO">
 	<resultMap type="backTestCompoVO" id="compoMap">
+		<result column="port_no" property="portNum" />
+		<result column="backtest_cnt" property="backtestCnt" />
 		<result column="user_id" property="userId" />
 		<result column="back_title" property="backTitle" />
 		<result column="back_descript" property="backDescript" />
@@ -34,19 +36,103 @@
 		<result column="back_Min_Price" property="backMinPrice" />
 		<result column="back_Cap_UpDown" property="backCapUpDown" />
 		<result column="back_Cap_Rate" property="backCapRate" />
-		<result column="back_Condi_Val" property="backCondiVal" />
+		<result column="back_pbr" property="backPBR" />
+		<result column="back_per" property="backPER" />
+		<result column="back_psr" property="backPSR" />
+		<result column="back_pcr" property="backPCR" />
+		<result column="back_roa" property="backROA" />
+		<result column="back_roe" property="backROE" />
+		<result column="back_ros" property="backROS" />
+		<result column="back_ebitda" property="backEBITDA" />
+		<result column="back_cfps" property="backCFPS" />
 	</resultMap>
+	<resultMap type="backTestResultFlucVO" id = "backTestResultFlucMap">
+		<result column="back_no" property="backNo"/>
+		<result column="port_num" property="portNum" />
+		<result column="user_id" property="userId" />
+		<result column="stock_date" property="stockDate" />
+		<result column="stock_fluc" property="stockFluc" />
+		<result column="stock_day_fluc" property="stockDayFluc" />
+		<result column="kospi_fluc" property="kospiFluc" />
+		<result column="kospi_day_fluc" property="kospiDayFluc" />
+		<result column="kosdaq_fluc" property="kosdaqFluc" />
+		<result column="kosdaq_day_fluc" property="kosdaqDayFluc" />
+	</resultMap>
+	<resultMap type="backTestTransResultVO" id = "backTestTransResultMap">
+		<result column="back_no" property="backNo"/>
+		<result column="port_num" property="portNum" />
+		<result column="user_id" property="userId" />
+		<result column="stock_name" property="stockName"/>
+		<result column="stock_code" property="stockCode" />
+		<result column="back_date" property="backDate" />
+		<result column="trans_kind" property="transKind" />
+		<result column="stock_price" property="stockPrice" />
+		<result column="stock_cnt" property="stockCnt" />
+		<result column="buy_price" property="buyPrice" />
+		<result column="buy_date" property="buyDate" />
+		<result column="sell_date" property="sellDate" />
+		<result column="sell_price" property="backDate" />
+		<result column="total_stock_cnt" property="totalStockCnt" />
+		<result column="total_stock_price" property="totalStockPrice" />
+		<result column="sale_price" property="salePrice" />
+		<result column="earning_rate" property="earningRate" />
+	
+	</resultMap>
+	
+	<resultMap type="backTestResultAccVO" id="backTestResultAccMap">
+		<result column="back_no" property="backNo"/>
+		<result column="port_num" property="portNum" />
+		<result column="user_id" property="userId" />
+		<result column="back_date" property="backDate" />
+		<result column="total_bal" property="totalBal" />
+		<result column="total_deposit" property="totalDeposit" />
+		<result column="buy_total_price" property="buyTotalPrice" />
+		<result column="sell_total_price" property="sellTotalPrice" />
+		<result column="total_stock_price" property="totalStockPrice" />
+		<result column="back_fee" property="backFee" />
+		<result column="earning_rate" property="EarningRate" />
+	</resultMap>
+	
+	
 	<insert id="insertCompo" parameterType="backTestCompoVO">
-		INSERT INTO T_BACKPORT_CONDI(port_no, user_id, back_title, back_descript, back_start_asset, back_start_date , back_end_date, back_fee_rate,
+		INSERT INTO T_BACKPORT_CONDI(port_no, backtest_cnt, user_id, back_title, back_descript, back_start_asset, back_start_date , back_end_date, back_fee_rate,
 									back_slippage, back_tax_rate, back_stock_cnt, back_rebal_cycle,back_invest_rate ,back_Market,
 									back_Care, back_Manage,	back_Preferred,	back_Etf,back_CashFlow,	back_Profit ,back_Trans_Amt,back_Amt,back_Market_Cap,back_Cap,
-									back_Buy_Price,	back_Sell_Price,back_Min_PriceS,back_Min_PriceV,back_Min_Price,	back_Cap_UpDown,back_Cap_Rate,back_Condi_Val ) 
-    		   VALUES(seq_backtest_condi_port.NEXTVAL, #{userId},#{backTitle},#{backDescript},#{backStartAsset},#{backStartDate},#{backEndDate},#{backFeeRate},	#{backSlippage},
+									back_Buy_Price,	back_Sell_Price,back_Min_PriceS,back_Min_PriceV,back_Min_Price,	back_Cap_UpDown,back_Cap_Rate,
+									back_pbr,back_per,back_psr,back_pcr,back_roa,back_roe,back_ros,back_ebitda,back_cfps) 
+    		   VALUES(seq_backtest_condi_port.NEXTVAL,#{backtestCnt}, #{userId},#{backTitle},#{backDescript},#{backStartAsset},#{backStartDate},#{backEndDate},#{backFeeRate},	#{backSlippage},
 					#{backTaxRate},	#{backStockCnt},#{backRebalCycle},#{backInvestRate},#{backMarket},#{backCare},#{backManage},#{backPreferred},#{backEtf},
 					#{backCashFlow},#{backProfit},#{backTransAmt},#{backAmt},#{backMarketCap},#{backCap},#{backBuyPrice},#{backSellPrice},	#{backMinPriceS},
-					#{backMinPriceV},#{backMinPrice},#{backCapUpDown},#{backCapRate},#{backCondiVal})	
+					#{backMinPriceV},#{backMinPrice},#{backCapUpDown},#{backCapRate},#{backPBR},#{backPER},#{backPSR},#{backPCR},#{backROA},#{backROE},#{backROS},#{backEBITDA},#{backCFPS})	
 	</insert>
+	<select id="getPortNum" parameterType="backTestCompoVO" resultType="int">
+		select port_no from t_backport_condi where user_id = #{userId} and backtest_cnt = #{backtestCnt}
+	</select>
 
+	<select id="backtestProcedure" statementType="CALLABLE" parameterType="backTestResultSetVO" >
+	 {CALL BACK_TEST(
+		#{portNum},
+		#{userId},
+		#{resultList, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=backTestResultFlucMap})}
+	</select>
+	
+	<select id="transResult" parameterType="backTestCompoVO" resultMap="backTestTransResultMap">
+		select back_no, port_num, user_id, stock_name, stock_code, to_char(back_date,'YY/MM/DD') as back_date, trans_kind,
+		stock_price, stock_cnt, buy_price, sell_price, buy_date, sell_date, sale_price, total_stock_cnt, earning_rate, total_stock_price 
+		from t_trans_stock where port_num = #{portNum} and user_id=#{userId} order by back_no, back_date
+	</select>
+	
+	<select id="accResult" parameterType="backTestCompoVO" resultMap="backTestResultAccMap">
+		select back_no, port_num, user_id, to_char(back_date,'YY/MM/DD') as back_date, total_bal, total_deposit, 
+		buy_total_price, sell_total_price, total_stock_price, back_fee, earning_rate	 
+		from t_back_result where port_num = #{portNum} and user_id=#{userId} order by back_no, back_date
+	</select>
+	<select id = "getPortCondi" parameterType="int" resultMap="compoMap">
+		select * from T_BACKPORT_CONDI where port_no = #{portNo}
+	</select>
+	<select id = "stockDayList" parameterType="backTestCompoVO" resultMap="backTestResultFlucMap">
+		select * from t_yield where port_num = #{portNum}
+	</select>
 
 
 </mapper>

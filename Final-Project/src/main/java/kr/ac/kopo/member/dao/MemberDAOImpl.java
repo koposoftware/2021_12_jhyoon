@@ -31,6 +31,12 @@ public class MemberDAOImpl implements MemberDAO {
 		
 		return result;
 	}
+
+	@Override
+	public void updateBacktestCnt(MemberVO memberVO) {
+		sqlSessionTemplate.update("updateBacktestCnt", memberVO);
+		
+	}
 	
 	
 	

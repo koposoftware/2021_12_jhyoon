@@ -9,6 +9,8 @@ public interface MemberService {
 	public void userRegist(MemberVO memberVO);
 
 	public int registIdCheck(String checkId);
+
+	public void updateBacktestCnt(MemberVO memberVO);
 	
 	
 }
