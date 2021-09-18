@@ -50,7 +50,7 @@
 /* line 46, src/assets/scss/_reboot.scss */
 body {
   margin: auto;
-  width:80%;
+  width:1700px;
   font-family: var(--bs-font-sans-serif);
   font-size: 1rem;
   font-weight: 400;
@@ -4558,7 +4558,7 @@ fieldset:disabled .btn {
   }
 }
 
-@media (min-width: 1530px) {
+@media (min-width: 1200px) {
   /* line 50, src/assets/scss/_dropdown.scss */
   .dropdown-menu-lg-start {
     --bs-position: start;
@@ -5275,7 +5275,7 @@ fieldset:disabled .btn {
   }
 }
 
-@media (min-width: 2000px) {
+@media (min-width: 1200px) {
   /* line 159, src/assets/scss/_navbar.scss */
   .navbar-expand-lg {
     -ms-flex-wrap: nowrap;
@@ -5349,7 +5349,7 @@ fieldset:disabled .btn {
   }
 }
 
-@media (min-width: 1400px) {
+@media (min-width: 1200px) {
   /* line 159, src/assets/scss/_navbar.scss */
   .navbar-expand-xxl {
     -ms-flex-wrap: nowrap;
@@ -5440,7 +5440,7 @@ fieldset:disabled .btn {
 /* line 206, src/assets/scss/_navbar.scss */
 .navbar-light .navbar-nav .nav-link {
   color: rgba(0, 0, 0, 0.55);
-  font-size: 25px;
+  font-size: 22px;
     font-weight: bold
 }
 
@@ -6470,7 +6470,7 @@ fieldset:disabled .btn {
   }
 }
 
-@media (min-width: 1530px) {
+@media (min-width: 1200px) {
   /* line 97, src/assets/scss/_list-group.scss */
   .list-group-horizontal-lg {
     -webkit-box-orient: horizontal;
@@ -6538,7 +6538,7 @@ fieldset:disabled .btn {
   }
 }
 
-@media (min-width: 1400px) {
+@media (min-width: 1200px) {
   /* line 97, src/assets/scss/_list-group.scss */
   .list-group-horizontal-xxl {
     -webkit-box-orient: horizontal;
@@ -11257,7 +11257,7 @@ fieldset:disabled .btn {
   }
 }
 
-@media (min-width: 1760px) {
+@media (min-width: 1200px) {
   /* line 50, src/assets/scss/mixins/_utilities.scss */
   .float-lg-start {
     float: left !important;

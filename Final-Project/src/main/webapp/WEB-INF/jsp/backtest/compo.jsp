@@ -119,7 +119,7 @@ li {
 
 .section_flowTab li p {
 	font-family: 'Noto Sans KR', sans-serif;
-	font-size: 25px;
+	font-size: 30px;
 	letter-spacing: -1px;
 	font-weight: bold;
 	margin-bottom: 5px;
@@ -161,7 +161,7 @@ input[type=text].text_extrasmall {
 }
 
 .font_20px {
-	font-size: 25px;
+	font-size: 30px;
 	font-weight: 600;
 	line-height: 30px;
 	color: #333;
@@ -178,7 +178,7 @@ input[type=text].text_extrasmall {
 
 .card-body {
 	text-align: center;
-	font-size: 18px;
+	font-size: 23px;
 	font-weight: 600;
 	color: #424242;
 	height: 100px;
@@ -190,7 +190,7 @@ input[type=text].text_extrasmall {
 	text-align: center;
 	background: #e1f1f8;
 	border-bottom: 1px solid #ddd;
-	font-size: 20px;
+	font-size: 25px;
 	font-weight: 600;
 	color: #424242;
 	padding: 10px;
@@ -204,9 +204,7 @@ input[type=text].text_extrasmall {
 select.slct_newport {
 	display: inline-block;
 	border: 1px solid #bbb;
-	padding: 5px 10px;
 	color: #333;
-	vertical-align: top;
 	border-radius: 3px;
 	height: 33px;
 }
@@ -224,7 +222,7 @@ select.slct_newport {
 	outline: 0;
 	outline-style: none;
 	font-size: 20px;
-	width: 140px;
+	width: 200px;
 	transition: 0.1s;
 	padding: 15px 0;
 	text-align: center;
@@ -257,8 +255,8 @@ select.slct_newport {
 
 .btn_refresh {
 	display: inline-block;
-	width: 33px;
-	height: 33px;
+	width: 45px;
+	height: 45px;
 	background: #ddd;
 	border: 1px solid #ccc;
 	transition: 0.2s;
@@ -276,11 +274,13 @@ input[type=text].text_small {
 
 .tbl_horizon th.buy {
 	background: #e1f1f8;
+	 width: 20%;
+    text-align: center;
 }
 
 .tbl_horizon th {
 	background: #f1f3f5;
-	font-size: 13px;
+	font-size: 25px;
 	font-weight: 600;
 	color: #424242;
 	padding: 20px 10px;
@@ -300,16 +300,17 @@ th {
 }
 
 select.slct_condi {
-	width: 100px;
-	margin-right: 10px;
-	margin-left: 10px;
-	cursor: pointer;
-	border: 1px solid #bbb;
-	color: #333;
-	border-radius: 3px;
-	height: 33px;
+    width: 150px;
+    margin-right: 10px;
+    margin-left: 10px;
+    cursor: pointer;
+    border: 1px solid #bbb;
+    color: #333;
+    border-radius: 3px;
+    height: 33px;
+    font-size: 20px;
+    padding-left: 10px;
 }
-
 .tbl_horizon td {
 	padding: 14px 14px;
 	color: #333;
@@ -318,10 +319,11 @@ select.slct_condi {
 }
 
 .top1 {
+	margin-top:5px;
 	padding-left: 10px;
 	color: #666;
 	text-align: center;
-	font-size: 15px;
+	font-size: 25px;
 	font-weight: 600;
 	color: #424242;
 }
@@ -329,16 +331,15 @@ select.slct_condi {
 .btn_add {
 	outline: 0;
 	outline-style: none;
-	font-size: 15px;
-	width: 120px;
 	transition: 0.1s;
 	padding: 10px 0;
 	text-align: center;
 	cursor: pointer;
 	border-radius: 0.25rem;
 	vertical-align: middle;
-	line-height: 1.5;
-	margin-left: 50px;
+	line-height: 30px;
+    width: 150px;
+    font-size: 23px;
 }
 
 .box_sec {
@@ -348,13 +349,15 @@ select.slct_condi {
 }
 
 input[type=text].condi {
-	width: 75px;
+	width: 100px;
 	text-align: center;
-	font-size: 15px;
+	font-size: 23px;
 	font-weight: 400;
 	border: #fff;
 	background-color: #ffe8e8;
 	border-radius: 1rem;
+    font-weight: 600;
+    margin-top:10px;
 }
 
 .cancel_img {
@@ -371,12 +374,8 @@ input[type=text].condi {
 	padding-top: 15px
 }
 
-.daybtn {
-	background-color: #ddd;
-	font-weight: 550;
-	border-radius: calc(0.25rem - 1px);
-	border: 0px solid #ddd;
-}
+.btn_y{
+font-size: 18px;}
 
 .titleInput {
 	margin-top: 20px;
@@ -588,19 +587,19 @@ input[type=text].condi {
 									</div>
 									<div class="card-body" style="padding-top: 15px;">
 										<input name="backStartDate" type="date" id="backStartDate"
-											style="width: 35%"><span class="top"
+											style="width: 35%;    color: #888;"><span class="top"
 											style="margin-right: 10px;">부터</span> <input
 											name="backEndDate" type="date" id="backEndDate"
-											style="width: 35%"><span class="top">까지</span>
+											style="width: 35%; color: #888;"><span class="top">까지</span>
 										<div style="margin-top: 5px;">
 											<span class="top" style="margin-right: 10px;">기간 선택 :
 											</span>
-											<button class="daybtn" id='3m' type="button">3개월</button>
-											<button class="daybtn" id='6m' type="button">6개월</button>
-											<button class="daybtn" id='1y' type="button">1년</button>
-											<button class="daybtn" id='3y' type="button">3년</button>
-											<button class="daybtn" id='5y' type="button">5년</button>
-											<button class="daybtn" id='10y' type="button">10년</button>
+											<button class="btn_white btn_y" id='3m' type="button">3개월</button>
+											<button class="btn_white btn_y" id='6m' type="button">6개월</button>
+											<button class="btn_white btn_y" id='1y' type="button">1년</button>
+											<button class="btn_white btn_y" id='3y' type="button">3년</button>
+											<button class="btn_white btn_y" id='5y' type="button">5년</button>
+											<button class="btn_white btn_y" id='10y' type="button">10년</button>
 										</div>
 									</div>
 								</div>
@@ -905,7 +904,7 @@ input[type=text].condi {
 											style="border-right: 1px solid rgba(0, 0, 0, 0.125); float: left;">
 											<span class="top" style="background-color: #ffe8e8">매수
 												금액 : </span> <select name="backBuyPrice" id="slct_prcie"
-												class="slct_newport" style="padding: 5px">
+												class="slct_newport" >
 												<option value="open" selected="selected">당일 시초가</option>
 												<option value="avg">당일 평균가</option>
 												<option value="end">당일 종가</option>
@@ -980,6 +979,7 @@ input[type=text].condi {
 						</div>
 
 					</div>
+					
 					<!--3번째 메뉴  -->
 					<div id="selection2" style="display: none">
 
@@ -994,11 +994,11 @@ input[type=text].condi {
 										<span class="top1" style="float: left; margin-right: 10px"><b>조건식
 												:</b></span>
 									</div>
-									<div class="col-md-8 box_sec" id="input_condi"></div>
-									<div class="col-md-3" style="float: left">
+									<div class="col-md-10 box_sec" id="input_condi"></div>
+									<div class="col-md-1" style="float: left">
 										<button type="button" id="btnBuyUndo" class="btn_refresh">
 											<img
-												src="${pageContext.request.contextPath}/resources/img/icn_undo.png">
+												src="${pageContext.request.contextPath}/resources/img/icn_undo.png"style="height:23px;">
 										</button>
 									</div>
 								</div>
@@ -1017,7 +1017,7 @@ input[type=text].condi {
 										<td>
 											<div class="container">
 
-												<div class="col-md-3" style="float: left">
+												<div class="col-md-4" style="float: left; margin:0 auto;">
 													<span class="top1">밸류 팩터</span> <select id="valueFactor"
 														class="slct_condi">
 														<option value="PER" selected="selected">PER</option>
@@ -1026,14 +1026,13 @@ input[type=text].condi {
 														<option value="PSR" selected="selected">PSR</option>
 													</select>
 												</div>
-												<div class="col-md-3"
+												<div class="col-md-2"
 													style="border-right: 1px solid rgba(0, 0, 0, 0.125); float: left">
 													<button type="button" class="btn_hana btn_add"
-														style="line-height: 15px; width: 100px;"
 														onclick="addCondition($('#valueFactor').val())">조건식
 														추가</button>
 												</div>
-												<div class="col-md-3" style="float: left">
+												<div class="col-md-4" style="float: left">
 													<span class="top1">수익성 팩터</span> <select id="QuailtyFactor"
 														class="slct_condi">
 														<option value="ROA" selected="selected">ROA</option>
@@ -1043,9 +1042,8 @@ input[type=text].condi {
 														<option value="EBITDA" selected="selected">EBITDA</option>
 													</select>
 												</div>
-												<div class="col-md-3" style="float: left">
+												<div class="col-md-2" style="float: left">
 													<button type="button" class="btn_hana btn_add"
-														style="line-height: 15px; width: 100px;"
 														onclick="addCondition($('#QuailtyFactor').val())">조건식
 														추가</button>
 												</div>
@@ -1065,7 +1063,7 @@ input[type=text].condi {
 
 
 						<div class="btn-div">
-							<button class="btn btn_white"
+							<button class="btn btn_white" type="button"
 								onclick="changeTab(1);$('html,body').scrollTop(0);">이전
 								단계로</button>
 							<input type="submit" class="btn btn_hana" value="백테스팅 시작하기">

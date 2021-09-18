@@ -40,6 +40,14 @@
 				display:true,
 				text:'Basic Line Chart'
 			},
+			legend : {
+				display : true,
+				position : 'right',
+				labels : {
+					fontSize : 32,
+					boxWidth : 50
+				}
+			},
 			tooltips: {
 				mode: 'index',
 				intersect: false,
@@ -51,6 +59,7 @@
 			scales: {
 				xAxes: [{
 					display: true,
+					
 					scaleLabel: {
 						display: true,
 						labelString: 'Month'

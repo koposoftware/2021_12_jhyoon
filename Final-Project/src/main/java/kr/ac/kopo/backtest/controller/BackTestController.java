@@ -34,6 +34,10 @@ public class BackTestController {
 		return "/backtest/compo";
 	}
 	
+	@GetMapping("/backtest/result")
+	public String backTestResult() {
+		return "/backtest/result";
+	}
 	@PostMapping("/backtest/compo")
 	@ResponseBody
 	public ModelAndView backTestResult(BackTestCompoVO compVO, HttpSession session) {
@@ -60,34 +64,24 @@ public class BackTestController {
 		
 		// backtest 프로시저 실행 후 결과값 가져오기(daily fluc data)
 		List<BackTestResultFlucVO> stockDayList = service.getBacktestProcedure(compVO);
-		for (BackTestResultFlucVO backTestResultFlucVO : stockDayList) {
-			System.out.println(backTestResultFlucVO);
-		}
-		System.out.println("-----------------------------------------------------------------");
 		
 		// backtest 결과값 가져오기
 		List<BackTestTransResultVO> transList = service.getTransResult(compVO);
-		for (BackTestTransResultVO backTestTransResultVO : transList) {
-			System.out.println(backTestTransResultVO);
-		}
-		System.out.println("-----------------------------------------------------------------");
+
 		
 		// backtest acc data
 		List<BackTestResultAccVO> accList = service.getAccResult(compVO);
-		for (BackTestResultAccVO backTestResultAccVO : accList) {
-			System.out.println(backTestResultAccVO);
-		}
-		
-		System.out.println("-----------------------------------------------------------------");
 		Gson gson = new Gson();
-		
+//		
 		ModelAndView mav = new ModelAndView("/backtest/result");
-		mav.addObject("compVO", compVO);
 		mav.addObject("stockDayList", gson.toJson(stockDayList));
 		mav.addObject("transList", gson.toJson(transList));
 		mav.addObject("accList", gson.toJson(accList));
 		//service.getBackTestProcedure()
 		return mav;
 	}
+	
+	
+	
 	
 }

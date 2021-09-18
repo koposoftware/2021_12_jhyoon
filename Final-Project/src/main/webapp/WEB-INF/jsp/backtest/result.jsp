@@ -111,7 +111,6 @@ li {
 	color: #333;
 	background: #f1f3f5;
 	border-right: 1px solid #d2d2d2;
-	cursor: pointer;
 	padding: 20px;
 	box-sizing: border-box;
 	-webkit-box-sizing: border-box;
@@ -119,7 +118,7 @@ li {
 
 .section_flowTab li p {
 	font-family: 'Noto Sans KR', sans-serif;
-	font-size: 25px;
+	font-size: 30px;
 	letter-spacing: -1px;
 	font-weight: bold;
 	margin-bottom: 5px;
@@ -157,11 +156,10 @@ input[type=text].text_extrasmall {
 
 .vertical-tab {
 	margin-bottom: 50px;
-	padding-top: 30px;
 }
 
 .font_20px {
-	font-size: 25px;
+	font-size: 30px;
 	font-weight: 600;
 	line-height: 30px;
 	color: #333;
@@ -178,7 +176,7 @@ input[type=text].text_extrasmall {
 
 .card-body {
 	text-align: center;
-	font-size: 18px;
+	font-size: 23px;
 	font-weight: 600;
 	color: #424242;
 	height: 100px;
@@ -190,7 +188,7 @@ input[type=text].text_extrasmall {
 	text-align: center;
 	background: #e1f1f8;
 	border-bottom: 1px solid #ddd;
-	font-size: 20px;
+	font-size: 25px;
 	font-weight: 600;
 	color: #424242;
 	padding: 10px;
@@ -204,9 +202,7 @@ input[type=text].text_extrasmall {
 select.slct_newport {
 	display: inline-block;
 	border: 1px solid #bbb;
-	padding: 5px 10px;
 	color: #333;
-	vertical-align: top;
 	border-radius: 3px;
 	height: 33px;
 }
@@ -224,7 +220,7 @@ select.slct_newport {
 	outline: 0;
 	outline-style: none;
 	font-size: 20px;
-	width: 140px;
+	width: 200px;
 	transition: 0.1s;
 	padding: 15px 0;
 	text-align: center;
@@ -237,6 +233,7 @@ select.slct_newport {
 	font-weight: 600;
 	color: #888;
 	box-shadow: inset 0px -1.5px 1px #e0e0e0;
+	
 }
 
 .btn-div {
@@ -257,8 +254,8 @@ select.slct_newport {
 
 .btn_refresh {
 	display: inline-block;
-	width: 33px;
-	height: 33px;
+	width: 45px;
+	height: 45px;
 	background: #ddd;
 	border: 1px solid #ccc;
 	transition: 0.2s;
@@ -276,11 +273,13 @@ input[type=text].text_small {
 
 .tbl_horizon th.buy {
 	background: #e1f1f8;
+	 width: 20%;
+    text-align: center;
 }
 
 .tbl_horizon th {
 	background: #f1f3f5;
-	font-size: 13px;
+	font-size: 25px;
 	font-weight: 600;
 	color: #424242;
 	padding: 20px 10px;
@@ -300,16 +299,17 @@ th {
 }
 
 select.slct_condi {
-	width: 100px;
-	margin-right: 10px;
-	margin-left: 10px;
-	cursor: pointer;
-	border: 1px solid #bbb;
-	color: #333;
-	border-radius: 3px;
-	height: 33px;
+    width: 150px;
+    margin-right: 10px;
+    margin-left: 10px;
+    cursor: pointer;
+    border: 1px solid #bbb;
+    color: #333;
+    border-radius: 3px;
+    height: 33px;
+    font-size: 20px;
+    padding-left: 10px;
 }
-
 .tbl_horizon td {
 	padding: 14px 14px;
 	color: #333;
@@ -318,10 +318,11 @@ select.slct_condi {
 }
 
 .top1 {
+	margin-top:5px;
 	padding-left: 10px;
 	color: #666;
 	text-align: center;
-	font-size: 15px;
+	font-size: 25px;
 	font-weight: 600;
 	color: #424242;
 }
@@ -329,16 +330,15 @@ select.slct_condi {
 .btn_add {
 	outline: 0;
 	outline-style: none;
-	font-size: 15px;
-	width: 120px;
 	transition: 0.1s;
 	padding: 10px 0;
 	text-align: center;
 	cursor: pointer;
 	border-radius: 0.25rem;
 	vertical-align: middle;
-	line-height: 1.5;
-	margin-left: 50px;
+	line-height: 30px;
+    width: 150px;
+    font-size: 23px;
 }
 
 .box_sec {
@@ -348,13 +348,15 @@ select.slct_condi {
 }
 
 input[type=text].condi {
-	width: 75px;
+	width: 100px;
 	text-align: center;
-	font-size: 15px;
+	font-size: 23px;
 	font-weight: 400;
 	border: #fff;
 	background-color: #ffe8e8;
 	border-radius: 1rem;
+    font-weight: 600;
+    margin-top:10px;
 }
 
 .cancel_img {
@@ -371,64 +373,408 @@ input[type=text].condi {
 	padding-top: 15px
 }
 
+.daybtn {
+	background-color: #ddd;
+	font-weight: 550;
+	border-radius: calc(0.25rem - 1px);
+	border: 0px solid #ddd;
+}
+
 .titleInput {
-	margin-top: 20px;
+	margin:10px 10px;
 	font-size: 20px;
-	margin-bottom: 20px;
-}	
-input:focus{
-  outline:none;
-}	
-input{
-border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;
+}
+.off_flow p, .off_flow span{
+	color:#9999;
 }
 
 
 </style>
-<script src="${ pageContext.request.contextPath}/resources/js/bootstrap.bundle.min.js"></script>
-<script src="${ pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
-	<script
-		src="${ pageContext.request.contextPath}/resources/js/templatemo.js"></script>
-	<!-- Custom -->
-	<script
-		src="${ pageContext.request.contextPath}/resources/js/custom.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script
+	src="${ pageContext.request.contextPath}/resources/js/bootstrap.bundle.min.js"></script>
+<script
+	src="${ pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
+<script
+	src="${ pageContext.request.contextPath}/resources/js/templatemo.js"></script>
+<!-- Custom -->
+<script src="${ pageContext.request.contextPath}/resources/js/custom.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-		$('#tabMenu0').click(function() {
-			changeTab(0)
+		$('#resultTabMenu0').click(function() {
+			changeResultTab(0)
 		})
-		$('#tabMenu1').click(function() {
-			changeTab(1)
+		$('#resultTabMenu1').click(function() {
+			changeResultTab(1)
 		})
-		$('#tabMenu2').click(function() {
-			changeTab(2)
+		$('#resultTabMenu2').click(function() {
+			changeResultTab(2)
 		})
-		$('#tabMenu3').click(function() {
-			changeTab(3)
+		$('#resultTabMenu3').click(function() {
+			changeResultTab(3)
+		})
+		$('#resultTabMenu4').click(function() {
+			changeResultTab(4)
 		})
 
 	})
-	function changeTab(num) {
-		for (var i = 0; i < 4; i++) {
-
-			document.getElementById("tabMenu" + i.toString()).className = "";
-			document.getElementById("selection" + i.toString()).style.display = "none";
+	function changeResultTab(num) {
+		for (var i = 0; i < 5; i++) {
+			document.getElementById("resultTabMenu" + i.toString()).className = "";
+			document.getElementById("PortResultSection" + i.toString()).style.display = "none";
 		}
-		document.getElementById("tabMenu" + num).className = "on";
-		document.getElementById("selection" + num.toString()).style.display = "";
+		document.getElementById("resultTabMenu" + num).className = "on";
+		document.getElementById("PortResultSection" + num.toString()).style.display = "";
 	}
-	function numberWithCommas(x, id) {
-		x = x.replace(/(^0+)/g, '')
-		x = x.replace(/[^0-9]/g, ''); // 입력값이 숫자가 아니면 공백
-		x = x.replace(/,/g, ''); // ,값 공백처리
-		$("#" + id).val(x.replace(/\B(?=(\d{3})+(?!\d))/g, ",")); // 정규식을 이용해서 3자리 마다 , 추가 
+</script>
+
+
+<!-- Head 구성 끝 -->
+</head>
+<body>
+	<!-- header  -->
+	<header>
+		<jsp:include page="/WEB-INF/jsp/include/header.jsp"></jsp:include>
+	</header>
+	<div class="area_location" id="locNewPort" style="display: block">
+		<ul>
+			<li class="fl">
+				<p class="fl title">내 백테스팅 포트폴리오 만들기</p>
+				<p class="fl info">다양한 조건을 넣어 나만의 주식투자 전략을 검증해보세요</p>
+			</li>
+			<li class="fr">
+				<p class="crumbs">
+					One클럽<span>></span>백테스팅 포트폴리오 만들기
+				</p>
+			</li>
+		</ul>
+	</div>
+	<!-- header 끝 -->
+	<!-- section 시작 -->
+	<section>
+		<div class="area_content">
+			<div class="section_flowTab">
+				<ul>
+					<li id="tabMenu0" class="off_flow" >
+						<p>Step 1. 기본 설정</p> <span>기본 조건들을 설정하세요.</span>
+					</li>
+					<li id="tabMenu1" class="off_flow">
+						<p>Step 2. 매매조건 설정</p> <span>매수/매도조건을 설정하세요.</span>
+					</li>
+
+					<li id="tabMenu2" class="off_flow">
+						<p>Step 3. 가치측정 조건 설정</p> <span>기업 가치를 판단할 조건을 설정하세요</span>
+					</li>
+
+					<li id="tabMenu3" style="cursor: pointer;" class="on">
+						<p>Step 4. 백테스팅 결과</p> <span>백테스팅 포트폴리오가 완성되었습니다.</span>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="selection_Tab">
+			<div class="content-by-step">
+					<input type="hidden" name="userId" value="${userVO.userId}"
+						disabled="disabled">
+<style>
+.fullDetail_tabBox {
+    width: 100%;
+    overflow: hidden;
+    margin-top:40px;
+}
+.fullDetail_tabBox ul {
+    position: relative;
+    border-bottom: 1px solid #f83838;
+}
+.fullDetail_tabBox li.on {
+    background: #fff;
+    border: 1px solid #f83838;
+    border-bottom-color: #fff;
+    color: #f83838;
+    font-weight: 600;
+}
+.fullDetail_tabBox li {
+    float: left;
+    text-align: center;
+    margin-bottom: -1px;
+    width: 200px;
+    padding: 16px 0;
+    position: relative;
+    border: 1px solid #ddd;
+    border-right: none;
+    border-bottom-color: #f83838;
+    background: #f6f6f6;
+    font-size: 25px;
+    color: #888;
+}
+.fullDetail_tabBox ul:after {
+    display: block;
+    clear: both;
+    content: "";
+    }
+ .box_fullDetail_rates .rate_leftBox {
+    width: 530px;
+    background: #f5f7f9;
+    padding: 14px 20px;
+}
+.fl {
+    float: left;
+}
+.fr {
+    float: right;
+}
+.box_fullDetail_rates .rate {
+    width: 24%;
+    display: inline-block;
+    text-align: center;
+}
+.box_fullDetail_rates .rate span {
+    display: block;
+    margin-bottom: 10px;
+    color: #424242;
+}
+
+.box_fullDetail_rates .rate em {
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 0;
+}
+.box_fullDetail_rates .rate_rightBox {
+    width: 700px;
+    background: #f5f7f9;
+    padding: 14px 20px;
+}
+.box_fullDetail_rates .rate_right span {
+    display: block;
+    margin-bottom: 10px;
+    color: #424242;
+}
+.box_fullDetail_rates .rate_right {
+    width: 32%;
+    display: inline-block;
+    text-align: center;
+}
+.box_fullDetail_rates .rate_right em {
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 0;
+}
+.box_fullDetail_rates .rate_right em {
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 0;
+}
+.txt_plus {
+    color: #f83838;
+}
+em{
+    font-style: normal;
+    font-weight: normal;
+}
+.vertical-tab2 {
+	margin-bottom: 20px;
+	padding-top: 30px;
+}
+.result_section{
+    display: block; 
+    border: 1px solid #bbb;
+     height: 500px; 
+     width: 100%;
+     border-top:#fff;
+}
+.portNum_large {
+    margin-bottom: 5px;
+    width: 250px;
+    padding-left: 33px;
+    padding-top: 2px;
+    height: 43px;
+    background: #666;
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
+    font-size: 25px;
+    border-radius: 3px;
+    }
+.portName_large img{
+    width: 25px;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+.portInfo_full {
+    width: 100%;
+    background: #f5f7f9;
+    overflow: hidden;
+    padding: 12px 10px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+  }
+    
+  .infotxt_13px66 {
+    font-size: 20px;
+    color: #666;
+    margin:0px;
+}   
+.edit_title, .edit_desc{
+	display:none;
+    float: left;
+    margin: 10px 10px;
+}
+.edit_bnt{
+font-size:20px;
+}
+</style>
+<script type="text/javascript">
+
+function editMode(f){
+	if(f){
+		$('.edit_title').css('display','block')
+		$('.view_title').css('display','none')
+	}else{
+		$('.edit_title').css('display','none')
+		$('.view_title').css('display','block')
 	}
+}
+function editDescMode(f){
+	if(f){
+		$('.edit_desc').css('display','block')
+		$('.view_desc').css('display','none')
+	}else{
+		$('.edit_desc').css('display','none')
+		$('.view_desc').css('display','block')
+	}
+}
+
+
+function sendEditContent(v,data){
+	
+	
+		if(v==1){
+			
+		}
+		
+		if(v==2){
+			
+		}
+			$.ajax({
+				'type' : 'POST',
+				'url' : "${ pageContext.request.contextPath }/member/registIdCheck",
+				'data' : {
+					"reg_mb_id" : encodeURIComponent(id)},
+				'success' : function(msg) {
+					result = msg
+					if(id == ''){
+						$('#msg_mb_id').text('아이디를 입력하세요').css('color','black')
+						checkID = false;
+					}else if(result == 1){
+						$('#msg_mb_id').text('이미 존재하는 아이디입니다.').css('color','red')
+						checkID = false;
+					}else if(result == 0){
+						$('#msg_mb_id').text('사용가능 한 아이디입니다.').css('color','blue')
+						checkID = true;
+					}
+				}})
+
+				
+	
+	
+}
+	
 
 </script>
-<script> 
-	$(document).ready(function(){
+
+				<div id="selection3" style="display: block">
+						<div class="row vertical-tab">
+							<div class="col-md-8" >
+							<p class="fl portNum_large" id="PortID" style="margin-top: 4px">백테스트 리포트 ${compo.backTitle}</p>
+							<p class="fl font_20px view_title" id="PortID" style="margin-top: 4px; line-height:40px; margin-left:5px">여기에 설명이 담길 거고, 수정시 input태그</p>
+							<p class="fl portName_large view_title" id="pPortNameEdit">
+                                <img src="${pageContext.request.contextPath}/resources/img/icn_editPortname.png" style="cursor: pointer" class="nameInputArea" onclick="editMode(true);">
+                            </p>
+							  <input name="backTitle" type="text" id="editTitle"  style="width: 44%; margin-left:10px  " class="titleInput edit_title" value="${compo.backTitle}" /> <button class="btn_white edit_title edit_bnt" type="button" onclick="editMode(false);sendEditContent(1,$('#editTitle').val())">수정</button>	
+							  <br> 
+            				 <div class="fl portInfo_full view_desc" id="divPortDesc">
+                                <p class="fl infotxt_13px66" id="PortDesc">수정할 내용임! ${compo.backDescript}</p>
+                                <p class="fl infotxt_13px66 ml8px " id="pPortDescEdit">
+                                    <img src="${pageContext.request.contextPath}/resources/img/icn_editPortname.png" style="cursor: pointer" class="descInputArea" onclick="editDescMode(true);">
+                                </p>
+                            </div>
+                            <input name="backDescript" id="editDesc"type="text" style="width: 80%; margin-left: 0px;" class="titleInput edit_desc" value="${compo.backDescript}" /><button class="btn_white edit_desc edit_bnt" type="button" onclick="editDescMode(false);sendEditContent(2, $('#editDesc').val())" >수정</button>				            
+                            
+                            
+                            
+                            
+                            
+							</div>
+							<div class="col-md-4" >
+								<span class="font_20px"><b>포트폴리오 설명</b></span><br> 
+							</div>
+						</div>
+					<div class="fullDetail_tabBox">
+						<ul style="padding-left:0px; margin-bottom:0px;">
+							<li id="resultTabMenu0" class="on">종합결과</li>
+							<li id="resultTabMenu1" class="">매매결과</li>
+							<li id="resultTabMenu2" class="">수익률</li>
+							<li id="resultTabMenu3" class="">매매종목	정보</li>
+							<li id="resultTabMenu4"class="" style="border-right: 1px solid rgb(221, 221, 221);">거래내역</li>
+						</ul>
+					</div>
+					<div id="PortResultSection0" class="result_section">
+						첫번재 페이지
+						<div class="box_fullDetail_rates">
+                    <ul>
+                        <li class="fl rate_leftBox">
+                            <p class="rate" id="PortRTLeft1"><span title="일일수익률의 평균을 의미합니다.">일평균 수익률</span><em class="txt_plus">0.05%</em></p>
+                            <p class="rate" id="PortRTLeft2"><span title="((실현 손익+미실현 손익)/투자원금(총투자평잔))*100<br></span>투자평균자산 대비 순수익으로 계산합니다.">누적 수익률</span><em class="txt_plus">11.8%</em></p>
+                            <p class="rate" id="PortRTLeft3"><span title="(누적수익률(%)+1)^(365/기간)-1<br></span>투자기간 대비 누적수익률를 연율화한 연평균 수익률을 의미합니다.">CAGR</span><em><em class="txt_plus">11.83%</em></em></p>
+                            <p class="rate" id="PortRTLeft4"><span title="역사적 ((저점자산-고점자산)/고점자산)*100<br></span>Maximum Drawdown, 최대낙폭이라고 하며,<br/>포트폴리오 운영기간 중 고점에서 저점까지 최대 누적 손실률을 의미합니다.">MDD</span><em>18.58%</em></p>
+                        </li>
+                        <li class="fr rate_rightBox">
+                            <p class="rate_right" id="PortRTRight1"><span title="일별 투자원금의 평균입니다.">투자원금 (총투자평잔)</span><em>50,000,000</em>원</p>
+                            <p class="rate_right" id="PortRTRight2"><span title="매도 종목의 손익률을 통해 실현 손익금을 계산합니다.">총 손익</span><em class="txt_plus">5,899,864</em>원</p>
+                            <p class="rate_right" id="PortRTRight3"><span title="마지막 거래일의 최종 자산(예수금 + 잔고 가치)">현재 총 자산</span><em>55,899,864</em>원</p>
+                        </li>
+                    </ul>
+              	  </div>
+					</div>
+					<div id="PortResultSection1" style="display: none;" class="result_section">
+						<!-- 가상매매 수익률 박스 -->
+						두번재 페이지
+					</div>
+					<div id="PortResultSection2" style="display: none;" class="result_section">
+						<!-- 가상매매 수익률 박스 -->
+						세번재 페이지
+					</div>
+					<div id="PortResultSection3" style="display: none;" class="result_section">
+						<!-- 가상매매 수익률 박스 -->
+						네번재 페이지
+					</div>
+					<div id="PortResultSection4" style="display: none;" class="result_section">
+						<!-- 가상매매 수익률 박스 -->
+						다섯번재 페이지
+					</div>
+
+
+
+
+				</div>
+			</div>
+		</div>
+
+
+	</section>
+	<!-- section 끝 -->
+	<!-- Start Footer -->
+	<footer>
+		<jsp:include page="/WEB-INF/jsp/include/footer.jsp"></jsp:include>
+	</footer>
+	<!-- End Footer -->
+	<script> 
 		var chartLabels = [];
 		var chartData = [];
 		var chartData2 = [];
@@ -436,10 +782,9 @@ border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;
 
 		var data = ${accList}
 		$.each(data, function(inx, obj) {
-			chartLabels.push(obj.stockDate);
-			chartData.push(obj.stockFluc);
-			chartData2.push(obj.kospiFluc)
-			chartData3.push(obj.kosdaqFluc)
+			chartLabels.push(obj.backDate);
+			chartData.push(obj.totalBal);
+			chartData2.push(obj.EarningRate);
 		});
 		console.log(chartData);
 		console.log(chartData2);
@@ -452,598 +797,17 @@ border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;
 			data : {
 				labels : chartLabels,
 				datasets : [ {
-					label : '수익률',
+					label : '내 계좌 평가액',
 					backgroundColor : 'transparent',
 					borderColor : 'red',
 					data : chartData
-				}, {
-					label : '코스피',
-					backgroundColor : 'transparent',
-					borderColor : 'orange',
-					data : chartData2
-				}, {
-					label : '코스닥',
-					backgroundColor : 'transparent',
-					borderColor : 'blue',
-					data : chartData3
-				},
-
-				]
+				}]
 			},
 			// 옵션 
 			options : {}
 		});
-	})
 
-</script>
-
-<!-- Head 구성 끝 -->
-</head>
-<body>
-	<!-- header  -->
-	<header>
-		<jsp:include page="/WEB-INF/jsp/include/header.jsp"></jsp:include>
-	</header>
-	<div class="area_location" id="locNewPort" style="display: block">
-		<ul>
-			<li class="fl">
-				<p class="fl title">내 백테스팅 포트 만들기</p>
-				<p class="fl info">다양한 조건을 넣어 나만의 주식투자 전략을 검증해보세요</p>
-			</li>
-			<li class="fr">
-				<p class="crumbs">
-					One클럽<span>></span>백테스팅 포트 만들기
-				</p>
-			</li>
-		</ul>
-	</div>
-	<!-- header 끝 -->
-	<!-- section 시작 -->
-	<section>
-		<div class="area_content">
-			<div class="section_flowTab">
-				<ul>
-					<li id="tabMenu0" class="">
-						<p>Step 1. 기본 설정</p> <span>기본 조건들을 설정하세요.</span>
-					</li>
-					<li id="tabMenu1" class="">
-						<p>Step 2. 매매조건 설정</p> <span>매수/매도조건을 설정하세요.</span>
-					</li>
-
-					<li id="tabMenu2" class="">
-						<p>Step 3. 가치측정 조건 설정</p> <span>기업 가치를 판단할 조건을 설정하세요</span>
-					</li>
-
-					<li id="tabMenu3" style="cursor: pointer;" class="on">
-						<p>Step 4. 포트 완성!</p> <span>백테스팅 포트가 완성되었습니다.</span>
-					</li>
-				</ul>
-			</div>
-		</div>
-
-		<div class="selection_Tab">
-			<div class="content-by-step">
-				<form >
-					<input type="hidden" name="userId" value="${userVO.userId}"  disabled="disabled">
-					<div id="selection0" class="container"
-						style="display: none; align-content: center;">
-						<!-- 첫번째 페이지 -->
-						<div class="row vertical-tab">
-							<div class="col-md-6" style="width: 50%">
-								<span class="font_20px" style="display: inline;"><b>내
-										포트폴리오명</b></span><br> <input  disabled="disabled"   name="backTitle" type="text"
-									style="width: 80%" class="titleInput"
-									value="${compVO.backTitle}" />
-							</div>
-							<div class="col-md-6" style="width: 50%">
-								<span class="font_20px"><b>포트폴리오 설명</b></span><br> <input
-									name="backDescript" type="text" style="width: 80%"
-									class="titleInput" value="${compVO.backDescript}"/>
-							</div>
-						</div>
-						<!-- 두번째, 기존 조건 설정  -->
-						<hr>
-						<div class="row vertical-tab">
-							<span class="font_20px"><b>기본 조건</b></span><br> <span
-								class="font_16px">백테스팅을 위한 기본적인 조건을 입력하세요!</span><br>
-							<div class="col-md-3">
-								<div class="card">
-									<div class="card-header">
-										운용 자금 <img class="tip_img"
-											src="${pageContext.request.contextPath }/resources/img/icn_tip.png"
-											style="cursor: help; position: relative;"
-											title="백테스트에 사용할 초기 운용자금을 입력">
-									</div>
-									<div class="card-body">
-										<input  disabled="disabled"   name="backStartAsset" id="backStartAsset"
-											class="text_extrasmall" type="text" value="${compVO.backStartAsset}"
-											onkeyup="numberWithCommas(this.value, this.id)"><span
-											class="top">만원</span>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-5">
-								<div class="card">
-									<div class="card-header">
-										백테스팅 기간 <img class="tip_img"
-											src="${pageContext.request.contextPath }/resources/img/icn_tip.png"
-											style="cursor: help; position: relative;"
-											title="백테스트를 실행할 기간을 선택">
-									</div>
-									<div class="card-body" style="padding-top: 15px;">
-										<input disabled="disabled" name="backStartDate" type="date" id="backStartDate"
-											style="width: 35%" value='${backStartDate}' ><span class="top"
-											style="margin-right: 10px;">부터</span> <input disabled="disabled"
-											name="backEndDate" type="date" id="backEndDate" value="${compVO.backEndDate}"
-											style="width: 35%"><span class="top">까지</span>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-2">
-								<div class="card">
-									<div class="card-header">
-										수수료율 <img class="tip_img"
-											src="${pageContext.request.contextPath }/resources/img/icn_tip.png"
-											style="cursor: help; position: relative;"
-											title="증권사 매매 수수료 입력 (예 : A증권사 매매시 수수료가 0.1이면 매수, 매도 합산 0.2가 아닌 0.1을 입력)">
-									</div>
-									<div class="card-body">
-										<input disabled="disabled" name="backFeeRate" class="text_extrasmall" type="text"
-											value="${compVO.backFeeRate}"><span class="top">%</span>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-2">
-								<div class="card">
-									<div class="card-header">
-										거래세금 <img class="tip_img"
-											src="${pageContext.request.contextPath }/resources/img/icn_tip.png"
-											style="cursor: help; position: relative;"
-											title="증권 거래세금 0.0015%, 미설정시 백테스팅 신뢰성이 떨어집니다.">
-
-									</div>
-									<div class="card-body">
-										<input disabled="disabled" name="backTaxRate" class="text_extrasmall" type="text"
-											value="${compVO.backTaxRate}"><span class="top">%</span>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- 세번째, 자산 운용 조건  -->
-						<hr>
-						<div class="row vertical-tab">
-							<span class="font_20px"><b>자산 운용 조건</b></span><br> <span
-								class="font_16px">투자 하기 위한 자산 운용 조건을 입력하세요!</span><br>
-							<div class="col-md-3">
-								<div class="card">
-									<div class="card-header">
-										분산투자 종목 수 <img class="tip_img"
-											src="${pageContext.request.contextPath }/resources/img/icn_tip.png"
-											style="cursor: help; position: relative;"
-											title="백테스트에 사용할 초기 운용자금을 입력">
-									</div>
-									<div class="card-body">
-										<select name="backStockCnt" id="slct_stockCnt" disabled="disabled"
-											class="slct_newport">
-											<option selected="selected" value="${compVO.backStockCnt}">${compVO.backStockCnt}</option>
-										</select> <span class="top">개</span>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-3">
-								<div class="card">
-									<div class="card-header">
-										리밸런싱 주기 <img class="tip_img"
-											src="${pageContext.request.contextPath }/resources/img/icn_tip.png"
-											style="cursor: help; position: relative;"
-											title="백테스팅 조건의 재선정 주기를 선택해">
-									</div>
-									<div class="card-body">
-										<select name="backRebalCycle" id="AARebalCycle" disabled="disabled"
-											class="slct_newport">
-											<option value="${compVO.backRebalCycle}" selected="selected">${compVO.backRebalCycle}</option>
-
-										</select> <span class="top">개월</span>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-3">
-								<div class="card">
-									<div class="card-header">
-										투자 비중 <img class="tip_img"
-											src="${pageContext.request.contextPath }/resources/img/icn_tip.png"
-											style="cursor: help; position: relative;"
-											title="운용 자금의 몇 %까지 투자할 것인지 선택">
-									</div>
-									<div class="card-body">
-										<select name="backInvestRate" id="slct_investRate" disabled="disabled"
-											class="slct_newport">
-											<option value="${compVO.backInvestRate}" selected="selected">${compVO.backInvestRate}</option>
-										</select> <span class="top">%</span>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-3">
-								<div class="card">
-									<div class="card-header">
-										슬리피지 <img class="tip_img"
-											src="${pageContext.request.contextPath }/resources/img/icn_tip.png"
-											style="cursor: help; position: relative;"
-											title="실제 금액과의 괴리율을 의미하며 설정시 백테스팅의 신뢰도가 높아집니다.">
-									</div>
-									<div class="card-body">
-										<input disabled="disabled" name="backSlippage" class="text_extrasmall" type="text"
-											value="${compVO.backSlippage }"><span class="top">%</span>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="btn-div">
-
-							<button class="btn btn_white" type="button">취소</button>
-							<button class="btn btn_hana" type="button"
-								onclick="changeTab(1);$('html,body').scrollTop(0);">다음
-								단계로</button>
-						</div>
-					</div>
-
-					<div id="selection1" style="display: none">
-						<!-- 두번째 페이지 -->
-						<div class="row vertical-tab">
-							<span class="font_20px"><b>종목 조건 설정</b></span><br> <span
-								class="font_16px">종목 조건을 설정해주세요 </span><br>
-							<div class="col-md-2">
-								<div class="card">
-									<div class="card-header">
-										거래시장 <img class="tip_img"
-											src="${pageContext.request.contextPath }/resources/img/icn_tip.png"
-											style="cursor: help; position: relative;"
-											title="KOSPI / KOSDAQ / KONEX / 전체시장 을 선택할 수 있습니다. ">
-									</div>
-									<div class="card-body">
-										<select name="backMarket" id="slct_market" disabled="disabled"
-											class="slct_newport">
-											<option value="${compVO.backMarket }" selected="selected">${compVO.backMarket }</option>
-										</select>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-10">
-								<div class="card">
-									<div class="card-header">
-										필터링 조건 선택 <img class="tip_img"
-											src="${pageContext.request.contextPath }/resources/img/icn_tip.png"
-											style="cursor: help; position: relative;"
-											title="매수/매도시 제외할 종목 선택">
-									</div>
-									<div class="card-body container card-selection">
-										<div class="col-md-3"
-											style="border-right: 1px solid rgba(0, 0, 0, 0.125); float: left">
-											<span class="top">관리종목</span><br> <input type="radio"
-												name="backCare" id="careOff" class="css-radiobtn" onclick="return false;"
-												checked="checked" value="0"> <label for="careOff"
-												style="margin-right: 20px">제외</label> <input type="radio" onclick="return false;"
-												name="backCare" id="careOn" class="css-radiobtn" value="1">
-											<label for="careOn" style="margin-right: 0">포함</label>
-										</div>
-										<div class="col-md-3"
-											style="border-right: 1px solid rgba(0, 0, 0, 0.125); float: left">
-											<span class="top">감리종목</span><br> <input type="radio" onclick="return false;"
-												name="backManage" id="manageOff" class="css-radiobtn"
-												value="0" checked="checked"> <label for="manageOff"
-												style="margin-right: 20px">제외</label> <input type="radio" onclick="return false;"
-												name="backManage" id="manageOn" class="css-radiobtn"
-												value="1"> <label for="manageOn"
-												style="margin-right: 0">포함</label>
-										</div>
-										<div class="col-md-3"
-											style="border-right: 1px solid rgba(0, 0, 0, 0.125); float: left;">
-											<span class="top">우선주 종목</span><br> <input type="radio" onclick="return false;"
-												name="backPreferred" id="preferredOff" class="css-radiobtn"
-												checked="checked" value="0"> <label
-												for="preferredOff" style="margin-right: 20px">제외</label> <input
-												type="radio" name="backPreferred" id="preferredOn" onclick="return false;"
-												class="css-radiobtn" value="1"> <label
-												for="preferredOn" style="margin-right: 0">포함</label>
-										</div>
-										<div class="col-md-3" style="float: left;">
-											<span class="top">ETF 종목</span><br> <input type="radio"
-												name="backEtf" id="etfOff" class="css-radiobtn" onclick="return false;"
-												checked="checked" value="0"> <label for="etfOff"
-												style="margin-right: 20px">제외</label> <input type="radio" onclick="return false;"
-												name="backEtf" id="etfOn" class="css-radiobtn" value="1">
-											<label for="etfOn" style="margin-right: 0">포함</label>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- 세번째, 자산 운용 조건  -->
-
-						<hr>
-						<div class="row vertical-tab">
-							<span class="font_20px"><b>거래 조건 설정</b></span><br> <span
-								class="font_16px">매수 / 매도를 위한 거래조건을 설정하세요 </span><br>
-							<div class="col-md-4">
-								<div class="card">
-									<div class="card-header">
-										재무 조건 설정 <img class="tip_img"
-											src="${pageContext.request.contextPath }/resources/img/icn_tip.png"
-											style="cursor: help; position: relative;"
-											title="재무 조건을 설정하세요">
-									</div>
-									<div class="card-body container card-selection">
-										<div class="col-md-6"
-											style="border-right: 1px solid rgba(0, 0, 0, 0.125); float: left">
-											<span class="top">영업 현금 흐름(+)</span><br> <input
-												type="radio" name="backCashFlow" id="cashFlowOn" onclick="return false;"
-												class="css-radiobtn" checked="checked" value="1"> <label
-												for="cashFlowOn" style="margin-right: 20px">포함</label> <input
-												type="radio" name="backCashFlow" id="cashFlowOff" value="0" onclick="return false;"
-												class="css-radiobtn"> <label for="cashFlowOff"
-												style="margin-right: 0">미포함</label>
-										</div>
-										<div class="col-md-6" style="float: left">
-											<span class="top">당기 순이익(+)</span><br> <input
-												type="radio" name="backProfit" id="profitOn" value="1" onclick="return false;"
-												class="css-radiobtn" checked="checked"> <label
-												for="profitOn" style="margin-right: 20px">포함</label> <input
-												type="radio" name="backProfit" id="profitOff" value="0" onclick="return false;"
-												class="css-radiobtn"> <label for="profitOff"
-												style="margin-right: 0">제외</label>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!-- 두번째 조건  -->
-							<div class="col-md-4">
-								<div class="card">
-									<div class="card-header">
-										현금 유동성 설정 <img class="tip_img"
-											src="${pageContext.request.contextPath }/resources/img/icn_tip.png"
-											style="cursor: help; position: relative;"
-											title="일일 거래되는 금액의 범위를 설정할 수 있습니다.">
-									</div>
-									<div class="card-body">
-										<span class="top" style="margin-right: 10px;">1일 거래대금</span> <select
-											name="backAmt" id="slct_amount" class="slct_newport" disabled="disabled">
-											<option value="${compVO.backAmt }" selected="selected">${compVO.backAmt }</option>
-										</select> <input disabled="disabled" name="backTransAmt" class="text_extrasmall"
-											type="text" id="stockVolume" value="${compVO.backTransAmt }"
-											onkeyup="numberWithCommas(this.value, this.id)"><span
-											class="top">만원</span>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-4">
-								<div class="card">
-									<div class="card-header">
-										사이즈 팩터(시가 총액) 설정 <img class="tip_img"
-											src="${pageContext.request.contextPath }/resources/img/icn_tip.png"
-											style="cursor: help; position: relative;"
-											title="회사 시가총액으로 투자 회사의 규모를 설정할 수 있습니다.">
-									</div>
-									<div class="card-body">
-										<span class="top" style="margin-right: 10px;">시가 총액</span> <select
-											name="backCap" id="slct_cap" class="slct_newport">
-											<option value="${compVO.backCap}" selected="selected">${compVO.backCap}</option>
-										</select> <input disabled="disabled" name="backMarketCap" class="text_extrasmall"
-											id="stockSize" type="text" value="${compVO.backMarketCap}"
-											onkeyup="numberWithCommas(this.value, this.id)"><span
-											class="top">만원</span><br>
-									</div>
-								</div>
-							</div>
-						</div>
-						<hr>
-						<div class="row vertical-tab">
-							<span class="font_20px"><b>매매 조건 설정</b></span><br> <span
-								class="font_16px">매수 / 매도를 기준을 설정하세요 </span><br>
-							<!-- 두번째 조건  -->
-							<div class="col-md-6">
-								<div class="card">
-									<div class="card-header">
-										매매 조건 <img class="tip_img"
-											src="${pageContext.request.contextPath }/resources/img/icn_tip.png"
-											style="cursor: help; position: relative;"
-											title="매매 금액 조건을 선택하세요">
-									</div>
-									<div class="card-body container">
-										<div class="col-md-6"
-											style="border-right: 1px solid rgba(0, 0, 0, 0.125); float: left;">
-											<span class="top" style="background-color: #ffe8e8">매수
-												금액 : </span> <select name="backBuyPrice" id="slct_prcie" disabled="disabled"
-												class="slct_newport" style="padding: 5px">
-												<option value="${compVO.backBuyPrice}" selected="selected">${compVO.backBuyPrice}</option>
-											</select>
-										</div>
-										<div class="col-md-6" style="float: left">
-											<span class="top" style="background-color: #e1f1f8">매도
-												금액 : </span> <select name="backSellPrice" id="AARebalCycle" disabled="disabled"
-												class="slct_newport">
-												<option value="${compVO.backSellPrice}" selected="selected">당일 시초가</option>
-											</select>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-3">
-								<div class="card">
-									<div class="card-header">
-										매매 최소 가격 <img class="tip_img"
-											src="${pageContext.request.contextPath }/resources/img/icn_tip.png"
-											style="cursor: help; position: relative;"
-											title="매매할 주식의 최소가격을 설정합니다. ">
-									</div>
-									<div class="card-body">
-										<select id="slct_minPrice" name="backMinPriceV" disabled="disabled"
-											class="slct_newport" style="width: 76px;">
-											<option value="${compoVO.backMinPriceV }" selected="selected">시가</option>
-										</select> <select name="backMinPriceS" id="slct_minSign"
-											class="slct_newport">
-											<option  value="${compoVO.backMinPriceS}" selected="selected">&gt;</option>
-										</select> <input disabled="disabled" name="backMinPrice" class="text_extrasmall"
-											type="text" style="width: 85px;" id="min_price" value="${compoVO.backMinPrice}"
-											onkeyup="numberWithCommas(this.value, this.id)"> <span
-											class="top">원</span>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-3">
-								<div class="card">
-									<div class="card-header">
-										시가 총액(%) <img class="tip_img"
-											src="${pageContext.request.contextPath }/resources/img/icn_tip.png"
-											style="cursor: help; position: relative;"
-											title="회사 시가총액으로 투자 회사의 규모를 설정할 수 있습니다. ">
-									</div>
-									<div class="card-body">
-										<span class="top">시가 총액(%)</span> <select name="backCapUpDown"
-											id="slct_capUpDown" class="slct_newport" style="width: 76px;">
-											<option value="${compVO.backCapUpDown}" selected="selected">상위</option>
-										</select> <input disabled="disabled" name="backCapRate" class="text_extrasmall" type="text" value="${compVO.backCapRate}"
-											style="width: 50px;"> <span class="top">%</span>
-									</div>
-								</div>
-							</div>
-						</div>
-
-
-						<div class="btn-div">
-							<button class="btn btn_white" type="button"
-								onclick="changeTab(0);$('html,body').scrollTop(0);">이전
-								단계로</button>
-							<button class="btn btn_hana" type="button"
-								onclick="changeTab(2);$('html,body').scrollTop(0);">다음
-								단계로</button>
-						</div>
-
-					</div>
-					<!--3번째 메뉴  -->
-					<div id="selection2" style="display: none">
-
-						<div class="row vertical-tab">
-							<span class="font_20px"><b>가치측정 조건식 설정</b></span><br> <span
-								class="font_16px">기업가치를 판단할 조건식을 선택해주세요. 선택하신 조건식으로
-								매수/매도가 진행됩니다.</span><br>
-							<div class="box_temp">
-								<div class="container">
-									<div class="col-md-1"
-										style="text-align: center; vertical-align: middle;">
-										<span class="top1" style="float: left; margin-right: 10px"><b>조건식
-												:</b></span>
-									</div>
-									<div class="col-md-8 box_sec" id="input_condi">
-									<input disabled="disabled" type="text" class='condi' readonly value="${compVO.backPBR}">
-									<input type="text" class='condi' readonly value="${compVO.backPER}">
-									<input type="text" class='condi' readonly value="${compVO.backPCR}">
-									<input type="text" class='condi' readonly value="${compVO.backPSR}">
-									<input type="text" class='condi' readonly value="${compVO.backROA}">
-									<input type="text" class='condi' readonly value="${compVO.backROE}">
-									<input type="text" class='condi' readonly value="${compVO.backROS}">
-									<input type="text" class='condi' readonly value="${compVO.backEBITDA}">
-									<input type="text" class='condi' readonly value="${compVO.backCFPS}">
-									</div>
-									<div class="col-md-3" style="float: left">
-									</div>
-								</div>
-							</div>
-							<table class="tbl_horizon" style="margin-top: 10px;">
-								<colgroup>
-									<col style="width: 160px">
-									<col>
-								</colgroup>
-								<tbody>
-									<tr>
-										<th class="buy">매수 조건식 선택 <img
-											src="${pageContext.request.contextPath}/resources/img/icn_tip.png"
-											style="cursor: help; top: 3px; position: relative"
-											title="조건식을 통해 선정된 종목의 매수 우선순위를 정할 수 있습니다."></th>
-										<td>
-											<div class="container">
-
-												<div class="col-md-3" style="float: left">
-													<span class="top1">밸류 팩터</span> <select id="valueFactor" disabled="disabled"
-														class="slct_condi">
-														<option value="PER" selected="selected">PER</option>
-														<option value="PBR" selected="selected">PBR</option>
-														<option value="PCR" selected="selected">PCR</option>
-														<option value="PSR" selected="selected">PSR</option>
-													</select>
-												</div>
-												<div class="col-md-3"
-													style="border-right: 1px solid rgba(0, 0, 0, 0.125); float: left">
-													<button type="button" class="btn_hana btn_add"
-														style="line-height: 15px; width: 100px;" disabled="disabled"
-														onclick="addCondition($('#valueFactor').val())">조건식 
-														추가</button>
-												</div>
-												<div class="col-md-3" style="float: left">
-													<span class="top1">수익성 팩터</span> <select id="QuailtyFactor" disabled="disabled"
-														class="slct_condi">
-														<option value="ROA" selected="selected">ROA</option>
-														<option value="ROE" selected="selected">ROE</option>
-														<option value="ROS" selected="selected">ROS</option>
-														<option value="CFPS" selected="selected">CFPS</option>
-														<option value="EBITDA" selected="selected">EBITDA</option>
-													</select>
-												</div>
-												<div class="col-md-3" style="float: left">
-												
-													<button type="button" class="btn_hana btn_add" disabled="disabled"
-														style="line-height: 15px; width: 100px;" 
-														onclick="addCondition($('#QuailtyFactor').val())">조건식
-														추가</button>
-												</div>
-
-
-											</div>
-										</td>
-									</tr>
-								</tbody>
-							</table>
-
-
-
-
-						</div>
-
-
-
-						<div class="btn-div">
-							<button class="btn btn_white"
-								onclick="changeTab(1);$('html,body').scrollTop(0);">이전 조건 보기</button>
-						<button class="btn btn_hana" type="button"
-								onclick="changeTab(3);$('html,body').scrollTop(0);">백테스팅 결과보기</button>
-							
-						</div>
-
-					</div>
-				</form>
-				
-				<div id="selection3" style="display:block">
-					수익률 데이터
-				<div>
-		<canvas id="myChart"  width="100%"></canvas>
-	</div>
-
-
-
-				</div>
-
-			</div>
-
-		</div>
-
-	</section>
-	<!-- section 끝 -->
-	<!-- Start Footer -->
-	<footer>
-		<jsp:include page="/WEB-INF/jsp/include/footer.jsp"></jsp:include>
-	</footer>
-	<!-- End Footer -->
-
+</script> 
 
 </body>
 </html>
