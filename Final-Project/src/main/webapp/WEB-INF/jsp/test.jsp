@@ -26,9 +26,6 @@
 <!-- 차트 링크 -->
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-<script
-	src="https://cdn.anychart.com/releases/8.10.0/js/anychart-base.min.js"></script>
 <style type="text/css">
 html, body, #container {
 	width: 100%;
@@ -36,65 +33,114 @@ html, body, #container {
 	margin: 0;
 	padding: 0;
 }
-</style>
+div{
+width:1200px;
+height:1000px;
 
+}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-	<div style="width: 60%">
-		<div id="container"></div>
+   <div>
+  												<canvas id="myChart"></canvas>
+											</div>
+											
+
+<script type="text/javascript">
+	var chartLabels = [];
+	var data = [];
+	var data2 = [];
+	//var chartData3 = [];
+
+	var dataSet = ${stockDayList}
+	$.each(dataSet, function(inx, obj) {
+		chartLabels.push(obj.stockDate);
+		data.push(obj.stockFluc);
+		data2.push(obj.kospiFluc);
+	});
+	console.log(data);
+	console.log(data2);
+	//console.log(chartData3);
+	
+	var config = {
+			  type: 'line',
+			  data: {
+				labels : chartLabels,
+			    datasets: [{
+			      borderColor: '#00c292',
+			      borderWidth: 1,
+			      radius: 0,
+			      data: data,
+			    },
+			    {
+			      borderColor: '#fb9678',
+			      borderWidth: 1,
+			      radius: 0,
+			      data: data2,
+			    }]
+			  },
+			  options: {
+			    interaction: {
+			      intersect: false
+			    },
+			    plugins: {
+			      legend: false
+			    },
+			    scales: {
+			    	xAxes: [{
+						display: true,
+						scaleLabel: {
+							display: true,
+							labelString: 'Month'
+						}
+					}],
+					yAxes: [{
+						display: true,
+						scaleLabel: {
+							display: true,
+							labelString: 'Value'
+						}
+					}]
+			    }
+			  }
+			};
+	
+	var totalDuration = 10000;
+	var delayBetweenPoints = totalDuration / data.length;
+	var previousY = (ctx) => ctx.index === 0 ? ctx.chart.scales.y.getPixelForValue(100) : ctx.chart.getDatasetMeta(ctx.datasetIndex).data[ctx.index - 1].getProps(['y'], true).y;
+	var animation = {
+	  x: {
+	    type: 'number',
+	    easing: 'linear',
+	    duration: delayBetweenPoints,
+	    from: NaN, // the point is initially skipped
+	    delay(ctx) {
+	      if (ctx.type !== 'data' || ctx.xStarted) {
+	        return 0;
+	      }
+	      ctx.xStarted = true;
+	      return ctx.index * delayBetweenPoints;
+	    }
+	  },
+	  y: {
+	    type: 'number',
+	    easing: 'linear',
+	    duration: delayBetweenPoints,
+	    from: previousY,
+	    delay(ctx) {
+	      if (ctx.type !== 'data' || ctx.yStarted) {
+	        return 0;
+	      }
+	      ctx.yStarted = true;
+	      return ctx.index * delayBetweenPoints;
+	    }
+	  }
+	};
+	
+	var myChart = new Chart(document.getElementById('myChart'),config);
 
 
-	</div>
-	<script>
-		var chartLabels = [];
-		var chartData = [];
-		var chartData2 = [];
-		var chartData3 = [];
-
-		var data = $
-		{
-			accList
-		}
-		$.each(data, function(inx, obj) {
-			chartLabels.push(obj.stockDate);
-			chartData.push(obj.stockFluc);
-			chartData2.push(obj.kospiFluc)
-			chartData3.push(obj.kosdaqFluc)
-		});
-		console.log(chartLabels)
-		console.log(chartData)
-		console.log(chartData2)
-		console.log(chartData3)
-	</script>
-	<script>
-		// All the code for the JS line chart will come here
-		// create a data set on our data
-		var dataSet = anychart.data.set(getData());
-		// map data for the line chart,
-		// take x from the zero column and value from the first column
-		var seriesData = dataSet.mapAs({
-			x : 0,
-			value : 1
-		});
-		// create a line chart
-		var chart = anychart.line();
-		//configure the chart title text settings
-		chart
-				.title('Acceptance of same-sex relationships in the US over the last 2 decades');
-		// set the y axis title
-		chart.yAxis().title('% of people who accept same-sex relationships');
-		//create a line series with the mapped data
-		var lineChart = chart.line(seriesData);
-		// set the container id for the line chart
-		chart.container('container');
-		// draw the line chart
-		chart.draw();
-	</script>
-	<script
-		src="${ pageContext.request.contextPath}/resources/chart/js/vendor/jquery-1.12.4.min.js"></script>
-	<script
-		src="${ pageContext.request.contextPath}/resources/chart/js/charts/Chart.js"></script>
-	<script
-		src="${ pageContext.request.contextPath}/resources/chart/js/charts/line-chart.js"></script>
+</script>
 </body>
 </html>

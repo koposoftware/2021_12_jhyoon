@@ -112,8 +112,8 @@
 	<select id="backtestProcedure" statementType="CALLABLE" parameterType="backTestResultSetVO" >
 	 {CALL BACK_TEST(
 		#{portNum},
-		#{userId},
-		#{resultList, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=backTestResultFlucMap})}
+		#{userId}
+		)}
 	</select>
 	
 	<select id="transResult" parameterType="backTestCompoVO" resultMap="backTestTransResultMap">
@@ -131,7 +131,8 @@
 		select * from T_BACKPORT_CONDI where port_no = #{portNo}
 	</select>
 	<select id = "stockDayList" parameterType="backTestCompoVO" resultMap="backTestResultFlucMap">
-		select * from t_yield where port_num = #{portNum}
+		select back_no, port_num, user_id, to_char(stock_date,'YY/MM/DD') as stock_date, stock_fluc, stock_day_fluc, kospi_fluc, kospi_day_fluc,
+		kosdaq_fluc, kosdaq_day_fluc from t_yield where port_num = #{portNum}
 	</select>
 <update id="editContent" parameterType="backTestCompoVO">
 update t_backport_condi set back_title = #{backTitle}, back_descript=#{backDescript}  where user_id = #{userId} and port_no = #{portNUm}

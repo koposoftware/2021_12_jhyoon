@@ -36,8 +36,23 @@ public class BackTestController {
 	}
 	
 	@GetMapping("/backtest/result")
-	public String backTestResult() {
-		return "/backtest/result";
+	public ModelAndView backTestResult() {
+		int portNo = 83;
+		BackTestCompoVO compVO = service.getPortCondi(portNo);
+		List<BackTestResultAccVO> accList = service.getAccResult(compVO);
+		for (BackTestResultAccVO backTestResultAccVO : accList) {
+			System.out.println(backTestResultAccVO);
+		}
+		List<BackTestResultFlucVO> stockDayList = service.getStockDayList(compVO);
+		for (BackTestResultFlucVO backTestResultFlucVO : stockDayList) {
+			System.out.println(backTestResultFlucVO);
+		}
+		Gson gson = new Gson();
+		ModelAndView mav = new ModelAndView("/backtest/result");
+		mav.addObject("accList", gson.toJson(accList));
+		mav.addObject("stockDayList", gson.toJson(stockDayList));
+		
+		return mav;
 	}
 	@PostMapping("/backtest/compo")
 	@ResponseBody
@@ -62,9 +77,9 @@ public class BackTestController {
 		
 		// stored port no 
 		compVO = service.getPortNo(compVO);
-		
+		service.getBacktestProcedure(compVO);
 		// backtest 프로시저 실행 후 결과값 가져오기(daily fluc data)
-		List<BackTestResultFlucVO> stockDayList = service.getBacktestProcedure(compVO);
+		List<BackTestResultFlucVO> stockDayList = service.getStockDayList(compVO);
 		
 		// backtest 결과값 가져오기
 		List<BackTestTransResultVO> transList = service.getTransResult(compVO);

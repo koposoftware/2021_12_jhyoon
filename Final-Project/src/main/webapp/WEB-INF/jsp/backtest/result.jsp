@@ -397,9 +397,8 @@ input[type=text].condi {
 	src="${ pageContext.request.contextPath}/resources/js/templatemo.js"></script>
 <!-- Custom -->
 <script src="${ pageContext.request.contextPath}/resources/js/custom.js"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#resultTabMenu0').click(function() {
@@ -428,7 +427,61 @@ input[type=text].condi {
 		document.getElementById("PortResultSection" + num.toString()).style.display = "";
 	}
 </script>
+		<script type="text/javascript">
+					function editMode(f) {
+						if (f) {
+							$('.edit_title').css('display', 'block')
+							$('.view_title').css('display', 'none')
+						} else {
+							$('.edit_title').css('display', 'none')
+							$('.view_title').css('display', 'block')
+						}
+					}
+					function editDescMode(f) {
+						if (f) {
+							$('.edit_desc').css('display', 'block')
+							$('.view_desc').css('display', 'none')
+						} else {
+							$('.edit_desc').css('display', 'none')
+							$('.view_desc').css('display', 'block')
+						}
+					}
 
+					function sendEditContent(v, data) {
+						if (v == 1) {
+							var title = $('#viewTitle').text()
+							if (title != data) {
+								$('#viewTitle').text(data)
+								$
+										.ajax({
+											'type' : 'POST',
+											'url' : "${ pageContext.request.contextPath }/backtest/edit",
+											'data' : {
+												"portNum" : '${compo.portNum}',
+												"backTitle" : encodeURIComponent(data),
+												"backDescript" : '${compo.backDescript}'
+											}
+										})
+							}
+						}
+						if (v == 2) {
+							var title = $('#viewDesc').text()
+							if (title != data) {
+								$('#viewDesc').text(data)
+								$
+										.ajax({
+											'type' : 'POST',
+											'url' : "${ pageContext.request.contextPath }/backtest/edit",
+											'data' : {
+												"portNum" : '${compo.portNum}',
+												"backTitle" : '${compo.backTitle}',
+												"backDescript" : encodeURIComponent(data)
+											}
+										})
+							}
+						}
+					}
+				</script>
 
 <!-- Head 구성 끝 -->
 </head>
@@ -487,14 +540,14 @@ input[type=text].condi {
 
 .fullDetail_tabBox ul {
 	position: relative;
-	border-bottom: 1px solid #f83838;
+	border-bottom: 1px solid #008485;
 }
 
 .fullDetail_tabBox li.on {
 	background: #fff;
-	border: 1px solid #f83838;
+	border: 1px solid #008485;
 	border-bottom-color: #fff;
-	color: #f83838;
+	color: #008485;
 	font-weight: 600;
 }
 
@@ -507,7 +560,7 @@ input[type=text].condi {
 	position: relative;
 	border: 1px solid #ddd;
 	border-right: none;
-	border-bottom-color: #f83838;
+	border-bottom-color: #008485;
 	background: #f6f6f6;
 	font-size: 25px;
 	color: #888;
@@ -601,9 +654,10 @@ em {
 .result_section {
 	display: block;
 	border: 1px solid #bbb;
-	height: 500px;
+	height: 1300px;
 	width: 100%;
 	border-top: #fff;
+	padding: 20px;
 }
 
 .portNum_large {
@@ -673,68 +727,73 @@ em {
 }
 
 .sidebg_new {
-	background: #f83838;
+	background:#008485;
 	
 }
 .sidebg_copy {
     background: #555;
 }
+.subtitle_15px {
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 30px;
+    color: #333;
+    text-align: center;
+}
+.subtitle_10px {
+    font-size: 25px;
+    font-weight: 600;
+    line-height: 30px;
+    color: #333;
+    text-align: center;
+}
+.tbl_vertical {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+    letter-spacing: 0;
+    margin-top:25px
+}
+.tbl_vertical th {
+    text-align: center;
+    background: #f1f3f5;
+    border-bottom: 1px solid #ddd;
+    font-size: 25px;
+    font-weight: 600;
+    color: #424242;
+    padding: 10px;
+}
+.tbl_vertical td.taC {
+    text-align: center;
+}
+thead {
+    display: table-header-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+.tbl_vertical td {
+    padding: 8px 0;
+    border-bottom: 1px solid #ddd;
+    line-height: 40px;
+    color: #333;
+    background: #fff;
+}
+.tbl_vertical td span.tblRate {
+    font-family: 'Roboto', sans-serif;
+    font-size: 25px;
+    letter-spacing: 0;
+}
+.txt_minus {
+    color: #177cd2;
+}
+.txt_plus {
+    color: #f83838;;
+}
+.chart_total{
+	float:left;
+}
 </style>
-				<script type="text/javascript">
-					function editMode(f) {
-						if (f) {
-							$('.edit_title').css('display', 'block')
-							$('.view_title').css('display', 'none')
-						} else {
-							$('.edit_title').css('display', 'none')
-							$('.view_title').css('display', 'block')
-						}
-					}
-					function editDescMode(f) {
-						if (f) {
-							$('.edit_desc').css('display', 'block')
-							$('.view_desc').css('display', 'none')
-						} else {
-							$('.edit_desc').css('display', 'none')
-							$('.view_desc').css('display', 'block')
-						}
-					}
-
-					function sendEditContent(v, data) {
-						if (v == 1) {
-							var title = $('#viewTitle').text()
-							if (title != data) {
-								$('#viewTitle').text(data)
-								$
-										.ajax({
-											'type' : 'POST',
-											'url' : "${ pageContext.request.contextPath }/backtest/edit",
-											'data' : {
-												"portNum" : '${compo.portNum}',
-												"backTitle" : encodeURIComponent(data),
-												"backDescript" : '${compo.backDescript}'
-											}
-										})
-							}
-						}
-						if (v == 2) {
-							var title = $('#viewDesc').text()
-							if (title != data) {
-								$('#viewDesc').text(data)
-								$
-										.ajax({
-											'type' : 'POST',
-											'url' : "${ pageContext.request.contextPath }/backtest/edit",
-											'data' : {
-												"portNum" : '${compo.portNum}',
-												"backTitle" : '${compo.backTitle}',
-												"backDescript" : encodeURIComponent(data)
-											}
-										})
-							}
-						}
-					}
-				</script>
+		
 
 				<div id="selection3" style="display: block">
 					<div class="row vertical-tab">
@@ -814,43 +873,83 @@ em {
 						</ul>
 					</div>
 					<div id="PortResultSection0" class="result_section">
-						첫번재 페이지
-						<div class="box_fullDetail_rates">
+						<div class="row vertical-tab">
+							<div class="col-md-6" style="width: 50%">
+								<ul style="padding-left: 0;">
+                                <li class="subtitle_15px bold">백테스팅 수익률 <em id="reserved" style="color:red"></em></li>
+                                <table class="tbl_vertical" style="" name="tablePortNumSummary" data-val="PORT">
+                                    <colgroup>
+                                        <col style="width: 16.6%">
+                                        <col style="width: 16.6%">
+                                        <col style="width: 16.6%">
+                                        <col style="width: 16.6%">
+                                    </colgroup>
+                                    <thead>
+                                        <tr>
+                                            <th>투자 원금</th>
+                                            <th>현재 자산</th>
+                                            <th>수익율</th>
+                                            <th>총 손익</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="taC" id="PortBTRTD1"><span class="txt_minus tblRate">-1.48%</span></td>
+                                            <td class="taC" id="PortBTRTW1"><span class="txt_minus tblRate">-6.08%</span></td>
+                                            <td class="taC" id="PortBTRTM1"><span class="txt_minus tblRate">-3.72%</span></td>
+                                            <td class="taC" id="PortBTRTM1"><span class="txt_minus tblRate">-3.72%</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                
+                            </ul>
+							</div>
+							<div class="col-md-6" style="width: 50%">
 							<ul>
-								<li class="fl rate_leftBox">
-									<p class="rate" id="PortRTLeft1">
-										<span title="일일수익률의 평균을 의미합니다.">일평균 수익률</span><em
-											class="txt_plus">0.05%</em>
-									</p>
-									<p class="rate" id="PortRTLeft2">
-										<span
-											title="((실현 손익+미실현 손익)/투자원금(총투자평잔))*100<br></span>투자평균자산 대비 순수익으로 계산합니다.">누적
-											수익률</span><em class="txt_plus">11.8%</em>
-									</p>
-									<p class="rate" id="PortRTLeft3">
-										<span
-											title="(누적수익률(%)+1)^(365/기간)-1<br></span>투자기간 대비 누적수익률를 연율화한 연평균 수익률을 의미합니다.">CAGR</span><em><em
-											class="txt_plus">11.83%</em></em>
-									</p>
-									<p class="rate" id="PortRTLeft4">
-										<span
-											title="역사적 ((저점자산-고점자산)/고점자산)*100<br></span>Maximum Drawdown, 최대낙폭이라고 하며,<br/>포트폴리오 운영기간 중 고점에서 저점까지 최대 누적 손실률을 의미합니다.">MDD</span><em>18.58%</em>
-									</p>
-								</li>
-								<li class="fr rate_rightBox">
-									<p class="rate_right" id="PortRTRight1">
-										<span title="일별 투자원금의 평균입니다.">투자원금 (총투자평잔)</span><em>50,000,000</em>원
-									</p>
-									<p class="rate_right" id="PortRTRight2">
-										<span title="매도 종목의 손익률을 통해 실현 손익금을 계산합니다.">총 손익</span><em
-											class="txt_plus">5,899,864</em>원
-									</p>
-									<p class="rate_right" id="PortRTRight3">
-										<span title="마지막 거래일의 최종 자산(예수금 + 잔고 가치)">현재 총 자산</span><em>55,899,864</em>원
-									</p>
-								</li>
-							</ul>
+                                <li class="subtitle_15px bold">수익률 평가 <em id="reserved" style="color:red"></em></li>
+                                <table class="tbl_vertical" style="" name="tablePortNumSummary" data-val="PORT">
+                                    <colgroup>
+                                        <col style="width: 16.6%">
+                                        <col style="width: 16.6%">
+                                        <col style="width: 16.6%">
+                                    </colgroup>
+                                    <thead>
+                                        <tr>
+                                            <th>CAGR</th>
+                                            <th>일 평균 수익률</th>
+                                            <th>누적 수익률</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="taC" id="PortBTRTD1"><span class="txt_minus tblRate">-1.48%</span></td>
+                                            <td class="taC" id="PortBTRTW1"><span class="txt_minus tblRate">-6.08%</span></td>
+                                            <td class="taC" id="PortBTRTM1"><span class="txt_minus tblRate">-3.72%</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                
+                            </ul>
+							</div>
 						</div>
+						<div class="fd_subBox">
+                                <div class="col-md-6 chart_total"  >
+                                <ul style="padding-left: 0px;">
+                                            <li class="subtitle_10px bold taC" >백테스팅 누적수익률 차트</li>
+                                            <div>
+  												<canvas id="myChart"></canvas>
+											</div>
+                                        </ul>
+                                </div>
+                                <div class="col-md-6 chart_total" >
+                                <ul>
+                                            <li class="subtitle_10px bold taC">백테스팅 누적수익률 차트</li>
+                                        </ul>
+                                </div>
+                  
+                                
+                                
+                         </div>
 					</div>
 					<div id="PortResultSection1" style="display: none;"
 						class="result_section">
@@ -879,7 +978,121 @@ em {
 				</div>
 			</div>
 		</div>
+<script type="text/javascript">
+	var chartLabels = [];
+	var data = [];
+	var data2 = [];
+	var data3 = [];
 
+	var dataSet = ${stockDayList}
+	$.each(dataSet, function(inx, obj) {
+		chartLabels.push(obj.stockDate);
+		data.push(obj.stockFluc);
+		data2.push(obj.kospiFluc);
+		data3.push(obj.kosdaqFluc);
+	});
+	console.log(data);
+	console.log(data2);
+	//console.log(chartData3);
+	
+	var config = {
+			  type: 'line',
+			  data: {
+				labels : chartLabels,
+			    datasets: [{
+			      label: "수익률",
+			      borderColor: '#fb9678',
+			      borderWidth: 2,
+			      radius: 0,
+			      data: data,
+			    },
+			    {
+			      label: "코스피",
+			      borderColor: '#00c292',
+			      borderWidth: 2,
+			      radius: 0,
+			      data: data2,
+			    },
+			    {
+			    	label: "코스닥",
+				      borderColor: '#01c0c8',
+				      borderWidth: 2,
+				      radius: 0,
+				      data: data3,
+				    }]
+			  },
+			  options: {
+			    interaction: {
+			      intersect: false
+			    },
+			    plugins: {
+			    },
+			    legend : {
+					display : true,
+					position : 'bottom',
+					labels : {
+						fontSize : 32
+					}
+				},
+			    scales: {
+			    	xAxes: [{
+			    		type: 'time',
+			    		time:{
+			    			unit:'year'
+			    		},
+						display: true,
+						scaleLabel: {
+							display: true,
+							labelString: 'Month'
+						}
+					}],
+					yAxes: [{
+						display: true,
+						scaleLabel: {
+							display: true,
+							labelString: 'Value'
+						}
+					}]
+			    }
+			  }
+			};
+	
+	var totalDuration = 10000;
+	var delayBetweenPoints = totalDuration / data.length;
+	var previousY = (ctx) => ctx.index === 0 ? ctx.chart.scales.y.getPixelForValue(100) : ctx.chart.getDatasetMeta(ctx.datasetIndex).data[ctx.index - 1].getProps(['y'], true).y;
+	var animation = {
+	  x: {
+	    type: 'number',
+	    easing: 'linear',
+	    duration: delayBetweenPoints,
+	    from: NaN, // the point is initially skipped
+	    delay(ctx) {
+	      if (ctx.type !== 'data' || ctx.xStarted) {
+	        return 0;
+	      }
+	      ctx.xStarted = true;
+	      return ctx.index * delayBetweenPoints;
+	    }
+	  },
+	  y: {
+	    type: 'number',
+	    easing: 'linear',
+	    duration: delayBetweenPoints,
+	    from: previousY,
+	    delay(ctx) {
+	      if (ctx.type !== 'data' || ctx.yStarted) {
+	        return 0;
+	      }
+	      ctx.yStarted = true;
+	      return ctx.index * delayBetweenPoints;
+	    }
+	  }
+	};
+	
+	var myChart = new Chart(document.getElementById('myChart'),config);
+
+
+</script>
 
 	</section>
 	<!-- section 끝 -->
@@ -887,43 +1100,7 @@ em {
 	<footer>
 		<jsp:include page="/WEB-INF/jsp/include/footer.jsp"></jsp:include>
 	</footer>
-	<!-- End Footer -->
-	<script>
-		var chartLabels = [];
-		var chartData = [];
-		var chartData2 = [];
-		var chartData3 = [];
-
-		var data = $
-		{
-			accList
-		}
-		$.each(data, function(inx, obj) {
-			chartLabels.push(obj.backDate);
-			chartData.push(obj.totalBal);
-			chartData2.push(obj.EarningRate);
-		});
-		console.log(chartData);
-		console.log(chartData2);
-		console.log(chartData3);
-		var ctx = document.getElementById('myChart').getContext('2d');
-		var chart = new Chart(ctx, {
-			// 챠트 종류를 선택 
-			type : 'line',
-			// 챠트를 그릴 데이타 
-			data : {
-				labels : chartLabels,
-				datasets : [ {
-					label : '내 계좌 평가액',
-					backgroundColor : 'transparent',
-					borderColor : 'red',
-					data : chartData
-				} ]
-			},
-			// 옵션 
-			options : {}
-		});
-	</script>
+	
 
 </body>
 </html>

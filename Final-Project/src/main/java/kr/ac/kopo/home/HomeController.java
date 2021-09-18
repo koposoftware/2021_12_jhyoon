@@ -27,7 +27,7 @@ public class HomeController {
 	}
 	@RequestMapping("/test")
 	public ModelAndView test() {
-		int portNo = 33;
+		int portNo = 83;
 		BackTestCompoVO compVO = service.getPortCondi(portNo);
 		
 		List<BackTestResultAccVO> accList = service.getAccResult(compVO);
@@ -42,7 +42,7 @@ public class HomeController {
 		Gson gson = new Gson();
 		ModelAndView mav = new ModelAndView("/test");
 		mav.addObject("accList", gson.toJson(accList));
-		mav.addObject("accList", gson.toJson(stockDayList));
+		mav.addObject("stockDayList", gson.toJson(stockDayList));
 		
 		return mav;
 	}
