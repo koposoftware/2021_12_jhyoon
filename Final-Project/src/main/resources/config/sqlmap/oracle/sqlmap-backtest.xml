@@ -133,6 +133,9 @@
 	<select id = "stockDayList" parameterType="backTestCompoVO" resultMap="backTestResultFlucMap">
 		select * from t_yield where port_num = #{portNum}
 	</select>
+<update id="editContent" parameterType="backTestCompoVO">
+update t_backport_condi set back_title = #{backTitle}, back_descript=#{backDescript}  where user_id = #{userId} and port_no = #{portNUm}
 
+</update>
 
 </mapper>

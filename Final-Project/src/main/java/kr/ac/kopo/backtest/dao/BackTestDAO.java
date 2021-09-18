@@ -23,4 +23,7 @@ public interface BackTestDAO {
 
 	List<BackTestResultFlucVO> getStockDayList(BackTestCompoVO compVO);
 
+
+	void editContent(BackTestCompoVO compVO);
+
 }

@@ -24,6 +24,8 @@ public interface BackTestService {
 	List<BackTestResultFlucVO> getStockDayList(BackTestCompoVO compVO);
 
 
-	
+	void editContent(BackTestCompoVO compVO);
+
+
 	
 }

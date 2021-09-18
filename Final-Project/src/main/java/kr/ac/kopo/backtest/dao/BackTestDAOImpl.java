@@ -62,5 +62,10 @@ public class BackTestDAOImpl implements BackTestDAO {
 		return stockDayList;
 	}
 
+	@Override
+	public void editContent(BackTestCompoVO compVO) {
+		sqlSessionTemplate.update("editContent",compVO);
+	}
+
 	
 }

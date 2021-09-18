@@ -58,4 +58,9 @@ public class BackTestServiceImpl implements BackTestService{
 		List<BackTestResultFlucVO> stockDayList = backTestDAO.getStockDayList(compVO);
 		return stockDayList;
 	}
+
+	@Override
+	public void editContent(BackTestCompoVO compVO) {
+		backTestDAO.editContent(compVO);
+	}
 }
