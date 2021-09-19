@@ -8,6 +8,7 @@
 <jsp:include page="/WEB-INF/jsp/include/head.jsp"></jsp:include>
 <title></title>
 <style type="text/css">
+
 ul, ol, dl, dd, dt, li {
 	list-style-type: none;
 }

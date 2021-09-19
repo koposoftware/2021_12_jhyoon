@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -18,6 +17,7 @@ import kr.ac.kopo.backtest.service.BackTestService;
 import kr.ac.kopo.backtest.vo.BackTestCompoVO;
 import kr.ac.kopo.backtest.vo.BackTestResultAccVO;
 import kr.ac.kopo.backtest.vo.BackTestResultFlucVO;
+import kr.ac.kopo.backtest.vo.BackTestResultSetVO;
 import kr.ac.kopo.backtest.vo.BackTestTransResultVO;
 import kr.ac.kopo.member.service.MemberService;
 import kr.ac.kopo.member.vo.MemberVO;
@@ -35,23 +35,41 @@ public class BackTestController {
 		return "/backtest/compo";
 	}
 	
+	//테스트 
 	@GetMapping("/backtest/result")
 	public ModelAndView backTestResult() {
 		int portNo = 83;
+		//포트번호로 조건식 불러오기
 		BackTestCompoVO compVO = service.getPortCondi(portNo);
+		System.out.println(compVO);
+		//계좌정보 불러오기
 		List<BackTestResultAccVO> accList = service.getAccResult(compVO);
-		for (BackTestResultAccVO backTestResultAccVO : accList) {
+		List<BackTestResultAccVO> accReverseList = service.getAccResverseResult(compVO);
+		for (BackTestResultAccVO backTestResultAccVO : accReverseList) {
 			System.out.println(backTestResultAccVO);
 		}
+		
+		//일별 List불러오기
 		List<BackTestResultFlucVO> stockDayList = service.getStockDayList(compVO);
-		for (BackTestResultFlucVO backTestResultFlucVO : stockDayList) {
-			System.out.println(backTestResultFlucVO);
-		}
+		
+		// backtest 월 누적 수익률 / 월 평균 수익률
+		List<BackTestResultFlucVO> stockAVGList = service.getStockAVGList(compVO);
+		// 거래내역 결과 불러오기
+		List<BackTestTransResultVO> transList = service.getTransResult(compVO);
+		// 종합 정보 불러오기
+		BackTestResultSetVO totalResult = service.getTotalResult(compVO);
+		
 		Gson gson = new Gson();
 		ModelAndView mav = new ModelAndView("/backtest/result");
+		mav.addObject("compoVO", compVO);
+		mav.addObject("accTotal", accList);
+		mav.addObject("accReverseTotal", accReverseList);
+		mav.addObject("totalResult", totalResult);
 		mav.addObject("accList", gson.toJson(accList));
 		mav.addObject("stockDayList", gson.toJson(stockDayList));
-		
+		mav.addObject("stockAVGList", gson.toJson(stockAVGList));
+		mav.addObject("transList", gson.toJson(transList));
+		mav.addObject("transList2", transList);
 		return mav;
 	}
 	@PostMapping("/backtest/compo")
@@ -87,12 +105,19 @@ public class BackTestController {
 		
 		// backtest acc data
 		List<BackTestResultAccVO> accList = service.getAccResult(compVO);
+		
+		
+		// backtest 월 누적 수익률 / 월 평균 수익률
+		List<BackTestResultFlucVO> stockAVGList = service.getStockAVGList(compVO);
+		
+		
 		Gson gson = new Gson();
 //		
 		ModelAndView mav = new ModelAndView("/backtest/result");
 		mav.addObject("stockDayList", gson.toJson(stockDayList));
 		mav.addObject("transList", gson.toJson(transList));
 		mav.addObject("accList", gson.toJson(accList));
+		mav.addObject("stockAVGList", gson.toJson(stockAVGList));
 		//service.getBackTestProcedure()
 		return mav;
 	}

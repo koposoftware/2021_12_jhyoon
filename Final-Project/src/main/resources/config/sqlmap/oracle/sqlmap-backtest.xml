@@ -16,7 +16,7 @@
 		<result column="back_slippage" property="backSlippage" />
 		<result column="back_tax_rate" property="backTaxRate" />
 		<result column="back_stock_cnt" property="backStockCnt" />
-		<result column="back_rebal_cycle" property="backInvestRate" />
+		<result column="back_rebal_cycle" property="backRebalCycle" />
 		<result column="back_invest_rate" property="backInvestRate" />
 		<result column="back_market" property="backMarket" />
 		<result column="back_care" property="backCare" />
@@ -71,7 +71,7 @@
 		<result column="buy_price" property="buyPrice" />
 		<result column="buy_date" property="buyDate" />
 		<result column="sell_date" property="sellDate" />
-		<result column="sell_price" property="backDate" />
+		<result column="sell_price" property="sellPrice" />
 		<result column="total_stock_cnt" property="totalStockCnt" />
 		<result column="total_stock_price" property="totalStockPrice" />
 		<result column="sale_price" property="salePrice" />
@@ -90,7 +90,20 @@
 		<result column="sell_total_price" property="sellTotalPrice" />
 		<result column="total_stock_price" property="totalStockPrice" />
 		<result column="back_fee" property="backFee" />
-		<result column="earning_rate" property="EarningRate" />
+		<result column="earning_rate" property="earningRate" />
+
+	</resultMap>
+	
+	<resultMap  type="backTestResultSetVO" id ="backTestResultSetMap">
+		<result column="port_num" property="portNum" />
+		<result column="user_id" property="userId" />
+		<result column="start_asset" property="startAsset" />
+		<result column="final_bal" property="finalBal" />
+		<result column="earning_rate" property="earningRate" />
+		<result column="profit_loss" property="profitLoss" />
+		<result column="total_cgcr" property="totalCagr" />
+		<result column="avg_dayfluc" property="avgDayFluc" />
+		<result column="avg_fluc" property="avgFluc" />
 	</resultMap>
 	
 	
@@ -117,26 +130,47 @@
 	</select>
 	
 	<select id="transResult" parameterType="backTestCompoVO" resultMap="backTestTransResultMap">
-		select back_no, port_num, user_id, stock_name, stock_code, to_char(back_date,'YY/MM/DD') as back_date, trans_kind,
-		stock_price, stock_cnt, buy_price, sell_price, buy_date, sell_date, sale_price, total_stock_cnt, earning_rate, total_stock_price 
+		select back_no, port_num, user_id, stock_name, stock_code, to_char(back_date,'YYYY-MM-DD') as back_date, trans_kind,
+		stock_price, stock_cnt, buy_price, sell_price, to_char(buy_date,'YYYY-MM-DD') as buy_date, to_char(sell_date,'YYYY-MM-DD') as sell_date, sale_price, total_stock_cnt, earning_rate, total_stock_price 
 		from t_trans_stock where port_num = #{portNum} and user_id=#{userId} order by back_no, back_date
 	</select>
 	
 	<select id="accResult" parameterType="backTestCompoVO" resultMap="backTestResultAccMap">
-		select back_no, port_num, user_id, to_char(back_date,'YY/MM/DD') as back_date, total_bal, total_deposit, 
+		select back_no, port_num, user_id, to_char(back_date,'YYYY-MM-DD') as back_date, total_bal, total_deposit, 
 		buy_total_price, sell_total_price, total_stock_price, back_fee, earning_rate	 
 		from t_back_result where port_num = #{portNum} and user_id=#{userId} order by back_no, back_date
+	</select>
+	<select id="accReverseResult" parameterType="backTestCompoVO" resultMap="backTestResultAccMap">
+		select back_no, port_num, user_id, to_char(back_date,'YYYY-MM-DD') as back_date, total_bal, total_deposit, 
+		buy_total_price, sell_total_price, total_stock_price, back_fee, earning_rate	 
+		from t_back_result where port_num = #{portNum} and user_id=#{userId} order by back_no desc
 	</select>
 	<select id = "getPortCondi" parameterType="int" resultMap="compoMap">
 		select * from T_BACKPORT_CONDI where port_no = #{portNo}
 	</select>
 	<select id = "stockDayList" parameterType="backTestCompoVO" resultMap="backTestResultFlucMap">
-		select back_no, port_num, user_id, to_char(stock_date,'YY/MM/DD') as stock_date, stock_fluc, stock_day_fluc, kospi_fluc, kospi_day_fluc,
-		kosdaq_fluc, kosdaq_day_fluc from t_yield where port_num = #{portNum}
+		select back_no, port_num, user_id, to_char(stock_date,'YYYY-MM-DD') as stock_date, stock_fluc, stock_day_fluc, kospi_fluc, kospi_day_fluc,
+		kosdaq_fluc, kosdaq_day_fluc from t_yield where port_num = #{portNum} order by back_no, stock_date
 	</select>
-<update id="editContent" parameterType="backTestCompoVO">
-update t_backport_condi set back_title = #{backTitle}, back_descript=#{backDescript}  where user_id = #{userId} and port_no = #{portNUm}
+	
+	<update id="editContent" parameterType="backTestCompoVO">
+		update t_backport_condi set back_title = #{backTitle}, back_descript=#{backDescript}  where user_id = #{userId} and port_no = #{portNum}
 
 </update>
+<!-- 월별 누적수익률 / 월평균 수익률 -->
+<select id="stockAVGRate" parameterType="backTestCompoVO" resultMap="backTestResultFlucMap">
+select to_char(stock_date, 'YY/MM') stock_date, trunc(avg(stock_fluc)) stock_fluc, trunc(avg(KOSPI_FLUC)) KOSPI_FLUC, trunc(avg(kosdaq_fluc)) kosdaq_fluc, sum(stock_day_fluc) stock_day_fluc, sum(kospi_day_fluc) kospi_day_fluc, sum(kosdaq_day_fluc) kosdaq_day_fluc
+from t_yield where port_num=#{portNum} group by to_char(stock_date, 'YY/MM') order by stock_date
+</select>
+
+<select id="totalResult" parameterType="backTestCompoVO" resultMap="backTestResultSetMap">
+select to_char(start_asset,'999,999,999') start_asset,to_char(final_bal,'999,999,999') final_bal,earning_rate, to_char(final_bal-start_asset,'999,999,999') as profit_loss,round(Power(final_bal/start_asset,(1/year)),2)-1 as total_cagr, avg_dayfluc, avg_fluc  
+from (
+select max(total_bal) KEEP(DENSE_RANK FIRST ORDER BY back_date) as start_asset, max(total_bal) KEEP(DENSE_RANK FIRST ORDER BY back_date DESC) as final_bal,  max(EARNING_RATE) KEEP(DENSE_RANK FIRST ORDER BY back_date DESC) as earning_rate,   
+round((max(back_date)-min(back_date))/365,2) as year
+from t_back_result where port_num = #{portNum} and user_id = #{userId} ) a , 
+(select round(avg(stock_day_fluc),2) as avg_dayfluc, round(avg(stock_fluc),2) as avg_fluc 
+from t_yield where port_num = #{portNum} group by port_num) b
+</select>
 
 </mapper>

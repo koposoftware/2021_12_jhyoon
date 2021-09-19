@@ -32,14 +32,11 @@ public class BackTestDAOImpl implements BackTestDAO {
 	}
 	
 	@Override
-	public List<BackTestResultFlucVO> getBacktestProcedure(BackTestCompoVO compVO) {
+	public void getBacktestProcedure(BackTestCompoVO compVO) {
 		BackTestResultSetVO resultVO = new BackTestResultSetVO();
 		resultVO.setPortNum(compVO.getPortNum());
 		resultVO.setUserId(compVO.getUserId());
 		sqlSessionTemplate.selectList("backtestProcedure", resultVO);
-		List<BackTestResultFlucVO> list = resultVO.getResultList();
-		
-		return list;
 	}
 	@Override
 	public List<BackTestTransResultVO> getTransResult(BackTestCompoVO compVO) {
@@ -65,6 +62,21 @@ public class BackTestDAOImpl implements BackTestDAO {
 	@Override
 	public void editContent(BackTestCompoVO compVO) {
 		sqlSessionTemplate.update("editContent",compVO);
+	}
+	@Override
+	public List<BackTestResultFlucVO> getStockAVGList(BackTestCompoVO compVO) {
+		List<BackTestResultFlucVO> stockAVGList = sqlSessionTemplate.selectList("stockAVGRate",compVO);
+		return stockAVGList;
+	}
+	@Override
+	public BackTestResultSetVO getTotalResult(BackTestCompoVO compVO) {
+		BackTestResultSetVO totalResult = sqlSessionTemplate.selectOne("totalResult", compVO);
+		return totalResult;
+	}
+	@Override
+	public List<BackTestResultAccVO> getAccReverseResult(BackTestCompoVO compVO) {
+		List<BackTestResultAccVO> accReverseList = sqlSessionTemplate.selectList("accReverseResult", compVO);
+		return accReverseList;
 	}
 
 	

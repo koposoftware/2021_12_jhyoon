@@ -11,7 +11,7 @@ public class BackTestResultAccVO {
 	private int sellTotalPrice;
 	private int totalStockPrice;
 	private int backFee;
-	private double EarningRate;
+	private double earningRate;
 	public int getBackNo() {
 		return backNo;
 	}
@@ -73,17 +73,17 @@ public class BackTestResultAccVO {
 		this.backFee = backFee;
 	}
 	public double getEarningRate() {
-		return EarningRate;
+		return earningRate;
 	}
 	public void setEarningRate(double earningRate) {
-		EarningRate = earningRate;
+		this.earningRate = earningRate;
 	}
 	@Override
 	public String toString() {
 		return "BackTestResultAccVO [backNo=" + backNo + ", portNum=" + portNum + ", userId=" + userId + ", backDate="
 				+ backDate + ", totalBal=" + totalBal + ", totalDeposit=" + totalDeposit + ", buyTotalPrice="
 				+ buyTotalPrice + ", sellTotalPrice=" + sellTotalPrice + ", totalStockPrice=" + totalStockPrice
-				+ ", backFee=" + backFee + ", EarningRate=" + EarningRate + "]";
+				+ ", backFee=" + backFee + ", EarningRate=" + earningRate + "]";
 	}
 	
 	

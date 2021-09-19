@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +9,15 @@
 <jsp:include page="/WEB-INF/jsp/include/head.jsp"></jsp:include>
 <title></title>
 <style type="text/css">
+
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Nanum Gothic','나눔고딕','Noto Sans KR',sans-serif;
+}
+
 ul, ol, dl, dd, dt, li {
 	list-style-type: none;
 }
@@ -140,6 +150,7 @@ li {
 	padding-bottom: 60px;
 	box-sizing: border-box;
 	border-radius: 5px;
+	height:auto;
 }
 
 input[type=text].text_extrasmall {
@@ -154,9 +165,6 @@ input[type=text].text_extrasmall {
 	vertical-align: middle;
 }
 
-.vertical-tab {
-	margin-bottom: 50px;
-}
 
 .font_20px {
 	font-size: 30px;
@@ -559,11 +567,11 @@ input[type=text].condi {
 	padding: 16px 0;
 	position: relative;
 	border: 1px solid #ddd;
-	border-right: none;
 	border-bottom-color: #008485;
 	background: #f6f6f6;
 	font-size: 25px;
 	color: #888;
+	cursor: pointer;
 }
 
 .fullDetail_tabBox ul:after {
@@ -654,10 +662,11 @@ em {
 .result_section {
 	display: block;
 	border: 1px solid #bbb;
-	height: 1300px;
+	height: auto;
 	width: 100%;
 	border-top: #fff;
 	padding: 20px;
+	padding-bottom:20px;
 }
 
 .portNum_large {
@@ -712,8 +721,9 @@ em {
 }
 
 .box_ctrlBtns .btn_popSide {
+font-size:20px;
 	color: #fff;
-	padding: 13px 10px;
+	padding: 13px 20px;
 	margin-bottom: 1px;
 	border-radius: 0 5px 5px 0;
 }
@@ -734,30 +744,27 @@ em {
     background: #555;
 }
 .subtitle_15px {
+    font-size: 27px;
+    font-weight: 600;
+    line-height: 30px;
+    color: #333;
+}
+.subtitle_10px {
     font-size: 30px;
     font-weight: 600;
     line-height: 30px;
-    color: #333;
-    text-align: center;
-}
-.subtitle_10px {
-    font-size: 25px;
-    font-weight: 600;
-    line-height: 30px;
-    color: #333;
+    color: #777;
     text-align: center;
 }
 .tbl_vertical {
     width: 100%;
     border-collapse: collapse;
-    border: 1px solid #ddd;
     letter-spacing: 0;
     margin-top:25px
 }
 .tbl_vertical th {
     text-align: center;
     background: #f1f3f5;
-    border-bottom: 1px solid #ddd;
     font-size: 25px;
     font-weight: 600;
     color: #424242;
@@ -773,15 +780,15 @@ thead {
 }
 .tbl_vertical td {
     padding: 8px 0;
-    border-bottom: 1px solid #ddd;
     line-height: 40px;
     color: #333;
-    background: #fff;
+    background: #f1f3f5;
 }
 .tbl_vertical td span.tblRate {
     font-family: 'Roboto', sans-serif;
     font-size: 25px;
     letter-spacing: 0;
+    font-weight: 600;
 }
 .txt_minus {
     color: #177cd2;
@@ -791,6 +798,104 @@ thead {
 }
 .chart_total{
 	float:left;
+	
+}
+.chart_data{
+    border: 1px solid #ddd;
+    padding: 30px;
+    padding-bottom: 80px;
+    margin:15px;
+    height:550px;
+}
+.btn_earn, .btn_acc{
+	float:right;
+
+},
+.font_10px{
+	font-size:15px;
+	color:#777
+}
+.tbl_vertical2 td {
+    padding: 8px 0;
+    border-bottom: 1px solid #ddd;
+    color: #333;
+    background: #fff;
+}
+.tbl_vertical2 th {
+    text-align: center;
+    background: #f1f3f5;
+    border-bottom: 1px solid #ddd;
+    font-size: 23px;
+    font-weight: 600;
+    color: #424242;
+    padding: 10px;
+}
+.tbl_vertical2 td.taC {
+    text-align: center;
+}
+.tbl_vertical2 {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+    letter-spacing: 0;
+}
+.tbl_vertical2 td span.tblRate {
+    font-family: 'Roboto', sans-serif;
+    font-size: 23px;
+    letter-spacing: 0;
+    font-weight:600;
+    
+}
+.chart_data2 {
+    border: 1px solid #ddd;
+    padding: 30px;
+    padding-bottom:90px;
+    margin: 15px;
+    height: 650px;
+}
+.label-danger {
+    background-color: #d9534f;
+}
+span.label {
+    font-size: 11px;
+    font-weight: 400;
+    padding: 4px 7px;
+}
+.table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+}
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+    font-size:20px;
+}
+.label {
+    display: inline;
+    padding: .2em .6em .3em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25em;
+}
+.label-info {
+    background-color: #5bc0de;
+}
+.text-info {
+    color: #31708f;
+}
+.text-danger {
+    color: #a94442;
+}
+.trans_th{
+	font-size:20px;
 }
 </style>
 		
@@ -868,11 +973,10 @@ thead {
 							<li id="resultTabMenu1" class="">매매결과</li>
 							<li id="resultTabMenu2" class="">수익률</li>
 							<li id="resultTabMenu3" class="">매매종목 정보</li>
-							<li id="resultTabMenu4" class=""
-								style="border-right: 1px solid rgb(221, 221, 221);">거래내역</li>
+							<li id="resultTabMenu4" class="">거래내역</li>
 						</ul>
 					</div>
-					<div id="PortResultSection0" class="result_section">
+					<div id="PortResultSection0" class="result_section" style="height: 1000px; border: 0px">
 						<div class="row vertical-tab">
 							<div class="col-md-6" style="width: 50%">
 								<ul style="padding-left: 0;">
@@ -894,10 +998,20 @@ thead {
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td class="taC" id="PortBTRTD1"><span class="txt_minus tblRate">-1.48%</span></td>
-                                            <td class="taC" id="PortBTRTW1"><span class="txt_minus tblRate">-6.08%</span></td>
-                                            <td class="taC" id="PortBTRTM1"><span class="txt_minus tblRate">-3.72%</span></td>
-                                            <td class="taC" id="PortBTRTM1"><span class="txt_minus tblRate">-3.72%</span></td>
+                                            <td class="taC" id="PortBTRTD1"><span class="tblRate">${totalResult.startAsset}원</span></td>
+                                            <c:choose>
+                                            	<c:when test="${totalResult.earningRate lt 0 }">
+                                            	 <td class="taC" id="PortBTRTW1"><span class="txt_minus tblRate">${totalResult.finalBal}원</span></td>
+                                         	    <td class="taC" id="PortBTRTM1"><span class="txt_minus tblRate">${totalResult.earningRate}%</span></td>
+                                           	 	 <td class="taC" id="PortBTRTM1"><span class="txt_minus tblRate">${totalResult.profitLoss}원</span></td>
+                                            	</c:when>
+                                            	<c:otherwise>
+                                            	<td class="taC" id="PortBTRTW1"><span class="txt_plus tblRate">${totalResult.finalBal}원</span></td>
+                                         	    <td class="taC" id="PortBTRTM1"><span class="txt_plus tblRate">${totalResult.earningRate}%</span></td>
+                                           	 	 <td class="taC" id="PortBTRTM1"><span class="txt_plus tblRate">${totalResult.profitLoss}원</span></td>
+                                            	</c:otherwise>
+                                            </c:choose>
+				
                                         </tr>
                                     </tbody>
                                 </table>
@@ -905,9 +1019,9 @@ thead {
                             </ul>
 							</div>
 							<div class="col-md-6" style="width: 50%">
-							<ul>
+							<ul style="padding-left: 0;">
                                 <li class="subtitle_15px bold">수익률 평가 <em id="reserved" style="color:red"></em></li>
-                                <table class="tbl_vertical" style="" name="tablePortNumSummary" data-val="PORT">
+                                <table class="tbl_vertical"  name="tablePortNumSummary" data-val="PORT">
                                     <colgroup>
                                         <col style="width: 16.6%">
                                         <col style="width: 16.6%">
@@ -922,9 +1036,30 @@ thead {
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td class="taC" id="PortBTRTD1"><span class="txt_minus tblRate">-1.48%</span></td>
-                                            <td class="taC" id="PortBTRTW1"><span class="txt_minus tblRate">-6.08%</span></td>
-                                            <td class="taC" id="PortBTRTM1"><span class="txt_minus tblRate">-3.72%</span></td>
+                                        <c:choose>
+                                        <c:when test="${totalResult.totalCagr lt 0}">
+                                            <td class="taC" id="PortBTRTD1"><span class="txt_minus tblRate">${totalResult.totalCagr}%</span></td>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <td class="taC" id="PortBTRTD1"><span class="txt_plus tblRate">${totalResult.totalCagr}%</span></td>
+                                        </c:otherwise>
+                                        </c:choose>
+                                        <c:choose>
+                                        <c:when test="${totalResult.avgDayFluc lt 0}">
+                                            <td class="taC" id="PortBTRTW1"><span class="txt_minus tblRate">${totalResult.avgDayFluc}%</span></td>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <td class="taC" id="PortBTRTW1"><span class="txt_plus tblRate">${totalResult.avgDayFluc}%</span></td>
+                                        </c:otherwise>
+                                        </c:choose>
+                                        <c:choose>
+                                        <c:when test="${totalResult.avgFluc lt 0}">
+                                            <td class="taC" id="PortBTRTM1"><span class="txt_minus tblRate">${totalResult.avgFluc}%</span></td>
+                                        </c:when>
+                                        <c:otherwise>
+                                           <td class="taC" id="PortBTRTM1"><span class="txt_plus tblRate">${totalResult.avgFluc}%</span></td>
+                                        </c:otherwise>
+                                        </c:choose>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -934,42 +1069,274 @@ thead {
 						</div>
 						<div class="fd_subBox">
                                 <div class="col-md-6 chart_total"  >
-                                <ul style="padding-left: 0px;">
-                                            <li class="subtitle_10px bold taC" >백테스팅 누적수익률 차트</li>
-                                            <div>
-  												<canvas id="myChart"></canvas>
+                                        <ul style="padding-left: 0px;">
+                                            
+											<li class="subtitle_10px bold taC" >&lt; 계좌 수익률 차트 &gt;</li>
+                                            <div class="chart_data"><button class="btn_acc btn_white" onclick="changeChart(true)">수익률</button><button class="btn_earn btn_white" style="display:none;" onclick="changeChart(false)">계좌</button>
+  												<span class="font_10px btn_acc" style="float:left">(원)</span><canvas id="accChart"class="btn_acc"></canvas><span class="font_10px btn_acc" style="float:right;">(년월)</span>
+  												<span class="font_10px btn_earn" style="display:none; float:left">(%)</span><canvas id="earningChart" class="btn_earn" style="display:none;"></canvas><span class="font_10px btn_earn" style="display:none; float:right;">(년월)</span>
 											</div>
                                         </ul>
                                 </div>
                                 <div class="col-md-6 chart_total" >
-                                <ul>
-                                            <li class="subtitle_10px bold taC">백테스팅 누적수익률 차트</li>
+                                     <ul style="padding-left: 0px;">
+											<li class="subtitle_10px bold taC" >&lt; 일별 누적수익률 차트 &gt;</li>
+                                            
+                                            <div class="chart_data">
+  											<span class="font_10px" style= float:left">(%)</span>	
+  											<canvas id="dayChart" ></canvas>
+  											<span class="font_10px" style="float:right;">(년월)</span>
+											</div>
                                         </ul>
                                 </div>
-                  
-                                
-                                
                          </div>
+                         <div class="row vertical-tab" style="padding: 0 14px;">
+							<ul>
+                                <table class="tbl_vertical2" style="" name="tablePortNumSummary" >
+                                    <colgroup>
+                                        <col style="width: 16.6%">
+                                        <col style="width: 16.6%">
+                                        <col style="width: 16.6%">
+                                        <col style="width: 16.6%">
+                                        <col style="width: 16.6%">
+                                        <col>
+                                    </colgroup>
+                                    <thead>
+                                        <tr>
+                                            <th>최근 거래일</th>
+                                            <th>최근 ${compoVO.backRebalCycle}개월</th>
+                                            <th>최근 ${compoVO.backRebalCycle*2}개월</th>
+                                            <th>최근 ${compoVO.backRebalCycle*3}개월</th>
+                                            <th>최근 ${compoVO.backRebalCycle*4}개월</th>
+                                            <th>최근 ${compoVO.backRebalCycle*5}개월</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                        	<c:forEach items="${accReverseTotal}" var="acc" varStatus="status">
+                                        	<c:if test="${status.count lt 7 }">
+                                        		<c:choose>
+                                        		<c:when test="${acc.earningRate lt 0}">
+                                            	<td class="taC" id="PortBTRTD1"><span class="txt_minus tblRate">${acc.earningRate}%</span></td>
+                                        		</c:when>
+                                        		<c:otherwise>
+                                            	<td class="taC" id="PortBTRTD1"><span class="txt_plus tblRate">${acc.earningRate}%</span></td>
+                                        		</c:otherwise>
+                                        		</c:choose>
+                                            	</c:if>
+                                        	</c:forEach>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <table class="tbl_horizon2" style="display:none;" name="tablePortNumSummary" data-val="CHILD">
+                                    <colgroup>
+                                        <col width="10%">
+                                        <col width="15%">
+                                        <col width="10%">
+                                        <col width="15%">
+                                        <col width="10%">
+                                        <col width="15%">
+                                        <col width="10%">
+                                        <col width="*">
+                                    </colgroup>
+                                    <tbody><tr>
+                                        <th>운용기간</th>
+                                        <td id="PortBTTerm"></td>
+                                        <th>누적
+                                            <br>
+                                            수익률</th>
+                                        <td id="PortBTRT"></td>
+                                        <th>CAGR</th>
+                                        <td id="PortBTRTAvgYear"></td>
+                                        <th>MDD</th>
+                                        <td id="PortMDD"></td>
+                                    </tr>
+                                </tbody></table>
+                            </ul>
+						</div>
+                         
 					</div>
-					<div id="PortResultSection1" style="display: none;"
-						class="result_section">
-						<!-- 가상매매 수익률 박스 -->
-						두번재 페이지
+					<div id="PortResultSection1" style="display: none;" class="result_section">
+						<!-- 매매 결과 -->
+						
+						<div class="row vertical-tab" style="padding: 0 14px;">
+							<ul>
+							 <li class="subtitle_15px bold">거래 결과<em id="reserved" style="color:red"></em></li>
+                                <table class="tbl_vertical2" style="" name="tablePortNumSummary" >
+                                    <colgroup>
+                                        <col style="width: 16.6%">
+                                        <col style="width: 16.6%">
+                                        <col style="width: 16.6%">
+                                        <col style="width: 16.6%">
+                                        <col style="width: 16.6%">
+                                        <col>
+                                    </colgroup>
+                                    <thead>
+                                        <tr>
+                                            <th>매매 일자</th>
+                                            <th>계좌 평가액(원)</th>
+                                            <th>예수금(원)</th>
+                                            <th>매수 총계(원)</th>
+                                            <th>매도 총계(원)</th>
+                                            <th>매매 금액(원)</th>
+                                            <th>수익률(%)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        	<c:forEach items="${accTotal}" var="acc" varStatus="status">
+                                        	<tr>
+                                            	<td class="taC" id="PortBTRTD1"><span class="tblRate">${acc.backDate}</span></td>
+                                            	<td class="taC" id="PortBTRTD1"><span class="tblRate"><fmt:formatNumber value="${acc.totalBal}" pattern="#,###"/></span></td>
+                                            	<td class="taC" id="PortBTRTD1"><span class="tblRate"><fmt:formatNumber value="${acc.totalDeposit}" pattern="#,###"/></span></td>
+                                            	<td class="taC" id="PortBTRTD1"><span class="txt_minus tblRate">-<fmt:formatNumber value="${acc.buyTotalPrice}" pattern="#,###"/></span></td>
+                                            	<td class="taC" id="PortBTRTD1"><span class="txt_plus tblRate">+<fmt:formatNumber value="${acc.sellTotalPrice}" pattern="#,###"/></span></td>
+                                        		<c:choose>
+                                        		<c:when test="${acc.earningRate lt 0}">
+                                            	<td class="taC" id="PortBTRTD1"><span class="txt_minus tblRate">${acc.earningRate}</span></td>
+                                        		</c:when>
+                                        		<c:otherwise>
+                                            	<td class="taC" id="PortBTRTD1"><span class="txt_plus tblRate">${acc.earningRate}</span></td>
+                                        		</c:otherwise>
+                                        		</c:choose>
+                                        		</tr>
+                                        	</c:forEach>
+                                    </tbody>
+                                </table>
+                                <table class="tbl_horizon2" style="display:none;" name="tablePortNumSummary" data-val="CHILD">
+                                    <colgroup>
+                                        <col width="10%">
+                                        <col width="15%">
+                                        <col width="10%">
+                                        <col width="15%">
+                                        <col width="10%">
+                                        <col width="15%">
+                                        <col width="10%">
+                                        <col width="*">
+                                    </colgroup>
+                                    <tbody><tr>
+                                        <th>운용기간</th>
+                                        <td id="PortBTTerm"></td>
+                                        <th>누적
+                                            <br>
+                                            수익률</th>
+                                        <td id="PortBTRT"></td>
+                                        <th>CAGR</th>
+                                        <td id="PortBTRTAvgYear"></td>
+                                        <th>MDD</th>
+                                        <td id="PortMDD"></td>
+                                    </tr>
+                                </tbody></table>
+                            </ul>
+						</div>
+						
+						
+						
+						
+						
 					</div>
 					<div id="PortResultSection2" style="display: none;"
 						class="result_section">
-						<!-- 가상매매 수익률 박스 -->
-						세번재 페이지
+					<div class="fd_subBox">
+					 <div class="row vertical-tab" style="padding: 0 14px;">
+                        <ul style="padding-left: 0px;">
+											<li class="subtitle_10px bold taC" >&lt; 일별 누적 수익률 차트 &gt;</li>
+                                            
+                                            <div class="chart_data2">
+  											<span class="font_10px" style= "float:left">(%)</span>	
+  											<canvas id="dayChart2" ></canvas>
+  											<span class="font_10px" style="float:right;">(년월)</span>
+											</div>
+                            </ul>
+                            </div>
+                             <div class="row vertical-tab" style="padding: 0 14px;">
+                            <ul style="padding-left: 0px;">
+											<li class="subtitle_10px bold taC" >&lt; 월평 평균 수익률 차트 &gt;</li>
+                                            
+                                            <div class="chart_data2">
+  											<span class="font_10px" style= "float:left">(%)</span>	
+  											<canvas id="dayChart3"  ></canvas>
+  											<span class="font_10px" style="float:right;">(월)</span>
+											</div>
+                            </ul>
+                            </div>
+                        </div>
+                         <div class="row vertical-tab" style="padding: 0 14px;">
+                            <ul style="padding-left: 0px;">
+											<li class="subtitle_10px bold taC" >&lt; 월 누적 수익률 차트 &gt;</li>
+                                            
+                                            <div class="chart_data2">
+  											<span class="font_10px" style= "float:left">(%)</span>	
+  											<canvas id="dayChart4" ></canvas>
+  											<span class="font_10px" style="float:right;">(월)</span>
+											</div>
+                            </ul>
+                            </div>
+                        </div>
 					</div>
-					<div id="PortResultSection3" style="display: none;"
-						class="result_section">
+					<div id="PortResultSection3" style="display: none;" class="result_section">
 						<!-- 가상매매 수익률 박스 -->
+						    
 						네번재 페이지
 					</div>
-					<div id="PortResultSection4" style="display: none;"
-						class="result_section">
+					<div id="PortResultSection4" style="display: none;"class="result_section">
+					<div class="row vertical-tab" style="padding: 0 14px;">
+						<ul style="padding-left: 0px;">
+							<li class="subtitle_10px bold taC">&lt; 계좌평가 &gt;</li>
+							<div class="chart_data2">
+								<span class="font_10px" style="float: left"">(%)</span>
+								<canvas id="accChart2"></canvas>
+								<span class="font_10px" style="float: right;">(월)</span>
+							</div>
+						</ul>
+						<ul style="padding-left: 0px; ">
+							<li class="subtitle_10px bold taC"  style="padding-bottom:20px;">&lt; 거래내역 &gt;</li>
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th class="th-date trans_th">날짜</th>
+										<th class="trans_th">구분</th>
+										<th  class="trans_th">종목</th>
+										<th style="text-align: right;"  class="trans_th">수량</th>
+										<th style="text-align: right;"  class="trans_th">매수가</th>
+										<th style="text-align: right;"  class="trans_th">매도가</th>
+										<th class="th-date trans_th" style="text-align: center;" >매수일</th>
+										<th class="th-date trans_th" style="text-align: center;" >매도일</th>
+										<th style="text-align: right;"  class="trans_th">수익률(%)</th>
+									</tr>
+								</thead>
+
+								<tbody>
+									<c:forEach items="${transList2}" var="historyList"	varStatus="loop">
+										<tr>
+											<td class="td-date">${historyList.backDate}</td>
+											<c:choose>
+												<c:when test="${historyList.transKind eq '신규매수' or historyList.transKind eq '부분매수'}">
+													<td><span class="label label-danger">${historyList.transKind}</span></td>
+													<td>${historyList.stockName}(${historyList.stockCode})</td>
+													<td style="text-align: right;"><b class="text-danger">+${ historyList.stockCnt }</b></td>
+												</c:when>
+												<c:otherwise>
+													<td><span class="label label-info">${historyList.transKind}</span></td>
+													<td>${historyList.stockName}(${historyList.stockCode})</td>
+													<td style="text-align: right;"><b class="text-info">-${ historyList.stockCnt }</b></td>
+												</c:otherwise>
+											</c:choose>
+											<td style="text-align: right;"><fmt:formatNumber value="${historyList.buyPrice}" pattern="#,###"/>원</td>
+											<td style="text-align: right;"><fmt:formatNumber value="${historyList.sellPrice}" pattern="#,###"/> 원</td>
+											<td class="td-date" style="text-align: center;">${historyList.buyDate}</td>
+											<td class="td-date" style="text-align: center;">${historyList.sellDate}</td>
+											<td style="text-align: center;">${historyList.earningRate}</td>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
+
+						</ul>
+					</div>
+					<div class="row vertical-tab" style="padding: 0 14px;">
+                            
+                            </div>
 						<!-- 가상매매 수익률 박스 -->
-						다섯번재 페이지
 					</div>
 
 
@@ -978,120 +1345,461 @@ thead {
 				</div>
 			</div>
 		</div>
-<script type="text/javascript">
-	var chartLabels = [];
-	var data = [];
-	var data2 = [];
-	var data3 = [];
+		<script type="text/javascript">
+			function changeChart(t) {
+				if (t) {
+					$('.btn_acc').css('display', 'none')
+					$('.btn_earn').css('display', 'block')
+				} else {
+					$('.btn_acc').css('display', 'block')
+					$('.btn_earn').css('display', 'none')
+				}
 
-	var dataSet = ${stockDayList}
-	$.each(dataSet, function(inx, obj) {
-		chartLabels.push(obj.stockDate);
-		data.push(obj.stockFluc);
-		data2.push(obj.kospiFluc);
-		data3.push(obj.kosdaqFluc);
-	});
-	console.log(data);
-	console.log(data2);
-	//console.log(chartData3);
-	
-	var config = {
-			  type: 'line',
-			  data: {
-				labels : chartLabels,
-			    datasets: [{
-			      label: "수익률",
-			      borderColor: '#fb9678',
-			      borderWidth: 2,
-			      radius: 0,
-			      data: data,
-			    },
-			    {
-			      label: "코스피",
-			      borderColor: '#00c292',
-			      borderWidth: 2,
-			      radius: 0,
-			      data: data2,
-			    },
-			    {
-			    	label: "코스닥",
-				      borderColor: '#01c0c8',
-				      borderWidth: 2,
-				      radius: 0,
-				      data: data3,
-				    }]
-			  },
-			  options: {
-			    interaction: {
-			      intersect: false
-			    },
-			    plugins: {
-			    },
-			    legend : {
-					display : true,
-					position : 'bottom',
-					labels : {
-						fontSize : 32
-					}
+			}
+		</script>
+		<script type="text/javascript">
+			var chartLabels = [];
+			var data = [];
+			var data2 = [];
+			var data3 = [];
+
+			var dataSet = ${stockDayList}
+			$.each(dataSet, function(inx, obj) {
+				chartLabels.push(obj.stockDate);
+				data.push(obj.stockFluc);
+				data2.push(obj.kospiFluc);
+				data3.push(obj.kosdaqFluc);
+			});
+
+			var config = {
+				type : 'line',
+				data : {
+					labels : chartLabels,
+					datasets : [ {
+						label : "수익률",
+						borderColor : '#fb9678',
+						borderWidth : 2,
+						radius : 0,
+						data : data,
+					}, {
+						label : "코스피",
+						borderColor : '#00c292',
+						borderWidth : 2,
+						radius : 0,
+						data : data2,
+					}, {
+						label : "코스닥",
+						borderColor : '#01c0c8',
+						borderWidth : 2,
+						radius : 0,
+						data : data3,
+					} ]
 				},
-			    scales: {
-			    	xAxes: [{
-			    		type: 'time',
-			    		time:{
-			    			unit:'year'
-			    		},
-						display: true,
-						scaleLabel: {
-							display: true,
-							labelString: 'Month'
-						}
-					}],
-					yAxes: [{
-						display: true,
-						scaleLabel: {
-							display: true,
-							labelString: 'Value'
-						}
-					}]
-			    }
-			  }
+				options : {
+					maintainAspectRatio : false,
+					interaction : {
+						intersect : false
+					},
+					plugins : {},
+					legend : {
+						display : true,
+						position : 'bottom',
+						fontSize : 20,
+						bowWidth : 0
+					},
+					scales : {
+						xAxes : [ {
+							type : 'time',
+							time : {
+								unit : 'year'
+							},
+							display : true,
+							scaleLabel : {
+								display : true,
+								labelString : '(년월)',
+								fontColor : '#999'
+							}
+						} ],
+						yAxes : [ {
+							display : true,
+							scaleLabel : {
+								display : true,
+								labelString : '(%)',
+								fontColor : '#999'
+							}
+						} ]
+					}
+				}
 			};
+
+			var myChart = new Chart(document.getElementById('dayChart'), config);
+			var myChart2 = new Chart(document.getElementById('dayChart2'),
+					config);
+		</script>
+<script>
+var chartLabels = [];
+var accBal = [];
+var earningRate = [];
+
+var dataSet = ${accList}
+$.each(dataSet, function(inx, obj) {
+	chartLabels.push(obj.backDate);
+	accBal.push(obj.totalBal);
+	earningRate.push(obj.EarningRate);
+});
+
+
+var config = {
+		  type: 'line',
+		  data: {
+			labels : chartLabels,
+		    datasets: [{
+		      label: "계좌 총액",
+		      borderColor: '#fb9678',
+		      radius: 0,
+		      data: accBal
+		    }]
+		  },
+		  options: {
+			  maintainAspectRatio: false,
+			  interaction: {
+		      intersect: false
+		    },
+		    plugins: {
+		    },
+		    legend : {
+				display : true,
+				position : 'bottom',
+				labels : {
+					fontSize : 32
+				}
+			},
+		    scales: {
+		    	xAxes: [{
+		    		type: 'time',
+		    		time:{
+		    			unit:'year'
+		    		},
+					display: true,
+					scaleLabel: {
+						display: true,
+						labelString: '(년월)',
+						fontColor:'#999'
+					}
+				}],
+				yAxes: [{
+					display: true,
+					scaleLabel: {
+						display: true,
+						labelString: '(원)',
+						fontColor:'#999'
+					}
+				}]
+		    }
+		  }
+		};
+
+var accChart = new Chart(document.getElementById('accChart'),config);
+
+
+var config2 = {
+		  type: 'line',
+		  data: {
+			labels : chartLabels,
+		    datasets: [  {
+		      label: "수익률",
+		      borderColor: '#00c292',
+		      borderWidth: 2,
+		      radius: 0,
+		      data: earningRate
+		    }]
+		  },
+		  options: {
+			  maintainAspectRatio: false,
+		    interaction: {
+		      intersect: false
+		    },
+		    plugins: {
+		    },
+		    legend : {
+				display : true,
+				position : 'bottom',
+				labels : {
+					fontSize : 32
+				}
+			},
+		    scales: {
+		    	xAxes: [{
+		    		type: 'time',
+		    		time:{
+		    			unit:'year'
+		    		},
+					display: true,
+					scaleLabel: {
+						display: true,
+						labelString: '(년월)',
+						fontColor:'#999'
+					}
+				}],
+				yAxes: [{
+					display: true,
+					scaleLabel: {
+						display: true,
+						labelString: '(%)'
+						,fontColor:'#999'
+					}
+				}]
+		    }
+		  }
+		};
+
+
+
+var earningChart = new Chart(document.getElementById('earningChart'),config2);
+
+</script>
+
+<script type="text/javascript">
+var chartLabels = [];
+var data = [];
+var data2 = [];
+var data3 = [];
+var data4 = [];
+var data5 = [];
+var data6 = [];
+
+
+var dataSet = ${stockAVGList}
+$.each(dataSet, function(inx, obj) {
+	chartLabels.push(obj.stockDate);
+	data.push(obj.stockFluc);
+	data2.push(obj.kospiFluc);
+	data3.push(obj.kosdaqFluc);
+	data4.push(obj.stockDayFluc);
+	data5.push(obj.kospiDayFluc);
+	data6.push(obj.kosdaqDayFluc);
+});
+
+var config3 = {
+		  type: 'line',
+		  data: {
+			labels : chartLabels,
+		    datasets: [{
+		      label: "수익률",
+		      borderColor: '#fb9678',
+		      borderWidth: 2,
+		      radius: 0,
+		      data: data
+		      
+		    },
+		    {
+		      label: "코스피",
+		      borderColor: '#00c292',
+		      borderWidth: 2,
+		      radius: 0,
+		      data: data2
+		    },
+		    {
+		    	label: "코스닥",
+			      borderColor: '#01c0c8',
+			      borderWidth: 2,
+			      radius: 0,
+			      data: data3
+			    }]
+		  },
+		  options: {
+			  maintainAspectRatio: false,
+		    interaction: {
+		      intersect: false
+		    },
+		    plugins: {
+		    },
+		    legend : {
+				display : true,
+				position : 'bottom',
+				labels : {
+					fontSize : 32
+				}
+			},
+		    scales: {
+		    	xAxes: [{
+		    		type: 'time',
+		    		time:{
+		    			unit:'year'
+		    		},
+					display: true,
+					scaleLabel: {
+						display: true,
+						labelString: '(년월)',
+						fontColor:'#999'
+					}
+				}],
+				yAxes: [{
+					display: true,
+					scaleLabel: {
+						display: true,
+						labelString: '(%)',
+						fontColor:'#999'
+					}
+				}]
+		    }
+		  }
+		};
+		
+var config4 = {
+		  type: 'bar',
+		  data: {
+			labels : chartLabels,
+		    datasets: [{
+		      label: "수익률",
+		      borderColor: 'rgb(245, 156, 39)',
+		      borderWidth: 2,
+		      radius: 0,
+		      data: data4,
+		      backgroundColor: 'rgb(245, 156, 39)'
+
+		    },
+		    {
+		      label: "코스피",
+		      borderColor: 'rgb(15, 147, 208)',
+		      borderWidth: 2,
+		      radius: 0,
+		      data: data5,
+		      backgroundColor: 'rgb(15, 147, 208)'
+		    },
+		    {
+		    	label: "코스닥",
+			      borderColor: 'rgb(226, 62, 62)',
+			      borderWidth: 2,
+			      radius: 0,
+			      data: data6,
+			      backgroundColor: 'rgb(226, 62, 62)'
+			    }]
+		  },
+		  options: {
+			  maintainAspectRatio: false,
+		    interaction: {
+		      intersect: false
+		    },
+		    plugins: {
+		    },
+		    legend : {
+				display : true,
+				position : 'bottom',
+				labels : {
+					fontSize : 32
+				}
+			},
+		    scales: {
+		    	xAxes: [{
+		    		type: 'time',
+		    		time:{
+		    			unit:'year'
+		    		},
+					display: true,
+					scaleLabel: {
+						display: true,
+						labelString: '(년월)',
+						fontColor:'#999'
+					}
+				}],
+				yAxes: [{
+					display: true,
+					scaleLabel: {
+						display: true,
+						labelString: '(%)',
+						fontColor:'#999'
+					}
+				}]
+		    }
+		  }
+		};
+
 	
-	var totalDuration = 10000;
-	var delayBetweenPoints = totalDuration / data.length;
-	var previousY = (ctx) => ctx.index === 0 ? ctx.chart.scales.y.getPixelForValue(100) : ctx.chart.getDatasetMeta(ctx.datasetIndex).data[ctx.index - 1].getProps(['y'], true).y;
-	var animation = {
-	  x: {
-	    type: 'number',
-	    easing: 'linear',
-	    duration: delayBetweenPoints,
-	    from: NaN, // the point is initially skipped
-	    delay(ctx) {
-	      if (ctx.type !== 'data' || ctx.xStarted) {
-	        return 0;
-	      }
-	      ctx.xStarted = true;
-	      return ctx.index * delayBetweenPoints;
-	    }
-	  },
-	  y: {
-	    type: 'number',
-	    easing: 'linear',
-	    duration: delayBetweenPoints,
-	    from: previousY,
-	    delay(ctx) {
-	      if (ctx.type !== 'data' || ctx.yStarted) {
-	        return 0;
-	      }
-	      ctx.yStarted = true;
-	      return ctx.index * delayBetweenPoints;
-	    }
-	  }
+var myChart3 = new Chart(document.getElementById('dayChart3'),config3);
+var myChart4 = new Chart(document.getElementById('dayChart4'),config4);
+
+
+var chartLabels = [];
+var accBal = [];
+var buyTotal = [];
+var sellTotal =[];
+
+var dataSet = ${accList}
+$.each(dataSet, function(inx, obj) {
+	chartLabels.push(obj.backDate);
+	accBal.push(obj.totalBal);
+	buyTotal.push(obj.buyTotalPrice);
+	sellTotal.push(obj.sellTotalPrice);
+});
+
+
+
+	var config = {
+		type : 'bar',
+		data : {
+			labels : chartLabels,
+			datasets : [ {
+				label : "계좌 총액",
+				borderColor : 'rgb(245, 156, 39)',
+				radius : 0,
+				data : accBal,
+			    backgroundColor: 'rgb(245, 156, 39)'
+			}, {
+				label : "매수 금액",
+				borderColor : '#d9534f',
+				radius : 0,
+				data : buyTotal,
+				 backgroundColor: '#d9534f'
+			}, {
+				label : "매도 금액",
+				borderColor : '#5bc0de',
+				radius : 0,
+				data : sellTotal,
+				 backgroundColor: '#5bc0de'
+			}
+
+			]
+		},
+		options : {
+			maintainAspectRatio: false,
+			interaction : {
+				intersect : false
+			},
+			plugins : {},
+			legend : {
+				display : true,
+				position : 'bottom',
+				labels : {
+					fontSize : 32
+				}
+			},
+			scales : {
+				xAxes : [ {
+					type : 'time',
+					time : {
+						unit : 'year'
+					},
+					display : true,
+					scaleLabel : {
+						display : true,
+						labelString : '(년월)',
+						fontColor : '#999'
+					}
+				} ],
+				yAxes : [ {
+					display : true,
+					scaleLabel : {
+						display : true,
+						labelString : '(원)',
+						fontColor : '#999'
+					}
+				} ]
+			}
+		}
 	};
-	
-	var myChart = new Chart(document.getElementById('myChart'),config);
 
-
+	var accChart2 = new Chart(document.getElementById('accChart2'), config);
 </script>
 
 	</section>

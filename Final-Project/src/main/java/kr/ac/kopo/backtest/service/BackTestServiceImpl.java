@@ -9,6 +9,7 @@ import kr.ac.kopo.backtest.dao.BackTestDAO;
 import kr.ac.kopo.backtest.vo.BackTestCompoVO;
 import kr.ac.kopo.backtest.vo.BackTestResultAccVO;
 import kr.ac.kopo.backtest.vo.BackTestResultFlucVO;
+import kr.ac.kopo.backtest.vo.BackTestResultSetVO;
 import kr.ac.kopo.backtest.vo.BackTestTransResultVO;
 
 @Service
@@ -24,9 +25,8 @@ public class BackTestServiceImpl implements BackTestService{
 	}
 
 	@Override
-	public List<BackTestResultFlucVO> getBacktestProcedure(BackTestCompoVO compVO) {
-		List<BackTestResultFlucVO> list = backTestDAO.getBacktestProcedure(compVO);
-		return list;
+	public void getBacktestProcedure(BackTestCompoVO compVO) {
+		backTestDAO.getBacktestProcedure(compVO);
 	}
 
 	@Override
@@ -62,5 +62,23 @@ public class BackTestServiceImpl implements BackTestService{
 	@Override
 	public void editContent(BackTestCompoVO compVO) {
 		backTestDAO.editContent(compVO);
+	}
+
+	@Override
+	public List<BackTestResultFlucVO> getStockAVGList(BackTestCompoVO compVO) {
+		List<BackTestResultFlucVO> stockAVGList = backTestDAO.getStockAVGList(compVO);
+		return stockAVGList;
+	}
+
+	@Override
+	public BackTestResultSetVO getTotalResult(BackTestCompoVO compVO) {
+		BackTestResultSetVO totalResult = backTestDAO.getTotalResult(compVO);
+		return totalResult;
+	}
+
+	@Override
+	public List<BackTestResultAccVO> getAccResverseResult(BackTestCompoVO compVO) {
+		List<BackTestResultAccVO> accReverseList = backTestDAO.getAccReverseResult(compVO);
+		return accReverseList;
 	}
 }
