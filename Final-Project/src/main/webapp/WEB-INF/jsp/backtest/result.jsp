@@ -645,10 +645,6 @@ input[type=text].condi {
 	letter-spacing: 0;
 }
 
-.txt_plus {
-	color: #f83838;
-}
-
 em {
 	font-style: normal;
 	font-weight: normal;
@@ -764,7 +760,7 @@ font-size:20px;
 }
 .tbl_vertical th {
     text-align: center;
-    background: #f1f3f5;
+    background: #e1f1f8;
     font-size: 25px;
     font-weight: 600;
     color: #424242;
@@ -782,7 +778,10 @@ thead {
     padding: 8px 0;
     line-height: 40px;
     color: #333;
-    background: #f1f3f5;
+    background: #fff;
+    font-size: 30px;
+    font-weight: 600;
+    text-align: center;
 }
 .tbl_vertical td span.tblRate {
     font-family: 'Roboto', sans-serif;
@@ -825,7 +824,7 @@ thead {
     text-align: center;
     background: #f1f3f5;
     border-bottom: 1px solid #ddd;
-    font-size: 23px;
+    font-size: 25px;
     font-weight: 600;
     color: #424242;
     padding: 10px;
@@ -838,10 +837,11 @@ thead {
     border-collapse: collapse;
     border: 1px solid #ddd;
     letter-spacing: 0;
+    margin-top: 25px;
 }
 .tbl_vertical2 td span.tblRate {
     font-family: 'Roboto', sans-serif;
-    font-size: 23px;
+    font-size: 25px;
     letter-spacing: 0;
     font-weight:600;
     
@@ -857,8 +857,8 @@ thead {
     background-color: #d9534f;
 }
 span.label {
-    font-size: 11px;
-    font-weight: 400;
+    font-size: 20px;
+    font-weight: 600;
     padding: 4px 7px;
 }
 .table {
@@ -871,7 +871,7 @@ span.label {
     line-height: 1.42857143;
     vertical-align: top;
     border-top: 1px solid #ddd;
-    font-size:20px;
+    font-size:25px;
 }
 .label {
     display: inline;
@@ -897,17 +897,144 @@ span.label {
 .trans_th{
 	font-size:20px;
 }
-</style>
-		
+.main_tbl{
+font-size:80px;
+font-weight:700;
+vertical-align: middle;
+}
 
+
+.tblTotal{
+    font-family: 'Roboto', sans-serif;
+    font-size: 33px;
+    letter-spacing: 0;
+    font-weight: 600;
+    vertical-align: middle;
+}
+.th-align th{
+	padding:10px
+}
+.th-align td{
+	padding:10px;
+	background-color: #fff;
+	
+}
+
+.img_total{
+	height:40px;
+	width:40px;
+	margin: 10px
+}
+.total_td{
+	background-color: #fff;
+	text-align: center;
+	border-top: 1px solid #ddd;
+}
+.total_span{
+	vertical-align:middle;
+	font-size: 30px;
+	font-weight: 700	
+}
+
+
+.num_rank {
+    display: inline-block;
+    font-family: Tahoma;
+    font-size: 20px;
+    color: #fff;
+    text-align: center;
+    width: 15px;
+    height: 15px;
+    line-height: 9px;
+    border-radius: 50px;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    -ms-border-radius: 50px;
+    -o-border-radius: 50px;
+}
+.infotxt_12px66 {
+    font-size: 20px;
+    font-weight: normal;
+    letter-spacing: 0;
+    color: #666;
+}
+.sidebg_reco {
+    background: #bbb;
+}
+.tbl_vertical3 {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+    letter-spacing: 0;
+}
+}
+.tbl_vertical3 th {
+    text-align: center;
+    background: #f1f3f5;
+    border-bottom: 1px solid #ddd;
+    font-size: 13px;
+    font-weight: 600;
+    color: #424242;
+    padding: 10px;
+}
+.tbl_vertical3 td.blR {
+    border-right: 1px solid #ddd;
+}
+
+.tbl_vertical3 td.taC {
+    text-align: center;
+}
+.tbl_vertical3 td {
+    padding: 8px 0;
+    border-bottom: 1px solid #ddd;
+    line-height: 33px;
+    color: #333;
+    background: #fff;
+}
+.tbl_vertical3 td span.tblRate {
+    font-family: 'Roboto', sans-serif;
+    font-size: 30px;
+    letter-spacing: 0;
+    font-weight: 600;
+}
+.tbl_vertical3 td.taL {
+    text-align: left;
+    padding: 10px 14px;
+}
+
+.tbl_vertical3 td.stockRank {
+    padding: 10px 12px;
+}
+.sidebg_blank {
+    background: #fff;
+}
+.number_rank {
+    display: inline-block;
+    width: 16px;
+    margin-right: 8px;
+    font-size: 30px;
+    color: #777;
+    text-align: center;
+}
+.tbl_vertical3 td span.stockName {
+    font-weight: 600;
+    padding-left: 2px;
+    font-size: 30px
+}
+.tbl_vertical3 td span.stockCode {
+    color: #777;
+    font-size: 30px;
+    letter-spacing: -1px;
+}
+
+</style>
 				<div id="selection3" style="display: block">
 					<div class="row vertical-tab">
 						<div class="col-md-8">
 							<p class="fl portNum_large" id="PortID" style="margin-top: 4px">백테스트
 								리포트</p>
 							<p class="fl font_20px view_title" id="viewTitle"
-								style="margin-top: 4px; line-height: 40px; margin-left: 5px">${compo.backTitle}여기에
-								설명이 담길 거고, 수정시 input태그</p>
+								style="margin-top: 4px; line-height: 40px; margin-left: 5px">${compoVO.backTitle}</p>
 							<p class="fl portName_large view_title" id="pPortNameEdit">
 								<img
 									src="${pageContext.request.contextPath}/resources/img/icn_editPortname.png"
@@ -916,13 +1043,12 @@ span.label {
 							</p>
 							<input name="backTitle" type="text" id="editTitle"
 								style="width: 44%; margin-left: 10px"
-								class="titleInput edit_title" value="${compo.backTitle}" />
+								class="titleInput edit_title" value="${compoVO.backTitle}" />
 							<button class="btn_white edit_title edit_bnt" type="button"
 								onclick="editMode(false);sendEditContent(1,$('#editTitle').val())">수정</button>
 							<br>
 							<div class="fl portInfo_full view_desc" id="divPortDesc">
-								<p class="fl infotxt_13px66" id="viewDesc">수정할 내용임!
-									${compo.backDescript}</p>
+								<p class="fl infotxt_13px66" id="viewDesc">${compoVO.backDescript}</p>
 								<p class="fl infotxt_13px66 ml8px " id="pPortDescEdit">
 									<img
 										src="${pageContext.request.contextPath}/resources/img/icn_editPortname.png"
@@ -932,7 +1058,7 @@ span.label {
 							</div>
 							<input name="backDescript" id="editDesc" type="text"
 								style="width: 80%; margin-left: 0px;"
-								class="titleInput edit_desc" value="${compo.backDescript}" />
+								class="titleInput edit_desc" value="${compoVO.backDescript}" />
 							<button class="btn_white edit_desc edit_bnt" type="button"
 								onclick="editDescMode(false);sendEditContent(2, $('#editDesc').val())">수정</button>
 
@@ -980,7 +1106,173 @@ span.label {
 						<div class="row vertical-tab">
 							<div class="col-md-6" style="width: 50%">
 								<ul style="padding-left: 0;">
-                                <li class="subtitle_15px bold">백테스팅 수익률 <em id="reserved" style="color:red"></em></li>
+                                <table class="tbl_vertical total_profit" style="" name="tablePortNumSummary" data-val="PORT">
+                                    <colgroup>
+                                        <col style="width: 50%">
+                                        <col style="width: 50%">
+                                    </colgroup>
+                                    <thead>
+                                    <tr>
+                                          	<th style="border-top:1px solid #ddd"><span class="tblTotal">백테스트 신호등</span></th>
+                                          <c:choose>
+		                                     <c:when test="${totalResult.earningRate gt 10 }">
+                                       	   <td class="total_td" style="background-color: #fff;"><span class="total_span" style="color:green">매우 양호</span><img class="img_total" src="${pageContext.request.contextPath}/resources/img/greenLight.png"></td>
+		                                     </c:when>
+		                                     <c:when test="${totalResult.earningRate lt 0 }">
+                                       	   <td class="total_td" style="background-color: #fff;"><span class="total_span" style="color:rgb(248, 56, 56);">위험</span><img class="img_total" src="${pageContext.request.contextPath}/resources/img/red-light.png"></td>
+		                                     </c:when>
+											 <c:otherwise>
+                                       	   <td class="total_td" style="background-color: #fff;"><span class="total_span"  style="color:rgb(255, 158, 1);">보통</span><img  class="img_total" src="${pageContext.request.contextPath}/resources/img/orangelight.png"></td>
+											 </c:otherwise>                                          
+                                          </c:choose>
+                                          </tr>
+                                    
+                                    
+                                        <tr style="border-top: 1px solid #ddd; border-bottom: 1px solid #ddd">
+                                            <th style="padding:23px; background-color: #fff; "><span class="main_tbl">총 수익률</span></th>
+                                             <c:choose>
+                                            	<c:when test="${totalResult.earningRate lt 0 }">
+                                            	<td class="taC" id="PortBTRTM1"  style="padding:23px; background-color: #fff;"><span class="txt_minus main_tbl">${totalResult.earningRate}%</span></td>
+                                            	</c:when>
+                                            	<c:otherwise>
+                                            	<td class="taC  " id="PortBTRTM1"><span class="txt_plus main_tbl">${totalResult.earningRate}%</span></td>
+                                            	</c:otherwise>
+                                           	</c:choose>
+                                        </tr>
+                                        
+                                    </thead>
+                                    <tbody>
+                                    	 <tr class="th-align">
+                                        	<th ><span class="tblTotal">투자 원금(총 투자평잔)</span></th>
+                                            <td class="taC" id="PortBTRTD1" style="text-align: right;"><span class="tblTotal"><fmt:formatNumber value="${totalResult.startAsset}" pattern="#,###"/>원</span></td>
+                                        </tr>
+                                        <c:choose>
+                                            	<c:when test="${totalResult.earningRate lt 0 }">
+                                            	 <tr class="th-align">
+                                            	 <th><span class="tblTotal">종목 실현 손익금</span></th>
+                                           	 	 <td class="taC" id="PortBTRTM1" style="text-align: right;"><span class="txt_minus tblTotal"><fmt:formatNumber value="${totalResult.profitLoss}" pattern="#,###"/>원</span></td>
+                                           	 	 </tr>
+                                            	 <tr class="th-align">
+                                            	 <th><span class="tblTotal">현재 총 자산</span></th>
+                                            	 <td class="taC" id="PortBTRTW1" style="text-align: right;"><span class="txt_minus tblTotal"><fmt:formatNumber value="${totalResult.finalBal}" pattern="#,###"/>원</span></td>
+                                            	  <tr class="th-align" style="border-bottom: 1px solid #ddd;">
+                                            	 <th><span class="tblTotal">일 평균 수익률</span></th>
+                                           	 	 <td class="taC" id="PortBTRTM1" style="text-align: right; boarder-bottom:1px solid #ddd;"><span class="txt_minus tblTotal">${totalResult.avgDayFluc}%</span></td>
+                                           	 	 </tr>
+                                            	 </tr>
+                                            	</c:when>
+                                            	<c:otherwise>
+                                            	 <tr class="th-align">
+                                            	 <th><span class="tblTotal">종목 실현 손익금</span></th>
+                                            	<td class="taC" id="PortBTRTW1" style="text-align: right;"><span class="txt_plus tblTotal"><fmt:formatNumber value="${totalResult.finalBal}" pattern="#,###"/>원</span></td>
+                                            	</tr>
+                                            	 <tr class="th-align">
+                                            	 <th><span class="tblTotal">현재 총 자산</span></th>
+                                           	 	 <td class="taC" id="PortBTRTM1" style="text-align: right;"><span class="txt_plus tblTotal"><fmt:formatNumber value="${totalResult.profitLoss}" pattern="#,###"/>원</span></td>
+                                           	 	 </tr>
+                                            	 <tr class="th-align" style="border-bottom: 1px solid #ddd;">
+                                            	 <th><span class="tblTotal">일 평균 수익률</span></th>
+                                           	 	 <td class="taC" id="PortBTRTM1" style="text-align: right; boarder-bottom:1px solid #ddd;"><span class="txt_plus tblTotal">${totalResult.avgDayFluc}%</span></td>
+                                           	 	 </tr>
+                                            	</c:otherwise>
+                                          </c:choose>
+                                          
+                                    
+				
+                                    </tbody>
+                                </table>
+                                
+                            </ul>
+							</div>
+							<div class="col-md-6 chart_total"  >
+                                        <ul style="padding-left: 0px;">
+                                            <div class="chart_data" style="height:500px;"><button class="btn_acc btn_white" onclick="changeChart(true)">수익률</button><button class="btn_earn btn_white" style="display:none;" onclick="changeChart(false)">계좌</button>
+  												<span class="font_10px btn_acc" style="float:left">(원)</span><canvas id="accChart"class="btn_acc"></canvas><span class="font_10px btn_acc" style="float:right;">(년월)</span>
+  												<span class="font_10px btn_earn" style="display:none; float:left">(%)</span><canvas id="earningChart" class="btn_earn" style="display:none;"></canvas><span class="font_10px btn_earn" style="display:none; float:right;">(년월)</span>
+											</div>
+											<li class="subtitle_10px bold taC" >&lt; 계좌 수익률 차트 &gt;</li>
+                                        </ul>
+                                </div>
+						</div>
+					<div class="row vertical-tab" style="padding: 20px 14px; border-top: 1px solid #ddd; border-bottom: 1px solid #ddd">
+							<ul>
+                                <li class="subtitle_15px bold" style="margin: 40px 0; font-size:30px">기간별 수익률<em id="reserved" style="color:red"></em></li>
+                                <table class="tbl_vertical2" style="" name="tablePortNumSummary" >
+                                    <colgroup>
+                                        <col style="width: 16.6%">
+                                        <col style="width: 16.6%">
+                                        <col style="width: 16.6%">
+                                        <col style="width: 16.6%">
+                                        <col style="width: 16.6%">
+                                        <col>
+                                    </colgroup>
+                                    <thead>
+                                        <tr>
+                                            <th>최근 거래일</th>
+                                            <th>최근 ${compoVO.backRebalCycle}개월</th>
+                                            <th>최근 ${compoVO.backRebalCycle*2}개월</th>
+                                            <th>최근 ${compoVO.backRebalCycle*3}개월</th>
+                                            <th>최근 ${compoVO.backRebalCycle*4}개월</th>
+                                            <th>최근 ${compoVO.backRebalCycle*5}개월</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                        	<c:forEach items="${accReverseTotal}" var="acc" varStatus="status">
+                                        	<c:if test="${status.count lt 7 }">
+                                        		<c:choose>
+                                        		<c:when test="${acc.earningRate lt 0}">
+                                            	<td class="taC" id="PortBTRTD1"><span class="txt_minus tblRate">${acc.earningRate}%</span></td>
+                                        		</c:when>
+                                       			<c:when test="${acc.earningRate eq 0}">
+                                            	<td class="taC" id="PortBTRTD1"><span class="tblRate">-</span></td>
+                                        		</c:when>
+                                        		<c:otherwise>
+                                            	<td class="taC" id="PortBTRTD1"><span class="txt_plus tblRate">${acc.earningRate}%</span></td>
+                                        		</c:otherwise>
+                                        		</c:choose>
+                                            	</c:if>
+                                        	</c:forEach>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </ul>
+						</div>
+						
+						<div class="fd_subBox">
+                                <div class="col-md-6 chart_total"  >
+								<ul style="padding-left: 0px;">
+									<li class="subtitle_10px bold taC">&lt; 월 누적 수익률 차트 &gt;</li>
+									<div class="chart_data">
+										<span class="font_10px" style="float: left">(%)</span>
+										<canvas id="dayChart5"></canvas>
+										<span class="font_10px" style="float: right;">(월)</span>
+									</div>
+								</ul>
+							</div>
+                                <div class="col-md-6 chart_total" >
+                                     <ul style="padding-left: 0px;">
+											<li class="subtitle_10px bold taC" >&lt; 일별 누적수익률 차트 &gt;</li>
+                                            <div class="chart_data">
+  											<span class="font_10px" style= float:left">(%)</span>	
+  											<canvas id="dayChart" ></canvas>
+  											<span class="font_10px" style="float:right;">(년월)</span>
+											</div>
+                                        </ul>
+                                </div>
+                         </div>
+                         
+                         
+					</div>
+					
+					
+					
+					<div id="PortResultSection1" style="display: none;" class="result_section">
+						<!-- 매매 결과 2번째 페이지-->
+						<div class="row vertical-tab">
+							<div class="col-md-6" style="width: 50%">
+								<ul style="padding-left: 0;">
+                                <li class="subtitle_15px bold">백테스팅 결과 <em id="reserved" style="color:red"></em></li>
                                 <table class="tbl_vertical" style="" name="tablePortNumSummary" data-val="PORT">
                                     <colgroup>
                                         <col style="width: 16.6%">
@@ -998,17 +1290,17 @@ span.label {
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td class="taC" id="PortBTRTD1"><span class="tblRate">${totalResult.startAsset}원</span></td>
+                                            <td class="taC" id="PortBTRTD1"><span class="tblRate"><fmt:formatNumber value="${totalResult.startAsset}" pattern="#,###"/>원</span></td>
                                             <c:choose>
                                             	<c:when test="${totalResult.earningRate lt 0 }">
-                                            	 <td class="taC" id="PortBTRTW1"><span class="txt_minus tblRate">${totalResult.finalBal}원</span></td>
+                                            	 <td class="taC" id="PortBTRTW1"><span class="txt_minus tblRate"><fmt:formatNumber value="${totalResult.finalBal}" pattern="#,###"/>원</span></td>
                                          	    <td class="taC" id="PortBTRTM1"><span class="txt_minus tblRate">${totalResult.earningRate}%</span></td>
-                                           	 	 <td class="taC" id="PortBTRTM1"><span class="txt_minus tblRate">${totalResult.profitLoss}원</span></td>
+                                           	 	 <td class="taC" id="PortBTRTM1"><span class="txt_minus tblRate"><fmt:formatNumber value="${totalResult.profitLoss}" pattern="#,###"/>원</span></td>
                                             	</c:when>
                                             	<c:otherwise>
-                                            	<td class="taC" id="PortBTRTW1"><span class="txt_plus tblRate">${totalResult.finalBal}원</span></td>
+                                            	<td class="taC" id="PortBTRTW1"><span class="txt_plus tblRate"><fmt:formatNumber value="${totalResult.finalBal}" pattern="#,###"/>원</span></td>
                                          	    <td class="taC" id="PortBTRTM1"><span class="txt_plus tblRate">${totalResult.earningRate}%</span></td>
-                                           	 	 <td class="taC" id="PortBTRTM1"><span class="txt_plus tblRate">${totalResult.profitLoss}원</span></td>
+                                           	 	 <td class="taC" id="PortBTRTM1"><span class="txt_plus tblRate"><fmt:formatNumber value="${totalResult.profitLoss}" pattern="#,###"/>원</span></td>
                                             	</c:otherwise>
                                             </c:choose>
 				
@@ -1067,100 +1359,8 @@ span.label {
                             </ul>
 							</div>
 						</div>
-						<div class="fd_subBox">
-                                <div class="col-md-6 chart_total"  >
-                                        <ul style="padding-left: 0px;">
-                                            
-											<li class="subtitle_10px bold taC" >&lt; 계좌 수익률 차트 &gt;</li>
-                                            <div class="chart_data"><button class="btn_acc btn_white" onclick="changeChart(true)">수익률</button><button class="btn_earn btn_white" style="display:none;" onclick="changeChart(false)">계좌</button>
-  												<span class="font_10px btn_acc" style="float:left">(원)</span><canvas id="accChart"class="btn_acc"></canvas><span class="font_10px btn_acc" style="float:right;">(년월)</span>
-  												<span class="font_10px btn_earn" style="display:none; float:left">(%)</span><canvas id="earningChart" class="btn_earn" style="display:none;"></canvas><span class="font_10px btn_earn" style="display:none; float:right;">(년월)</span>
-											</div>
-                                        </ul>
-                                </div>
-                                <div class="col-md-6 chart_total" >
-                                     <ul style="padding-left: 0px;">
-											<li class="subtitle_10px bold taC" >&lt; 일별 누적수익률 차트 &gt;</li>
-                                            
-                                            <div class="chart_data">
-  											<span class="font_10px" style= float:left">(%)</span>	
-  											<canvas id="dayChart" ></canvas>
-  											<span class="font_10px" style="float:right;">(년월)</span>
-											</div>
-                                        </ul>
-                                </div>
-                         </div>
-                         <div class="row vertical-tab" style="padding: 0 14px;">
-							<ul>
-                                <table class="tbl_vertical2" style="" name="tablePortNumSummary" >
-                                    <colgroup>
-                                        <col style="width: 16.6%">
-                                        <col style="width: 16.6%">
-                                        <col style="width: 16.6%">
-                                        <col style="width: 16.6%">
-                                        <col style="width: 16.6%">
-                                        <col>
-                                    </colgroup>
-                                    <thead>
-                                        <tr>
-                                            <th>최근 거래일</th>
-                                            <th>최근 ${compoVO.backRebalCycle}개월</th>
-                                            <th>최근 ${compoVO.backRebalCycle*2}개월</th>
-                                            <th>최근 ${compoVO.backRebalCycle*3}개월</th>
-                                            <th>최근 ${compoVO.backRebalCycle*4}개월</th>
-                                            <th>최근 ${compoVO.backRebalCycle*5}개월</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                        	<c:forEach items="${accReverseTotal}" var="acc" varStatus="status">
-                                        	<c:if test="${status.count lt 7 }">
-                                        		<c:choose>
-                                        		<c:when test="${acc.earningRate lt 0}">
-                                            	<td class="taC" id="PortBTRTD1"><span class="txt_minus tblRate">${acc.earningRate}%</span></td>
-                                        		</c:when>
-                                        		<c:otherwise>
-                                            	<td class="taC" id="PortBTRTD1"><span class="txt_plus tblRate">${acc.earningRate}%</span></td>
-                                        		</c:otherwise>
-                                        		</c:choose>
-                                            	</c:if>
-                                        	</c:forEach>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <table class="tbl_horizon2" style="display:none;" name="tablePortNumSummary" data-val="CHILD">
-                                    <colgroup>
-                                        <col width="10%">
-                                        <col width="15%">
-                                        <col width="10%">
-                                        <col width="15%">
-                                        <col width="10%">
-                                        <col width="15%">
-                                        <col width="10%">
-                                        <col width="*">
-                                    </colgroup>
-                                    <tbody><tr>
-                                        <th>운용기간</th>
-                                        <td id="PortBTTerm"></td>
-                                        <th>누적
-                                            <br>
-                                            수익률</th>
-                                        <td id="PortBTRT"></td>
-                                        <th>CAGR</th>
-                                        <td id="PortBTRTAvgYear"></td>
-                                        <th>MDD</th>
-                                        <td id="PortMDD"></td>
-                                    </tr>
-                                </tbody></table>
-                            </ul>
-						</div>
-                         
-					</div>
-					<div id="PortResultSection1" style="display: none;" class="result_section">
-						<!-- 매매 결과 -->
-						
-						<div class="row vertical-tab" style="padding: 0 14px;">
-							<ul>
+						<div class="row vertical-tab" >
+							<ul style="padding: 0 14px;">
 							 <li class="subtitle_15px bold">거래 결과<em id="reserved" style="color:red"></em></li>
                                 <table class="tbl_vertical2" style="" name="tablePortNumSummary" >
                                     <colgroup>
@@ -1190,6 +1390,7 @@ span.label {
                                             	<td class="taC" id="PortBTRTD1"><span class="tblRate"><fmt:formatNumber value="${acc.totalDeposit}" pattern="#,###"/></span></td>
                                             	<td class="taC" id="PortBTRTD1"><span class="txt_minus tblRate">-<fmt:formatNumber value="${acc.buyTotalPrice}" pattern="#,###"/></span></td>
                                             	<td class="taC" id="PortBTRTD1"><span class="txt_plus tblRate">+<fmt:formatNumber value="${acc.sellTotalPrice}" pattern="#,###"/></span></td>
+                                            	<td class="taC" id="PortBTRTD1"><span class="tblRate"><fmt:formatNumber value="${acc.totalStockPrice}" pattern="#,###"/></span></td>
                                         		<c:choose>
                                         		<c:when test="${acc.earningRate lt 0}">
                                             	<td class="taC" id="PortBTRTD1"><span class="txt_minus tblRate">${acc.earningRate}</span></td>
@@ -1202,30 +1403,6 @@ span.label {
                                         	</c:forEach>
                                     </tbody>
                                 </table>
-                                <table class="tbl_horizon2" style="display:none;" name="tablePortNumSummary" data-val="CHILD">
-                                    <colgroup>
-                                        <col width="10%">
-                                        <col width="15%">
-                                        <col width="10%">
-                                        <col width="15%">
-                                        <col width="10%">
-                                        <col width="15%">
-                                        <col width="10%">
-                                        <col width="*">
-                                    </colgroup>
-                                    <tbody><tr>
-                                        <th>운용기간</th>
-                                        <td id="PortBTTerm"></td>
-                                        <th>누적
-                                            <br>
-                                            수익률</th>
-                                        <td id="PortBTRT"></td>
-                                        <th>CAGR</th>
-                                        <td id="PortBTRTAvgYear"></td>
-                                        <th>MDD</th>
-                                        <td id="PortMDD"></td>
-                                    </tr>
-                                </tbody></table>
                             </ul>
 						</div>
 						
@@ -1236,11 +1413,54 @@ span.label {
 					</div>
 					<div id="PortResultSection2" style="display: none;"
 						class="result_section">
+						<div class="row vertical-tab" style="padding: 20px 14px;border-bottom: 1px solid #ddd; margin-bottom: 40px">
+							<ul>
+                                <li class="subtitle_15px bold" style="margin: 40px 0; font-size:30px">기간별 수익률<em id="reserved" style="color:red"></em></li>
+                                <table class="tbl_vertical2" style="" name="tablePortNumSummary" >
+                                    <colgroup>
+                                        <col style="width: 16.6%">
+                                        <col style="width: 16.6%">
+                                        <col style="width: 16.6%">
+                                        <col style="width: 16.6%">
+                                        <col style="width: 16.6%">
+                                        <col>
+                                    </colgroup>
+                                    <thead>
+                                        <tr>
+                                            <th>최근 거래일</th>
+                                            <th>최근 ${compoVO.backRebalCycle}개월</th>
+                                            <th>최근 ${compoVO.backRebalCycle*2}개월</th>
+                                            <th>최근 ${compoVO.backRebalCycle*3}개월</th>
+                                            <th>최근 ${compoVO.backRebalCycle*4}개월</th>
+                                            <th>최근 ${compoVO.backRebalCycle*5}개월</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                        	<c:forEach items="${accReverseTotal}" var="acc" varStatus="status">
+                                        	<c:if test="${status.count lt 7 }">
+                                        		<c:choose>
+                                        		<c:when test="${acc.earningRate lt 0}">
+                                            	<td class="taC" id="PortBTRTD1"><span class="txt_minus tblRate">${acc.earningRate}%</span></td>
+                                        		</c:when>
+                                       			<c:when test="${acc.earningRate eq 0}">
+                                            	<td class="taC" id="PortBTRTD1"><span class="tblRate">-</span></td>
+                                        		</c:when>
+                                        		<c:otherwise>
+                                            	<td class="taC" id="PortBTRTD1"><span class="txt_plus tblRate">${acc.earningRate}%</span></td>
+                                        		</c:otherwise>
+                                        		</c:choose>
+                                            	</c:if>
+                                        	</c:forEach>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </ul>
+						</div>
 					<div class="fd_subBox">
 					 <div class="row vertical-tab" style="padding: 0 14px;">
                         <ul style="padding-left: 0px;">
-											<li class="subtitle_10px bold taC" >&lt; 일별 누적 수익률 차트 &gt;</li>
-                                            
+                                <li class="subtitle_15px bold" style="margin: 40px 0; font-size:30px">일별 누적 수익률 차트<em id="reserved" style="color:red"></em></li>
                                             <div class="chart_data2">
   											<span class="font_10px" style= "float:left">(%)</span>	
   											<canvas id="dayChart2" ></canvas>
@@ -1250,8 +1470,7 @@ span.label {
                             </div>
                              <div class="row vertical-tab" style="padding: 0 14px;">
                             <ul style="padding-left: 0px;">
-											<li class="subtitle_10px bold taC" >&lt; 월평 평균 수익률 차트 &gt;</li>
-                                            
+                                <li class="subtitle_15px bold" style="margin: 40px 0; font-size:30px">월 평균 수익률 차트<em id="reserved" style="color:red"></em></li>
                                             <div class="chart_data2">
   											<span class="font_10px" style= "float:left">(%)</span>	
   											<canvas id="dayChart3"  ></canvas>
@@ -1262,8 +1481,7 @@ span.label {
                         </div>
                          <div class="row vertical-tab" style="padding: 0 14px;">
                             <ul style="padding-left: 0px;">
-											<li class="subtitle_10px bold taC" >&lt; 월 누적 수익률 차트 &gt;</li>
-                                            
+                                <li class="subtitle_15px bold" style="margin: 40px 0; font-size:30px">월 누적 수익률 차트<em id="reserved" style="color:red"></em></li>
                                             <div class="chart_data2">
   											<span class="font_10px" style= "float:left">(%)</span>	
   											<canvas id="dayChart4" ></canvas>
@@ -1275,13 +1493,86 @@ span.label {
 					</div>
 					<div id="PortResultSection3" style="display: none;" class="result_section">
 						<!-- 가상매매 수익률 박스 -->
-						    
-						네번재 페이지
+						    <div class="fd_subBox">
+                            <ul>
+                                <li class="subtitle_15px bold">
+                                    <p class="fl">추천 종목</p>
+                                    <p class="fl" style="margin-left: 20px">
+                                        <span class="num_rank sidebg_new"></span><em class="infotxt_12px66" style="padding: 0 14px 0 3px">매수 대상종목</em>
+                                        <span class="num_rank sidebg_reco"></span><em class="infotxt_12px66" style="padding: 0 14px 0 3px">이미 보유한 종목</em>
+                                    </p>
+                                    <p class="fr infotxt_12px66" id="PortDateRec">기준일 : 2021/09/23</p>
+                                </li>
+
+                                <table class="tbl_vertical3">
+                                    <colgroup>
+                                        <col style="width: 25%">
+                                        <col style="width: 25%">
+                                        <col style="width: 25%">
+                                        <col style="width: 25%">
+                                    </colgroup>
+                                    <tbody id="tblRec">
+                                    <c:forEach items="${recommendList}" var="rocommend" varStatus="loop"></c:forEach>
+                                    <c:if test="${loop.count % 4 eq 0 }"><tr></c:if>
+                                    <td class="stockRank"><span class="number_rank">${loop.count}</span><span class="num_rank sidebg_blank"></span>
+                                    <span class="stockName">국도화학</span><span class="fr stockCode">A007690</span></td>
+                                    <c:if test="${loop.count % 4 eq 0 }"></tr></c:if>
+                                </table>
+                            </ul>
+                        </div>
+						<div class="fd_subBox">
+                            <ul>
+                                <li class="subtitle_15px bold">
+                                    <p class="fl txt_orange">현재 보유 종목</p>
+                                    <p class="fr infotxt_12px66" id="PortDateRemain">기준일 : 2021/09/17</p>
+                                </li>
+
+                                <table class="tbl_vertical">
+                                    <colgroup>
+                                        <col style="width: 11%">
+                                        <col>
+                                        <col style="width: 11%">
+                                        <col style="width: 11%">
+                                        <col style="width: 8%">
+                                        <col style="width: 11%">
+                                        <col style="width: 11%">
+                                        <col style="width: 9%">
+                                    </colgroup>
+                                    <thead>
+                                        <tr>
+                                            <th>매수일</th>
+                                            <th>종목명</th>
+                                            <th>종목코드</th>
+                                            <th>매수가격<em class="priceunit">(원)</em></th>
+                                            <th>수량(주)</th>
+                                            <th>목표가<em class="priceunit">(원)</em></th>
+                                            <th>손절가<em class="priceunit">(원)</em></th>
+                                            <th>수익률</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tblRemain">
+                                    <c:forEach items="${lastStockList}" var="lastStock">
+									<tr>
+										<td class="taC blR">${lastStock.backDate}</td>
+										<td class="taL blR"><span class="bold">${lastStock.stockName }</span></td>
+										<td class="taC blR">${lastStock.stockCode }
+										<td class="taR blR"><fmt:formatNumber value="${lastStock.buyPrice}" pattern="#,###"/>원</td>
+										<td class="taR blR">${lastStock.totalStockCnt}</td>
+										<td class="taR blR"><fmt:formatNumber value="${lastStock.buyPrice*1.1}" pattern="#,###"/>원</td>
+										<td class="taR blR"><fmt:formatNumber value="${lastStock.buyPrice*0.9}" pattern="#,###"/>원</td>
+										<td class="taR blR"><span class="ratetxt_15px txt_minus">${lastStock.earningRate}</span></td>
+									</tr>
+									
+									</c:forEach>
+									</table>
+                            </ul>
+                        </div>
 					</div>
+					
 					<div id="PortResultSection4" style="display: none;"class="result_section">
 					<div class="row vertical-tab" style="padding: 0 14px;">
 						<ul style="padding-left: 0px;">
-							<li class="subtitle_10px bold taC">&lt; 계좌평가 &gt;</li>
+							<li class="subtitle_10px bold taC">&lt; 리밸런싱 별 계좌 총액 대비 매수/매도 차트  &gt;</li>
 							<div class="chart_data2">
 								<span class="font_10px" style="float: left"">(%)</span>
 								<canvas id="accChart2"></canvas>
@@ -1289,7 +1580,7 @@ span.label {
 							</div>
 						</ul>
 						<ul style="padding-left: 0px; ">
-							<li class="subtitle_10px bold taC"  style="padding-bottom:20px;">&lt; 거래내역 &gt;</li>
+							<li class="subtitle_10px bold taC"  style="padding-bottom:20px;">&lt; 종목 매매 거래 내역 &gt;</li>
 							<table class="table table-striped">
 								<thead>
 									<tr>
@@ -1445,7 +1736,7 @@ var dataSet = ${accList}
 $.each(dataSet, function(inx, obj) {
 	chartLabels.push(obj.backDate);
 	accBal.push(obj.totalBal);
-	earningRate.push(obj.EarningRate);
+	earningRate.push(obj.earningRate);
 });
 
 
@@ -1552,8 +1843,6 @@ var config2 = {
 		    }
 		  }
 		};
-
-
 
 var earningChart = new Chart(document.getElementById('earningChart'),config2);
 
@@ -1718,6 +2007,7 @@ var config4 = {
 	
 var myChart3 = new Chart(document.getElementById('dayChart3'),config3);
 var myChart4 = new Chart(document.getElementById('dayChart4'),config4);
+var myChart5 = new Chart(document.getElementById('dayChart5'),config4);
 
 
 var chartLabels = [];
@@ -1735,7 +2025,7 @@ $.each(dataSet, function(inx, obj) {
 
 
 
-	var config = {
+	var config6 = {
 		type : 'bar',
 		data : {
 			labels : chartLabels,
@@ -1799,7 +2089,7 @@ $.each(dataSet, function(inx, obj) {
 		}
 	};
 
-	var accChart2 = new Chart(document.getElementById('accChart2'), config);
+	var accChart6 = new Chart(document.getElementById('accChart2'), config6);
 </script>
 
 	</section>

@@ -3,6 +3,8 @@ package kr.ac.kopo.backtest.dao;
 import java.util.List;
 
 import kr.ac.kopo.backtest.vo.BackTestCompoVO;
+import kr.ac.kopo.backtest.vo.BackTestRecommendListVO;
+import kr.ac.kopo.backtest.vo.BackTestRecommendVO;
 import kr.ac.kopo.backtest.vo.BackTestResultAccVO;
 import kr.ac.kopo.backtest.vo.BackTestResultFlucVO;
 import kr.ac.kopo.backtest.vo.BackTestResultSetVO;
@@ -32,5 +34,9 @@ public interface BackTestDAO {
 	BackTestResultSetVO getTotalResult(BackTestCompoVO compVO);
 
 	List<BackTestResultAccVO> getAccReverseResult(BackTestCompoVO compVO);
+
+	List<BackTestTransResultVO> getLastStock(BackTestCompoVO compVO);
+
+	List<BackTestRecommendVO> getRecommendList(BackTestRecommendListVO setRecommendVO);
 
 }

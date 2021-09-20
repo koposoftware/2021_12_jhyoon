@@ -13,6 +13,8 @@
 	<typeAlias type="kr.ac.kopo.backtest.vo.BackTestResultSetVO" alias="backTestResultSetVO"/>
 	<typeAlias type="kr.ac.kopo.backtest.vo.BackTestResultAccVO" alias="backTestResultAccVO"/>
 	<typeAlias type="kr.ac.kopo.backtest.vo.BackTestTransResultVO" alias="backTestTransResultVO"/>
+	<typeAlias type="kr.ac.kopo.backtest.vo.BackTestRecommendVO" alias="backTestRecommendVO"/>
+	<typeAlias type="kr.ac.kopo.backtest.vo.BackTestRecommendListVO" alias="backTestRecommendListVO"/>
 	 
 </typeAliases> 
 

@@ -3,10 +3,10 @@ package kr.ac.kopo.backtest.vo;
 public class BackTestResultSetVO {
 	private int portNum;
 	private String userId;
-	private String startAsset;
-	private String finalBal;
+	private int startAsset;
+	private int finalBal;
 	private double earningRate;
-	private String profitLoss;
+	private int profitLoss;
 	private double totalCagr;
 	private double avgDayFluc;
 	private double avgFluc;
@@ -22,16 +22,16 @@ public class BackTestResultSetVO {
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
-	public String getStartAsset() {
+	public int getStartAsset() {
 		return startAsset;
 	}
-	public void setStartAsset(String startAsset) {
+	public void setStartAsset(int startAsset) {
 		this.startAsset = startAsset;
 	}
-	public String getFinalBal() {
+	public int getFinalBal() {
 		return finalBal;
 	}
-	public void setFinalBal(String finalBal) {
+	public void setFinalBal(int finalBal) {
 		this.finalBal = finalBal;
 	}
 	public double getEarningRate() {
@@ -40,10 +40,10 @@ public class BackTestResultSetVO {
 	public void setEarningRate(double earningRate) {
 		this.earningRate = earningRate;
 	}
-	public String getProfitLoss() {
+	public int getProfitLoss() {
 		return profitLoss;
 	}
-	public void setProfitLoss(String profitLoss) {
+	public void setProfitLoss(int profitLoss) {
 		this.profitLoss = profitLoss;
 	}
 	public double getTotalCagr() {
@@ -70,6 +70,8 @@ public class BackTestResultSetVO {
 				+ ", finalBal=" + finalBal + ", earningRate=" + earningRate + ", profitLoss=" + profitLoss
 				+ ", totalCagr=" + totalCagr + ", avgDayFluc=" + avgDayFluc + ", avgFluc=" + avgFluc + "]";
 	}
+	
+	
 	
 
 	 

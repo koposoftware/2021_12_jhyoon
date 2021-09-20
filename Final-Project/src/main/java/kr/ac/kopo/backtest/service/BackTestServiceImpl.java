@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import kr.ac.kopo.backtest.dao.BackTestDAO;
 import kr.ac.kopo.backtest.vo.BackTestCompoVO;
+import kr.ac.kopo.backtest.vo.BackTestRecommendListVO;
+import kr.ac.kopo.backtest.vo.BackTestRecommendVO;
 import kr.ac.kopo.backtest.vo.BackTestResultAccVO;
 import kr.ac.kopo.backtest.vo.BackTestResultFlucVO;
 import kr.ac.kopo.backtest.vo.BackTestResultSetVO;
@@ -80,5 +82,17 @@ public class BackTestServiceImpl implements BackTestService{
 	public List<BackTestResultAccVO> getAccResverseResult(BackTestCompoVO compVO) {
 		List<BackTestResultAccVO> accReverseList = backTestDAO.getAccReverseResult(compVO);
 		return accReverseList;
+	}
+
+	@Override
+	public List<BackTestTransResultVO> getLastStock(BackTestCompoVO compVO) {
+		List<BackTestTransResultVO> lastStock = backTestDAO.getLastStock(compVO);
+		return lastStock;
+	}
+
+	@Override
+	public List<BackTestRecommendVO> getRecommendList(BackTestRecommendListVO setRecommendVO) {
+		List<BackTestRecommendVO> recommendList = backTestDAO.getRecommendList(setRecommendVO);
+		return recommendList;
 	}
 }

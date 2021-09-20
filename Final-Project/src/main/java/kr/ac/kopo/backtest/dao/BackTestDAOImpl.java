@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.ac.kopo.backtest.vo.BackTestCompoVO;
+import kr.ac.kopo.backtest.vo.BackTestRecommendListVO;
+import kr.ac.kopo.backtest.vo.BackTestRecommendVO;
 import kr.ac.kopo.backtest.vo.BackTestResultAccVO;
 import kr.ac.kopo.backtest.vo.BackTestResultFlucVO;
 import kr.ac.kopo.backtest.vo.BackTestResultSetVO;
@@ -70,13 +72,29 @@ public class BackTestDAOImpl implements BackTestDAO {
 	}
 	@Override
 	public BackTestResultSetVO getTotalResult(BackTestCompoVO compVO) {
+		System.out.println(compVO);
 		BackTestResultSetVO totalResult = sqlSessionTemplate.selectOne("totalResult", compVO);
+		System.out.println(totalResult);
 		return totalResult;
 	}
 	@Override
 	public List<BackTestResultAccVO> getAccReverseResult(BackTestCompoVO compVO) {
 		List<BackTestResultAccVO> accReverseList = sqlSessionTemplate.selectList("accReverseResult", compVO);
 		return accReverseList;
+	}
+	@Override
+	public List<BackTestTransResultVO> getLastStock(BackTestCompoVO compVO) {
+		List<BackTestTransResultVO> lastStock = sqlSessionTemplate.selectList("currentStock", compVO);
+		return lastStock;
+	}
+	@Override
+	public List<BackTestRecommendVO> getRecommendList(BackTestRecommendListVO setRecommendVO) {
+		sqlSessionTemplate.selectList("recommendList", setRecommendVO);
+		List<BackTestRecommendVO> recommendList = setRecommendVO.getRecommendList();
+		for (BackTestRecommendVO backTestRecommendVO : recommendList) {
+			System.out.println(backTestRecommendVO);
+		}
+		return recommendList;
 	}
 
 	
