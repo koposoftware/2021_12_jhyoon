@@ -13,9 +13,7 @@ public class MemberDAOImpl implements MemberDAO {
 	private SqlSessionTemplate sqlSessionTemplate;
 
 	public MemberVO login(MemberVO memberVO) {
-		System.out.println("입력 : " + memberVO);
 		MemberVO userVO = sqlSessionTemplate.selectOne("login", memberVO);
-		System.out.println("출력 : " + userVO);
 		return userVO;
 	}
 

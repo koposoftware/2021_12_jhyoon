@@ -5,7 +5,12 @@
 .mx-xl-5 {
 	margin: auto 30px;
 }
+nav{
+font-family: 'Jua', sans-serif;
+}
+
 </style>
+
 <nav id="main_nav"
 	class="navbar navbar-expand-lg navbar-light bg-white shadow">
 	<div
@@ -32,8 +37,7 @@
 						class="nav-link btn-outline-primary rounded-pill px-3"
 						href="${ pageContext.request.contextPath}/">서비스 소개</a></li>
 					<li class="nav-item dropdown">
-					<a class="nav-link btn-outline-primary rounded-pill px-3 dropdown-toggle"
-						href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">OneClub</a>
+					<a class="nav-link btn-outline-primary rounded-pill px-3 dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">OneClub</a>
 						 <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
             				<li><a class="nav-link btn-outline-primary rounded-pill px-3 dropdown-item" href="#">일일 투자정보</a></li>
             				<li><a class="nav-link btn-outline-primary rounded-pill px-3 dropdown-item" href="${ pageContext.request.contextPath}/backtest/compo">나만의 퀀트분석</a></li>

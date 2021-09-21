@@ -46,9 +46,12 @@
 <body>
  
 	<!-- header  -->
+	<header>
 	<jsp:include page="/WEB-INF/jsp/include/header.jsp"></jsp:include>
+	</header>
 	<!-- header 끝 -->
 	<!-- Start Banner Hero -->
+	<section>
 	<div class="banner-wrapper bg-light">
 		<div id="index_banner"
 			class="banner-vertical-center-index container-fluid pt-5">
@@ -148,7 +151,7 @@
 		</div>
 	</div>
 	<!-- End Banner Hero -->
-
+	</section>
 
 
 	<!-- Start Service -->

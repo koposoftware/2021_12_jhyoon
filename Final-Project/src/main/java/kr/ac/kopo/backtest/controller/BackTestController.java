@@ -43,7 +43,6 @@ public class BackTestController {
 		int portNo = 104;
 		//포트번호로 조건식 불러오기
 		BackTestCompoVO compVO = service.getPortCondi(portNo);
-		System.out.println(compVO);
 		//계좌정보 불러오기
 		List<BackTestResultAccVO> accList = service.getAccResult(compVO);
 		List<BackTestResultAccVO> accReverseList = service.getAccResverseResult(compVO);
@@ -56,7 +55,6 @@ public class BackTestController {
 		List<BackTestTransResultVO> transList = service.getTransResult(compVO);
 		// 종합 정보 불러오기
 		BackTestResultSetVO totalResult = service.getTotalResult(compVO);
-		System.out.println(totalResult);
 		//마지막 종목 불러오기
 		List<BackTestTransResultVO> lastStock = service.getLastStock(compVO); 
 		
@@ -65,6 +63,7 @@ public class BackTestController {
 		setRecommendVO.setUserId(compVO.getUserId());
 		setRecommendVO.setStockCnt(28);
 		List<BackTestRecommendVO> recommendList = service.getRecommendList(setRecommendVO);
+		
 		
 		Gson gson = new Gson();
 		ModelAndView mav = new ModelAndView("/backtest/result");
@@ -124,6 +123,14 @@ public class BackTestController {
 		//마지막 종목 불러오기
 		List<BackTestTransResultVO> lastStock = service.getLastStock(compVO); 		
 		
+		//추천 종목 가져오기
+		BackTestRecommendListVO setRecommendVO = new BackTestRecommendListVO();
+		setRecommendVO.setPortNum(compVO.getPortNum());
+		setRecommendVO.setUserId(compVO.getUserId());
+		setRecommendVO.setStockCnt(28);
+		List<BackTestRecommendVO> recommendList = service.getRecommendList(setRecommendVO);
+		
+		
 		Gson gson = new Gson();
 //		
 		ModelAndView mav = new ModelAndView("/backtest/result");
@@ -137,7 +144,8 @@ public class BackTestController {
 		mav.addObject("stockAVGList", gson.toJson(stockAVGList));
 		mav.addObject("transList", gson.toJson(transList));
 		mav.addObject("transList2", transList);
-		//service.getBackTestProcedure()
+		mav.addObject("recommendList", recommendList);
+
 		return mav;
 	}
 	

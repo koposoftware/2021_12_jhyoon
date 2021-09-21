@@ -153,7 +153,7 @@ p, a {font-weight: 400;}
   transition-duration: 0.15s;
 }
 .team-member:hover .team-member-img {
-  padding: 10px !important;
+  padding: 5px !important;
 }
 
 /* Work */

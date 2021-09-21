@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="counsel.CounselingDAO">
+	<resultMap type="oneClubPBVO" id="oneClubPBMap">
+		<result column="emp_no" property="empNo" />
+		<result column="emp_id" property="empId" />
+		<result column="emp_pwd" property="empPwd" />
+		<result column="emp_name" property="empName" />
+		<result column="emp_grade" property="empGrade" />
+		<result column="emp_field" property="empField" />
+		<result column="emp_sectors" property="empSectors" />
+		<result column="emp_img" property="empImg" />
+		<result column="emp_descri" property="empDescri" />
+	</resultMap>
+	<select id="pbAllList" resultMap="oneClubPBMap">
+	select * from t_pb_table
+	</select>
+
+	<select id="selectMyPB" parameterType="String" resultMap="oneClubPBMap">
+	select * from t_pb_table where emp_no = #{value}
+	
+	</select>
+
+</mapper>

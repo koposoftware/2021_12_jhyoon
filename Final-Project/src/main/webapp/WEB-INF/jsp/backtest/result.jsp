@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,101 +10,6 @@
 <jsp:include page="/WEB-INF/jsp/include/head.jsp"></jsp:include>
 <title></title>
 <style type="text/css">
-
-html, body {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    font-family: 'Nanum Gothic','나눔고딕','Noto Sans KR',sans-serif;
-}
-
-ul, ol, dl, dd, dt, li {
-	list-style-type: none;
-}
-
-.container-lg {
-	max-width: 95%
-}
-
-.area_content {
-	position: relative;
-	width: 95%;
-	margin: 0 auto;
-	padding-top: 40px;
-	padding-bottom: 150px;
-}
-
-.area_content ul {
-	padding-left: 0;
-}
-
-.area_location {
-	width: 100%;
-	height: 70px;
-	background: #f5f7f9;
-	margin: 0 auto;
-	border-bottom: 1px solid #e5e7e9;
-}
-
-.area_location ul {
-	width: 100%;
-	margin: 0 auto;
-	overflow: hidden;
-	padding-left: 40px;
-}
-
-ul {
-	display: block;
-	list-style-type: disc;
-	margin-block-start: 1em;
-	margin-block-end: 1em;
-	margin-inline-start: 0px;
-	margin-inline-end: 0px;
-}
-
-p {
-	display: block;
-	margin-inline-start: 0px;
-	margin-inline-end: 0px;
-}
-
-.area_location p.title {
-	font-size: 25px;
-	font-weight: bold;
-	color: #333;
-	letter-spacing: -1px;
-	margin-right: 20px;
-	margin-top: 17px;
-}
-
-.fl {
-	float: left;
-}
-
-.area_location p.info {
-	font-size: 18px;
-	color: #666;
-	letter-spacing: -0.5px;
-	margin-top: 25px;
-}
-
-.area_location p.crumbs {
-	font-size: 15px;
-	color: #777;
-	float: left;
-	margin-right: 25px;
-	margin-top: 25px;
-}
-
-.fr {
-	float: right;
-}
-
-li {
-	display: list-item;
-	text-align: -webkit-match-parent;
-}
 
 .section_flowTab li.on {
 	background: #008485;
@@ -779,7 +685,7 @@ thead {
     line-height: 40px;
     color: #333;
     background: #fff;
-    font-size: 30px;
+    font-size: 25px;
     font-weight: 600;
     text-align: center;
 }
@@ -961,6 +867,7 @@ vertical-align: middle;
 .sidebg_reco {
     background: #bbb;
 }
+
 .tbl_vertical3 {
     width: 100%;
     border-collapse: collapse;
@@ -1012,21 +919,23 @@ vertical-align: middle;
     display: inline-block;
     width: 16px;
     margin-right: 8px;
-    font-size: 30px;
+    font-size: 23px;
     color: #777;
     text-align: center;
 }
 .tbl_vertical3 td span.stockName {
     font-weight: 600;
     padding-left: 2px;
-    font-size: 30px
+    font-size: 25px
 }
 .tbl_vertical3 td span.stockCode {
     color: #777;
-    font-size: 30px;
+    font-size: 23px;
     letter-spacing: -1px;
 }
-
+.txt_orange {
+    color: #ff6600;
+}
 </style>
 				<div id="selection3" style="display: block">
 					<div class="row vertical-tab">
@@ -1496,12 +1405,12 @@ vertical-align: middle;
 						    <div class="fd_subBox">
                             <ul>
                                 <li class="subtitle_15px bold">
-                                    <p class="fl">추천 종목</p>
+                                    <p class="fl subtitle_15px">추천 종목</p>
                                     <p class="fl" style="margin-left: 20px">
                                         <span class="num_rank sidebg_new"></span><em class="infotxt_12px66" style="padding: 0 14px 0 3px">매수 대상종목</em>
                                         <span class="num_rank sidebg_reco"></span><em class="infotxt_12px66" style="padding: 0 14px 0 3px">이미 보유한 종목</em>
                                     </p>
-                                    <p class="fr infotxt_12px66" id="PortDateRec">기준일 : 2021/09/23</p>
+                                    <p class="fr infotxt_12px66" id="PortDateRec">기준일 : ${recommendList[0].stockDate}</p>
                                 </li>
 
                                 <table class="tbl_vertical3">
@@ -1512,19 +1421,33 @@ vertical-align: middle;
                                         <col style="width: 25%">
                                     </colgroup>
                                     <tbody id="tblRec">
-                                    <c:forEach items="${recommendList}" var="rocommend" varStatus="loop"></c:forEach>
-                                    <c:if test="${loop.count % 4 eq 0 }"><tr></c:if>
-                                    <td class="stockRank"><span class="number_rank">${loop.count}</span><span class="num_rank sidebg_blank"></span>
-                                    <span class="stockName">국도화학</span><span class="fr stockCode">A007690</span></td>
+                                    <c:forEach items="${recommendList}" var="rocommend" varStatus="loop">
+                                    <c:if test="${loop.count % 4 eq 1 }"><tr></c:if>
+                                    <td class="stockRank"><span class="number_rank">${loop.count}</span>
+                                    <c:set var="doneLoop" value="false"/>
+                                    <c:forEach items="${lastStockList}" var="lastStock">
+									   <c:if test="${not doneLoop}">
+									    <c:if test="${rocommend.stockCode eq lastStock.stockCode}">
+                                    		<span class="num_rank sidebg_reco"></span>
+  						 					<c:set var="doneLoop" value="true"/>
+  						 				</c:if>
+   									   </c:if>
+   									</c:forEach>
+                                    	<c:if test="${not doneLoop}">
+                                    	<span class="num_rank sidebg_blank"></span>
+                                    	</c:if>
+                                    
+                                    <span class="stockName">${rocommend.stockName}</span><span class="fr stockCode">${rocommend.stockCode}</span></td>
                                     <c:if test="${loop.count % 4 eq 0 }"></tr></c:if>
+                                    </c:forEach>
                                 </table>
                             </ul>
                         </div>
-						<div class="fd_subBox">
+						<div class="fd_subBox" style="margin-top:30px">
                             <ul>
                                 <li class="subtitle_15px bold">
-                                    <p class="fl txt_orange">현재 보유 종목</p>
-                                    <p class="fr infotxt_12px66" id="PortDateRemain">기준일 : 2021/09/17</p>
+                                    <p class="fl txt_orange subtitle_15px">현재 보유 종목</p>
+                                    <p class="fr infotxt_12px66" id="PortDateRemain">기준일 : ${lastStockList[0].backDate}</p>
                                 </li>
 
                                 <table class="tbl_vertical">
@@ -1544,10 +1467,9 @@ vertical-align: middle;
                                             <th>종목명</th>
                                             <th>종목코드</th>
                                             <th>매수가격<em class="priceunit">(원)</em></th>
-                                            <th>수량(주)</th>
+                                            <th>보유 수량(주)</th>
                                             <th>목표가<em class="priceunit">(원)</em></th>
                                             <th>손절가<em class="priceunit">(원)</em></th>
-                                            <th>수익률</th>
                                         </tr>
                                     </thead>
                                     <tbody id="tblRemain">
@@ -1558,9 +1480,8 @@ vertical-align: middle;
 										<td class="taC blR">${lastStock.stockCode }
 										<td class="taR blR"><fmt:formatNumber value="${lastStock.buyPrice}" pattern="#,###"/>원</td>
 										<td class="taR blR">${lastStock.totalStockCnt}</td>
-										<td class="taR blR"><fmt:formatNumber value="${lastStock.buyPrice*1.1}" pattern="#,###"/>원</td>
-										<td class="taR blR"><fmt:formatNumber value="${lastStock.buyPrice*0.9}" pattern="#,###"/>원</td>
-										<td class="taR blR"><span class="ratetxt_15px txt_minus">${lastStock.earningRate}</span></td>
+										<td class="taR blR"><span class="ratetxt_15px txt_plus"><fmt:formatNumber value="${lastStock.buyPrice*1.1}" pattern="#,###"/>원</span></td>
+										<td class="taR blR"><span class="ratetxt_15px txt_minus"><fmt:formatNumber value="${lastStock.buyPrice*0.9}" pattern="#,###"/>원</span></td>
 									</tr>
 									
 									</c:forEach>

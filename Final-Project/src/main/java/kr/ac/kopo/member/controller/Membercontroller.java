@@ -39,7 +39,6 @@ public class Membercontroller {
 	public String loginProcessing(String error, MemberVO memberVO, Model model,HttpSession session) {
 		MemberVO userVO = service.login(memberVO);
 		//로그인 실패
-		System.out.println(userVO);
 		if(userVO == null) {
 			error = "아이디 또는 패스워드가 잘못되었습니다.";
 			model.addAttribute("error", error);

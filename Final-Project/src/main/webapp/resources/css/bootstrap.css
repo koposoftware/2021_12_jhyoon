@@ -62,6 +62,101 @@ body {
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
+header{
+	width:90%;
+	margin:auto;
+}
+section{
+	width:90%;
+	margin:auto;
+}
+
+ul, ol, dl, dd, dt, li {
+	list-style-type: none;
+}
+
+.container-lg {
+	max-width: 95%
+}
+
+.area_content {
+	position: relative;
+	width: 95%;
+	margin: 0 auto;
+	padding-top: 40px;
+	padding-bottom: 150px;
+}
+
+.area_content ul {
+	padding-left: 0;
+}
+
+.area_location {
+	width: 100%;
+	height: 70px;
+	background: #f5f7f9;
+	margin: 0 auto;
+	border-bottom: 1px solid #e5e7e9;
+}
+
+.area_location ul {
+	width: 100%;
+	margin: 0 auto;
+	overflow: hidden;
+	padding-left: 40px;
+}
+
+ul {
+	display: block;
+	list-style-type: disc;
+	margin-block-start: 1em;
+	margin-block-end: 1em;
+	margin-inline-start: 0px;
+	margin-inline-end: 0px;
+}
+
+p {
+	display: block;
+	margin-inline-start: 0px;
+	margin-inline-end: 0px;
+}
+
+.area_location p.title {
+	font-size: 25px;
+	font-weight: bold;
+	color: #333;
+	letter-spacing: -1px;
+	margin-right: 20px;
+	margin-top: 17px;
+}
+
+.fl {
+	float: left;
+}
+
+.area_location p.info {
+	font-size: 18px;
+	color: #666;
+	letter-spacing: -0.5px;
+	margin-top: 25px;
+}
+
+.area_location p.crumbs {
+	font-size: 15px;
+	color: #777;
+	float: left;
+	margin-right: 25px;
+	margin-top: 25px;
+}
+
+.fr {
+	float: right;
+}
+
+li {
+	display: list-item;
+	text-align: -webkit-match-parent;
+}
 
 /* line 69, src/assets/scss/_reboot.scss */
 [tabindex="-1"]:focus:not(:focus-visible) {
@@ -268,7 +363,7 @@ pre,
 code,
 kbd,
 samp {
-  font-family: var(--bs-font-monospace);
+  font-family: var(--bs-font-sans-serif);
   font-size: 1em;
   direction: ltr /* rtl:ignore */;
   unicode-bidi: bidi-override;
@@ -5442,8 +5537,7 @@ fieldset:disabled .btn {
 /* line 206, src/assets/scss/_navbar.scss */
 .navbar-light .navbar-nav .nav-link {
   color: rgba(0, 0, 0, 0.55);
-  font-size: 22px;
-    font-weight: bold
+  font-size: 30px;
 }
 
 /* line 209, src/assets/scss/_navbar.scss */
@@ -9632,7 +9726,7 @@ fieldset:disabled .btn {
 
 /* line 50, src/assets/scss/mixins/_utilities.scss */
 .bg-light {
-  background-color: #f6f9fe !important;
+  background-color: #f6fef9 !important;
 }
 
 /* line 50, src/assets/scss/mixins/_utilities.scss */
