@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>하나 OneClub > OneClub PB 소개</title>
 <jsp:include page="/WEB-INF/jsp/include/head.jsp"></jsp:include>
 <style type="text/css">
 
@@ -34,7 +34,7 @@
 }
 .subtitle_30px{
 	margin-top :30px;
-	font-size: 30px;
+	font-size: 40px;
     font-weight: 700;
 }
 .pb_tab{
@@ -105,15 +105,17 @@ padding-left: 0;
 
 }
 .second_dec{
-	margin-top: 100px
+    margin-top: 70px;
+    margin-left: 80px;
 
 }
 .pb_title{
-	font-size: 25px;
+	font-size: 33px;
     font-weight: 600;
 }
 .pb_desCribe{
 	color:#777;
+	font-size: 20px
 }
 </style>
 </head>
@@ -158,8 +160,8 @@ padding-left: 0;
 					<div class="col-md-8 pb_tab3">
 						<div class="second_dec">
 						<ul>
-								<li><span class="subtitle_30px">내 전담 PB</span></li>
-								<li style="margin-top:20px"><span class="pb_title pb_area">OneClub PB </span><span  class="pb_title">${mypb.empName}</span></li>
+								<li><span class="subtitle_30px">내 전담 전문가</span></li>
+								<li ><span class="pb_title pb_area">OneClub PB </span><span  class="pb_title">${mypb.empName}</span></li>
 							</ul>
 						<ul>
 							<li><span class="pb_desCribe">${mypb.empDescri}</span></li>

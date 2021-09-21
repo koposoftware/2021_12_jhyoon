@@ -35,6 +35,11 @@ public class CounselingController {
 		return mav;
 		
 	}
+	@GetMapping("/counsel/writeCounsel")
+	public ModelAndView writeCounsel(MemberVO userVO) {
+		ModelAndView mav = new ModelAndView("/counsel/writeCounsel");
+		return mav;
+	}
 	
 	
 }
