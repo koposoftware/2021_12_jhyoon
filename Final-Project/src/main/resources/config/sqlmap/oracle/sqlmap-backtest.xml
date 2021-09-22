@@ -112,6 +112,13 @@
 		<result column="stock_code" property="stockCode" />
 		<result column="stock_date" property="stockDate" />
 	</resultMap>
+	<resultMap type="backTestListVO" id="backTestListMap">
+		<result column="port_num" property="portNum" />
+		<result column="back_title" property="backTitle" />
+		<result column="earning_rate" property="earningRate" />
+		<result column="back_date" property="backDate" />
+	</resultMap>
+	
 	
 	<insert id="insertCompo" parameterType="backTestCompoVO">
 		INSERT INTO T_BACKPORT_CONDI(port_no, backtest_cnt, user_id, back_title, back_descript, back_start_asset, back_start_date , back_end_date, back_fee_rate,
@@ -170,7 +177,7 @@
 	</select>
 
 	<select id="totalResult" parameterType="backTestCompoVO" resultMap="backTestResultSetMap">
-		select start_asset,final_bal,earning_rate, (final_bal-start_asset) as profit_loss,round(Power(final_bal/start_asset,(1/year)),2)-1 as total_cagr, avg_dayfluc, avg_fluc  
+		select start_asset,final_bal,earning_rate, (final_bal-start_asset) as profit_loss,round(Power(final_bal/start_asset,(1/year)),3)-1 as total_cagr, avg_dayfluc, avg_fluc  
 		from (
 		select max(total_bal) KEEP(DENSE_RANK FIRST ORDER BY back_date) as start_asset, max(total_bal) KEEP(DENSE_RANK FIRST ORDER BY back_date DESC) as final_bal,  max(EARNING_RATE) KEEP(DENSE_RANK FIRST ORDER BY back_date DESC) as earning_rate,   
 		round((max(back_date)-min(back_date))/365,2) as year
@@ -193,6 +200,12 @@ select user_id, stock_name, stock_code, to_char(back_date,'yyyy-mm-dd') back_dat
 		#{stockCnt},
 		#{recommendList, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=backTestRecommendMap}
 		)}
+	</select>
+	<select id ="backTestList" parameterType="memberVO" resultMap="backTestListMap">
+		select r.port_num as port_num, back_title, back_date, earning_rate 
+		from t_back_result r, t_backport_condi c where c.port_no = r.port_num 
+		and (port_num, back_date) in (select  port_num, max(back_date) from t_back_result where user_id = #{userId}  group by port_num)
+	
 	</select>
 
 

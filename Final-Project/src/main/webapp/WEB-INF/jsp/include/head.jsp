@@ -10,14 +10,21 @@
     <!-- Font CSS -->
     <link href="${ pageContext.request.contextPath}/resources/css/boxicon.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
     <!-- Load Tempalte CSS -->
     <link rel="stylesheet" href="${ pageContext.request.contextPath}/resources/css/templatemo.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="${ pageContext.request.contextPath}/resources/css/custom.css">
-    
+    <script
+		src="${ pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
+	<!-- Isotope -->
+	<script
+		src="${ pageContext.request.contextPath}/resources/js/isotope.pkgd.js"></script>
+    <script
+		src="${ pageContext.request.contextPath}/resources/js/bootstrap.bundle.min.js"></script>
+	<script	src="${ pageContext.request.contextPath}/resources/js/templatemo.js"></script>
+	<!-- Custom -->
+	<script	src="${ pageContext.request.contextPath}/resources/js/custom.js"></script>
 <!--
     
 TemplateMo 561 Purple Buzz

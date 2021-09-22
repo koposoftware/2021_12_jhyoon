@@ -19,7 +19,7 @@ ul, ol, dl, dd, dt, li {
 
 .area_content {
 	position: relative;
-	width: 95%;
+	width: 90%;
 	margin: 0 auto;
 	padding-top: 40px;
 	padding-bottom: 150px;
@@ -30,7 +30,7 @@ ul, ol, dl, dd, dt, li {
 }
 
 .area_location {
-	width: 100%;
+	width: 90%;
 	height: 70px;
 	background: #f5f7f9;
 	margin: 0 auto;
@@ -119,7 +119,6 @@ li {
 }
 
 .section_flowTab li p {
-	font-family: 'Noto Sans KR', sans-serif;
 	font-size: 30px;
 	letter-spacing: -1px;
 	font-weight: bold;
@@ -383,6 +382,8 @@ font-size: 18px;}
 	font-size: 20px;
 	margin-bottom: 20px;
 }
+.tabspan{
+font-family: 'Open Sans', sans-serif;}
 </style>
 <script
 	src="${ pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
@@ -519,18 +520,18 @@ font-size: 18px;}
 			<div class="section_flowTab">
 				<ul>
 					<li id="tabMenu0" class="on">
-						<p>Step 1. 기본 설정</p> <span>기본 조건들을 설정하세요.</span>
+						<p>Step 1. 기본 설정</p> <span class="tabspan">기본 조건들을 설정하세요.</span>
 					</li>
 					<li id="tabMenu1" class="">
-						<p>Step 2. 매매조건 설정</p> <span>매수/매도조건을 설정하세요.</span>
+						<p>Step 2. 매매조건 설정</p> <span class="tabspan">매수/매도조건을 설정하세요.</span>
 					</li>
 
 					<li id="tabMenu2" class="">
-						<p>Step 3. 가치측정 조건 설정</p> <span>기업 가치를 판단할 조건을 설정하세요</span>
+						<p>Step 3. 가치측정 조건 설정</p> <span class="tabspan">기업 가치를 판단할 조건을 설정하세요</span>
 					</li>
 
 					<li id="tabMenu3" style="cursor: pointer;" class="">
-						<p>Step 4. 포트 완성!</p> <span>백테스팅 포트가 완성되었습니다.</span>
+						<p>Step 4. 포트 완성!</p> <span class="tabspan">백테스팅 포트가 완성되었습니다.</span>
 					</li>
 				</ul>
 			</div>

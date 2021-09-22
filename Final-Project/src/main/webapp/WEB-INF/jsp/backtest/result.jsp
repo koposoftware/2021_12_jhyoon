@@ -7,17 +7,13 @@
 <html>
 <head>
 <!-- Head 구성  -->
-<jsp:include page="/WEB-INF/jsp/include/head.jsp"></jsp:include>
+
 <title></title>
+<jsp:include page="/WEB-INF/jsp/include/head.jsp"></jsp:include>
 <link href="${ pageContext.request.contextPath}/resources/css/backTestResult.css" rel="stylesheet">
 <script
-	src="${ pageContext.request.contextPath}/resources/js/bootstrap.bundle.min.js"></script>
-<script
 	src="${ pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
-<script
-	src="${ pageContext.request.contextPath}/resources/js/templatemo.js"></script>
 <!-- Custom -->
-<script src="${ pageContext.request.contextPath}/resources/js/custom.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script type="text/javascript">
@@ -367,7 +363,7 @@
 						</div>
 						
 						<div class="fd_subBox">
-                                <div class="col-md-6 chart_total"  >
+                                <div class="col-md-6 chart_total2"  >
 								<ul style="padding-left: 0px;">
 									<li class="subtitle_10px bold taC">&lt; 월 누적 수익률 차트 &gt;</li>
 									<div class="chart_data">
@@ -377,7 +373,7 @@
 									</div>
 								</ul>
 							</div>
-                                <div class="col-md-6 chart_total" >
+                                <div class="col-md-6 chart_total2" >
                                      <ul style="padding-left: 0px;">
 											<li class="subtitle_10px bold taC" >&lt; 일별 누적수익률 차트 &gt;</li>
                                             <div class="chart_data">

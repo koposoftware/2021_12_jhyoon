@@ -7,12 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.ac.kopo.backtest.vo.BackTestCompoVO;
+import kr.ac.kopo.backtest.vo.BackTestListVO;
 import kr.ac.kopo.backtest.vo.BackTestRecommendListVO;
 import kr.ac.kopo.backtest.vo.BackTestRecommendVO;
 import kr.ac.kopo.backtest.vo.BackTestResultAccVO;
 import kr.ac.kopo.backtest.vo.BackTestResultFlucVO;
 import kr.ac.kopo.backtest.vo.BackTestResultSetVO;
 import kr.ac.kopo.backtest.vo.BackTestTransResultVO;
+import kr.ac.kopo.member.vo.MemberVO;
 
 @Repository
 public class BackTestDAOImpl implements BackTestDAO {
@@ -95,6 +97,11 @@ public class BackTestDAOImpl implements BackTestDAO {
 			System.out.println(backTestRecommendVO);
 		}
 		return recommendList;
+	}
+	@Override
+	public List<BackTestListVO> getBackTestList(MemberVO userVO) {
+		List<BackTestListVO> backTestList = sqlSessionTemplate.selectList("backTestList",userVO);
+		return backTestList;
 	}
 
 	

@@ -7,8 +7,11 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.ac.kopo.backtest.service.BackTestService;
+import kr.ac.kopo.backtest.vo.BackTestListVO;
 import kr.ac.kopo.counsel.service.CounselingService;
 import kr.ac.kopo.member.vo.MemberVO;
 import kr.ac.kopo.member.vo.OneClubPBVO;
@@ -18,17 +21,16 @@ public class CounselingController {
 
 	@Autowired
 	private CounselingService service;
-	
+	@Autowired
+	private BackTestService backTestService;
+
 	@GetMapping("/counsel/viewPB")
 	public ModelAndView viewCounsellor(HttpSession session) {
 		
 		MemberVO userVO = (MemberVO)session.getAttribute("userVO");
-		System.out.println(userVO);
 		List<OneClubPBVO> pbList = service.getPBList();
 		OneClubPBVO myPB = service.getMyPB(userVO.getEmpId());
-		for (OneClubPBVO oneClubPBVO : pbList) {
-			System.out.println(oneClubPBVO);
-		}
+		
 		ModelAndView mav = new ModelAndView("/counsel/viewPB");
 		mav.addObject("mypb", myPB);
 		mav.addObject("pbList", pbList);
@@ -36,9 +38,22 @@ public class CounselingController {
 		
 	}
 	@GetMapping("/counsel/writeCounsel")
-	public ModelAndView writeCounsel(MemberVO userVO) {
+	public ModelAndView writeCounsel(HttpSession session) {
+		//내가가진 모든 포트폴리오 불러오기
+		MemberVO userVO = (MemberVO)session.getAttribute("userVO");
+		List<BackTestListVO> backTestList = backTestService.getBackTestList(userVO);
+		OneClubPBVO myPB = service.getMyPB(userVO.getEmpId());
 		ModelAndView mav = new ModelAndView("/counsel/writeCounsel");
+		mav.addObject("myPB", myPB);
+		mav.addObject("backTestList", backTestList);
 		return mav;
+	}
+	
+	@PostMapping("/counsel/writeCounsel")
+	public String writeCounsel() {
+		
+		return "redirect:/counsel/writeCounsel";
+		
 	}
 	
 	

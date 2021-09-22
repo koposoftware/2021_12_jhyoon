@@ -5,6 +5,10 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
 /* line 1, src/assets/scss/_root.scss */
+@font-face{src:url("../fonts/HanaL.ttf"); font-family:'Hana';}
+@font-face{src:url("../fonts/HanaUL.ttf"); font-family:'HanaUL';}
+@font-face{src:url("../fonts/HanaB.ttf"); font-family:'HanaB'}
+
 :root {
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
@@ -53,7 +57,7 @@ body {
   height: 100%;
     margin: 0;
     padding: 0;
-  font-family: var(--bs-font-sans-serif);
+  font-family: 'Hana';
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
@@ -81,7 +85,7 @@ ul, ol, dl, dd, dt, li {
 
 .area_content {
 	position: relative;
-	width: 95%;
+	width: 90%;
 	margin: 0 auto;
 	padding-top: 40px;
 	padding-bottom: 150px;
@@ -92,7 +96,7 @@ ul, ol, dl, dd, dt, li {
 }
 
 .area_location {
-	width: 100%;
+	width: 90%;
 	height: 70px;
 	background: #f5f7f9;
 	margin: 0 auto;
@@ -363,7 +367,7 @@ pre,
 code,
 kbd,
 samp {
-  font-family: var(--bs-font-sans-serif);
+  font-family: 'Hana';
   font-size: 1em;
   direction: ltr /* rtl:ignore */;
   unicode-bidi: bidi-override;
@@ -5536,8 +5540,9 @@ fieldset:disabled .btn {
 
 /* line 206, src/assets/scss/_navbar.scss */
 .navbar-light .navbar-nav .nav-link {
-  color: rgba(0, 0, 0, 0.55);
-  font-size: 30px;
+    color: rgba(0, 0, 0);
+    font-size: 23px;
+    FONT-WEIGHT: 800;
 }
 
 /* line 209, src/assets/scss/_navbar.scss */
@@ -7361,7 +7366,7 @@ fieldset:disabled .btn {
   z-index: 1070;
   display: block;
   margin: 0;
-  font-family: var(--bs-font-sans-serif);
+  font-family: 'Hana';
   font-style: normal;
   font-weight: 400;
   line-height: 1.5;
@@ -7491,7 +7496,7 @@ fieldset:disabled .btn {
   z-index: 1060;
   display: block;
   max-width: 276px;
-  font-family: var(--bs-font-sans-serif);
+  font-family: 'Hana';
   font-style: normal;
   font-weight: 400;
   line-height: 1.5;

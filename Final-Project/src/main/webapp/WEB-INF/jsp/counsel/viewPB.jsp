@@ -19,18 +19,18 @@
 	
 <style type="text/css">
 .subtitle_50px {
-    font-size: 45px;
+ 	font-size: 35px;
     font-weight: 700;
     margin-top: 20px;
 }
 .vertical-tab{
-    width: 90%;
-    margin: auto;
+	width: 1600px;
+	margin: auto;
 }
 .inner-tab{
-    height: 400px;
-    width: 1900px;
-    margin: auto;
+	height: 400px;
+	width: 1600px;
+	margin: auto;
 }
 .subtitle_30px{
 	margin-top :30px;
@@ -118,6 +118,13 @@ padding-left: 0;
 	font-size: 20px
 }
 </style>
+<script type="text/javascript">
+		function writeConsult(){
+			location.href = "${pageContext.request.contextPath}/counsel/writeCounsel"		
+		}
+		
+
+</script>
 </head>
 <body>
     <!-- Header -->
@@ -167,7 +174,7 @@ padding-left: 0;
 							<li><span class="pb_desCribe">${mypb.empDescri}</span></li>
 						</ul>
 						<ul>
-							<li class="btn_popSide sidebg_new" style="margin-left:0px" onclick="">
+							<li class="btn_popSide sidebg_new" style="margin-left:0px; cursor: pointer;" onclick="writeConsult()">
 							<span>내 포트폴리오 상담하러가기</span></li>
 						</ul>
 						</div>

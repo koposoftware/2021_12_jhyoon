@@ -55,7 +55,7 @@ public class BackTestController {
 		List<BackTestTransResultVO> transList = service.getTransResult(compVO);
 		// 종합 정보 불러오기
 		BackTestResultSetVO totalResult = service.getTotalResult(compVO);
-		//마지막 종목 불러오기
+		//마지막 종목 불러오기 리스트
 		List<BackTestTransResultVO> lastStock = service.getLastStock(compVO); 
 		
 		BackTestRecommendListVO setRecommendVO = new BackTestRecommendListVO();
@@ -80,8 +80,8 @@ public class BackTestController {
 		mav.addObject("recommendList", recommendList);
 		return mav;
 	}
+	
 	@PostMapping("/backtest/compo")
-	@ResponseBody
 	public ModelAndView backTestResult(BackTestCompoVO compVO, HttpSession session) {
 		// 숫자에 콤마제거
 		compVO.setBackStartAsset(compVO.getBackStartAsset().replaceAll("\\,", ""));
@@ -155,6 +155,8 @@ public class BackTestController {
 	public void editContent(BackTestCompoVO compVO) {
 		service.editContent(compVO);
 	}
+	
+	
 	
 	
 	

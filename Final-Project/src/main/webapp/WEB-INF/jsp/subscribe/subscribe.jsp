@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>하나 OneClub > OneClub 내 포트폴리오 상담</title>
+<title>하나 OneClub > OneClub 구독하기</title>
 <script
 	src="${ pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 <jsp:include page="/WEB-INF/jsp/include/head.jsp"></jsp:include>
@@ -234,10 +234,6 @@ ul {
     margin-right: 2px;
     background-position: left top;
 }
-.jbutton.black, .jbutton.black a, .jbutton.black button, .jbutton.black input {
-    background-image: url(${pageContext.request.contextPath}/resources/img/buttonBlack.gif);
-    color: #fff!important;
-}
 .jbutton {
     height: 23px;
     padding: 0;
@@ -358,35 +354,6 @@ a.btn2, .btn2 {
 }
 
 </style>
-<script type="text/javascript">
-	$(document).ready(function() {
-		$('#resultTabMenu0').click(function() {
-			changeResultTab(0)
-		})
-		$('#resultTabMenu1').click(function() {
-			changeResultTab(1)
-		})
-		
-	})
-	function changeResultTab(num) {
-		for (var i = 0; i < 2; i++) {
-			document.getElementById("resultTabMenu" + i.toString()).className = "";
-			document.getElementById("PortResultSection" + i.toString()).style.display = "none";
-		}
-		document.getElementById("resultTabMenu" + num).className = "on";
-		document.getElementById("PortResultSection" + num.toString()).style.display = "";
-	}
-	function Change() {
-		var selectedIndex = document.fwrite.consultCate.options.selectedIndex;
-		var selected = document.fwrite.consultCate.options[selectedIndex].value
-		if (selected == 'portfolio'){
-			$('.slct_port').css('display','')
-		}else{
-			$('.slct_port').css('display','none')
-			}
-	}
-
-</script>
 										
 </head>
 <body>
@@ -415,7 +382,7 @@ a.btn2, .btn2 {
 		<div class="container main">
 			<div class="row vertical-tab">
 				<ul style="padding-left: 0;">
-					<li class="subtitle_50px bold">OneClub 포트폴리오 상담</li>
+					<li class="subtitle_50px bold">OneClub 서비스 가입</li>
 				</ul>
 			</div>
 			<div class="row vertical-tab">
@@ -442,131 +409,81 @@ a.btn2, .btn2 {
 			</div>
 			<div class="row vertical-tab">
 				<ul style="padding-left: 0;">
-					<li class="subtitle_40px">전담 PB 상담</li>
+					<li class="subtitle_40px">구독 서비스</li>
 				</ul>
 			</div>
-			<div class="fullDetail_tabBox">
-				<ul style="padding-left: 0px; margin-bottom: 0px;">
-					<li id="resultTabMenu0" class="on">상담 신청</li>
-					<li id="resultTabMenu1" class="">상담 내역</li>
-				</ul>
-			</div>
-			<div id="PortResultSection0" class="result_section" style="height: 1000px; border: 0px">
-					<!-- 게시물 작성/수정 시작 { -->
-					<form name="fwrite" id="fwrite" action="#" onsubmit="return fwrite_submit(this);" method="post" style="width: 100%">
-						<div class="jtbl_frm01 tbl_wrap">
-							<table>
-								<tbody>
-									<tr>
-										<th scope="row"><label for="userName" class="input_title">이름</label></th>
-										<td><span class="txt_input">${userVO.userName}</span>
-										<input type="hidden" name="userId" value="${userVO.userId}" >
-										</td>
-										<th scope="row"><label for="empName" class="input_title">전담 PB</label></th>
-										<td><span class="txt_input">${myPB.empName} PB</span>
-										<input type="hidden" name="empId" value="${myPB.empNo}"></td>
-									</tr>
-									<tr>
-										<th scope="row"><label for="userTel" class="input_title">휴대전화</label></th>
-										<td><span class="txt_input">${userVO.userTel}</span>
-										<input type="hidden" name="userTel" value="${userVO.userTel}">
-										</td>
-										<th scope="row"><label for="userEmail" class="input_title">E-mail</label></th>
-										<td><span class="txt_input">${userVO.userEmail }</span>
-										<input type="hidden" name="userEmail" value="${userVO.userEmail }" ></td>
-									</tr>
-									<tr>
-										<th scope="row"><label for="userTel" class="input_title">상담구분</label></th>
-										<td>
-										<select	name="consultCate" id="slct_cate" class="frm_input_content" onchange="Change()">
-											<option value="portfolio" selected="selected">내 포트폴리오 상담</option>
-											<option value="invest">투자 상담</option>
-											<option value="userOneClub">OneClub 이용상담</option>
-										</select>
-										</td>
-										<th scope="row" class="slct_port"><label for="consultport" class="input_title">내 포트폴리오 불러오기</label></th>
-										<td class="slct_port">
-										<select	name="consultport"  class="frm_input_content" >
-											<c:forEach items="${backTestList}" var="portList" varStatus="loop">
-											
-											<option value="${portList.portNum}" >(${loop.count}) ${portList.backTitle}(수익률
-											<c:choose>
-											<c:when test="${portList.earningRate lt 0}">
-												<span class="txt_minus">-${portList.earningRate}</span>)
-											</c:when>
-											<c:otherwise>
-											<span class="txt_plus">+${portList.earningRate}</span>%)
-											</c:otherwise>
-											</c:choose>
-											</option>
-											</c:forEach>
-										</select>
-										
-										</td>
-									</tr>
-									<tr>
-										<th scope="row"><label for="consultTitle" class="input_title">제목</label></th>
-										<td colspan="3">
-										<input type="text" name="consultTitle" class="frm_input_content frm_input_title" >
-										</td>
-									</tr>
-									<tr>
-										<th scope="row"><label for="wr_content" class="input_title">내용</label></th>
-										<td class="wr_content" colspan="3"><textarea id="wr_content" name="wr_content" class="frm_input_content " maxlength="65536" style="width: 100%; height: 300px"></textarea>
-									</tr>
-									
+			 <div class="container py-5">
 
-								</tbody>
-							</table>
-						</div>
 
-				<div class="btn-div">
-							<input type="submit" class="btn btn_hana" value="내용 등록">
-						</div>
-					</form>
-			</div>
-			<div id="PortResultSection1" class="result_section" style="height: 1000px; border: 0px">
-				<div class="jtbl_head01 jtbl_wrap">
-						<table>
-							<thead>
-								<tr>
-									<th scope="col" class="th_bg01"style="width: 10%">NO</th>
-									<th scope="col" class="th_bg01" style="width: 50%">제목</th>
-									<th scope="col" class="th_bg01" style="width: 20%">작성일</th>
-									<th scope="col" style="width: 20%">처리상태</th>
-								</tr>
-							</thead>
-							<tbody>
-									<tr>
-										<td class="td_num">32</td>
-										<td class="td_subject" style="text-align: left;">
-												<img src="${pageContext.request.contextPath}/resources/img/icon_reply.gif"
-													class="icon_reply" alt="답변글">
-											<a href="${pageContext.request.contextPath}/">
-										입니다. 제목!</a></td>
-										<td class="td_date">2021/09/22</td>
-										<td class="td_hit">Y N</td>
-									</tr>
-							</tbody>
-						</table>
-					</div>
-				<!-- 페이지 -->
-				<ul class='pagenation'>
-				<c:forEach begin="${page.beginPage}" var="i" end="${page.endPage}"  >
-					<c:choose>
-						<c:when test="${page.currentPage eq i}">
-							<li class='on'><a href="#"><b></b></a></li>
-						</c:when>
-						<c:otherwise>
-							<li><a href="#"><b></b></a></li>
-						</c:otherwise>
-					</c:choose>
-					</c:forEach>
-					<li><a href='#' class='btn2'><img
-							src='${pageContext.request.contextPath}/resources/img/btn_lastly.gif'
-							alt='마지막으로' /></a></li>
-				</ul>
-			</div>
+            <!-- Start Pricing Horizontal -->
+            <div class="pricing-horizontal row col-10 m-auto d-flex shadow-sm rounded overflow-hidden bg-white">
+                <div class="pricing-horizontal-icon col-md-3 text-center bg-secondary text-light py-4">
+                    <i class="display-1 bx bx-package pt-4"></i>
+                    <h5 class="h5 semi-bold-600 pb-4 light-300">family</h5>
+                </div>
+                <div class="pricing-horizontal-body offset-lg-1 col-md-5 col-lg-4 d-flex align-items-center pl-5 pt-lg-0 pt-4">
+                    <ul class="text-left px-4 list-unstyled mb-0 light-300">
+                        <li><i class="bx bxs-circle me-2"></i>5 Users</li>
+                        <li><i class="bx bxs-circle me-2"></i>2 TB space</li>
+                        <li><i class="bx bxs-circle me-2"></i>Community Forums</li>
+                    </ul>
+                </div>
+                <div class="pricing-horizontal-tag col-md-4 text-center pt-3 d-flex align-items-center">
+                    <div class="w-100 light-300">
+                        <p>$0</p>
+                        <a href="#" class="btn rounded-pill px-4 btn-outline-primary mb-3">Get Now</a>
+                    </div>
+                </div>
+            </div>
+            <!-- End Pricing Horizontal -->
+
+            <!-- Start Pricing Horizontal -->
+            <div class="pricing-horizontal row col-10 m-auto d-flex shadow-sm rounded overflow-hidden my-5 bg-white">
+                <div class="pricing-horizontal-icon col-md-3 text-center bg-secondary text-light py-4">
+                    <i class="display-1 bx bx-package pt-4"></i>
+                    <h5 class="h5 semi-bold-600 pb-4 light-300">Standard</h5>
+                </div>
+                <div class="pricing-horizontal-body offset-lg-1 col-md-5 col-lg-4 d-flex align-items-center pl-5 pt-lg-0 pt-4">
+                    <ul class="text-left px-4 list-unstyled mb-0 light-300">
+                        <li><i class="bx bxs-circle me-2"></i>25 to 99 Users</li>
+                        <li><i class="bx bxs-circle me-2"></i>10 TB space</li>
+                        <li><i class="bx bxs-circle me-2"></i>Live Chat</li>
+                    </ul>
+                </div>
+                <div class="pricing-horizontal-tag col-md-4 text-center pt-3 d-flex align-items-center">
+                    <div class="w-100 light-300">
+                        <p>$120/Year</p>
+                        <a href="#" class="btn rounded-pill px-4 btn-outline-primary mb-3">Get Now</a>
+                    </div>
+                </div>
+            </div>
+            <!-- End Pricing Horizontal -->
+
+            <!-- Start Pricing Horizontal -->
+            <div class="pricing-horizontal row col-10 m-auto d-flex shadow-sm rounded overflow-hidden bg-white">
+                <div class="pricing-horizontal-icon col-md-3 text-center bg-secondary text-light py-4">
+                    <i class="display-1 bx bx-package pt-4"></i>
+                    <h5 class="h5 semi-bold-600 pb-4 light-300">Enterprise</h5>
+                </div>
+                <div class="pricing-horizontal-body offset-lg-1 col-md-5 col-lg-4 d-flex align-items-center pl-5 pt-lg-0 pt-4">
+                    <ul class="text-left px-4 list-unstyled mb-0 light-300">
+                        <li><i class="bx bxs-circle me-2"></i>100 users or more</li>
+                        <li><i class="bx bxs-circle me-2"></i>80 TB space</li>
+                        <li><i class="bx bxs-circle me-2"></i>Full Access</li>
+                        <li><i class="bx bxs-circle me-2"></i>Customizations</li>
+                    </ul>
+                </div>
+                <div class="pricing-horizontal-tag col-md-4 text-center pt-3 d-flex align-items-center">
+                    <div class="w-100 light-300">
+                        <p>$840/Year</p>
+                        <a href="#" class="btn rounded-pill px-4 btn-outline-primary mb-3">Get Now</a>
+                    </div>
+                </div>
+            </div>
+            <!-- End Pricing Horizontal -->
+
+        </div>
+			
 		</div>
 	</section>
 

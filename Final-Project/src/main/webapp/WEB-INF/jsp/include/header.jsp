@@ -6,7 +6,11 @@
 	margin: auto 30px;
 }
 nav{
-font-family: 'Jua', sans-serif;
+font-family: 'Hana', sans-serif;
+}
+.drop_txt li a{
+	font-size:20px;
+	font-weight: 700
 }
 
 </style>
@@ -38,11 +42,11 @@ font-family: 'Jua', sans-serif;
 						href="${ pageContext.request.contextPath}/">서비스 소개</a></li>
 					<li class="nav-item dropdown">
 					<a class="nav-link btn-outline-primary rounded-pill px-3 dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">OneClub</a>
-						 <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+						 <ul class="dropdown-menu dropdown-menu-dark drop_txt" aria-labelledby="navbarDarkDropdownMenuLink">
             				<li><a class="nav-link btn-outline-primary rounded-pill px-3 dropdown-item" href="#">일일 투자정보</a></li>
-            				<li><a class="nav-link btn-outline-primary rounded-pill px-3 dropdown-item" href="${ pageContext.request.contextPath}/backtest/compo">나만의 퀀트분석</a></li>
-            				<li><a class="nav-link btn-outline-primary rounded-pill px-3 dropdown-item" href="#">전문가 상담</a></li>
-            				<li><a class="nav-link btn-outline-primary rounded-pill px-3 dropdown-item" href="#">종목 추천서비스</a></li>
+            				<li><a class="nav-link btn-outline-primary rounded-pill px-3 dropdown-item" href="${ pageContext.request.contextPath}/backtest/compo">나만의 투자조건 설정하기</a></li>
+            				<li><a class="nav-link btn-outline-primary rounded-pill px-3 dropdown-item" href="${ pageContext.request.contextPath}/counsel/viewPB">전문가 상담</a></li>
+            				<li><a class="nav-link btn-outline-primary rounded-pill px-3 dropdown-item" href="#">내 포트폴리오 관리</a></li>
           				</ul>
 					</li>
 					<li class="nav-item dropdown"><a class="nav-link btn-outline-primary rounded-pill px-3 dropdown-toggle"
@@ -50,7 +54,6 @@ font-family: 'Jua', sans-serif;
 					 <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
             				<li><a class="nav-link btn-outline-primary rounded-pill px-3 dropdown-item" href="#">내 OneClub관리</a></li>
             				<li><a class="nav-link btn-outline-primary rounded-pill px-3 dropdown-item" href="#">내 관심 종목관리</a></li>
-            				<li><a class="nav-link btn-outline-primary rounded-pill px-3 dropdown-item" href="#">내 포트폴리오 분석</a></li>
             				<li><a class="nav-link btn-outline-primary rounded-pill px-3 dropdown-item" href="#">전문가 상담결과</a></li>
           				</ul>						
 						</li>
