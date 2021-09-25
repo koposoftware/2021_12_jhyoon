@@ -1,8 +1,9 @@
 package kr.ac.kopo.backtest.vo;
 
 public class BackTestCompoVO {
-	private int portNum;      // 포트 번호
+	private int portNum; // 포트 번호
 	private int backtestCnt; // 유저 test번호
+	private String backtestDate; //백테스트 일자
 	private String userId; // 유저아이디
 	private String backTitle; // 제목
 	private String backDescript; // 설명
@@ -45,11 +46,13 @@ public class BackTestCompoVO {
 
 	
 	
+	
+	
 	public int getPortNum() {
 		return portNum;
 	}
 
-	public void setPortNo(int portNum) {
+	public void setPortNum(int portNum) {
 		this.portNum = portNum;
 	}
 
@@ -59,6 +62,16 @@ public class BackTestCompoVO {
 
 	public void setBacktestCnt(int backtestCnt) {
 		this.backtestCnt = backtestCnt;
+	}
+	
+	
+
+	public String getBacktestDate() {
+		return backtestDate;
+	}
+
+	public void setBacktestDate(String backtestDate) {
+		this.backtestDate = backtestDate;
 	}
 
 	public String getUserId() {
@@ -375,22 +388,25 @@ public class BackTestCompoVO {
 
 	@Override
 	public String toString() {
-		return "BackTestCompoVO [portNum=" + portNum + ", backtestCnt=" + backtestCnt + ", userId=" + userId
-				+ ", backTitle=" + backTitle + ", backDescript=" + backDescript + ", backStartAsset=" + backStartAsset
-				+ ", backStartDate=" + backStartDate + ", backEndDate=" + backEndDate + ", backFeeRate=" + backFeeRate
-				+ ", backSlippage=" + backSlippage + ", backTaxRate=" + backTaxRate + ", backStockCnt=" + backStockCnt
-				+ ", backRebalCycle=" + backRebalCycle + ", backInvestRate=" + backInvestRate + ", backMarket="
-				+ backMarket + ", backCare=" + backCare + ", backManage=" + backManage + ", backPreferred="
-				+ backPreferred + ", backEtf=" + backEtf + ", backCashFlow=" + backCashFlow + ", backProfit="
-				+ backProfit + ", backTransAmt=" + backTransAmt + ", backAmt=" + backAmt + ", backMarketCap="
-				+ backMarketCap + ", backCap=" + backCap + ", backBuyPrice=" + backBuyPrice + ", backSellPrice="
-				+ backSellPrice + ", backMinPriceS=" + backMinPriceS + ", backMinPriceV=" + backMinPriceV
-				+ ", backMinPrice=" + backMinPrice + ", backCapUpDown=" + backCapUpDown + ", backCapRate=" + backCapRate
-				+ ", backPBR=" + backPBR + ", backPER=" + backPER + ", backPSR=" + backPSR + ", backPCR=" + backPCR
-				+ ", backROA=" + backROA + ", backROE=" + backROE + ", backROS=" + backROS + ", backEBITDA="
-				+ backEBITDA + ", backCFPS=" + backCFPS + "]";
+		return "BackTestCompoVO [portNum=" + portNum + ", backtestCnt=" + backtestCnt + ", backtestDate=" + backtestDate
+				+ ", userId=" + userId + ", backTitle=" + backTitle + ", backDescript=" + backDescript
+				+ ", backStartAsset=" + backStartAsset + ", backStartDate=" + backStartDate + ", backEndDate="
+				+ backEndDate + ", backFeeRate=" + backFeeRate + ", backSlippage=" + backSlippage + ", backTaxRate="
+				+ backTaxRate + ", backStockCnt=" + backStockCnt + ", backRebalCycle=" + backRebalCycle
+				+ ", backInvestRate=" + backInvestRate + ", backMarket=" + backMarket + ", backCare=" + backCare
+				+ ", backManage=" + backManage + ", backPreferred=" + backPreferred + ", backEtf=" + backEtf
+				+ ", backCashFlow=" + backCashFlow + ", backProfit=" + backProfit + ", backTransAmt=" + backTransAmt
+				+ ", backAmt=" + backAmt + ", backMarketCap=" + backMarketCap + ", backCap=" + backCap
+				+ ", backBuyPrice=" + backBuyPrice + ", backSellPrice=" + backSellPrice + ", backMinPriceS="
+				+ backMinPriceS + ", backMinPriceV=" + backMinPriceV + ", backMinPrice=" + backMinPrice
+				+ ", backCapUpDown=" + backCapUpDown + ", backCapRate=" + backCapRate + ", backPBR=" + backPBR
+				+ ", backPER=" + backPER + ", backPSR=" + backPSR + ", backPCR=" + backPCR + ", backROA=" + backROA
+				+ ", backROE=" + backROE + ", backROS=" + backROS + ", backEBITDA=" + backEBITDA + ", backCFPS="
+				+ backCFPS + "]";
 	}
 
 
+
+	
 
 }

@@ -11,4 +11,6 @@ public interface MemberDAO {
 	int registIdCheck(String checkId);
 
 	void updateBacktestCnt(MemberVO memberVO);
+
+	void setMySubscribe(MemberVO userVO);
 }

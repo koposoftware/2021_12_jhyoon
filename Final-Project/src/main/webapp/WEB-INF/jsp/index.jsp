@@ -51,7 +51,7 @@ font-family: 'HanaB';
     font-family: 'HanaUL';
 }
 .main-back{
-width: 96%;
+width: 1800px;
 background-color:#C6DEE2; 
  margin: auto; 
  height: 500px;
@@ -60,7 +60,7 @@ background-color:#C6DEE2;
  height: 1000px;
 }
 .second-tab{
-	width:85%;
+	width:1700px;
 	height:150px;
 	border:1px solid #ddd;
 	background-color: #666;
@@ -80,14 +80,16 @@ background-color:#C6DEE2;
     padding: 20px;
   	overflow:hidden;
 	font-size: 18px;
-    font-family: 'HanaL'
+    font-family: 'HanaL';
+    
+    
 	
 }
 .second-tab ul li img{
 	width: 70px;
 	height: 70px;
 	margin-bottom: 15px;
-	  	overflow:hidden;
+	overflow:hidden;
 	
 }
 .second-tab ul{
@@ -99,6 +101,7 @@ background-color:#C6DEE2;
   -moz-transform: scale(1.2);
   -ms-transform: scale(1.2);
   -o-transform: scale(1.2);
+  background-color: :#008485;
 }
 
 </style>
@@ -129,10 +132,10 @@ background-color:#C6DEE2;
             <div class="second-tab">
             	<ul>
 					<li id="intruduce"><img src="${pageContext.request.contextPath}/resources/img/svg/hanabual.png" style="width: 80px;"><br>처음 오셨나요?</li>            	
-					<li id="subscribe"><img src="${pageContext.request.contextPath}/resources/img/svg/subscribe.png" ><br>OneClub 구독</li>            	
-					<li id="backtest"><img src="${pageContext.request.contextPath}/resources/img/svg/trading.png" ><br>투자전략 검증</li>            	
+					<li id="subscribe"><img src="${pageContext.request.contextPath}/resources/img/svg/subscribe.png" ><br>OneClub 서비스</li>            	
+					<li id="backtest"><img src="${pageContext.request.contextPath}/resources/img/svg/trading.png" ><br>내 투자전략 검증</li>            	
 					<li id="consulting"><img src="${pageContext.request.contextPath}/resources/img/svg/consult.png" ><br>투자 상담</li>            	
-					<li id="myport"><img src="${pageContext.request.contextPath}/resources/img/svg/report.png" ><br>내 포트폴리오</li>            	
+					<li id="myport"><img src="${pageContext.request.contextPath}/resources/img/svg/report.png" ><br>포트폴리오</li>            	
             	</ul>
             </div>
             
@@ -144,7 +147,7 @@ $(document).ready(function() {
 		location.href="#"
 	})
 	$('#subscribe').click(function(){
-		location.href="#"
+		location.href="${pageContext.request.contextPath}/subscribe"
 	})
 	$('#backtest').click(function(){
 		location.href="${pageContext.request.contextPath}/backtest/compo"

@@ -118,7 +118,7 @@ ul {
 
 .pb_desCribe {
 	color: #777;
-	font-size: 20px;
+	font-size: 22px;
 }
 
 .councel_img {
@@ -128,7 +128,7 @@ ul {
 
 .subtitle_40px {
 	margin-top: 30px;
-	font-size: 30px;
+	font-size: 33px;
 	font-weight: 700;
 }
 .result_section {
@@ -357,6 +357,7 @@ a.btn2, .btn2 {
     color: #f83838;
 }
 
+
 </style>
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -458,51 +459,68 @@ a.btn2, .btn2 {
 							<table>
 								<tbody>
 									<tr>
-										<th scope="row"><label for="userName" class="input_title">이름</label></th>
-										<td><span class="txt_input">${userVO.userName}</span>
+										<th scope="row" style="width:25%"><label for="userName" class="input_title" s>이름</label></th>
+										<td style="width:25%"><span class="txt_input">${userVO.userName}</span>
 										<input type="hidden" name="userId" value="${userVO.userId}" >
 										</td>
-										<th scope="row"><label for="empName" class="input_title">전담 PB</label></th>
-										<td><span class="txt_input">${myPB.empName} PB</span>
+										<th scope="row" style="width:20%"><label for="empName" class="input_title">전담 PB</label></th>
+										<td style="width:30%"><span class="txt_input" style="width:25%">${myPB.empName} PB</span>
 										<input type="hidden" name="empId" value="${myPB.empNo}"></td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="userTel" class="input_title">휴대전화</label></th>
-										<td><span class="txt_input">${userVO.userTel}</span>
+										<th scope="row"><label for="userTel" class="input_title" style="width:25%">휴대전화</label></th>
+										<td style="width:25%"><span class="txt_input" >${userVO.userTel}</span>
 										<input type="hidden" name="userTel" value="${userVO.userTel}">
 										</td>
-										<th scope="row"><label for="userEmail" class="input_title">E-mail</label></th>
-										<td><span class="txt_input">${userVO.userEmail }</span>
+										<th scope="row"><label for="userEmail" class="input_title" style="width:25%">E-mail</label></th>
+										<td style="width:25%"><span class="txt_input">${userVO.userEmail }</span>
 										<input type="hidden" name="userEmail" value="${userVO.userEmail }" ></td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="userTel" class="input_title">상담구분</label></th>
-										<td>
+										<th scope="row" style="width:25%"><label for="userTel" class="input_title">상담구분</label></th>
+										<td style="width:25%">
 										<select	name="consultCate" id="slct_cate" class="frm_input_content" onchange="Change()">
 											<option value="portfolio" selected="selected">내 포트폴리오 상담</option>
 											<option value="invest">투자 상담</option>
 											<option value="userOneClub">OneClub 이용상담</option>
 										</select>
 										</td>
-										<th scope="row" class="slct_port"><label for="consultport" class="input_title">내 포트폴리오 불러오기</label></th>
-										<td class="slct_port">
-										<select	name="consultport"  class="frm_input_content" >
-											<c:forEach items="${backTestList}" var="portList" varStatus="loop">
-											
-											<option value="${portList.portNum}" >(${loop.count}) ${portList.backTitle}(수익률
+										<th scope="row" class="slct_port" style="width:25%"><label for="consultport" class="input_title">내 포트폴리오 불러오기</label></th>
+										<td class="slct_port" style="width:25%">
+										<select name="consultport" class="frm_input_content">
 											<c:choose>
-											<c:when test="${portList.earningRate lt 0}">
-												<span class="txt_minus">-${portList.earningRate}</span>)
-											</c:when>
-											<c:otherwise>
-											<span class="txt_plus">+${portList.earningRate}</span>%)
-											</c:otherwise>
+												<c:when test="${not empty backTestList}">
+													<c:forEach items="${backTestList}" var="portList"
+														varStatus="loop">
+														<option value="${portList.portNum}">(${loop.count})
+															${portList.backTitle}(수익률
+															<c:choose>
+																<c:when test="${portList.earningRate lt 0}">
+																	<span class="txt_minus">-${portList.earningRate}</span>)
+																</c:when>
+																<c:otherwise>
+																	<span class="txt_plus">+${portList.earningRate}</span>%)
+																</c:otherwise>
+															</c:choose>
+														</option>
+													</c:forEach>
+												</c:when>
+												<c:otherwise>
+													<option value="${backTest.portNum}">${backTest.backTitle}(수익률
+														<c:choose>
+															<c:when test="${backTest.earningRate lt 0}">
+																<span class="txt_minus">-${backTest.earningRate}</span>)
+															</c:when>
+															<c:otherwise>
+																<span class="txt_plus">+${backTest.earningRate}</span>%)
+															</c:otherwise>
+														</c:choose>
+												</c:otherwise>
 											</c:choose>
-											</option>
-											</c:forEach>
-										</select>
-										
-										</td>
+
+									</select>
+
+									</td>
 									</tr>
 									<tr>
 										<th scope="row"><label for="consultTitle" class="input_title">제목</label></th>
@@ -525,7 +543,7 @@ a.btn2, .btn2 {
 						</div>
 					</form>
 			</div>
-			<div id="PortResultSection1" class="result_section" style="height: 1000px; border: 0px">
+			<div id="PortResultSection1" class="result_section" style="height: 1000px; border: 0px; display: none;">
 				<div class="jtbl_head01 jtbl_wrap">
 						<table>
 							<thead>
@@ -569,7 +587,9 @@ a.btn2, .btn2 {
 			</div>
 		</div>
 	</section>
-
+	<footer>
+		<jsp:include page="/WEB-INF/jsp/include/footer.jsp"></jsp:include>
+	</footer>
 
 </body>
 </html>

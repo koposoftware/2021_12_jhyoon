@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- Header -->
 <style>
 .mx-xl-5 {
@@ -46,15 +47,14 @@ font-family: 'Hana', sans-serif;
             				<li><a class="nav-link btn-outline-primary rounded-pill px-3 dropdown-item" href="#">일일 투자정보</a></li>
             				<li><a class="nav-link btn-outline-primary rounded-pill px-3 dropdown-item" href="${ pageContext.request.contextPath}/backtest/compo">나만의 투자조건 설정하기</a></li>
             				<li><a class="nav-link btn-outline-primary rounded-pill px-3 dropdown-item" href="${ pageContext.request.contextPath}/counsel/viewPB">전문가 상담</a></li>
-            				<li><a class="nav-link btn-outline-primary rounded-pill px-3 dropdown-item" href="#">내 포트폴리오 관리</a></li>
+            				
           				</ul>
 					</li>
 					<li class="nav-item dropdown"><a class="nav-link btn-outline-primary rounded-pill px-3 dropdown-toggle"
 						href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">내 OneClub 관리</a>
 					 <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-            				<li><a class="nav-link btn-outline-primary rounded-pill px-3 dropdown-item" href="#">내 OneClub관리</a></li>
-            				<li><a class="nav-link btn-outline-primary rounded-pill px-3 dropdown-item" href="#">내 관심 종목관리</a></li>
-            				<li><a class="nav-link btn-outline-primary rounded-pill px-3 dropdown-item" href="#">전문가 상담결과</a></li>
+            				<li><a class="nav-link btn-outline-primary rounded-pill px-3 dropdown-item" href="${ pageContext.request.contextPath}/subscribe">내 OneClub관리</a></li>
+            				<li><a class="nav-link btn-outline-primary rounded-pill px-3 dropdown-item" href="${ pageContext.request.contextPath}/backtest/myportfolioList">내 포트폴리오 관리</a></li>
           				</ul>						
 						</li>
 					<li class="nav-item"><a
@@ -63,16 +63,16 @@ font-family: 'Hana', sans-serif;
 				</ul>
 			</div>
 			<div class="navbar align-self-center d-flex">
-
-				<a class="nav-link"
-					href="${ pageContext.request.contextPath}/member/registagree"
-					title='회원가입 하러가기'><i
-					class='bx bx-user-plus bx-sm bx-tada-hover text-primary'></i></a> <a
-					class="nav-link"
-					href="${ pageContext.request.contextPath}/member/login" title="로그인"><i
-					class='bx bx-user-circle bx-sm bx-tada-hover text-primary'></i></a>
-				<%-- <a class="nav-link" href="${ pageContext.request.contextPath}/member/login"><i class='bx bxs-user-circle bx-sm text-primary'></i></a> --%>
-				<%-- <a class="nav-link" href="${ pageContext.request.contextPath}/member/logOut"><i class='bx bx-log-out bx-sm text-primary'></i></a> --%>
+				<c:choose>
+					<c:when test="${not empty uesrVO }">
+						<a class="nav-link" href="${ pageContext.request.contextPath}/" title="내 정보"><i class='bx bx-user-circle bx-sm bx-tada-hover text-primary'>${userVO.userName} 님 환영합니다.</i></a>
+					</c:when>
+					<c:otherwise>
+					<a class="nav-link" href="${ pageContext.request.contextPath}/member/registagree" title='회원가입 하러가기'><i class='bx bx-user-plus bx-sm bx-tada-hover text-primary'></i></a> <a
+					class="nav-link" href="${ pageContext.request.contextPath}/member/login" title="로그인"><i class='bx bx-user-circle bx-sm bx-tada-hover text-primary'></i></a>
+					
+					</c:otherwise>
+				</c:choose>
 			</div>
 		</div>
 	</div>

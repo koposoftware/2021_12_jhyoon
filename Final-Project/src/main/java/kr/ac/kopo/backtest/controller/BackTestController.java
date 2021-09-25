@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -40,9 +41,10 @@ public class BackTestController {
 	//테스트 
 	@GetMapping("/backtest/result")
 	public ModelAndView backTestResult() {
-		int portNo = 104;
+		int portNo = 116;
 		//포트번호로 조건식 불러오기
 		BackTestCompoVO compVO = service.getPortCondi(portNo);
+		System.out.println("조건식 불러오기 : "+compVO);
 		//계좌정보 불러오기
 		List<BackTestResultAccVO> accList = service.getAccResult(compVO);
 		List<BackTestResultAccVO> accReverseList = service.getAccResverseResult(compVO);
@@ -55,6 +57,7 @@ public class BackTestController {
 		List<BackTestTransResultVO> transList = service.getTransResult(compVO);
 		// 종합 정보 불러오기
 		BackTestResultSetVO totalResult = service.getTotalResult(compVO);
+		System.out.println(totalResult);
 		//마지막 종목 불러오기 리스트
 		List<BackTestTransResultVO> lastStock = service.getLastStock(compVO); 
 		
@@ -101,7 +104,7 @@ public class BackTestController {
 		// backtest 정보 저장
 		service.insertCompo(compVO);
 		
-		// stored port no 
+		// ㄴㄷㅅ port no 
 		compVO = service.getPortNo(compVO);
 		service.getBacktestProcedure(compVO);
 		// backtest 프로시저 실행 후 결과값 가져오기(daily fluc data)
@@ -156,7 +159,19 @@ public class BackTestController {
 		service.editContent(compVO);
 	}
 	
+	@GetMapping("/backtest/delete/{portNum}")
+	public String deleteContent(@PathVariable int portNum) {
+		System.out.println(portNum);
+		service.deleteContent(portNum);
+		
+		return "redirect:/";
+	}
 	
+	@GetMapping("/backtest/myportfolioList")
+	public String portfolioList() {
+		
+		return "/backtest/portfolioList";
+	}
 	
 	
 	

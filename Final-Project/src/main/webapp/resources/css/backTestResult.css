@@ -35,7 +35,7 @@
 }
 
 .content-by-step {
-	width: 90%;
+	width: 1600px;
 	border: 1px solid #888;
 	margin: auto;
 	margin-bottom: 40px;
@@ -293,7 +293,6 @@ input[type=text].condi {
 .fullDetail_tabBox {
 	width: 100%;
 	overflow: hidden;
-	margin-top: 40px;
 }
 
 .fullDetail_tabBox ul {
@@ -436,7 +435,7 @@ em {
 }
 
 .portInfo_full {
-	width: 100%;
+	width: 60%;
 	background: #f5f7f9;
 	overflow: hidden;
 	padding: 12px 10px;
@@ -462,8 +461,10 @@ em {
 
 .box_ctrlBtns.type-2 .btn_popSide {
 	border-radius: 5px;
-	float: left;
-	margin-left: 5px;
+	width:140px;
+	margin:auto;
+	margin-top :5px;
+	cursor : pointer;
 }
 
 .box_ctrlBtns .btn_popSide {
@@ -784,4 +785,13 @@ vertical-align: middle;
 .chart_total2{
 		float:left;
 		margin-top:30px
+}
+.btn_modal{
+    outline: 0;
+    outline-style: none;
+    font-size: 15px;
+    width: 100px;
+    transition: 0.1s;
+    text-align: center;
+    height:36px;
 }

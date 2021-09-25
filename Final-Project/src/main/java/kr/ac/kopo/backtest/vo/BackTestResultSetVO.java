@@ -10,6 +10,7 @@ public class BackTestResultSetVO {
 	private double totalCagr;
 	private double avgDayFluc;
 	private double avgFluc;
+	private double winningRate;
 	public int getPortNum() {
 		return portNum;
 	}
@@ -64,12 +65,23 @@ public class BackTestResultSetVO {
 	public void setAvgFluc(double avgFluc) {
 		this.avgFluc = avgFluc;
 	}
+	
+	
+	public double getWinningRate() {
+		return winningRate;
+	}
+	public void setWinningRate(double winningRate) {
+		this.winningRate = winningRate;
+	}
 	@Override
 	public String toString() {
 		return "BackTestResultSetVO [portNum=" + portNum + ", userId=" + userId + ", startAsset=" + startAsset
 				+ ", finalBal=" + finalBal + ", earningRate=" + earningRate + ", profitLoss=" + profitLoss
-				+ ", totalCagr=" + totalCagr + ", avgDayFluc=" + avgDayFluc + ", avgFluc=" + avgFluc + "]";
+				+ ", totalCagr=" + totalCagr + ", avgDayFluc=" + avgDayFluc + ", avgFluc=" + avgFluc + ", winningRate="
+				+ winningRate + "]";
 	}
+
+	
 	
 	
 	

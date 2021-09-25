@@ -31,6 +31,7 @@
 	height: 400px;
 	width: 1600px;
 	margin: auto;
+
 }
 .subtitle_30px{
 	margin-top :30px;
@@ -41,7 +42,7 @@
     padding: 15px;
     border: 1px solid #ddd;
     height: 350px;
-    width: 512px;
+    width: 510px;
     float: left;
     margin-right: 15px;
 }
@@ -60,7 +61,7 @@
 
 .pb_explain{
     margin-top: 35px;
-    width: 180px;
+    width: 220px;
     height:200px;
     text-align: left;
     margin-left: 55px;
@@ -115,7 +116,11 @@ padding-left: 0;
 }
 .pb_desCribe{
 	color:#777;
-	font-size: 20px
+	font-size: 22px
+}
+.pb_sub{
+	font-family: 'HanaUL';
+	font-size: 18px;
 }
 </style>
 <script type="text/javascript">
@@ -156,7 +161,7 @@ padding-left: 0;
 					</ul>
 			</div>
 			<div class="row vertical-tab">
-				<div class="inner-tab bg-light">
+				<div class="inner-tab bg-light" style="	border-top: 1.5px solid #000;   border-bottom: 1px solid #ddd;">
 					<div class="col-md-4 pb_tab2">
 						<img class="team-member-img img-fluid rounded-circle"
 						
@@ -186,7 +191,6 @@ padding-left: 0;
 					<ul style="padding-left: 0;">
 						<li class="subtitle_30px bold">OneClub PB 소개</li>
 					</ul>
-				<div class="col-md-6" style="width: 50%"></div>
 			</div>
 			<div class="row vertical-tab">
 				<c:forEach items="${pbList}" var = "pb" varStatus="loop">
@@ -204,11 +208,11 @@ padding-left: 0;
 						<div class="fl col-md-4 pb_explain">
 						<ul>
 								<li><span class="pb_name pb_area">상담 분야</span></li>
-								<li>${pb.empField}</li>
+								<li class="pb_sub">${pb.empField}</li>
 							</ul>
 						<ul>
 							<li><span class="pb_name pb_area">업종</span></li>
-							<li>${pb.empSectors}</li>
+							<li class="pb_sub">${pb.empSectors}</li>
 						</ul>
 
 						</div>
@@ -224,7 +228,9 @@ padding-left: 0;
 
     <!-- End Banner Hero -->
 
-
+	<footer>
+		<jsp:include page="/WEB-INF/jsp/include/footer.jsp"></jsp:include>
+	</footer>
     <!-- Bootstrap -->
 
 

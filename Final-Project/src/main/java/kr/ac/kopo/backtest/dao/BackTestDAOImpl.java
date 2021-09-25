@@ -30,8 +30,7 @@ public class BackTestDAOImpl implements BackTestDAO {
 	@Override
 	public BackTestCompoVO getPortNo(BackTestCompoVO compVO) {
 		int portNum = sqlSessionTemplate.selectOne("getPortNum", compVO);
-		compVO.setPortNo(portNum);
-		System.out.println("port number :"+portNum);
+		compVO.setPortNum(portNum);
 		return compVO;
 	}
 	
@@ -54,7 +53,11 @@ public class BackTestDAOImpl implements BackTestDAO {
 	}
 	@Override
 	public BackTestCompoVO getPortCondi(int portNo) {
+		System.out.println("dao단 포트 : " + portNo);
 		BackTestCompoVO compVO = sqlSessionTemplate.selectOne("getPortCondi", portNo);
+		System.out.println("dao단 결과 : " + compVO);
+		
+		
 		return compVO;
 	}
 	@Override
@@ -74,9 +77,7 @@ public class BackTestDAOImpl implements BackTestDAO {
 	}
 	@Override
 	public BackTestResultSetVO getTotalResult(BackTestCompoVO compVO) {
-		System.out.println(compVO);
 		BackTestResultSetVO totalResult = sqlSessionTemplate.selectOne("totalResult", compVO);
-		System.out.println(totalResult);
 		return totalResult;
 	}
 	@Override
@@ -93,15 +94,21 @@ public class BackTestDAOImpl implements BackTestDAO {
 	public List<BackTestRecommendVO> getRecommendList(BackTestRecommendListVO setRecommendVO) {
 		sqlSessionTemplate.selectList("recommendList", setRecommendVO);
 		List<BackTestRecommendVO> recommendList = setRecommendVO.getRecommendList();
-		for (BackTestRecommendVO backTestRecommendVO : recommendList) {
-			System.out.println(backTestRecommendVO);
-		}
 		return recommendList;
 	}
 	@Override
 	public List<BackTestListVO> getBackTestList(MemberVO userVO) {
 		List<BackTestListVO> backTestList = sqlSessionTemplate.selectList("backTestList",userVO);
 		return backTestList;
+	}
+	@Override
+	public BackTestListVO getBackTest(MemberVO userVO, int portNum) {
+		BackTestListVO backTest = sqlSessionTemplate.selectOne("myBackTest", portNum);
+		return backTest;
+	}
+	@Override
+	public void deleteContent(int portNum) {
+		sqlSessionTemplate.delete("deletePort", portNum);
 	}
 
 	

@@ -11,6 +11,8 @@ public interface MemberService {
 	public int registIdCheck(String checkId);
 
 	public void updateBacktestCnt(MemberVO memberVO);
+
+	public void setMySubscribe(MemberVO userVO);
 	
 	
 }

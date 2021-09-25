@@ -8,7 +8,7 @@
 <head>
 <!-- Head 구성  -->
 
-<title></title>
+<title>내 백테스팅 결과</title>
 <jsp:include page="/WEB-INF/jsp/include/head.jsp"></jsp:include>
 <link href="${ pageContext.request.contextPath}/resources/css/backTestResult.css" rel="stylesheet">
 <script
@@ -67,16 +67,16 @@
 					function sendEditContent(v, data) {
 						if (v == 1) {
 							var title = $('#viewTitle').text()
+							
 							if (title != data) {
 								$('#viewTitle').text(data)
-								$
-										.ajax({
+								$.ajax({
 											'type' : 'POST',
-											'url' : "${ pageContext.request.contextPath }/backtest/edit",
+											'url' : "${pageContext.request.contextPath}/backtest/edit",
 											'data' : {
-												"portNum" : '${compo.portNum}',
-												"backTitle" : encodeURIComponent(data),
-												"backDescript" : '${compo.backDescript}'
+												"portNum" : ${compoVO.portNum},
+												"backTitle" : data,
+												"backDescript" : '${compoVO.backDescript}'
 											}
 										})
 							}
@@ -85,14 +85,13 @@
 							var title = $('#viewDesc').text()
 							if (title != data) {
 								$('#viewDesc').text(data)
-								$
-										.ajax({
+								$.ajax({
 											'type' : 'POST',
 											'url' : "${ pageContext.request.contextPath }/backtest/edit",
 											'data' : {
-												"portNum" : '${compo.portNum}',
-												"backTitle" : '${compo.backTitle}',
-												"backDescript" : encodeURIComponent(data)
+												"portNum" : ${compoVO.portNum},
+												"backTitle" : '${compoVO.backTitle}',
+												"backDescript" : data
 											}
 										})
 							}
@@ -148,16 +147,14 @@
 			<div class="content-by-step">
 				<input type="hidden" name="userId" value="${userVO.userId}"
 					disabled="disabled">
-				<style>
 
-</style>
 				<div id="selection3" style="display: block">
 					<div class="row vertical-tab">
-						<div class="col-md-8">
+						<div class="col-md-10">
 							<p class="fl portNum_large" id="PortID" style="margin-top: 4px">백테스트
 								리포트</p>
 							<p class="fl font_20px view_title" id="viewTitle"
-								style="margin-top: 4px; line-height: 40px; margin-left: 5px">${compoVO.backTitle}</p>
+								style="margin-top: 4px; line-height: 40px; margin-left: 30px;  width:450px">${compoVO.backTitle}</p>
 							<p class="fl portName_large view_title" id="pPortNameEdit">
 								<img
 									src="${pageContext.request.contextPath}/resources/img/icn_editPortname.png"
@@ -168,7 +165,7 @@
 								style="width: 44%; margin-left: 10px"
 								class="titleInput edit_title" value="${compoVO.backTitle}" />
 							<button class="btn_white edit_title edit_bnt" type="button"
-								onclick="editMode(false);sendEditContent(1,$('#editTitle').val())">수정</button>
+								onclick="sendEditContent(1,$('#editTitle').val());editMode(false);">수정</button>
 							<br>
 							<div class="fl portInfo_full view_desc" id="divPortDesc">
 								<p class="fl infotxt_13px66" id="viewDesc">${compoVO.backDescript}</p>
@@ -183,39 +180,65 @@
 								style="width: 80%; margin-left: 0px;"
 								class="titleInput edit_desc" value="${compoVO.backDescript}" />
 							<button class="btn_white edit_desc edit_bnt" type="button"
-								onclick="editDescMode(false);sendEditContent(2, $('#editDesc').val())">수정</button>
+								onclick="sendEditContent(2, $('#editDesc').val());editDescMode(false);">수정</button>
 
 
 
 
 
 						</div>
-						<div class="col-md-4">
+						<div class="col-md-2">
 							<div class="box_ctrlBtns type-2">
 								<ul>
 									<!-- 새포트만들기 -->
 									<li class="btn_popSide sidebg_new"
-										onclick="location.href='/GenPro/Port.aspx';"><img
+										onclick="location.href='${pageContext.request.contextPath}/backtest/compo';"><img
 										src="${pageContext.request.contextPath}/resources/img/icn_portNew_white.png"><span>새로 하기</span></li>
 									<!-- //새포트만들기 -->
 									<!-- 포트수정 -->
-									<li class="btn_popSide sidebg_modify" id="btnPortEdit" style="">
-										<img
-										src="${pageContext.request.contextPath}/resources/img/icn_portModify_white.png"><span>수정 하기
+									<li class="btn_popSide sidebg_modify" id="btnPortEdit" style=""
+									onclick="location.href='${pageContext.request.contextPath}/counsel/writeCounsel/${compoVO.portNum}';">
+										<img src="${pageContext.request.contextPath}/resources/img/icn_portModify_white.png"><span>상담 받기</span>
 									</li>
 									<!-- //포트수정 -->
 									<!-- 포트복사 : 새포트 버튼이 있을 경우 -->
-									<li class="btn_popSide sidebg_copy" id="btnPortCopy"><img
+									<li class="btn_popSide sidebg_copy" id="btnPortCopy"
+										><img
 										src="${pageContext.request.contextPath}/resources/img/icn_portCopy_white.png"><span>조건 복사</span></li>
 									<!-- //포트복사 -->
 									<!-- 포트삭제 -->
-									<li class="btn_popSide sidebg_del" id="btnPortDelete"><img
+									<li class="btn_popSide sidebg_del" id="btnPortDelete" data-bs-toggle="modal" data-bs-target="#deleteModal"><img
 										src="${pageContext.request.contextPath}/resources/img/icn_delete_white.png"><span>삭제 하기</span></li>
 									<!-- //포트삭제 -->
+									
+									
+									
+									
 								</ul>
 							</div>
 						</div>
 					</div>
+					<!-- Modal -->
+					<div class="modal fade" id="deleteModal" tabindex="-1"
+						aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalLabel">삭제 확인</h5>
+									<button type="button" class="btn-close" data-bs-dismiss="modal"
+										aria-label="Close"></button>
+								</div>
+								<div class="modal-body">내 포트폴리오를 삭제 하시겠습니까?</div>
+								<div class="modal-footer">
+									<button type="button" class="btn_white btn_modal" 
+										data-bs-dismiss="modal">닫기</button>
+									<button type="button" class="btn_hana btn_modal" 
+									onclick="location.href='${pageContext.request.contextPath}/backtest/delete/${compoVO.portNum}'">삭제하기</button>
+								</div>
+							</div>
+						</div>
+					</div>
+
 					<div class="fullDetail_tabBox">
 						<ul style="padding-left: 0px; margin-bottom: 0px;">
 							<li id="resultTabMenu0" class="on">종합결과</li>
@@ -239,7 +262,7 @@
                                           	<th style="border-top:1px solid #ddd"><span class="tblTotal">백테스트 신호등</span></th>
                                           <c:choose>
 		                                     <c:when test="${totalResult.earningRate gt 10 }">
-                                       	   <td class="total_td" style="background-color: #fff;"><span class="total_span" style="color:green">매우 양호</span><img class="img_total" src="${pageContext.request.contextPath}/resources/img/greenLight.png"></td>
+                                       	   <td class="total_td" style="background-color: #fff;"><span class="total_span" style="color:green">양호</span><img class="img_total" src="${pageContext.request.contextPath}/resources/img/greenLight.png"></td>
 		                                     </c:when>
 		                                     <c:when test="${totalResult.earningRate lt 0 }">
                                        	   <td class="total_td" style="background-color: #fff;"><span class="total_span" style="color:rgb(248, 56, 56);">위험</span><img class="img_total" src="${pageContext.request.contextPath}/resources/img/red-light.png"></td>
@@ -287,11 +310,11 @@
                                             	<c:otherwise>
                                             	 <tr class="th-align">
                                             	 <th><span class="tblTotal">종목 실현 손익금</span></th>
-                                            	<td class="taC" id="PortBTRTW1" style="text-align: right;"><span class="txt_plus tblTotal"><fmt:formatNumber value="${totalResult.finalBal}" pattern="#,###"/>원</span></td>
+                                            	<td class="taC" id="PortBTRTW1" style="text-align: right;"><span class="txt_plus tblTotal"><fmt:formatNumber value="${totalResult.profitLoss}" pattern="#,###"/>원</span></td>
                                             	</tr>
                                             	 <tr class="th-align">
                                             	 <th><span class="tblTotal">현재 총 자산</span></th>
-                                           	 	 <td class="taC" id="PortBTRTM1" style="text-align: right;"><span class="txt_plus tblTotal"><fmt:formatNumber value="${totalResult.profitLoss}" pattern="#,###"/>원</span></td>
+                                           	 	 <td class="taC" id="PortBTRTM1" style="text-align: right;"><span class="txt_plus tblTotal"><fmt:formatNumber value="${totalResult.finalBal}" pattern="#,###"/>원</span></td>
                                            	 	 </tr>
                                             	 <tr class="th-align" style="border-bottom: 1px solid #ddd;">
                                             	 <th><span class="tblTotal">일 평균 수익률</span></th>
@@ -667,7 +690,6 @@
                                 <table class="tbl_vertical">
                                     <colgroup>
                                         <col style="width: 11%">
-                                        <col>
                                         <col style="width: 11%">
                                         <col style="width: 11%">
                                         <col style="width: 8%">
@@ -1233,7 +1255,9 @@ $.each(dataSet, function(inx, obj) {
 	<footer>
 		<jsp:include page="/WEB-INF/jsp/include/footer.jsp"></jsp:include>
 	</footer>
-	
+
+<!-- Button trigger modal -->
+
 
 </body>
 </html>

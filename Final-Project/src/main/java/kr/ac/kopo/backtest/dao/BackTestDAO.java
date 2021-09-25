@@ -43,4 +43,8 @@ public interface BackTestDAO {
 
 	List<BackTestListVO> getBackTestList(MemberVO userVO);
 
+	BackTestListVO getBackTest(MemberVO userVO, int portNum);
+
+	void deleteContent(int portNum);
+
 }

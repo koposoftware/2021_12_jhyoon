@@ -35,6 +35,11 @@ public class MemberDAOImpl implements MemberDAO {
 		sqlSessionTemplate.update("updateBacktestCnt", memberVO);
 		
 	}
+
+	@Override
+	public void setMySubscribe(MemberVO userVO) {
+		sqlSessionTemplate.update("setMySubscribe",userVO);
+	}
 	
 	
 	

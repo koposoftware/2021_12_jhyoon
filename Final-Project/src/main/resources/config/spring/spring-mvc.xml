@@ -66,6 +66,6 @@
 	<ref bean="loginInterceptor"/>
 	</mvc:interceptor>
 	</mvc:interceptors>
-	
+
 	
 </beans>

@@ -19,7 +19,7 @@ ul, ol, dl, dd, dt, li {
 
 .area_content {
 	position: relative;
-	width: 90%;
+	width: 1600px;
 	margin: 0 auto;
 	padding-top: 40px;
 	padding-bottom: 150px;
@@ -30,7 +30,7 @@ ul, ol, dl, dd, dt, li {
 }
 
 .area_location {
-	width: 90%;
+	width: 1800px;
 	height: 70px;
 	background: #f5f7f9;
 	margin: 0 auto;
@@ -132,7 +132,7 @@ li {
 }
 
 .content-by-step {
-	width: 90%;
+	width: 1600px;
 	border: 1px solid #888;
 	margin: auto;
 	margin-bottom: 40px;

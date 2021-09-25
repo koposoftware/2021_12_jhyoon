@@ -54,6 +54,7 @@ public class BackTestServiceImpl implements BackTestService{
 	@Override
 	public BackTestCompoVO getPortCondi(int portNo) {
 		BackTestCompoVO compVO = backTestDAO.getPortCondi(portNo);
+		
 		return compVO;
 	}
 
@@ -102,5 +103,17 @@ public class BackTestServiceImpl implements BackTestService{
 	public List<BackTestListVO> getBackTestList(MemberVO userVO) {
 		List<BackTestListVO> backTestList = backTestDAO.getBackTestList(userVO);
 		return backTestList;
+	}
+
+	@Override
+	public BackTestListVO getBackTest(MemberVO userVO, int portNum) {
+		BackTestListVO backTest = backTestDAO.getBackTest(userVO, portNum);
+		return backTest;
+	}
+
+	@Override
+	public void deleteContent(int portNum) {
+		backTestDAO.deleteContent(portNum);
+		
 	}
 }

@@ -24,7 +24,7 @@ public interface BackTestService {
 
 	List<BackTestResultAccVO> getAccResult(BackTestCompoVO compVO);
 
-	BackTestCompoVO getPortCondi(int portNo);
+	BackTestCompoVO getPortCondi(int portNum);
 
 	List<BackTestResultFlucVO> getStockDayList(BackTestCompoVO compVO);
 
@@ -42,6 +42,9 @@ public interface BackTestService {
 	List<BackTestRecommendVO> getRecommendList(BackTestRecommendListVO setRecommendVO);
 
 	List<BackTestListVO> getBackTestList(MemberVO userVO);
+
+	BackTestListVO getBackTest(MemberVO userVO, int portNum);
+	void deleteContent(int portNum);
 
 
 	

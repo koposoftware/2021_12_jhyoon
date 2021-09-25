@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="backtest.backTestCompoVO">
 	<resultMap type="backTestCompoVO" id="compoMap">
-		<result column="port_no" property="portNum" />
+		<result column="port_num" property="portNum" />
 		<result column="backtest_cnt" property="backtestCnt" />
 		<result column="user_id" property="userId" />
 		<result column="back_title" property="backTitle" />
@@ -101,9 +101,10 @@
 		<result column="final_bal" property="finalBal" />
 		<result column="earning_rate" property="earningRate" />
 		<result column="profit_loss" property="profitLoss" />
-		<result column="total_cgcr" property="totalCagr" />
+		<result column="total_cagr" property="totalCagr" />
 		<result column="avg_dayfluc" property="avgDayFluc" />
 		<result column="avg_fluc" property="avgFluc" />
+		<result column="winning_rate" property="winningRate" />
 	</resultMap>
 	<resultMap type="backTestRecommendVO" id = "backTestRecommendMap">
 		<result column="port_num" property="portNum" />
@@ -121,18 +122,18 @@
 	
 	
 	<insert id="insertCompo" parameterType="backTestCompoVO">
-		INSERT INTO T_BACKPORT_CONDI(port_no, backtest_cnt, user_id, back_title, back_descript, back_start_asset, back_start_date , back_end_date, back_fee_rate,
+		INSERT INTO T_BACKPORT_CONDI(port_num, backtest_cnt, back_test_date, user_id, back_title, back_descript, back_start_asset, back_start_date , back_end_date, back_fee_rate,
 									back_slippage, back_tax_rate, back_stock_cnt, back_rebal_cycle,back_invest_rate ,back_Market,
 									back_Care, back_Manage,	back_Preferred,	back_Etf,back_CashFlow,	back_Profit ,back_Trans_Amt,back_Amt,back_Market_Cap,back_Cap,
 									back_Buy_Price,	back_Sell_Price,back_Min_PriceS,back_Min_PriceV,back_Min_Price,	back_Cap_UpDown,back_Cap_Rate,
 									back_pbr,back_per,back_psr,back_pcr,back_roa,back_roe,back_ros,back_ebitda,back_cfps) 
-    		   VALUES(seq_backtest_condi_port.NEXTVAL,#{backtestCnt}, #{userId},#{backTitle},#{backDescript},#{backStartAsset},#{backStartDate},#{backEndDate},#{backFeeRate},	#{backSlippage},
+    		   VALUES(seq_backtest_condi_port.NEXTVAL,#{backtestCnt},sysdate,#{userId},#{backTitle},#{backDescript},#{backStartAsset},#{backStartDate},#{backEndDate},#{backFeeRate},	#{backSlippage},
 					#{backTaxRate},	#{backStockCnt},#{backRebalCycle},#{backInvestRate},#{backMarket},#{backCare},#{backManage},#{backPreferred},#{backEtf},
 					#{backCashFlow},#{backProfit},#{backTransAmt},#{backAmt},#{backMarketCap},#{backCap},#{backBuyPrice},#{backSellPrice},	#{backMinPriceS},
 					#{backMinPriceV},#{backMinPrice},#{backCapUpDown},#{backCapRate},#{backPBR},#{backPER},#{backPSR},#{backPCR},#{backROA},#{backROE},#{backROS},#{backEBITDA},#{backCFPS})	
 	</insert>
 	<select id="getPortNum" parameterType="backTestCompoVO" resultType="int">
-		select port_no from t_backport_condi where user_id = #{userId} and backtest_cnt = #{backtestCnt}
+		select port_num from t_backport_condi where user_id = #{userId} and backtest_cnt = #{backtestCnt}
 	</select>
 
 	<select id="backtestProcedure" statementType="CALLABLE" parameterType="backTestResultSetVO" >
@@ -159,7 +160,7 @@
 		from t_back_result where port_num = #{portNum} and user_id=#{userId} order by back_no desc
 	</select>
 	<select id = "getPortCondi" parameterType="int" resultMap="compoMap">
-		select * from T_BACKPORT_CONDI where port_no = #{portNo}
+		select * from T_BACKPORT_CONDI where port_num = #{portNum}
 	</select>
 	<select id = "stockDayList" parameterType="backTestCompoVO" resultMap="backTestResultFlucMap">
 		select back_no, port_num, user_id, to_char(stock_date,'YYYY-MM-DD') as stock_date, stock_fluc, stock_day_fluc, kospi_fluc, kospi_day_fluc,
@@ -167,7 +168,7 @@
 	</select>
 	
 	<update id="editContent" parameterType="backTestCompoVO">
-		update t_backport_condi set back_title = #{backTitle}, back_descript=#{backDescript}  where user_id = #{userId} and port_no = #{portNum}
+		update t_backport_condi set back_title = #{backTitle}, back_descript=#{backDescript}  where port_num = #{portNum}
 
 	</update>
 <!-- 월별 누적수익률 / 월평균 수익률 -->
@@ -177,13 +178,8 @@
 	</select>
 
 	<select id="totalResult" parameterType="backTestCompoVO" resultMap="backTestResultSetMap">
-		select start_asset,final_bal,earning_rate, (final_bal-start_asset) as profit_loss,round(Power(final_bal/start_asset,(1/year)),3)-1 as total_cagr, avg_dayfluc, avg_fluc  
-		from (
-		select max(total_bal) KEEP(DENSE_RANK FIRST ORDER BY back_date) as start_asset, max(total_bal) KEEP(DENSE_RANK FIRST ORDER BY back_date DESC) as final_bal,  max(EARNING_RATE) KEEP(DENSE_RANK FIRST ORDER BY back_date DESC) as earning_rate,   
-		round((max(back_date)-min(back_date))/365,2) as year
-		from t_back_result where port_num = #{portNum} and user_id = #{userId} ) a , 
-		(select round(avg(stock_day_fluc),2) as avg_dayfluc, round(avg(stock_fluc),2) as avg_fluc 
-		from t_yield where port_num = #{portNum} group by port_num) b
+		select * from t_total_result where port_num = #{portNum}
+
 		</select>
 
 
@@ -203,10 +199,18 @@ select user_id, stock_name, stock_code, to_char(back_date,'yyyy-mm-dd') back_dat
 	</select>
 	<select id ="backTestList" parameterType="memberVO" resultMap="backTestListMap">
 		select r.port_num as port_num, back_title, back_date, earning_rate 
-		from t_back_result r, t_backport_condi c where c.port_no = r.port_num 
-		and (port_num, back_date) in (select  port_num, max(back_date) from t_back_result where user_id = #{userId}  group by port_num)
-	
+		from t_back_result r, t_backport_condi c where c.port_num = r.port_num 
+		and (r.port_num, back_date) in (select  port_num, max(back_date) from t_back_result where user_id = #{userId}  group by port_num) order by back_date
 	</select>
+
+	<select id="myBackTest" parameterType="int" resultMap="backTestListMap">
+	select r.port_num as port_num, back_title, back_date, earning_rate 
+		from t_back_result r, t_backport_condi c where c.port_num = r.port_num 
+		and (port_num, back_date) in (select port_num, max(back_date) from t_back_result where port_num = #{portNum} group by port_num) order by r.port_num;
+	</select>
+	<delete id="deletePort" parameterType="int">
+		delete t_backport_condi where port_num = #{portNum}
+	</delete>
 
 
 </mapper>

@@ -36,7 +36,11 @@
 
 	<update id="updateBacktestCnt" parameterType="memberVO">
 	 	update user_table set BACKTEST_CNT = #{backtestCnt} where user_id=#{userId} 
-</update>
+	</update>
+	
+	<update id="setMySubscribe" parameterType="memberVO">
+		update user_table set subscribe_grade = #{subscribeGrade}, subscribe_date = sysdate where user_id=#{userId}
+	</update>
 
 
 </mapper>
