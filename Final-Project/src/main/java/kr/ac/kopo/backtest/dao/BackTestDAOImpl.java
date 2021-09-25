@@ -1,10 +1,14 @@
 package kr.ac.kopo.backtest.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import com.google.gson.Gson;
 
 import kr.ac.kopo.backtest.vo.BackTestCompoVO;
 import kr.ac.kopo.backtest.vo.BackTestListVO;
@@ -13,6 +17,7 @@ import kr.ac.kopo.backtest.vo.BackTestRecommendVO;
 import kr.ac.kopo.backtest.vo.BackTestResultAccVO;
 import kr.ac.kopo.backtest.vo.BackTestResultFlucVO;
 import kr.ac.kopo.backtest.vo.BackTestResultSetVO;
+import kr.ac.kopo.backtest.vo.BackTestTotalResultVO;
 import kr.ac.kopo.backtest.vo.BackTestTransResultVO;
 import kr.ac.kopo.member.vo.MemberVO;
 
@@ -110,6 +115,27 @@ public class BackTestDAOImpl implements BackTestDAO {
 	public void deleteContent(int portNum) {
 		sqlSessionTemplate.delete("deletePort", portNum);
 	}
+	@Override
+	public List<BackTestCompoVO> getBackTestCompoList(MemberVO userVO) {
+		List<BackTestCompoVO> compoList = sqlSessionTemplate.selectList("condiList", userVO);
+		return compoList;
+	}
+	@Override
+	public List<BackTestTotalResultVO> getResultList(MemberVO userVO) {
+		List<BackTestTotalResultVO> resultList = sqlSessionTemplate.selectList("resultList", userVO);
+		return resultList;
+	}
 
+	public Map<Integer, String> getAccTotalList(MemberVO userVO){
+		userVO.setUserId("dhfkdlxm");
+		List<Integer> portNumList = sqlSessionTemplate.selectList("portNumList", userVO);
+		Map<Integer, String> getAccTotal = new HashMap<Integer, String>();
+		Gson gson = new Gson();
+		for (Integer portNum : portNumList) {
+			System.out.println(portNum);
+			getAccTotal.put(portNum, gson.toJson(sqlSessionTemplate.selectList("getAccTotalList", portNum)));
+		}
+		return getAccTotal;
+	}
 	
 }

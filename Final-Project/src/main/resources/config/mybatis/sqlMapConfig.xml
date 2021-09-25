@@ -17,7 +17,7 @@
 	<typeAlias type="kr.ac.kopo.backtest.vo.BackTestRecommendListVO" alias="backTestRecommendListVO"/>
 	<typeAlias type="kr.ac.kopo.backtest.vo.BackTestListVO" alias="backTestListVO"/>
 	<typeAlias type="kr.ac.kopo.member.vo.OneClubPBVO" alias="oneClubPBVO"/>
-	 
+	<typeAlias type="kr.ac.kopo.backtest.vo.BackTestTotalResultVO" alias="backTestTotalResultVO"/>
 </typeAliases> 
 
 </configuration>

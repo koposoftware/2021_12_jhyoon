@@ -9,6 +9,7 @@
 		<result column="user_id" property="userId" />
 		<result column="back_title" property="backTitle" />
 		<result column="back_descript" property="backDescript" />
+		<result column="back_test_date" property="backtestDate" />
 		<result column="back_start_asset" property="backStartAsset" />
 		<result column="back_start_date" property="backStartDate" />
 		<result column="back_end_date" property="backEndDate" />
@@ -119,6 +120,10 @@
 		<result column="earning_rate" property="earningRate" />
 		<result column="back_date" property="backDate" />
 	</resultMap>
+	<resultMap type="BackTestTotalResultVO" id="BackTestTotalResultMap">
+		<collection property="backTestCompoVO" resultMap="compoMap"></collection>
+		<collection property="backTestResultSetVO" resultMap="backTestResultSetMap"></collection>
+	</resultMap>
 	
 	
 	<insert id="insertCompo" parameterType="backTestCompoVO">
@@ -206,11 +211,25 @@ select user_id, stock_name, stock_code, to_char(back_date,'yyyy-mm-dd') back_dat
 	<select id="myBackTest" parameterType="int" resultMap="backTestListMap">
 	select r.port_num as port_num, back_title, back_date, earning_rate 
 		from t_back_result r, t_backport_condi c where c.port_num = r.port_num 
-		and (port_num, back_date) in (select port_num, max(back_date) from t_back_result where port_num = #{portNum} group by port_num) order by r.port_num;
+		and (port_num, back_date) in (select port_num, max(back_date) from t_back_result where port_num = #{portNum} group by port_num) order by r.port_num
 	</select>
 	<delete id="deletePort" parameterType="int">
 		delete t_backport_condi where port_num = #{portNum}
 	</delete>
 
 
+	
+	<select id = "resultList" parameterType = "memberVO" resultMap="BackTestTotalResultMap">
+		select  c.port_num, to_char(c.back_test_date,'YY-MM-DD') as back_test_date,c.back_title,c.backtest_cnt,c.back_start_asset, to_char(c.back_start_date,'YY-MM-DD') as back_start_date, to_char(c.back_end_date,'YY-MM-DD') as back_end_date, 
+		trunc((c.back_end_date-c.back_start_date)/30) as back_stock_cnt, r.earning_rate ,r.winning_rate from t_backport_condi c,
+		 t_total_result r where c.user_id=#{userId} and c.port_num = r.port_num order by c.port_num
+	
+	</select>
+	<select id="portNumList" parameterType="memberVO" resultType="int">
+		select port_num from t_backport_condi where user_id = #{userId} order by port_num
+	</select>
+	<select id="getAccTotalList" parameterType="int" resultMap="backTestResultAccMap">
+		select port_num, user_id, to_char(back_date,'YYYY-MM-DD') as back_date,  earning_rate	 
+		from t_back_result where port_num = #{portNum} order by back_no, back_date
+	</select>
 </mapper>

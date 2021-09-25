@@ -39,14 +39,70 @@ height:1000px;
 
 }
 </style>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <!-- Resources -->
-<script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+<!-- <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
 <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
-<script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js"></script>
 </head>
 <body>
-  <script>
+<script type="text/javascript">
+
+(function ($) {
+    "use strict";
+	var chartLabels = [];
+	var earningRate = [];
+
+	var dataSet = ${accList}
+	
+	$.each(dataSet, function(inx, obj) {
+		chartLabels.push(obj.backDate);
+		earningRate.push(obj.earningRate);
+	});
+	console.log(earningRate)
+ var ctx = document.getElementById("linechart");
+    var linechart = new Chart(ctx, {
+        type: 'line',
+        data: {
+           labels: ['1','3','5','7','9'],
+           datasets: [{
+              label: '총 보유 비상금',
+              data: [1,2,3,4,5],
+              fill: true,
+              backgroundColor :'#78d0d085',
+               borderColor: 'rgb(75, 192, 192)',
+               tension: 0.1,
+              borderWidth: 4
+           }]
+        },
+        options: {
+           scales: {
+              yAxes: [{
+                 ticks: {
+                    beginAtZero:true,
+                    fontSize: 18,
+                 }
+              }],
+              xAxes:[{
+                   ticks:{
+                   fontColor:'black',
+                   fontSize: 18,
+                  }
+                 }]
+           }
+        }
+     })
+     
+     
+  })(jQuery);
+</script>
+
+
+
+<canvas id="Chart"></canvas>
+
+
+<!--   <script>
 am4core.ready(function() {
 
 // Themes begin
@@ -166,9 +222,8 @@ dateAxis.renderer.grid.template.strokeOpacity = 0.07;
 valueAxis.renderer.grid.template.strokeOpacity = 0.07;
 
 }); // end am4core.ready()
-</script>
+</script> -->
 
 <!-- HTML -->
-<div id="chartdiv"></div>
 </body>
 </html>

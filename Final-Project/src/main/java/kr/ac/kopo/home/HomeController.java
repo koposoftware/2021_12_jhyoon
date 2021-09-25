@@ -25,9 +25,11 @@ public class HomeController {
 	public String home() {
 		return "index";
 	}
+	
+	
 	@RequestMapping("/test")
 	public ModelAndView test() {
-		int portNo = 83;
+		int portNo = 128;
 		BackTestCompoVO compVO = service.getPortCondi(portNo);
 		
 		List<BackTestResultAccVO> accList = service.getAccResult(compVO);

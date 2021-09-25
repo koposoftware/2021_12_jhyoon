@@ -1,6 +1,7 @@
 package kr.ac.kopo.backtest.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,7 @@ import kr.ac.kopo.backtest.vo.BackTestRecommendVO;
 import kr.ac.kopo.backtest.vo.BackTestResultAccVO;
 import kr.ac.kopo.backtest.vo.BackTestResultFlucVO;
 import kr.ac.kopo.backtest.vo.BackTestResultSetVO;
+import kr.ac.kopo.backtest.vo.BackTestTotalResultVO;
 import kr.ac.kopo.backtest.vo.BackTestTransResultVO;
 import kr.ac.kopo.member.vo.MemberVO;
 
@@ -115,5 +117,23 @@ public class BackTestServiceImpl implements BackTestService{
 	public void deleteContent(int portNum) {
 		backTestDAO.deleteContent(portNum);
 		
+	}
+
+	@Override
+	public List<BackTestCompoVO> getBackTestCompoList(MemberVO userVO) {
+		 List<BackTestCompoVO> backTestCompoList = backTestDAO.getBackTestCompoList(userVO);
+		return backTestCompoList;
+	}
+
+	@Override
+	public List<BackTestTotalResultVO> getResultList(MemberVO userVO) {
+		List<BackTestTotalResultVO> resultList = backTestDAO.getResultList(userVO);
+		return resultList;
+	}
+
+	@Override
+	public Map<Integer, String> getAccTotalList(MemberVO userVO) {
+		Map<Integer, String> getAccTotal = backTestDAO.getAccTotalList(userVO);
+		return getAccTotal;
 	}
 }

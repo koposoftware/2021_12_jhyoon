@@ -221,7 +221,7 @@ a.btn2, .btn2 {
 
 .port_list {
 	margin-top: 50px;
-	height: 1000px;
+	height: 450px;
 }
 
 .card-condi {
@@ -239,10 +239,11 @@ a.btn2, .btn2 {
 }
 
 .card-inner:hover {
-	-webkit-transform: scale(1.2);
-	-moz-transform: scale(1.2);
-	-ms-transform: scale(1.2);
-	-o-transform: scale(1.2);
+ transform: scale(1.2);
+  -webkit-transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  -o-transform: scale(1.2);
 }
 
 .portDate_large {
@@ -251,7 +252,7 @@ a.btn2, .btn2 {
 	font-family: 'Hana';
 	font-size: 15px;
 	border-radius: 3px;
-	padding: 5px;
+	  padding: 5px 10px;
 }
 
 .portNum_small {
@@ -295,13 +296,34 @@ a.btn2, .btn2 {
 
 .main_tbl {
 	font-size: 40px;
-	font-weight: 600;
+
 }
 
 .small_chart {
-	border: 1px solid #ddd;
 	height: 158px;
 }
+
+.small_chart2 {
+	weight: 169px;
+	height: 75px;''
+}
+
+.posi_t{
+	margin-top : -100px;
+		font-size: 25px;
+	font-weight: 600;
+}
+.graph_tab{
+    width: 100%;
+    height: 230px;
+    border: 1px solid #ddd;
+}
+.small_des2{
+	margin-top:10px;
+	font-size: 18px;
+	color: #888;
+}
+
 </style>
 
 </head>
@@ -370,99 +392,176 @@ a.btn2, .btn2 {
 					<button class="btn_hana search" onclick="searchCondi()">검색</button>
 				</div>
 			</div>
-			<div class="vertical-tab port_list">
+			
+			<c:forEach items="${totalList}" var="list" varStatus="loop">
+				<c:if test="${loop.count%4 eq 1}"><div class="vertical-tab port_list"></c:if>
 				<div class="col-md-3 card-condi">
 					<div class="card-inner">
-						<p class="fl portDate_large">2021-09-25</p>
-						<p class="rl portNum_small">no. 53</p>
-						<p class="port_title">포트폴리오 제목입니다.</p>
+						<p class="fl portDate_large">${list.backTestCompoVO.backtestDate}</p>
+						<p class="rl portNum_small">no. ${list.backTestCompoVO.portNum}</p>
+						<p class="port_title">${list.backTestCompoVO.backTitle}</p>
 						<div class="small_des">
-							<span>백테스트 기간 : 2020-01-01~2021-09-25(21개월)</span>
+							<span>백테스트 기간 : ${list.backTestCompoVO.backStartDate}~${list.backTestCompoVO.backEndDate}(${list.backTestCompoVO.backStockCnt}개월)</span>
 						</div>
+						<div  class="graph_tab">
 						<div class="col-md-6 small_result">
 							<p class="port_result">수익률</p>
+							<div class="small_chart2">								
 							<c:choose>
-								<c:when test="${30 lt 0 }">
-									<span class="txt_minus main_tbl">-30%%</span>
-								</c:when>
-								<c:otherwise>
-									<span class="txt_plus main_tbl">30%</span>
-								</c:otherwise>
-							</c:choose>
+									<c:when test="${list.backTestResultSetVO.earningRate lt 0 }">
+										<div class="txt_minus main_tbl">${list.backTestResultSetVO.earningRate}%%</div>
+									</c:when>
+									<c:otherwise>
+										<div class="txt_plus main_tbl">${list.backTestResultSetVO.earningRate}%</div>
+									</c:otherwise>
+								</c:choose>
+								<canvas id="g${list.backTestCompoVO.portNum}"></canvas>
+
+							</div>
 						</div>
 						<div class="col-md-6 small_result">
 							<p class="port_result">승률</p>
 							<div class="small_chart">
-								<canvas id="Chart5"></canvas>
-
+								<canvas id="${list.backTestCompoVO.portNum}"></canvas>
+								<div class="posi_t">${list.backTestResultSetVO.winningRate}%</div>
 							</div>
 						</div>
+						</div>
+					<div class="small_des2">
+						<input type="checkbox" value="portNum"><span style="margin-left:8px;">다른
+							포트폴리오와 비교</span>
 					</div>
+					</div>
+	
 				</div>
-
-				<script type="text/javascript">
-			 
-				const data = {
-						  labels: ['Winning', 'Lose'],
-						  datasets: [
-						    {
-						      label: 'Dataset 1',
-						      data: [45, 50],
-						      backgroundColor:[
-						    	  '#ffc107',
-						    	  '#ddd',
-						      ],
-						    }
-						  ]
-						};
-				const config = {
-						  type: 'doughnut',
-						  data: data,
-						  options: {
-							maintainAspectRatio : false,
-						    plugins: {
-						      legend: {
-						    	display:false
-						      },
-						      title: {
-						        display: false
-						      }
-						    },
-						    elements: {
-						        center: {
-						          text: '45',
-						          color: '#FF6384', // Default is #000000
-						          fontStyle: 'Arial', // Default is Arial
-						          sidePadding: 20, // Default is 20 (as a percentage)
-						          minFontSize: 25, // Default is 20 (in px), set to false and text will not wrap.
-						          lineHeight: 25 // Default is 25 (in px), used for when text wraps
-						        }
-						      }
-						  },
-						};
-				var myChart = new Chart(document.getElementById('Chart5'),config);
-				
-				
-				</script>
-
-
-				<div class="col-md-3 card-condi">
-					<div class="card-inner"></div>
-
-				</div>
-				<div class="col-md-3 card-condi">
-
-					<div class="card-inner"></div>
-				</div>
-				<div class="col-md-3 card-condi">
-					<div class="card-inner"></div>
-				</div>
-			</div>
+			<c:if test="${loop.count%4 eq 0}"></div></c:if>
+			</c:forEach>
 		</div>
 	</section>
+	
+		
+	
+	
+	
 	<footer>
 		<jsp:include page="/WEB-INF/jsp/include/footer.jsp"></jsp:include>
 	</footer>
+	<script type="text/javascript">
+	<c:forEach items="${getAccTotal}" var="list" varStatus="loop">
+			 	var chartLabels = [];
+				var earningRate = [];
 
+				var dataSet = ${list.value}
+				$.each(dataSet, function(inx, obj) {
+					chartLabels.push(obj.backDate);
+					earningRate.push(obj.earningRate);
+				});
+				
+				
+					var config${loop.count} = {
+						type : 'line',
+						data : {
+							labels : chartLabels,
+							datasets : [ {
+								label : "수익률",
+								borderColor : '#00c292',
+								borderWidth : 2,
+								radius : 0,
+								data : earningRate
+							} ]
+						},
+						options : {
+							interaction : {
+								intersect : false
+							},
+							plugins : {
+								legend:false
+							},
+							legend : {
+								display : false,
+								position : 'bottom',
+								labels : {
+									fontSize : 32
+								}
+							},
+							scales : {
+								xAxes : [ {
+									type : 'time',
+									time : {
+										unit : 'year'
+									},
+									display : false,
+									scaleLabel : {
+										display : false,
+										labelString : '(년월)',
+										fontColor : '#999'
+									},
+									ticks :{
+										display:false
+									}
+								} ],
+								yAxes : [ {
+									display : false,
+									scaleLabel : {
+										display : false,
+										labelString : '(%)',
+										fontColor : '#999'
+									},
+									ticks :{
+										display:false
+									}
+								} ]
+							}
+						}
+					}; 
+					
+					
+					
+				var Chart${loop.count} = new Chart(document.getElementById('g${list.key}'),config${loop.count});
+				</c:forEach>
+				</script>
+<script type="text/javascript">
+<c:forEach items="${totalList}" var="list" varStatus="loop">
+	var data = {
+			  labels: ['Winning', 'Lose'],
+			  datasets: [
+			    {
+			      label: 'Dataset 1',
+			      data: [${list.backTestResultSetVO.winningRate}, ${100-list.backTestResultSetVO.winningRate}],
+			      backgroundColor:[
+			    	  '#ffc107',
+			    	  '#ddd',
+			      ],
+			    }
+			  ]
+			};
+	var myconfig${loop.count} = {
+			  type: 'doughnut',
+			  data: data,
+			  options: {
+				maintainAspectRatio : false,
+			    plugins: {
+			      legend: {
+			    	display:false
+			      },
+			      title: {
+			        display: false
+			      }
+			    },
+			    elements: {
+			        center: {
+			          text: '45',
+			          color: '#FF6384', // Default is #000000
+			          fontStyle: 'Arial', // Default is Arial
+			          sidePadding: 20, // Default is 20 (as a percentage)
+			          minFontSize: 25, // Default is 20 (in px), set to false and text will not wrap.
+			          lineHeight: 25 // Default is 25 (in px), used for when text wraps
+			        }
+			      }
+			  },
+			};
+	var myChart${loop.count} = new Chart(document.getElementById('${list.backTestCompoVO.portNum}'),myconfig${loop.count});
+	</c:forEach>
+</script>
 </body>
 </html>

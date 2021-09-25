@@ -1,6 +1,7 @@
 package kr.ac.kopo.backtest.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import kr.ac.kopo.backtest.vo.BackTestCompoVO;
 import kr.ac.kopo.backtest.vo.BackTestListVO;
@@ -9,6 +10,7 @@ import kr.ac.kopo.backtest.vo.BackTestRecommendVO;
 import kr.ac.kopo.backtest.vo.BackTestResultAccVO;
 import kr.ac.kopo.backtest.vo.BackTestResultFlucVO;
 import kr.ac.kopo.backtest.vo.BackTestResultSetVO;
+import kr.ac.kopo.backtest.vo.BackTestTotalResultVO;
 import kr.ac.kopo.backtest.vo.BackTestTransResultVO;
 import kr.ac.kopo.member.vo.MemberVO;
 
@@ -46,5 +48,12 @@ public interface BackTestDAO {
 	BackTestListVO getBackTest(MemberVO userVO, int portNum);
 
 	void deleteContent(int portNum);
+
+	List<BackTestCompoVO> getBackTestCompoList(MemberVO userVO);
+
+	List<BackTestTotalResultVO> getResultList(MemberVO userVO);
+	
+	Map<Integer, String> getAccTotalList(MemberVO userVO);
+
 
 }

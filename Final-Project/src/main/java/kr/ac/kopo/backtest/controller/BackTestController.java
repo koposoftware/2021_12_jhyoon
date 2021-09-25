@@ -1,6 +1,7 @@
 package kr.ac.kopo.backtest.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -21,6 +22,7 @@ import kr.ac.kopo.backtest.vo.BackTestRecommendVO;
 import kr.ac.kopo.backtest.vo.BackTestResultAccVO;
 import kr.ac.kopo.backtest.vo.BackTestResultFlucVO;
 import kr.ac.kopo.backtest.vo.BackTestResultSetVO;
+import kr.ac.kopo.backtest.vo.BackTestTotalResultVO;
 import kr.ac.kopo.backtest.vo.BackTestTransResultVO;
 import kr.ac.kopo.member.service.MemberService;
 import kr.ac.kopo.member.vo.MemberVO;
@@ -168,9 +170,15 @@ public class BackTestController {
 	}
 	
 	@GetMapping("/backtest/myportfolioList")
-	public String portfolioList() {
+	public ModelAndView portfolioList(HttpSession session) {
+		MemberVO userVO = (MemberVO)session.getAttribute("userVO");
 		
-		return "/backtest/portfolioList";
+		List<BackTestTotalResultVO> totalList = service.getResultList(userVO);
+		Map<Integer, String> getAccTotal = service.getAccTotalList(userVO);
+		ModelAndView mav = new ModelAndView( "/backtest/portfolioList");
+		mav.addObject("totalList", totalList);
+		mav.addObject("getAccTotal", getAccTotal);
+		return mav;
 	}
 	
 	
