@@ -39,52 +39,7 @@ public class BackTestController {
 	public String backTestComp() {
 		return "/backtest/compo";
 	}
-	
-	//테스트 
-	@GetMapping("/backtest/result")
-	public ModelAndView backTestResult() {
-		int portNo = 116;
-		//포트번호로 조건식 불러오기
-		BackTestCompoVO compVO = service.getPortCondi(portNo);
-		System.out.println("조건식 불러오기 : "+compVO);
-		//계좌정보 불러오기
-		List<BackTestResultAccVO> accList = service.getAccResult(compVO);
-		List<BackTestResultAccVO> accReverseList = service.getAccResverseResult(compVO);
-		//일별 List불러오기
-		List<BackTestResultFlucVO> stockDayList = service.getStockDayList(compVO);
-		
-		// backtest 월 누적 수익률 / 월 평균 수익률
-		List<BackTestResultFlucVO> stockAVGList = service.getStockAVGList(compVO);
-		// 거래내역 결과 불러오기
-		List<BackTestTransResultVO> transList = service.getTransResult(compVO);
-		// 종합 정보 불러오기
-		BackTestResultSetVO totalResult = service.getTotalResult(compVO);
-		System.out.println(totalResult);
-		//마지막 종목 불러오기 리스트
-		List<BackTestTransResultVO> lastStock = service.getLastStock(compVO); 
-		
-		BackTestRecommendListVO setRecommendVO = new BackTestRecommendListVO();
-		setRecommendVO.setPortNum(compVO.getPortNum());
-		setRecommendVO.setUserId(compVO.getUserId());
-		setRecommendVO.setStockCnt(28);
-		List<BackTestRecommendVO> recommendList = service.getRecommendList(setRecommendVO);
-		
-		
-		Gson gson = new Gson();
-		ModelAndView mav = new ModelAndView("/backtest/result");
-		mav.addObject("compoVO", compVO);
-		mav.addObject("lastStockList", lastStock);
-		mav.addObject("accTotal", accList);
-		mav.addObject("accReverseTotal", accReverseList);
-		mav.addObject("totalResult", totalResult);
-		mav.addObject("accList", gson.toJson(accList));
-		mav.addObject("stockDayList", gson.toJson(stockDayList));
-		mav.addObject("stockAVGList", gson.toJson(stockAVGList));
-		mav.addObject("transList", gson.toJson(transList));
-		mav.addObject("transList2", transList);
-		mav.addObject("recommendList", recommendList);
-		return mav;
-	}
+
 	
 	@PostMapping("/backtest/compo")
 	public ModelAndView backTestResult(BackTestCompoVO compVO, HttpSession session) {
@@ -180,7 +135,51 @@ public class BackTestController {
 		mav.addObject("getAccTotal", getAccTotal);
 		return mav;
 	}
-	
+	//테스트 
+		@GetMapping("/backtest/result/{portNum}")
+		public ModelAndView backTestResult(@PathVariable int portNum) {
+			int portNo = portNum;
+			//포트번호로 조건식 불러오기
+			BackTestCompoVO compVO = service.getPortCondi(portNo);
+			System.out.println("조건식 불러오기 : "+compVO);
+			//계좌정보 불러오기
+			List<BackTestResultAccVO> accList = service.getAccResult(compVO);
+			List<BackTestResultAccVO> accReverseList = service.getAccResverseResult(compVO);
+			//일별 List불러오기
+			List<BackTestResultFlucVO> stockDayList = service.getStockDayList(compVO);
+			
+			// backtest 월 누적 수익률 / 월 평균 수익률
+			List<BackTestResultFlucVO> stockAVGList = service.getStockAVGList(compVO);
+			// 거래내역 결과 불러오기
+			List<BackTestTransResultVO> transList = service.getTransResult(compVO);
+			// 종합 정보 불러오기
+			BackTestResultSetVO totalResult = service.getTotalResult(compVO);
+			System.out.println(totalResult);
+			//마지막 종목 불러오기 리스트
+			List<BackTestTransResultVO> lastStock = service.getLastStock(compVO); 
+			
+			BackTestRecommendListVO setRecommendVO = new BackTestRecommendListVO();
+			setRecommendVO.setPortNum(compVO.getPortNum());
+			setRecommendVO.setUserId(compVO.getUserId());
+			setRecommendVO.setStockCnt(28);
+			List<BackTestRecommendVO> recommendList = service.getRecommendList(setRecommendVO);
+			
+			
+			Gson gson = new Gson();
+			ModelAndView mav = new ModelAndView("/backtest/selectedResult");
+			mav.addObject("compoVO", compVO);
+			mav.addObject("lastStockList", lastStock);
+			mav.addObject("accTotal", accList);
+			mav.addObject("accReverseTotal", accReverseList);
+			mav.addObject("totalResult", totalResult);
+			mav.addObject("accList", gson.toJson(accList));
+			mav.addObject("stockDayList", gson.toJson(stockDayList));
+			mav.addObject("stockAVGList", gson.toJson(stockAVGList));
+			mav.addObject("transList", gson.toJson(transList));
+			mav.addObject("transList2", transList);
+			mav.addObject("recommendList", recommendList);
+			return mav;
+		}
 	
 	
 }

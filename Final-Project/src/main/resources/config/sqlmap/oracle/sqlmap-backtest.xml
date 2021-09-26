@@ -165,7 +165,11 @@
 		from t_back_result where port_num = #{portNum} and user_id=#{userId} order by back_no desc
 	</select>
 	<select id = "getPortCondi" parameterType="int" resultMap="compoMap">
-		select * from T_BACKPORT_CONDI where port_num = #{portNum}
+		select port_num, backtest_cnt, to_char(back_test_date,'YY-MM-DD') as back_test_date, user_id, back_title, back_descript, back_start_asset, to_char(back_start_date,'YY-MM-DD') as back_start_date, to_char(back_end_date,'YY-MM-DD') as back_end_date , back_fee_rate,
+									back_slippage, back_tax_rate, back_stock_cnt, back_rebal_cycle,back_invest_rate ,back_Market,
+									back_Care, back_Manage,	back_Preferred,	back_Etf,back_CashFlow,	back_Profit ,back_Trans_Amt,back_Amt,back_Market_Cap,back_Cap,
+									back_Buy_Price,	back_Sell_Price,back_Min_PriceS,back_Min_PriceV,back_Min_Price,	back_Cap_UpDown,back_Cap_Rate,
+									back_pbr,back_per,back_psr,back_pcr,back_roa,back_roe,back_ros,back_ebitda,back_cfps from T_BACKPORT_CONDI where port_num = #{portNum}
 	</select>
 	<select id = "stockDayList" parameterType="backTestCompoVO" resultMap="backTestResultFlucMap">
 		select back_no, port_num, user_id, to_char(stock_date,'YYYY-MM-DD') as stock_date, stock_fluc, stock_day_fluc, kospi_fluc, kospi_day_fluc,
@@ -211,7 +215,7 @@ select user_id, stock_name, stock_code, to_char(back_date,'yyyy-mm-dd') back_dat
 	<select id="myBackTest" parameterType="int" resultMap="backTestListMap">
 	select r.port_num as port_num, back_title, back_date, earning_rate 
 		from t_back_result r, t_backport_condi c where c.port_num = r.port_num 
-		and (port_num, back_date) in (select port_num, max(back_date) from t_back_result where port_num = #{portNum} group by port_num) order by r.port_num
+		and (r.port_num, back_date) in (select port_num, max(back_date) from t_back_result where port_num = #{portNum} group by port_num) order by r.port_num
 	</select>
 	<delete id="deletePort" parameterType="int">
 		delete t_backport_condi where port_num = #{portNum}
@@ -220,7 +224,7 @@ select user_id, stock_name, stock_code, to_char(back_date,'yyyy-mm-dd') back_dat
 
 	
 	<select id = "resultList" parameterType = "memberVO" resultMap="BackTestTotalResultMap">
-		select  c.port_num, to_char(c.back_test_date,'YY-MM-DD') as back_test_date,c.back_title,c.backtest_cnt,c.back_start_asset, to_char(c.back_start_date,'YY-MM-DD') as back_start_date, to_char(c.back_end_date,'YY-MM-DD') as back_end_date, 
+		select  c.port_num, to_char(c.back_test_date,'YY-MM-DD') as back_test_date,c.backtest_cnt,c.back_title,c.backtest_cnt,c.back_start_asset, to_char(c.back_start_date,'YY-MM-DD') as back_start_date, to_char(c.back_end_date,'YY-MM-DD') as back_end_date, 
 		trunc((c.back_end_date-c.back_start_date)/30) as back_stock_cnt, r.earning_rate ,r.winning_rate from t_backport_condi c,
 		 t_total_result r where c.user_id=#{userId} and c.port_num = r.port_num order by c.port_num
 	

@@ -239,11 +239,11 @@ a.btn2, .btn2 {
 }
 
 .card-inner:hover {
- transform: scale(1.2);
-  -webkit-transform: scale(1.2);
-  -moz-transform: scale(1.2);
-  -ms-transform: scale(1.2);
-  -o-transform: scale(1.2);
+ transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  -o-transform: scale(1.1);
 }
 
 .portDate_large {
@@ -323,9 +323,231 @@ a.btn2, .btn2 {
 	font-size: 18px;
 	color: #888;
 }
+.section_portCompare {
+    position: fixed;
+    bottom: 0px;
+    left: 50%;
+    z-index: 100;
+    margin: -437px 0 0 -437px;
+    width: 874px;
+    height: 180px;
+    border: 1px solid #b2b2b2;
+    border-bottom: none;
+    background: #fff;
+    border-radius: 6px 6px 0 0;
+    -webkit-border-radius: 6px 6px 0 0;
+    -moz-border-radius: 6px 6px 0 0;
+    -ms-border-radius: 6px 6px 0 0;
+    -o-border-radius: 6px 6px 0 0;
+}
+.compare_titlebar {
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    background: #008485;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    border: 1px solid #008485;
+    overflow: hidden;
+    border-radius: 6px 6px 0 0;
+    -webkit-border-radius: 6px 6px 0 0;
+    -moz-border-radius: 6px 6px 0 0;
+    -ms-border-radius: 6px 6px 0 0;
+    -o-border-radius: 6px 6px 0 0;
+}
+.compare_titlebar .title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #fff;
+    margin-left: 15px;
+}
+.compare_titlebar .title span {
+    padding-left: 10px;
+    font-size: 13px;
+}
+.fl {
+    float: left;
+}
+.compare_titlebar .lyrCtrl {
+    margin-right: 15px;
+    font-size: 13px;
+    color: #fff;
+    cursor: pointer;
+}
+.compare_cont {
+    height: 140px;
+    margin-top: 41px;
+    background: #fff;
+}
+.box_portCompare {
+    width: 704px;
+    height: 150px;
+    padding: 14px 20px 0 20px;
+    overflow-y: hidden;
+    overflow-x: auto;
+}
+.compareBox .box {
+    width: 100%;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    -ms-border-radius: 6px;
+    -o-border-radius: 6px;
+    padding: 10px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -o-box-sizing: border-box;
+}
+.box_portCompare ul {
+    width: 900px;
+}
+.compare_cont .box_btns {
+    width: 130px;
+    height: 140px;
+    background: #f1f3f5;
+    text-align: center;
+}
+.compare_cont .box_btns button {
+    margin-bottom: 6px;
+}
+.btn_red {
+    vertical-align: middle;
+}
+.btn_red {
+    background: #008485;
+    border: 1px solid #008485;
+    font-weight: 600;
+    color: #fff;
+    box-shadow: inset 0px -2px 1px #008485;
+}
+.btn_medium {
+    font-size: 13px;
+    transition: 0.1s;
+    text-align: center;
+    padding: 8px 12px;
+    vertical-align: middle;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+}
+.compareBox .box span.title {
+    display: inline-block;
+    width: 140px;
+    max-width: 140px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.infotxt_13px33 {
+    font-size: 13px;
+    color: #333;
+}
 
+.ratetxt_20px {
+    font-family: 'HanaB';
+    font-size: 18px;
+    font-weight: 500;
+}
+.compareBox {
+    width: 160px;
+    margin-right : 20px;
+}
+.btn_white {
+	vertical-align: middle;
+	background: #fff;
+	border: 1px solid #aaa;
+	font-weight: 600;
+	color: #888;
+	box-shadow: inset 0px -1.5px 1px #e0e0e0;
+}
+input[type=checkbox].checkbox + label.chkbx-label {
+    padding-left: 10px;
+    height: 15px;
+    display: inline-block;
+    line-height: 15px;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    font-size: 13px;
+    vertical-align: middle;
+    cursor: pointer;
+    margin-bottom: -13px;
+}
+.btn_extrasmall {
+    font-size: 12px;
+    transition: 0.1s;
+    text-align: center;
+    padding: 2px 8px;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+}
 </style>
+<script type="text/javascript">
+var cnt = 0;
+function DisplayCompareBox(){
+	if($('#btnClose_Compare').css('display') == 'none'){
+		$('#divPortCompare').css('height','200px');
+		$('#btnClose_Compare').show();
+		$('#btnOpen_Compare').hide();
+	}else{
+		$('#divPortCompare').css('height','40px');
+		$('#btnClose_Compare').hide();
+		$('#btnOpen_Compare').show();
+	}
+}
 
+function ChangeSelectedState(num, title, earn){
+	cnt = cnt+1;
+	$('#cntComparePort').text(cnt);
+	$('#divPortCompare').css('height','200px');
+	$('#btnClose_Compare').show();
+	$('#btnOpen_Compare').hide();
+	var content ='<li class="fl compareBox" id="campareBox_'+num+'"><label for="campareBox_'+num +'" ><p class="box">' 
+	 + '<span class="title infotxt_13px33 bold">'+title+'</span> <span class="ratetxt_20px txt_plus">'+earn+'%</span>'
+     + '</p></label><p style="overflow: hidden">'
+     + '<input type="checkbox" name="campareBox_'+num+'" id="campareBox_'+num+'" class="fl checkbox" onchange="javascript:ChangeSelected('+num+', this.checked)"'
+	+ 'checked="true"><label for="campoareBox_'+num+'" class="chkbx-label" style="margin-bottom: 0">선택</label>'
+    + '<button type="button" class="fr btn_extrasmall btn_white"	id="campoareBox_delect_'+num+'" onclick="RemovePortFromBox('+num+')">삭제</button></p></li>'
+
+	$('#divTemplate_compareBottomBox').append(content);
+
+}
+
+function RemovePortFromBox(num){
+	$('#campareBox_'+num).remove();
+	$('#check_'+num).prop("checked",false);
+	cnt = cnt-1;
+	$('#cntComparePort').text(cnt);
+}
+function ChangeSelected(num, checked){
+	$('#check_'+num).prop("checked",checked);
+}
+
+function ChangeAllSelectedState() {
+	if($('#divTemplate_compareBottomBox input[type="checkbox"]').prop("checked")){
+	$('#divTemplate_compareBottomBox input[type="checkbox"]').prop("checked",false)
+	}else{
+	$('#divTemplate_compareBottomBox input[type="checkbox"]').prop("checked",true)
+		
+	}
+}
+
+function OpenComparePopup(){
+	
+	
+}
+
+
+</script>
 </head>
 <body>
 	<!-- Header -->
@@ -397,9 +619,9 @@ a.btn2, .btn2 {
 				<c:if test="${loop.count%4 eq 1}"><div class="vertical-tab port_list"></c:if>
 				<div class="col-md-3 card-condi">
 					<div class="card-inner">
-						<p class="fl portDate_large">${list.backTestCompoVO.backtestDate}</p>
-						<p class="rl portNum_small">no. ${list.backTestCompoVO.portNum}</p>
-						<p class="port_title">${list.backTestCompoVO.backTitle}</p>
+						<p class="fl portDate_large" >${list.backTestCompoVO.backtestDate}</p>
+						<p class="rl portNum_small">no. ${list.backTestCompoVO.backtestCnt}</p>
+						<p class="port_title" onclick="location.href='${pageContext.request.contextPath}/backtest/result/${list.backTestCompoVO.portNum}'" id="title_${list.backTestCompoVO.portNum}">${list.backTestCompoVO.backTitle}</p>
 						<div class="small_des">
 							<span>백테스트 기간 : ${list.backTestCompoVO.backStartDate}~${list.backTestCompoVO.backEndDate}(${list.backTestCompoVO.backStockCnt}개월)</span>
 						</div>
@@ -409,10 +631,10 @@ a.btn2, .btn2 {
 							<div class="small_chart2">								
 							<c:choose>
 									<c:when test="${list.backTestResultSetVO.earningRate lt 0 }">
-										<div class="txt_minus main_tbl">${list.backTestResultSetVO.earningRate}%%</div>
+										<div class="txt_minus main_tbl">${list.backTestResultSetVO.earningRate}%</div>
 									</c:when>
 									<c:otherwise>
-										<div class="txt_plus main_tbl">${list.backTestResultSetVO.earningRate}%</div>
+										<div class="txt_plus main_tbl" >${list.backTestResultSetVO.earningRate}%</div>
 									</c:otherwise>
 								</c:choose>
 								<canvas id="g${list.backTestCompoVO.portNum}"></canvas>
@@ -420,7 +642,7 @@ a.btn2, .btn2 {
 							</div>
 						</div>
 						<div class="col-md-6 small_result">
-							<p class="port_result">승률</p>
+							<p class="port_result">승률(수익vs손실)</p>
 							<div class="small_chart">
 								<canvas id="${list.backTestCompoVO.portNum}"></canvas>
 								<div class="posi_t">${list.backTestResultSetVO.winningRate}%</div>
@@ -428,7 +650,8 @@ a.btn2, .btn2 {
 						</div>
 						</div>
 					<div class="small_des2">
-						<input type="checkbox" value="portNum"><span style="margin-left:8px;">다른
+						<input type="checkbox" value="portNum" id="check_${list.backTestCompoVO.portNum}" onchange="javascript:ChangeSelectedState('${list.backTestCompoVO.portNum}', '${list.backTestCompoVO.backTitle}','${list.backTestResultSetVO.earningRate}')">
+						<span style="margin-left:8px;">다른
 							포트폴리오와 비교</span>
 					</div>
 					</div>
@@ -438,11 +661,50 @@ a.btn2, .btn2 {
 			</c:forEach>
 		</div>
 	</section>
-	
-		
-	
-	
-	
+
+
+
+
+	<div id="divPortCompare" class="section_portCompare" style="height: 40px;">
+		<ul>
+			<li class="compare_titlebar">
+				<p class="fl title">
+					포트폴리오 비교하기<span>(<span class="bold" id="cntComparePort">0</span>&nbsp;)
+					</span>
+				</p>
+				<p id="btnClose_Compare" class="fr lyrCtrl" style="display: none;"
+					onclick="DisplayCompareBox()">
+					접기<img src="${pageContext.request.contextPath}/resources/img/btn_compare_on.png">
+				</p>
+				<p id="btnOpen_Compare" class="fr lyrCtrl"
+					onclick="DisplayCompareBox()"
+					style="">
+					열기<img src="${pageContext.request.contextPath}/resources/img/btn_compare_off.png">
+				</p>
+			</li>
+			<div class="compare_cont" style="height: 0px !important;">
+				<ul>
+					<div class="fl box_portCompare">
+						<ul id="divTemplate_compareBottomBox">
+							
+						</ul>
+					</div>
+					<li class="fr box_btns">
+						<button type="button" class="btn_medium btn_white"
+							style="margin-top: 32px"
+							onclick="ChangeAllSelectedState()">전체선택/해제</button>
+						<button type="button" class="btn_medium btn_red"
+							style="padding: 8px 15px"
+							onclick="OpenComparePopup()">비교하기</button>
+					</li>
+				</ul>
+			</div>
+		</ul>
+	</div>
+
+
+
+
 	<footer>
 		<jsp:include page="/WEB-INF/jsp/include/footer.jsp"></jsp:include>
 	</footer>

@@ -7,7 +7,7 @@
 <html>
 <head>
 <!-- Head 구성  -->
-<title>내 백테스팅 결과</title>
+<title>내 투자전략 포트폴리오</title>
 <jsp:include page="/WEB-INF/jsp/include/head.jsp"></jsp:include>
 <link href="${ pageContext.request.contextPath}/resources/css/backTestResult.css" rel="stylesheet">
 <script
@@ -20,6 +20,12 @@
 	margin-bottom:20px;
 
 }
+.subtitle_50px {
+	font-size: 35px;
+	font-weight: 700;
+	margin-top: 20px;
+}
+
 .card-body2 {
 text-align: center;
     font-size: 20px;
@@ -151,12 +157,12 @@ font-size: 21px;
 	<div class="area_location" id="locNewPort" style="display: block">
 		<ul>
 			<li class="fl">
-				<p class="fl title">내 백테스팅 포트폴리오 만들기</p>
-				<p class="fl info">다양한 조건을 넣어 나만의 주식투자 전략을 검증해보세요</p>
+				<p class="fl title">내 투자전략 포트폴리오</p>
+				<p class="fl info">내 투자전략 포트폴리오 백테스팅 결과입니다.</p>
 			</li>
 			<li class="fr">
 				<p class="crumbs">
-					One클럽<span>></span>백테스팅 포트폴리오 만들기
+					One클럽<span>></span>내 투자전략 검증
 				</p>
 			</li>
 		</ul>
@@ -164,27 +170,11 @@ font-size: 21px;
 	<!-- header 끝 -->
 	<!-- section 시작 -->
 	<section>
-		<div class="area_content">
-			<div class="section_flowTab">
-				<ul>
-					<li id="tabMenu0" class="off_flow">
-						<p>Step 1. 기본 설정</p> <span>기본 조건들을 설정하세요.</span>
-					</li>
-					<li id="tabMenu1" class="off_flow">
-						<p>Step 2. 매매조건 설정</p> <span>매수/매도조건을 설정하세요.</span>
-					</li>
-
-					<li id="tabMenu2" class="off_flow">
-						<p>Step 3. 가치측정 조건 설정</p> <span>기업 가치를 판단할 조건을 설정하세요</span>
-					</li>
-
-					<li id="tabMenu3" style="cursor: pointer;" class="on">
-						<p>Step 4. 백테스팅 결과</p> <span>백테스팅 포트폴리오가 완성되었습니다.</span>
-					</li>
+		<div class="row vertical-tab" style="width:1600px; margin:auto;">
+				<ul style="padding-left: 0;">
+					<li class="subtitle_50px bold">OneClub 내 포트폴리오</li>
 				</ul>
-			</div>
 		</div>
-
 		<div class="selection_Tab">
 			<div class="content-by-step">
 				<input type="hidden" name="userId" value="${userVO.userId}"
@@ -193,8 +183,7 @@ font-size: 21px;
 				<div id="selection3" style="display: block">
 					<div class="row vertical-tab">
 						<div class="col-md-7">
-							<p class="fl portNum_large" id="PortID" style="margin-top: 4px">백테스트
-								리포트</p>
+							<p class="fl portNum_large" id="PortID" style="margin-top: 4px">포트폴리오</p>
 							<p class="fl font_20px view_title" id="viewTitle"
 								style="margin-top: 4px; line-height: 40px; margin-left: 30px;">${compoVO.backTitle}</p>
 							<p class="fl portName_large view_title" id="pPortNameEdit">

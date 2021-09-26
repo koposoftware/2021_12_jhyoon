@@ -29,17 +29,11 @@ public class HomeController {
 	
 	@RequestMapping("/test")
 	public ModelAndView test() {
-		int portNo = 128;
+		int portNo = 131;
 		BackTestCompoVO compVO = service.getPortCondi(portNo);
 		
 		List<BackTestResultAccVO> accList = service.getAccResult(compVO);
-		for (BackTestResultAccVO backTestResultAccVO : accList) {
-			System.out.println(backTestResultAccVO);
-		}
 		List<BackTestResultFlucVO> stockDayList = service.getStockDayList(compVO);
-		for (BackTestResultFlucVO backTestResultFlucVO : stockDayList) {
-			System.out.println(backTestResultFlucVO);
-		}
 		
 		Gson gson = new Gson();
 		ModelAndView mav = new ModelAndView("/test");

@@ -293,6 +293,7 @@ input[type=text].condi {
 .fullDetail_tabBox {
 	width: 100%;
 	overflow: hidden;
+	margin-top:20px;
 }
 
 .fullDetail_tabBox ul {
@@ -772,7 +773,7 @@ vertical-align: middle;
 .tbl_vertical3 td span.stockName {
     font-weight: 600;
     padding-left: 2px;
-    font-size: 25px
+    font-size: 22px
 }
 .tbl_vertical3 td span.stockCode {
     color: #777;

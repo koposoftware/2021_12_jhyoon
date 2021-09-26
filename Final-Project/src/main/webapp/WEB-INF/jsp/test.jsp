@@ -46,60 +46,74 @@ height:1000px;
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js"></script>
 </head>
 <body>
+<canvas id="Chart"></canvas>
 <script type="text/javascript">
+var chartLabels = [];
+var earningRate = [];
 
-(function ($) {
-    "use strict";
-	var chartLabels = [];
-	var earningRate = [];
+var dataSet = ${accList}
+$.each(dataSet, function(inx, obj) {
+	chartLabels.push(obj.backDate);
+	earningRate.push(obj.earningRate);
+});
 
-	var dataSet = ${accList}
-	
-	$.each(dataSet, function(inx, obj) {
-		chartLabels.push(obj.backDate);
-		earningRate.push(obj.earningRate);
-	});
-	console.log(earningRate)
- var ctx = document.getElementById("linechart");
-    var linechart = new Chart(ctx, {
-        type: 'line',
-        data: {
-           labels: ['1','3','5','7','9'],
-           datasets: [{
-              label: '총 보유 비상금',
-              data: [1,2,3,4,5],
-              fill: true,
-              backgroundColor :'#78d0d085',
-               borderColor: 'rgb(75, 192, 192)',
-               tension: 0.1,
-              borderWidth: 4
-           }]
-        },
-        options: {
-           scales: {
-              yAxes: [{
-                 ticks: {
-                    beginAtZero:true,
-                    fontSize: 18,
-                 }
-              }],
-              xAxes:[{
-                   ticks:{
-                   fontColor:'black',
-                   fontSize: 18,
-                  }
-                 }]
-           }
-        }
-     })
-     
-     
-  })(jQuery);
+
+	var config = {
+		type : 'line',
+		data : {
+			labels : chartLabels,
+			datasets : [ {
+				label : "수익률",
+				borderColor : '#00c292',
+				borderWidth : 2,
+				radius : 0,
+				data : earningRate
+			} ]
+		},
+		options : {
+			interaction : {
+				intersect : false
+			},
+			plugins : {
+				legend:false
+			},
+			legend : {
+				display : false,
+				position : 'bottom',
+				labels : {
+					fontSize : 32
+				}
+			},
+			scales : {
+				xAxes : [ {
+					type : 'time',
+					time : {
+						unit : 'month'
+					},
+					display : false,
+					scaleLabel : {
+						display : false,
+						labelString : '(년월)',
+						fontColor : '#999'
+					},
+					ticks :{
+						display:false
+					}
+				} ],
+				yAxes : [ {
+					ticks :{
+						display:false
+					}
+				} ]
+			}
+		}
+	}; 
+var Chart = new Chart(document.getElementById('Chart'),config);
 </script>
 
 
 
-<canvas id="Chart"></canvas>
+
 
 
 <!--   <script>
