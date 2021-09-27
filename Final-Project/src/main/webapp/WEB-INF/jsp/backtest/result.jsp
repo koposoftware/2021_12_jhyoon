@@ -139,12 +139,15 @@ font-size: 21px;
 							}
 						}
 					}
+					
+					
+				 
 				</script>
 
 <!-- Head 구성 끝 -->
 </head>
 <body>
-	<!-- header  -->
+
 	<header>
 		<jsp:include page="/WEB-INF/jsp/include/header.jsp"></jsp:include>
 	</header>

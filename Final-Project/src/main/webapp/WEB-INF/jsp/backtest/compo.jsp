@@ -5,7 +5,15 @@
 <html>
 <head>
 <!-- Head 구성  -->
+<script
+	src="${ pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 <jsp:include page="/WEB-INF/jsp/include/head.jsp"></jsp:include>
+<script type="text/javascript">
+if(${userVO.subscribeGrade eq 'FAMILY'}){
+	alert('OneClub 회원만 이용가능한 서비스입니다.')
+	location.href='${pageContext.request.contextPath}/subscribe'
+}
+</script>
 <title></title>
 <style type="text/css">
 
@@ -384,10 +392,34 @@ font-size: 18px;}
 }
 .tabspan{
 font-family: 'Open Sans', sans-serif;}
+#loading {
+   width: 100vw;
+   height: 150vw;
+   top: 0;
+   left: 0;
+   position: fixed;
+   display: block;
+   opacity: 0.7;
+   background-color: #fff;
+   z-index: 99;
+   text-align: center;
+}
+
+#loading-image {
+  position: absolute;
+  z-index: 100;
+  margin-left:-5vw;
+   margin-top: 200pt;
+    height: 100pt;
+   width: 100pt;
+}
 </style>
-<script
-	src="${ pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
+
 <script type="text/javascript">
+window.onbeforeunload = function () { $('#loading').show(); }
+$(window).load(function () {      
+    $('#loading').hide();
+});		
 	$(document).ready(function() {
 		$('#tabMenu0').click(function() {
 			changeTab(0)
@@ -482,20 +514,31 @@ font-family: 'Open Sans', sans-serif;}
 		$('#3y').click(function() {
 			dateInput(1095, 0)
 		})
+		
 		$('#5y').click(function() {
+			if("${userVO.subscribeGrade eq 'HAVA FAMILY'}"){
+				alert('VIP 회원부터 설정할 수 있는 조건입니다.')
+			}else{
 			dateInput(1825, 0)
+				
+			}
 		})
 		$('#10y').click(function() {
+			if("${userVO.subscribeGrade eq 'HAVA FAMILY'}"){
+				alert('VIP 회원부터 설정할 수 있는 조건입니다.')	
+			}else{
 			dateInput(3650, 0)
+			}
 		})
 
 	})
 </script>
-
-
 <!-- Head 구성 끝 -->
 </head>
 <body>
+	 <div id="loading">
+        <img id="loading-image" src="${pageContext.request.contextPath}/resources/img/loading/loading.gif" alt="Loading..." />
+    </div>
 	<!-- header  -->
 	<header>
 		<jsp:include page="/WEB-INF/jsp/include/header.jsp"></jsp:include>

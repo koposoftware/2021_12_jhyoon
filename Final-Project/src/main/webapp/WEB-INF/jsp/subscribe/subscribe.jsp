@@ -660,14 +660,14 @@ a.btn2, .btn2 {
 								<td>○</td>					
 							</tr>
 							<tr>
-								<th>일일 리포트</th>
+								<th>투자전략 검증</th>
 								<td>○</td>					
 								<td>○</td>					
 							</tr>
 							<tr>
-								<th>투자전략 검증</th>
-								<td>○</td>					
-								<td>○</td>					
+								<th>전략 검증기간</th>
+								<td>3년</td>					
+								<td>5년</td>					
 							</tr>
 							<tr>
 								<th>종목 추천</th>

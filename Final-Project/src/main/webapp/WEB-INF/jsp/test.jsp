@@ -111,8 +111,44 @@ $.each(dataSet, function(inx, obj) {
 var Chart = new Chart(document.getElementById('Chart'),config);
 </script>
 
+    <script type="text/javascript" src="jquery-1.7.2.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery.sparkline.js"></script>
 
+    <script type="text/javascript">
 
+    $(function() {
+        var chartLabels = [];
+        var earningRate = [];
+
+        var dataSet = ${accList}
+        $.each(dataSet, function(inx, obj) {
+        	chartLabels.push(obj.backDate);
+        	earningRate.push(obj.earningRate);
+        });
+        /** This code runs when everything has been loaded on the page */
+        /* Inline sparklines take their values from the contents of the tag */
+        $('.inlinesparkline').sparkline(); 
+
+        /* Sparklines can also take their values from the first argument 
+        passed to the sparkline() function */
+        var myvalues = [10,8,5,7,4,4,1];
+        $('.dynamicsparkline').sparkline(earningRate);
+
+        /* The second argument gives options such as chart type */
+        $('.dynamicbar').sparkline(myvalues, {type: 'bar', barColor: 'green'} );
+
+        /* Use 'html' instead of an array of values to pass options 
+        to a sparkline with data in the tag */
+        $('.inlinebar').sparkline('html', {type: 'bar', barColor: 'red'} );
+    });
+    </script>
+
+<p>
+Inline Sparkline: <span class="inlinesparkline">1,4,4,7,5,9,10</span>.
+</p>
+<p>
+Sparkline with dynamic data: <span class="dynamicsparkline">Loading..</span>
+</p>
 
 
 

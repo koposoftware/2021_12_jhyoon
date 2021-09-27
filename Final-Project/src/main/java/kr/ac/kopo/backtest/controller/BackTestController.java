@@ -1,5 +1,6 @@
 package kr.ac.kopo.backtest.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -141,7 +142,6 @@ public class BackTestController {
 			int portNo = portNum;
 			//포트번호로 조건식 불러오기
 			BackTestCompoVO compVO = service.getPortCondi(portNo);
-			System.out.println("조건식 불러오기 : "+compVO);
 			//계좌정보 불러오기
 			List<BackTestResultAccVO> accList = service.getAccResult(compVO);
 			List<BackTestResultAccVO> accReverseList = service.getAccResverseResult(compVO);
@@ -181,5 +181,20 @@ public class BackTestController {
 			return mav;
 		}
 	
-	
+	@PostMapping("/backtest/compare")
+	@ResponseBody
+	public Map<String, String> comparePortfolio(BackTestCompoVO compVO) {
+		System.out.println("받아온 값1"+compVO);
+		compVO = service.getPortCondi(compVO.getPortNum());
+		List<BackTestResultFlucVO> stockAVGList = service.getStockAVGList(compVO);
+		List<BackTestResultAccVO> accList = service.getAccResult(compVO);
+		BackTestResultSetVO totalResult = service.getTotalResult(compVO);
+		Map<String, String> mapList = new HashMap<String,String>();
+		Gson gson = new Gson();
+		mapList.put("accList", gson.toJson(accList));
+		mapList.put("compVO", gson.toJson(compVO));
+		mapList.put("totalResult", gson.toJson(totalResult));
+		return mapList;
+		
+	}
 }

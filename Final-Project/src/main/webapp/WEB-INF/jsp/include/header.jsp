@@ -13,7 +13,30 @@ font-family: 'Hana', sans-serif;
 	font-size:20px;
 	font-weight: 700
 }
-
+.btn_hana{
+    background: #008485;
+    border: 1px solid #198754;
+    font-weight: 600;
+    color: #fff;
+    box-shadow: inset 0px -2px 1px #198754;
+}
+.btn_white {
+    vertical-align: middle;
+    background: #fff;
+    border: 1px solid #aaa;
+    font-weight: 600;
+    color: #888;
+    box-shadow: inset 0px -1.5px 1px #e0e0e0;
+}
+.btn_modal {
+    outline: 0;
+    outline-style: none;
+    font-size: 15px;
+    width: 100px;
+    transition: 0.1s;
+    text-align: center;
+    height: 36px;
+}
 </style>
 
 <nav id="main_nav"
@@ -45,8 +68,25 @@ font-family: 'Hana', sans-serif;
 					<a class="nav-link btn-outline-primary rounded-pill px-3 dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">OneClub</a>
 						 <ul class="dropdown-menu dropdown-menu-dark drop_txt" aria-labelledby="navbarDarkDropdownMenuLink">
             				<li><a class="nav-link btn-outline-primary rounded-pill px-3 dropdown-item" href="#">일일 투자정보</a></li>
-            				<li><a class="nav-link btn-outline-primary rounded-pill px-3 dropdown-item" href="${ pageContext.request.contextPath}/backtest/compo">나만의 투자조건 설정하기</a></li>
+            				<c:choose>
+            				<c:when test="${empty userVO}">
+            				<li><a class="nav-link btn-outline-primary rounded-pill px-3 dropdown-item" href="${ pageContext.request.contextPath}/backtest/compo" >나만의 투자조건 설정하기</a></li>
             				<li><a class="nav-link btn-outline-primary rounded-pill px-3 dropdown-item" href="${ pageContext.request.contextPath}/counsel/viewPB">전문가 상담</a></li>
+            				</c:when>
+            				<c:when test="${userVO.subscribeGrade eq 'FAMILY' }">
+            				<li><a class="nav-link btn-outline-primary rounded-pill px-3 dropdown-item" href="${ pageContext.request.contextPath}/backtest/compo" data-bs-toggle="modal" data-bs-target="#OneClubModal">나만의 투자조건 설정하기</a></li>
+            				<li><a class="nav-link btn-outline-primary rounded-pill px-3 dropdown-item" href="${ pageContext.request.contextPath}/counsel/viewPB" data-bs-toggle="modal" data-bs-target="#VIPModal">전문가 상담</a></li>
+            				</c:when>
+            				<c:when test="${userVO.subscribeGrade eq 'HANA FAMILY' }">
+            				<li><a class="nav-link btn-outline-primary rounded-pill px-3 dropdown-item" href="${ pageContext.request.contextPath}/backtest/compo" >나만의 투자조건 설정하기</a></li>
+            				<li><a class="nav-link btn-outline-primary rounded-pill px-3 dropdown-item" href="${ pageContext.request.contextPath}/counsel/viewPB" data-bs-toggle="modal" data-bs-target="#VIPModal">전문가 상담</a></li>
+            				</c:when>
+            				<c:otherwise>
+            				<li><a class="nav-link btn-outline-primary rounded-pill px-3 dropdown-item" href="${ pageContext.request.contextPath}/backtest/compo" >나만의 투자조건 설정하기</a></li>
+            				<li><a class="nav-link btn-outline-primary rounded-pill px-3 dropdown-item" href="${ pageContext.request.contextPath}/counsel/viewPB" >전문가 상담</a></li>
+            				</c:otherwise>
+            				</c:choose>
+            				
             				
           				</ul>
 					</li>
@@ -64,8 +104,9 @@ font-family: 'Hana', sans-serif;
 			</div>
 			<div class="navbar align-self-center d-flex">
 				<c:choose>
-					<c:when test="${not empty uesrVO }">
-						<a class="nav-link" href="${ pageContext.request.contextPath}/" title="내 정보"><i class='bx bx-user-circle bx-sm bx-tada-hover text-primary'>${userVO.userName} 님 환영합니다.</i></a>
+					<c:when test="${not empty userVO }">
+						<a class="nav-link" href="${ pageContext.request.contextPath}/" title="내 정보"><i class='bx bx-user-circle bx-sm bx-tada-hover text-primary'><span style="font-size:15px; color:#000; font-family:'HanaL'"></span></i></a>
+						<a class="nav-link" href="${ pageContext.request.contextPath}/member/logout" title="로그아웃"><i class='bx bx-log-out bx-sm bx-tada-hover text-primary'></i></a>
 					</c:when>
 					<c:otherwise>
 					<a class="nav-link" href="${ pageContext.request.contextPath}/member/registagree" title='회원가입 하러가기'><i class='bx bx-user-plus bx-sm bx-tada-hover text-primary'></i></a> <a
@@ -77,4 +118,52 @@ font-family: 'Hana', sans-serif;
 		</div>
 	</div>
 </nav>
+
+
+
+
+
+
+
+
+				<div class="modal fade" id="OneClubModal" tabindex="-1"
+						aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalLabel">OneClub 회원 이용 안내</h5>
+									<button type="button" class="btn-close" data-bs-dismiss="modal"
+										aria-label="Close"></button>
+								</div>
+								<div class="modal-body">OneClub 회원만 이용가능한 서비스입니다. 
+														서비스 가입하러 가시겠습니까?</div>
+								<div class="modal-footer">
+									<button type="button" class="btn_white btn_modal" 
+										data-bs-dismiss="modal">닫기</button>
+									<button type="button" class="btn_hana btn_modal" 
+									onclick="location.href='${pageContext.request.contextPath}/subscribe'">서비스 가입</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				<div class="modal fade" id="VIPModal" tabindex="-1"
+						aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalLabel">OneClub VIP 회원 이용 안내</h5>
+									<button type="button" class="btn-close" data-bs-dismiss="modal"
+										aria-label="Close"></button>
+								</div>
+								<div class="modal-body">OneClub VIP 회원만 이용가능한 서비스입니다. 
+														서비스 가입 하러 가시겠습니까?</div>
+								<div class="modal-footer">
+									<button type="button" class="btn_white btn_modal" 
+										data-bs-dismiss="modal">닫기</button>
+									<button type="button" class="btn_hana btn_modal" 
+									onclick="location.href='${pageContext.request.contextPath}/subscribe'">서비스 가입</button>
+								</div>
+							</div>
+						</div>
+					</div>
 <!-- Close Header -->

@@ -39,7 +39,7 @@
 	</update>
 	
 	<update id="setMySubscribe" parameterType="memberVO">
-		update user_table set subscribe_grade = #{subscribeGrade}, subscribe_date = sysdate where user_id=#{userId}
+		update user_table set subscribe_grade = #{subscribeGrade},emp_id=#{empId}, subscribe_date = sysdate where user_id=#{userId}
 	</update>
 
 

@@ -52,7 +52,6 @@ public class CounselingController {
 	}
 	@GetMapping("/counsel/writeCounsel/{portNum}")
 	public ModelAndView writePortCounsel(@PathVariable int portNum,HttpSession session) {
-		//내가가진 모든 포트폴리오 불러오기
 			ModelAndView mav = new ModelAndView("/counsel/writeCounsel");
 			MemberVO userVO = (MemberVO)session.getAttribute("userVO");
 			BackTestListVO backTest = backTestService.getBackTest(userVO, portNum);

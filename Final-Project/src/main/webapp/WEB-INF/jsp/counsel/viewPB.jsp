@@ -9,10 +9,15 @@
 <meta charset="UTF-8">
 <title>하나 OneClub > OneClub PB 소개</title>
 <jsp:include page="/WEB-INF/jsp/include/head.jsp"></jsp:include>
-<style type="text/css">
-
-
-</style>
+<script type="text/javascript">
+if(${userVO.subscribeGrade eq 'FAMILY'}){
+	alert('OneClub 회원만 이용가능한 서비스입니다.')
+	location.href='${pageContext.request.contextPath}/subscribe'
+}else if(${userVO.subscribeGrade eq 'HANA FAMILY'}){
+	alert('OneClub VIP 회원만 이용가능한 서비스입니다.')
+	location.href='${pageContext.request.contextPath}/subscribe'
+}
+</script>
  <script
 	src="${ pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 	

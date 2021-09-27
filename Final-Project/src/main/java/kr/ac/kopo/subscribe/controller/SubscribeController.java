@@ -1,5 +1,8 @@
 package kr.ac.kopo.subscribe.controller;
 
+import java.util.List;
+import java.util.Random;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,14 +10,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import kr.ac.kopo.counsel.service.CounselingService;
 import kr.ac.kopo.member.service.MemberService;
 import kr.ac.kopo.member.vo.MemberVO;
+import kr.ac.kopo.member.vo.OneClubPBVO;
 
 @Controller
 public class SubscribeController {
 
 	@Autowired
 	private MemberService service;
+	
+	@Autowired
+	private CounselingService PBservice;
 	
 	@GetMapping("/subscribe")
 	public String joinSubscrbie() {
@@ -34,6 +42,9 @@ public class SubscribeController {
 			userVO.setSubscribeGrade("HANA FAMILY");
 		}else if ( type == 2) {
 			userVO.setSubscribeGrade("HANA VIP");
+			List<OneClubPBVO> pbList = PBservice.getPBList();
+			Random ran = new Random();
+			userVO.setEmpId(pbList.get(ran.nextInt(6)).getEmpNo());
 		}else {
 			userVO.setSubscribeGrade("FAMILY");
 		}
@@ -47,6 +58,7 @@ public class SubscribeController {
 		
 		MemberVO userVO = (MemberVO)session.getAttribute("userVO");
 		userVO.setSubscribeGrade("FAMILY");
+		userVO.setEmpId("");
 		service.setMySubscribe(userVO);
 		session.setAttribute("userVO", userVO);
 		

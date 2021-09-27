@@ -454,7 +454,7 @@ a.btn2, .btn2 {
 			</div>
 			<div id="PortResultSection0" class="result_section" style="height: 1000px; border: 0px">
 					<!-- 게시물 작성/수정 시작 { -->
-					<form name="fwrite" id="fwrite" action="#" onsubmit="return fwrite_submit(this);" method="post" style="width: 100%">
+					<form name="fwrite" id="fwrite" action="${pageContext.request.contextPath}/counsel/writeCounsel"  method="post" style="width: 100%">
 						<div class="jtbl_frm01 tbl_wrap">
 							<table>
 								<tbody>
