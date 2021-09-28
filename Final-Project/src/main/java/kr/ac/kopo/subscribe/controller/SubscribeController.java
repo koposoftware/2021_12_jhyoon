@@ -64,4 +64,14 @@ public class SubscribeController {
 		
 		return "redirect:/";
 	}
+	
+	@GetMapping("/selectMyPB/{empNo}")
+	public String selectMyPB(@PathVariable String empNo,  HttpSession session) {
+		MemberVO userVO = (MemberVO)session.getAttribute("userVO");
+		userVO.setEmpId(empNo);
+		service.setMySubscribe(userVO);
+		session.setAttribute("userVO", userVO);
+		return "redirect:/counsel/viewPB";
+	}
+
 }

@@ -63,7 +63,7 @@ font-family: 'Hana', sans-serif;
 						href="${ pageContext.request.contextPath}/">Home</a></li>
 					<li class="nav-item"><a
 						class="nav-link btn-outline-primary rounded-pill px-3"
-						href="${ pageContext.request.contextPath}/">서비스 소개</a></li>
+						href="${ pageContext.request.contextPath}/subscribe">서비스 소개</a></li>
 					<li class="nav-item dropdown">
 					<a class="nav-link btn-outline-primary rounded-pill px-3 dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">OneClub</a>
 						 <ul class="dropdown-menu dropdown-menu-dark drop_txt" aria-labelledby="navbarDarkDropdownMenuLink">
@@ -74,12 +74,12 @@ font-family: 'Hana', sans-serif;
             				<li><a class="nav-link btn-outline-primary rounded-pill px-3 dropdown-item" href="${ pageContext.request.contextPath}/counsel/viewPB">전문가 상담</a></li>
             				</c:when>
             				<c:when test="${userVO.subscribeGrade eq 'FAMILY' }">
-            				<li><a class="nav-link btn-outline-primary rounded-pill px-3 dropdown-item" href="${ pageContext.request.contextPath}/backtest/compo" data-bs-toggle="modal" data-bs-target="#OneClubModal">나만의 투자조건 설정하기</a></li>
-            				<li><a class="nav-link btn-outline-primary rounded-pill px-3 dropdown-item" href="${ pageContext.request.contextPath}/counsel/viewPB" data-bs-toggle="modal" data-bs-target="#VIPModal">전문가 상담</a></li>
+            				<li><a class="nav-link btn-outline-primary rounded-pill px-3 dropdown-item"  data-bs-toggle="modal" data-bs-target="#OneClubModal">나만의 투자조건 설정하기</a></li>
+            				<li><a class="nav-link btn-outline-primary rounded-pill px-3 dropdown-item"  data-bs-toggle="modal" data-bs-target="#VIPModal">전문가 상담</a></li>
             				</c:when>
             				<c:when test="${userVO.subscribeGrade eq 'HANA FAMILY' }">
             				<li><a class="nav-link btn-outline-primary rounded-pill px-3 dropdown-item" href="${ pageContext.request.contextPath}/backtest/compo" >나만의 투자조건 설정하기</a></li>
-            				<li><a class="nav-link btn-outline-primary rounded-pill px-3 dropdown-item" href="${ pageContext.request.contextPath}/counsel/viewPB" data-bs-toggle="modal" data-bs-target="#VIPModal">전문가 상담</a></li>
+            				<li><a class="nav-link btn-outline-primary rounded-pill px-3 dropdown-item" data-bs-toggle="modal" data-bs-target="#VIPModal">전문가 상담</a></li>
             				</c:when>
             				<c:otherwise>
             				<li><a class="nav-link btn-outline-primary rounded-pill px-3 dropdown-item" href="${ pageContext.request.contextPath}/backtest/compo" >나만의 투자조건 설정하기</a></li>
@@ -106,7 +106,7 @@ font-family: 'Hana', sans-serif;
 				<c:choose>
 					<c:when test="${not empty userVO }">
 						<a class="nav-link" href="${ pageContext.request.contextPath}/" title="내 정보"><i class='bx bx-user-circle bx-sm bx-tada-hover text-primary'><span style="font-size:15px; color:#000; font-family:'HanaL'"></span></i></a>
-						<a class="nav-link" href="${ pageContext.request.contextPath}/member/logout" title="로그아웃"><i class='bx bx-log-out bx-sm bx-tada-hover text-primary'></i></a>
+						<a class="nav-link" href="${ pageContext.request.contextPath}/member/logout" title="로그아웃" data-bs-toggle="modal" data-bs-target="#logOut"><i class='bx bx-log-out bx-sm bx-tada-hover text-primary' ></i></a>
 					</c:when>
 					<c:otherwise>
 					<a class="nav-link" href="${ pageContext.request.contextPath}/member/registagree" title='회원가입 하러가기'><i class='bx bx-user-plus bx-sm bx-tada-hover text-primary'></i></a> <a
@@ -162,6 +162,25 @@ font-family: 'Hana', sans-serif;
 										data-bs-dismiss="modal">닫기</button>
 									<button type="button" class="btn_hana btn_modal" 
 									onclick="location.href='${pageContext.request.contextPath}/subscribe'">서비스 가입</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				<div class="modal fade" id="logOut" tabindex="-1"
+						aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalLabel">로그 아웃 확인</h5>
+									<button type="button" class="btn-close" data-bs-dismiss="modal"
+										aria-label="Close"></button>
+								</div>
+								<div class="modal-body">로그아웃 하시겠습니까?</div>
+								<div class="modal-footer">
+									<button type="button" class="btn_white btn_modal" 
+										data-bs-dismiss="modal">닫기</button>
+									<button type="button" class="btn_hana btn_modal" 
+									onclick="location.href='${pageContext.request.contextPath}/member/logout'">로그아웃</button>
 								</div>
 							</div>
 						</div>

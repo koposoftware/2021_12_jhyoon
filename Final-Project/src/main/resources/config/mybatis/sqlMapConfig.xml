@@ -18,6 +18,8 @@
 	<typeAlias type="kr.ac.kopo.backtest.vo.BackTestListVO" alias="backTestListVO"/>
 	<typeAlias type="kr.ac.kopo.member.vo.OneClubPBVO" alias="oneClubPBVO"/>
 	<typeAlias type="kr.ac.kopo.backtest.vo.BackTestTotalResultVO" alias="backTestTotalResultVO"/>
+	<typeAlias type="kr.ac.kopo.counsel.vo.CounselVO" alias="counselVO"/>
+	
 </typeAliases> 
 
 </configuration>

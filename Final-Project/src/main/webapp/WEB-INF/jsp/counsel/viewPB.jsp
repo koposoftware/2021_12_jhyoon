@@ -171,7 +171,7 @@ padding-left: 0;
 						<img class="team-member-img img-fluid rounded-circle"
 						
 						
-								src="${pageContext.request.contextPath}/resources/img/pbtable/${mypb.empImg}.jpg" style="border: 3px solid #fff;"
+								src="${pageContext.request.contextPath}/resources/img/pbtable/${mypb.empImg}.jpg" style="border: 3px solid #fff; width: 300px;    margin-top: 50px;"
 								alt="Card image">
 					</div>
 					<div class="col-md-8 pb_tab3">
@@ -222,7 +222,8 @@ padding-left: 0;
 
 						</div>
 						<ul>
-							<li class="btn_popSide sidebg_new"  onclick="">
+							<li class="btn_popSide sidebg_new" style="cursor: pointer;" 
+							onclick="location.href='${pageContext.request.contextPath}/selectMyPB/${pb.empNo}'">
 							<span>전문가로 지정</span></li>
 						</ul>
 				  </div>
@@ -230,8 +231,6 @@ padding-left: 0;
 			</c:forEach>
 		</div>
 	</section>
-
-    <!-- End Banner Hero -->
 
 	<footer>
 		<jsp:include page="/WEB-INF/jsp/include/footer.jsp"></jsp:include>

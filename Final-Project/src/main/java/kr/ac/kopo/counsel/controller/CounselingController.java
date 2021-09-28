@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.ac.kopo.backtest.service.BackTestService;
-import kr.ac.kopo.backtest.vo.BackTestCompoVO;
 import kr.ac.kopo.backtest.vo.BackTestListVO;
 import kr.ac.kopo.counsel.service.CounselingService;
+import kr.ac.kopo.counsel.vo.CounselVO;
 import kr.ac.kopo.member.vo.MemberVO;
 import kr.ac.kopo.member.vo.OneClubPBVO;
 
@@ -32,7 +32,6 @@ public class CounselingController {
 		MemberVO userVO = (MemberVO)session.getAttribute("userVO");
 		List<OneClubPBVO> pbList = service.getPBList();
 		OneClubPBVO myPB = service.getMyPB(userVO.getEmpId());
-		
 		ModelAndView mav = new ModelAndView("/counsel/viewPB");
 		mav.addObject("mypb", myPB);
 		mav.addObject("pbList", pbList);
@@ -45,9 +44,14 @@ public class CounselingController {
 		ModelAndView mav = new ModelAndView("/counsel/writeCounsel");
 			MemberVO userVO = (MemberVO)session.getAttribute("userVO");
 			List<BackTestListVO> backTestList = backTestService.getBackTestList(userVO);
+			List<CounselVO> counselList = service.getCounselList(userVO);
+			for (CounselVO counselVO : counselList) {
+				System.out.println(counselVO);
+			}
 			OneClubPBVO myPB = service.getMyPB(userVO.getEmpId());
 			mav.addObject("myPB", myPB);
 			mav.addObject("backTestList", backTestList);
+			mav.addObject("counselList", counselList);
 			return mav;
 	}
 	@GetMapping("/counsel/writeCounsel/{portNum}")
@@ -62,11 +66,17 @@ public class CounselingController {
 	}
 	
 	@PostMapping("/counsel/writeCounsel")
-	public String writeCounsel() {
-		
+	public String writeCounsel(CounselVO counsel) {
+		service.insertCounsel(counsel);
 		return "redirect:/counsel/writeCounsel";
-		
 	}
-	
+	@GetMapping("/counsel/viewDetail/{counselNo}")
+	public ModelAndView viewCounsel(@PathVariable int counselNo) {
+		
+		ModelAndView mav = new ModelAndView("/counsel/viewCounsel");
+		CounselVO counselVO = service.viewCounsel(counselNo);
+		mav.addObject("counselVO", counselVO);
+		return mav;
+	}
 	
 }

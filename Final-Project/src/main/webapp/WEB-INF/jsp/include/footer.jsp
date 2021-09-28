@@ -1,9 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<footer class="bg-thirdary pt-4">
+<footer class="bg-thirdary pt-4" style="width:1800px; margin:auto;">
         <div class="container">
             <div class="row py-4">
-
                 <div class="col-lg-3 col-12 align-left">
                         <a href="${ pageContext.request.contextPath}/">
                         <img src="${ pageContext.request.contextPath}/resources/img/logo_01.png"></a>

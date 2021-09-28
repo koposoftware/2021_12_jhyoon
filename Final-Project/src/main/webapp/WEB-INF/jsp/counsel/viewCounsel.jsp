@@ -12,8 +12,6 @@
 	src="${ pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 <jsp:include page="/WEB-INF/jsp/include/head.jsp"></jsp:include>
 
-
-
 <style type="text/css">
 .subtitle_50px {
 	font-size: 35px;

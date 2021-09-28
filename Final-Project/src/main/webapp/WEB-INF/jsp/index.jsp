@@ -138,7 +138,6 @@ background-color:#C6DEE2;
 					<li id="myport"><img src="${pageContext.request.contextPath}/resources/img/svg/report.png" ><br>포트폴리오</li>            	
             	</ul>
             </div>
-            
         </div>
     </section>
 <script type="text/javascript">
@@ -156,7 +155,7 @@ $(document).ready(function() {
 		location.href="${pageContext.request.contextPath}/counsel/viewPB"
 	})
 	$('#myport').click(function(){
-		location.href="#"
+		location.href="${pageContext.request.contextPath}/backtest/myportfolioList"
 	})
 })
 

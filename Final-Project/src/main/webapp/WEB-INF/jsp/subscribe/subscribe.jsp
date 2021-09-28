@@ -691,44 +691,38 @@ a.btn2, .btn2 {
 						<c:when test="${userVO.subscribeGrade eq 'HANA FAMILY'}">
 							<div class="col-md-4 pb_tab7" style="margin-right: 20px; border:4px solid #008485; ">
 								<div class="btn_below">
-									<button type="button" id="resultTabMenu2" class="btn btn_white"
-										onclick="location.href='${pageContext.request.contextPath}/subscribe/cancel'">서비스 취소</button>
+									<button type="button" id="resultTabMenu2" class="btn btn_white" data-bs-toggle="modal" data-bs-target="#OneClubCancel">서비스 취소</button>
 								</div>
 							</div>
 							<div class="col-md-4 pb_tab7" style="margin-right: 20px">
 								<div class="btn_below">
-									<button type="button" id="resultTabMenu2" class="btn btn_hana"
-										onclick="location.href='${pageContext.request.contextPath}/subscribe/2'">업그레이드 하기</button>
+									<button type="button" id="resultTabMenu2" class="btn btn_hana" data-bs-toggle="modal" data-bs-target="#OneClubUpgrade2">업그레이드 하기</button>
 								</div>
 							</div>
 						</c:when>
 						<c:when test="${userVO.subscribeGrade eq 'HANA VIP'}">
 							<div class="col-md-4 pb_tab7" style="margin-right: 20px">
 								<div class="btn_below">
-									<button type="button" id="resultTabMenu2" class="btn btn_hana"
-										onclick="location.href='${pageContext.request.contextPath}/subscribe/1'">서비스
+									<button type="button" id="resultTabMenu2" class="btn btn_hana" data-bs-toggle="modal" data-bs-target="#OneClubUpgrade1">서비스
 										변경 하기</button>
 								</div>
 							</div>
 							<div class="col-md-4 pb_tab7" style="margin-right: 20px; border:4px solid #008485;">
 								<div class="btn_below">
-									<button type="button" id="resultTabMenu2" class="btn btn_white"
-										onclick="location.href='${pageContext.request.contextPath}/subscribe/cancel'">서비스 취소</button>
+									<button type="button" id="resultTabMenu2" class="btn btn_white" data-bs-toggle="modal" data-bs-target="#OneClubCancel">서비스 취소</button>
 								</div>
 							</div>
 						</c:when>
 						<c:otherwise>
 							<div class="col-md-4 pb_tab7" style="margin-right: 20px; ">
 								<div class="btn_below">
-									<button type="button" id="resultTabMenu2" class="btn btn_hana"
-										onclick="location.href='${pageContext.request.contextPath}/subscribe/1'">서비스
+									<button type="button" id="resultTabMenu2" class="btn btn_hana" data-bs-toggle="modal" data-bs-target="#OneClubHANAJoin" >서비스
 										가입하기</button>
 								</div>
 							</div>
 							<div class="col-md-4 pb_tab7" style="margin-right: 20px">
 								<div class="btn_below">
-									<button type="button" id="resultTabMenu2" class="btn btn_hana"
-										onclick="location.href='${pageContext.request.contextPath}/subscribe/2'">서비스
+									<button type="button" id="resultTabMenu2" class="btn btn_hana" data-bs-toggle="modal" data-bs-target="#OneClubVIPJoin">서비스
 										가입하기</button>
 
 								</div>
@@ -740,6 +734,108 @@ a.btn2, .btn2 {
 
 		</div>
 	</section>
+	
+	<!-- 서비스 확인 모달 -->
+	<!-- 1. 서비스 가입시   -->
+	<div class="modal fade" id="OneClubHANAJoin" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">OneClub 서비스 가입</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">OneClub 서비스에 'HAVA Family' 요금제로 가입하시겠습니까?</div>
+				<div class="modal-footer">
+					<button type="button" class="btn_white btn_modal"
+						data-bs-dismiss="modal">닫기</button>
+					<button type="button" class="btn_hana btn_modal" onclick="location.href='${pageContext.request.contextPath}/subscribe/1'">서비스 가입</button>
+				</div>
+			</div>
+		</div>
+	</div>
+		<div class="modal fade" id="OneClubVIPJoin" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">OneClub 서비스 가입</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">OneClub 서비스에 'VIP Family' 요금제로 가입하시겠습니까?</div>
+				<div class="modal-footer">
+					<button type="button" class="btn_white btn_modal"
+						data-bs-dismiss="modal">닫기</button>
+					<button type="button" class="btn_hana btn_modal" onclick="location.href='${pageContext.request.contextPath}/subscribe/2'">서비스	가입</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 2. 서비스 해지시   -->
+	<div class="modal fade" id="OneClubCancel" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">OneClub 서비스 이용 중단</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">OneClub 서비스 이용을 중단 하시겠습니까?</div>
+				<div class="modal-footer">
+					<button type="button" class="btn_white btn_modal"
+						data-bs-dismiss="modal">닫기</button>
+					<button type="button" class="btn_hana btn_modal"
+						onclick="location.href='${pageContext.request.contextPath}/subscribe/cancel'">서비스
+						가입</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 1. 서비스 업그레이드시   -->
+	<div class="modal fade" id="OneClubUpgrade1" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">OneClub 이용 서비스 변경</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">OneClub 서비스 이용 등급을 HANA Family로 변경하시겠습니까?</div>
+				<div class="modal-footer">
+					<button type="button" class="btn_white btn_modal"
+						data-bs-dismiss="modal">닫기</button>
+					<button type="button" class="btn_hana btn_modal"
+						onclick="location.href='${pageContext.request.contextPath}/subscribe/1'">서비스 변경</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="OneClubUpgrade2" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">OneClub 이용 서비스 변경</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">OneClub 서비스 이용 등급을 VIP Family로 변경하시겠습니까?</div>
+				<div class="modal-footer">
+					<button type="button" class="btn_white btn_modal"
+						data-bs-dismiss="modal">닫기</button>
+					<button type="button" class="btn_hana btn_modal"
+						onclick="location.href='${pageContext.request.contextPath}/subscribe/2'">서비스	가입</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
 	<footer>
 		<jsp:include page="/WEB-INF/jsp/include/footer.jsp"></jsp:include>
 	</footer>
