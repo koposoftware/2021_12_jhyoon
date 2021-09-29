@@ -241,10 +241,6 @@ font-size: 21px;
 									<li class="btn_popSide sidebg_del" id="btnPortDelete" style="float: left;font-size: 18px;margin-left:5px;" data-bs-toggle="modal" data-bs-target="#deleteModal"><img
 										src="${pageContext.request.contextPath}/resources/img/icn_delete_white.png"><span>삭제 하기</span></li>
 									<!-- //포트삭제 -->
-									
-									
-									
-									
 								</ul>
 							</div>
 						</div>
@@ -973,15 +969,15 @@ font-size: 21px;
 					</div>
 					<div id="PortResultSection3" style="display: none;" class="result_section">
 						<!-- 가상매매 수익률 박스 -->
-							<div class="fd_subBox " <c:if test="${userVO.subscribeGrade eq 'VIP FAMILY'}">style="display:none"</c:if>
-							<c:if test="${userVO.subscribeGrade != 'VIP FAMILY'}">style="display:block"</c:if>							>
+							<div class="fd_subBox " <c:if test="${userVO.subscribeGrade eq 'HANA VIP'}">style="display:none"</c:if>
+							<c:if test="${userVO.subscribeGrade != 'HANA VIP'}">style="display:block"</c:if>							>
 							<div style="display:table-cell; width:1600px; height:400px; background-color: #ddd; text-align:center; margin:auto;vertical-align: middle;">
 									
-                                    		<p class="subtitle_15px">추천 종목(VIP FAMILY회원시 이용가능)</p>
+                                    		<p class="subtitle_15px">추천 종목(HANA VIP회원시 이용가능)</p>
                                    </div>
                             </div>
-						    <div class="fd_subBox " <c:if test="${userVO.subscribeGrade != 'VIP FAMILY'}">style="display:none"</c:if>
-						    <c:if test="${userVO.subscribeGrade eq 'VIP FAMILY'}">style="display:block"</c:if>
+						    <div class="fd_subBox " <c:if test="${userVO.subscribeGrade != 'HANA VIP'}">style="display:none"</c:if>
+						    <c:if test="${userVO.subscribeGrade eq 'HANA VIP'}">style="display:block"</c:if>
 						    >
                             <ul>
                                 <li class="subtitle_15px bold">

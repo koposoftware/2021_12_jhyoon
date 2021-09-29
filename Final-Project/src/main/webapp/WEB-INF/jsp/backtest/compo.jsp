@@ -516,7 +516,7 @@ $(window).load(function () {
 		})
 		
 		$('#5y').click(function() {
-			if("${userVO.subscribeGrade eq 'HAVA FAMILY'}"){
+			if(${userVO.subscribeGrade eq 'HANA FAMILY'}){
 				alert('VIP 회원부터 설정할 수 있는 조건입니다.')
 			}else{
 			dateInput(1825, 0)
@@ -524,7 +524,7 @@ $(window).load(function () {
 			}
 		})
 		$('#10y').click(function() {
-			if("${userVO.subscribeGrade eq 'HAVA FAMILY'}"){
+			if(${userVO.subscribeGrade eq 'HANA FAMILY'}){
 				alert('VIP 회원부터 설정할 수 있는 조건입니다.')	
 			}else{
 			dateInput(3650, 0)
@@ -584,7 +584,7 @@ $(window).load(function () {
 			<div class="content-by-step">
 				<form action="${pageContext.request.contextPath}/backtest/compo"
 					method="post">
-					<input type="hidden" name="userId" value="dhfkdlxm">
+					<input type="hidden" name="userId" value="${userVO.userId}">
 					<div id="selection0" class="container"
 						style="display: block; align-content: center;">
 						<!-- 첫번째 페이지 -->

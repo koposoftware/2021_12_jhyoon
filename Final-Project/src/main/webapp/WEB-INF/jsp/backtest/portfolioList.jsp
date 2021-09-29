@@ -738,7 +738,7 @@ $(window).load(function () {          //페이지가 로드 되면 로딩 화면
 				<div class="col-md-3 card-condi">
 					<div class="card-inner">
 						<p class="fl portDate_large" >${list.backTestCompoVO.backtestDate}</p>
-						<p class="rl portNum_small">no. ${list.backTestCompoVO.backtestCnt}</p>
+						<p class="rl portNum_small">no. ${loop.count}</p>
 						<p class="port_title" onclick="location.href='${pageContext.request.contextPath}/backtest/result/${list.backTestCompoVO.portNum}'" id="title_${list.backTestCompoVO.portNum}">${list.backTestCompoVO.backTitle}</p>
 						<div class="small_des">
 							<span>백테스트 기간 : ${list.backTestCompoVO.backStartDate}~${list.backTestCompoVO.backEndDate}(${list.backTestCompoVO.backStockCnt}개월)</span>

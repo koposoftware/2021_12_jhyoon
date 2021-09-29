@@ -409,6 +409,7 @@ a.btn2, .btn2 {
 		})
 		$('#resultTabMenu2').click(function() {
 			changeResultTab(1)
+			$('html,body').animate({scrollTop:$('#resultTabMenu1').offset().top}, 500);
 		})
 
 	})
@@ -787,8 +788,7 @@ a.btn2, .btn2 {
 					<button type="button" class="btn_white btn_modal"
 						data-bs-dismiss="modal">닫기</button>
 					<button type="button" class="btn_hana btn_modal"
-						onclick="location.href='${pageContext.request.contextPath}/subscribe/cancel'">서비스
-						가입</button>
+						onclick="location.href='${pageContext.request.contextPath}/subscribe/cancel'">이용 중단</button>
 				</div>
 			</div>
 		</div>

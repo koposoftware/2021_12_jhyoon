@@ -360,6 +360,14 @@ a.btn2, .btn2 {
 
 </style>
 <script type="text/javascript">
+if(${userVO.subscribeGrade eq 'FAMILY'}){
+	alert('OneClub 회원만 이용가능한 서비스입니다.')
+	location.href='${pageContext.request.contextPath}/subscribe'
+}else if(${userVO.subscribeGrade eq 'HANA FAMILY'}){
+	alert('OneClub VIP 회원만 이용가능한 서비스입니다.')
+	location.href='${pageContext.request.contextPath}/subscribe'
+}
+
 	$(document).ready(function() {
 		$('#resultTabMenu0').click(function() {
 			changeResultTab(0)
@@ -565,8 +573,7 @@ a.btn2, .btn2 {
 											${counsel.counselTitle}</a></td>
 										<td class="td_date">${counsel.counselRegDate}</td>
 										<td class="td_hit">
-										<c:if test="${counsel.answerNo eq 0}">N</c:if>
-										<c:if test="${counsel.answerNo != 0}">Y</c:if>
+										답변완료
 										</td>
 									</tr>
 								</c:forEach>

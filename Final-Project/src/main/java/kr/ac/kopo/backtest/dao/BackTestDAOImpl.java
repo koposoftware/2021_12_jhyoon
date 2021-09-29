@@ -127,12 +127,10 @@ public class BackTestDAOImpl implements BackTestDAO {
 	}
 
 	public Map<Integer, String> getAccTotalList(MemberVO userVO){
-		userVO.setUserId("dhfkdlxm");
 		List<Integer> portNumList = sqlSessionTemplate.selectList("portNumList", userVO);
 		Map<Integer, String> getAccTotal = new HashMap<Integer, String>();
 		Gson gson = new Gson();
 		for (Integer portNum : portNumList) {
-			System.out.println(portNum);
 			getAccTotal.put(portNum, gson.toJson(sqlSessionTemplate.selectList("getAccTotalList", portNum)));
 		}
 		return getAccTotal;

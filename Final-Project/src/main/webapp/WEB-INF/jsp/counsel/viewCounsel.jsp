@@ -562,10 +562,7 @@ a.btn2, .btn2 {
 											<a href="${pageContext.request.contextPath}/">
 											${counsel.counselTitle}</a></td>
 										<td class="td_date">${counsel.counselRegDate}</td>
-										<td class="td_hit">
-										<c:if test="${counsel.answerNo eq 0}">N</c:if>
-										<c:if test="${counsel.answerNo != 0}">Y</c:if>
-										</td>
+										<td class="td_hit">답변완료</td>
 									</tr>
 								</c:forEach>
 							</tbody>

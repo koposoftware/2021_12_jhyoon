@@ -16,11 +16,9 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		//로그인 여부 판단
 		HttpSession session =  request.getSession();
 		MemberVO userVO = (MemberVO)session.getAttribute("userVO");
-		System.out.println("인터셉터 지나감!");
 		if(userVO == null) {
 			String uri = request.getRequestURI();
 			uri = uri.substring(request.getContextPath().length());
-			System.out.println("uri : " + uri);
 		
 		
 		session.setAttribute("dest", uri);

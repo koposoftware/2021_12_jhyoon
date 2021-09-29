@@ -87,7 +87,6 @@ font-family: 'Hana', sans-serif;
             				</c:otherwise>
             				</c:choose>
             				
-            				
           				</ul>
 					</li>
 					<li class="nav-item dropdown"><a class="nav-link btn-outline-primary rounded-pill px-3 dropdown-toggle"

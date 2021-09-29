@@ -128,7 +128,7 @@ public class BackTestController {
 	@GetMapping("/backtest/myportfolioList")
 	public ModelAndView portfolioList(HttpSession session) {
 		MemberVO userVO = (MemberVO)session.getAttribute("userVO");
-		
+		System.out.println(userVO);
 		List<BackTestTotalResultVO> totalList = service.getResultList(userVO);
 		Map<Integer, String> getAccTotal = service.getAccTotalList(userVO);
 		ModelAndView mav = new ModelAndView( "/backtest/portfolioList");
