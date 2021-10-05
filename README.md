@@ -20,13 +20,6 @@
 
 
 # 3. 프로젝트 결과
-  ## 주요 기술
-  <img src="./tech1.png"/><br>
-  <img src="./tech2.png"/><br>
-  ## ERD
-  <img src="./erd.png"/><br>
-  ## 아키텍쳐
-  <img src="./architecture.png"/><br>
  ## 발표 ppt 
    <img src="./최종.png"/><br>
    <a href="프로젝트 최종 보고서.pptx">발표자료</a>
@@ -35,7 +28,15 @@
 <a target="_blank" rel="noopener noreferrer" href="https://youtu.be/SJPJ6cgxPUE">
   <img src="./최종.png" style="width:800px;">
 </a><br>
-   
+
+## 프로젝트 소개
+  ### 주요 기술
+  <img src="./tech1.png"/><br>
+  <img src="./tech2.png"/><br>
+  ### ERD
+  <img src="./erd.png"/><br>
+  ### 아키텍쳐
+  <img src="./architecture.png"/><br>
 
 # 4. 본인 소개
 <img src="./profile.png" style="width:800px;">
