@@ -26,7 +26,7 @@
   ## ERD
   <img src="./erd.png"/><br>
   ## 아키텍쳐
-  <img src="./archiecture.png"/><br>
+  <img src="./architecture.png"/><br>
  ## 발표 ppt 
    <img src="./최종.png"/><br>
    <a href="프로젝트 최종 보고서.pptx">발표자료</a>
