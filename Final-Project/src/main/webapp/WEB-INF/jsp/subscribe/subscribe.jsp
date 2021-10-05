@@ -668,7 +668,7 @@ a.btn2, .btn2 {
 							<tr>
 								<th>전략 검증기간</th>
 								<td>3년</td>					
-								<td>5년</td>					
+								<td>10년</td>					
 							</tr>
 							<tr>
 								<th>종목 추천</th>

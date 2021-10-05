@@ -37,10 +37,13 @@ font-family: 'Hana', sans-serif;
     text-align: center;
     height: 36px;
 }
+nav{
+	width:1800px;
+	margin:auto;
+}
 </style>
 
-<nav id="main_nav"
-	class="navbar navbar-expand-lg navbar-light bg-white shadow">
+<nav id="main_nav" class="navbar navbar-expand-lg navbar-light bg-white shadow">
 	<div
 		class="container d-flex justify-content-between align-items-center">
 		<a href="${ pageContext.request.contextPath}/"><img

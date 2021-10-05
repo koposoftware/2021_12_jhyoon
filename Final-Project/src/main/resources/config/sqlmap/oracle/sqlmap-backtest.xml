@@ -201,7 +201,7 @@ select user_id, stock_name, stock_code, to_char(back_date,'yyyy-mm-dd') back_dat
 	 {CALL Select_Current_Stock(
 		#{portNum},
 		#{userId},
-		to_char(sysdate,'YY/mm/dd'),
+		to_date(sysdate,'YY/mm/dd'),
 		#{stockCnt},
 		#{recommendList, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=backTestRecommendMap}
 		)}

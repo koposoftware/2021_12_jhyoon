@@ -569,7 +569,7 @@ if(${userVO.subscribeGrade eq 'FAMILY'}){
 												<img src="${pageContext.request.contextPath}/resources/img/icon_reply.gif"
 													class="icon_reply" alt="답변글">
 												</c:if>
-											<a href="${pageContext.request.contextPath}/">
+											<a href="${pageContext.request.contextPath}/counsel/viewDetail/${counsel.counselNo}">
 											${counsel.counselTitle}</a></td>
 										<td class="td_date">${counsel.counselRegDate}</td>
 										<td class="td_hit">

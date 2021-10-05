@@ -5,25 +5,15 @@
 <html>
 <head>
 <!-- Head 구성  -->
-<jsp:include page="/WEB-INF/jsp/include/head.jsp"></jsp:include>
 
     <!-- Bootstrap -->
-    <script src="${ pageContext.request.contextPath}/resources/js/bootstrap.bundle.min.js"></script>
-    <!-- Load jQuery require for isotope -->
     <script src="${ pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
     <!-- Isotope -->
     <script src="${ pageContext.request.contextPath}/resources/js/isotope.pkgd.js"></script>
     <!-- Page Script -->
  
-    <!-- Templatemo -->
-    <script src="${ pageContext.request.contextPath}/resources/js/templatemo.js"></script>
-    <!-- Custom -->
-    <script src="${ pageContext.request.contextPath}/resources/js/custom.js"></script>
-    <link href="${pageContext.request.contextPath}/resources/css/modals.css"
-	rel="stylesheet">
-	<script type="text/javascript">
-	
-	</script>
+    <link href="${pageContext.request.contextPath}/resources/css/modals.css" rel="stylesheet">
+<jsp:include page="/WEB-INF/jsp/include/head.jsp"></jsp:include>
 <!-- Head 구성 끝 -->
 </head>
 <body>

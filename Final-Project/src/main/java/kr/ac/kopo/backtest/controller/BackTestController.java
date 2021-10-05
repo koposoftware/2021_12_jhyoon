@@ -50,6 +50,7 @@ public class BackTestController {
 		compVO.setBackTransAmt(compVO.getBackTransAmt().replaceAll("\\,", ""));
 		compVO.setBackMinPrice(compVO.getBackMinPrice().replaceAll("\\,", ""));
 		
+		
 		// 세션에서 user 정보 불러와서 backtest 횟수 확인
 		MemberVO userVO = (MemberVO)session.getAttribute("userVO");
 		int userBacktestCnt = userVO.getBacktestCnt();

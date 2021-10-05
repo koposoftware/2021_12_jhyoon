@@ -1095,7 +1095,15 @@ font-size: 21px;
 								<tbody>
 									<c:forEach items="${transList2}" var="historyList"	varStatus="loop">
 										<tr>
+											<c:choose>
+											<c:when test = "${historyList.transKind eq '전량매도'}">
+											<td class="td-date" style="text-align: center;">${historyList.sellDate}</td>
+											</c:when>
+											<c:otherwise>
 											<td class="td-date">${historyList.backDate}</td>
+											</c:otherwise>	
+											</c:choose>
+										
 											<c:choose>
 												<c:when test="${historyList.transKind eq '신규매수' or historyList.transKind eq '부분매수'}">
 													<td><span class="label label-danger">${historyList.transKind}</span></td>

@@ -360,30 +360,14 @@ a.btn2, .btn2 {
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#resultTabMenu0').click(function() {
-			changeResultTab(0)
+			location.href="${pageContext.request.contextPath}/counsel/writeCounsel"
 		})
 		$('#resultTabMenu1').click(function() {
-			changeResultTab(1)
+			location.href="${pageContext.request.contextPath}/counsel/writeCounsel"
 		})
 		
 	})
-	function changeResultTab(num) {
-		for (var i = 0; i < 2; i++) {
-			document.getElementById("resultTabMenu" + i.toString()).className = "";
-			document.getElementById("PortResultSection" + i.toString()).style.display = "none";
-		}
-		document.getElementById("resultTabMenu" + num).className = "on";
-		document.getElementById("PortResultSection" + num.toString()).style.display = "";
-	}
-	function Change() {
-		var selectedIndex = document.fwrite.consultCate.options.selectedIndex;
-		var selected = document.fwrite.consultCate.options[selectedIndex].value
-		if (selected == 'portfolio'){
-			$('.slct_port').css('display','')
-		}else{
-			$('.slct_port').css('display','none')
-			}
-	}
+	
 
 </script>
 										
@@ -446,144 +430,194 @@ a.btn2, .btn2 {
 			</div>
 			<div class="fullDetail_tabBox">
 				<ul style="padding-left: 0px; margin-bottom: 0px;">
-					<li id="resultTabMenu0" class="on">상담 신청</li>
-					<li id="resultTabMenu1" class="">상담 내역</li>
+					<li id="resultTabMenu0" >상담 신청</li>
+					<li id="resultTabMenu1" class="on">상담 내역</li>
 				</ul>
 			</div>
-			<div id="PortResultSection0" class="result_section" style="height: 1000px; border: 0px">
-					<!-- 게시물 작성/수정 시작 { -->
-					<form name="fwrite" id="fwrite" action="${pageContext.request.contextPath}/counsel/writeCounsel"  method="post" style="width: 100%">
-						<div class="jtbl_frm01 tbl_wrap">
-							<table>
-								<tbody>
-									<tr>
-										<th scope="row" style="width:25%"><label for="userName" class="input_title" >이름</label></th>
-										<td style="width:25%"><span class="txt_input">${userVO.userName}</span>
-										<input type="hidden" name="userId" value="${userVO.userId}" >
-										</td>
-										<th scope="row" style="width:20%"><label for="empName" class="input_title">전담 PB</label></th>
-										<td style="width:30%"><span class="txt_input" style="width:25%">${myPB.empName} PB</span>
-										<input type="hidden" name="empNo" value="${myPB.empNo}"></td>
-									</tr>
-									<tr>
-										<th scope="row"><label for="userTel" class="input_title" style="width:25%">휴대전화</label></th>
-										<td style="width:25%"><span class="txt_input" >${userVO.userTel}</span>
-										
-										</td>
-										<th scope="row"><label for="userEmail" class="input_title" style="width:25%">E-mail</label></th>
-										<td style="width:25%"><span class="txt_input">${userVO.userEmail }</span>
-										</td>
-									</tr>
-									<tr>
-										<th scope="row" style="width:25%"><label for="userTel" class="input_title">상담구분</label></th>
-										<td style="width:25%">
-										<select	name="counselCate" id="slct_cate" class="frm_input_content" onchange="Change()">
-											<option value="portfolio" selected="selected">내 포트폴리오 상담</option>
-											<option value="invest">투자 상담</option>
-											<option value="userOneClub">OneClub 이용상담</option>
-										</select>
-										</td>
-										<th scope="row" class="slct_port" style="width:25%"><label for="consultport" class="input_title">내 포트폴리오 불러오기</label></th>
-										<td class="slct_port" style="width:25%">
-										<select name="counselPort" class="frm_input_content">
-											<c:choose>
-												<c:when test="${not empty backTestList}">
-													<c:forEach items="${backTestList}" var="portList"
-														varStatus="loop">
-														<option value="${portList.portNum}">(${loop.count})
-															${portList.backTitle}(수익률
-															<c:choose>
-																<c:when test="${portList.earningRate lt 0}">
-																	<span class="txt_minus">${portList.earningRate}</span>)
-																</c:when>
-																<c:otherwise>
-																	<span class="txt_plus">+${portList.earningRate}</span>%)
-																</c:otherwise>
-															</c:choose>
-														</option>
-													</c:forEach>
-												</c:when>
-												<c:otherwise>
-													<option value="${backTest.portNum}">${backTest.backTitle}(수익률
-														<c:choose>
-															<c:when test="${backTest.earningRate lt 0}">
-																<span class="txt_minus">${backTest.earningRate}</span>)
-															</c:when>
-															<c:otherwise>
-																<span class="txt_plus">+${backTest.earningRate}</span>%)
-															</c:otherwise>
-														</c:choose>
-												</c:otherwise>
-											</c:choose>
+			
+			<style type="text/css">
+.online_view_ct {
+	font-size: 15px;
+	margin-bottom: 15px;
+}
+#bo_vc{
+    margin: 0 0 20px;
+    padding: 20px 20px 10px;
+    border: 1px solid #e5e8ec;
+    min-height:400px
+}
+.answer-span{
+	font-size: 20px;
+	font-weight: 600;
+}
+#c_3{
+    padding: 10px 0 10px;
+    border-top: 1px dotted #ccc;
+    height: 140px;
 
-									</select>
+}
+.answer-date{
+display: inline-block;
+    margin: 0 15px 0 5px;
+ 	font-size: 20px;
+}
+.bo_vc_act {
+    float: right;
+    margin: 0;
+    list-style: none;
+    zoom: 1;
+}
+.bo_vc_act li {
+    float: left;
+    margin-left: 5px;
+}
+.btn_answer{
+    outline: 0;
+    outline-style: none;
+    font-size: 20px;
+    padding: 5px 15px;
+    text-align: center;
+    background: #008485;
+    font-weight: 600;
+    color: #fff;
+    box-shadow: inset 0px -2px 1px #008485;
+}
 
-									</td>
-									</tr>
-									<tr>
-										<th scope="row"><label for="counselTitle" class="input_title">제목</label></th>
-										<td colspan="3">
-										<input type="text" name="counselTitle" class="frm_input_content frm_input_title" >
-										</td>
-									</tr>
-									<tr>
-										<th scope="row"><label for="wr_content" class="input_title">내용</label></th>
-										<td class="wr_content" colspan="3"><textarea id="wr_content" name="counselContent" class="frm_input_content " maxlength="65536" style="width: 100%; height: 300px"></textarea>
-									</tr>
-								</tbody>
-							</table>
-						</div>
+.btn_white{
+    outline: 0;
+    outline-style: none;
+    font-size: 20px;
+    padding: 5px 15px;
+    text-align: center;
+    background: #fff;
+    font-weight: 600;
+    color: #888;
+    box-shadow: inset 0px -2px 1px #fff;
+}
 
-				<div class="btn-div">
-							<input type="submit" class="btn btn_hana" value="내용 등록">
-						</div>
-					</form>
-			</div>
-			<div id="PortResultSection1" class="result_section" style="height: 1000px; border: 0px; display: none;">
+
+.jtbl_frm01 table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    border: 0px !important;
+}
+.jtbl_frm01 th {
+    width: 150px;
+    padding: 7px 5px 7px 5px;
+    border: 1px solid #e9e9e9;
+    border-left: 0;
+    text-align: left;
+    font-size: 20px;
+    font-weight: normal;
+    padding-left: 10px;
+}
+.jtbl_frm01 td {
+    padding: 7px 10px 7px 10px;
+    border-top: 1px solid #e9e9e9;
+    border-bottom: 1px solid #e9e9e9;
+    background: transparent;
+    font-size: 14px;
+}
+.jtbl_frm01 textarea {
+    width: 98%;
+    height: 100px;
+}
+</style>
+			
+			
+			<div id="PortResultSection1" class="result_section" style="height: 1000px; border: 0px;">
 				<div class="jtbl_head01 jtbl_wrap">
 						<table>
 							<thead>
 								<tr>
-									<th scope="col" class="th_bg01"style="width: 10%">NO</th>
-									<th scope="col" class="th_bg01" style="width: 50%">제목</th>
+									<th scope="col" class="th_bg01" style="width: 25%">제목</th>
+									<td style="width: 25%; border-top:1px solid; ">${counselVO.counselTitle}</td>
 									<th scope="col" class="th_bg01" style="width: 20%">작성일</th>
-									<th scope="col" style="width: 20%">처리상태</th>
+									<td style="width: 25%; border-top:1px solid;">${counselVO.counselRegDate}</td>
+								</tr>
+								<tr>
+									<th scope="col" style="width: 25%">작성자</th>
+									<td>${userVO.userName}</td>
+									<th scope="col" style="width: 25%">상담 카테고리</th>
+									<td>
+									<c:choose>
+									<c:when test="${counselVO.counselCate eq 'portfolio'}">
+										포트폴리오 상담
+										<button class="btn btn_hana" style="width: 120px;  height: 60px;" 
+										onclick="location.href='${pageContext.request.contextPath}/backtest/result/${counselVO.counselPort}'">
+											포트폴리오
+										</button>
+									</c:when>
+									<c:when test="${counselVO.counselCate eq 'invest'}">
+										투자 상담
+									</c:when>
+									<c:when test="${counselVO.counselCate eq 'userOneClub'}">
+										OneClub 이용상담
+									</c:when>
+									</c:choose>
+									</td>
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach items="${counselList}" var="counsel" varStatus="loop">
-									<tr>
-										<td class="td_num">${loop.count}</td>
-										<td class="td_subject" style="text-align: left;">
-												<c:if test="${counsel.answerNo != 0}">
-												<img src="${pageContext.request.contextPath}/resources/img/icon_reply.gif"
-													class="icon_reply" alt="답변글">
-												</c:if>
-											<a href="${pageContext.request.contextPath}/">
-											${counsel.counselTitle}</a></td>
-										<td class="td_date">${counsel.counselRegDate}</td>
-										<td class="td_hit">답변완료</td>
-									</tr>
-								</c:forEach>
-							</tbody>
+							<tr>
+							<td colspan="4" style="text-align:left; ">
+							<div style="min-height:200px; height:auto;">
+							<p>${counselVO.counselContent}</p>
+							</div>
+							
+					<div id="bo_vc">
+    					<span class="answer-span">답변목록</span>
+					 <div id="c_3">
+       				<div style="z-index:2">
+           				 <span class="answer-span">정찬용 PB</span><span class="answer-date">&nbsp;&nbsp;작성일
+           				 <time datetime="2021-09-30T15:29:00+09:00">21-09-30 15:29</time></span>
+                  	</div>
+				        <!-- 답변 출력 -->
+       					 <p>   안녕하세요  정찬용 PB 입니다. 
+       					 	조이 그린블란트의 마법의 공식을 사용 해주셨는데, 마법의 공식은<br>
+       					 	총자산이익률(ROA)이 높고, 주가 수익비율이 낮은 종목을 골라 투자하는 방식입니다. <br>
+       						올려주신 포트폴리오 잘봤습니다. 수익률이 낮게 나온 이유는, 국내 시장흐름의 영향도 있는 것으로 보이나,<br>
+       						궁극적으로 마법의 공식의 효과를 보실려면, 분산투자를 늘이고 리밸런싱 기간을 1개월로 해보세요.<br>
+       						추가로 주당 현금흐름(cfps) 조건도 넣어 기업 이익 창출능력도 넣어보심을 추천드립니다.
+       					   </p>
+							<span class=""><b>PB 추천 조건 : </b></span>
+							<span class="top" ><b>분산종목 20개, 리밸런싱 기간 조정 6개월 → 1개월, CFPS 추가</b></span>
+              			  <div>	
+            			<ul class="bo_vc_act">
+               			 <li><span class="btn_answer" href="" onclick="">답변</span></li>                                           
+               			 <li><span class="btn_white" href="" onclick="">삭제</span></li>                                           
+               			  </ul>
+      					  </div>
+         			 </div>
+					</div>
+						</td>
+							</tr>
+						</tbody>
 						</table>
 					</div>
 				<!-- 페이지 -->
-				<ul class='pagenation'>
-				<c:forEach begin="${page.beginPage}" var="i" end="${page.endPage}"  >
-					<c:choose>
-						<c:when test="${page.currentPage eq i}">
-							<li class='on'><a href="#"><b></b></a></li>
-						</c:when>
-						<c:otherwise>
-							<li><a href="#"><b></b></a></li>
-						</c:otherwise>
-					</c:choose>
-					</c:forEach>
-					<li><a href='#' class='btn2'><img
-							src='${pageContext.request.contextPath}/resources/img/btn_lastly.gif'
-							alt='마지막으로' /></a></li>
-				</ul>
+				<div class="jtbl_frm01 tbl_wrap">
+					<form>
+				<table>
+					<tbody>
+						<tr>
+							<th scope="row"><label for="wr_name">이름</label></th>
+							<td><input type="text" name="wr_name" value="" id="wr_name"
+								required="" class="frm_input" size="5" style="width: 122px;"
+								maxlength="20"></td>
+						</tr>
+						<tr>
+							<th scope="row">내용</th>
+							<td><textarea id="wr_content" name="wr_content"
+									maxlength="10000" required="" class="" title="내용"></textarea> <script>
+									</script></td>
+						</tr>
+					</tbody>
+				</table>
+						<input type="submit" class="btn_answer" style="float:right;margin-top:20px" value="답변등록">   
+					</form>
+				</div>
 			</div>
 		</div>
 	</section>

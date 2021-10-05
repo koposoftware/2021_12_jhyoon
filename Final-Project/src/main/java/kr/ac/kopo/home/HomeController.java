@@ -11,6 +11,8 @@ import com.google.gson.Gson;
 
 import kr.ac.kopo.backtest.service.BackTestService;
 import kr.ac.kopo.backtest.vo.BackTestCompoVO;
+import kr.ac.kopo.backtest.vo.BackTestRecommendListVO;
+import kr.ac.kopo.backtest.vo.BackTestRecommendVO;
 import kr.ac.kopo.backtest.vo.BackTestResultAccVO;
 import kr.ac.kopo.backtest.vo.BackTestResultFlucVO;
 
@@ -29,16 +31,20 @@ public class HomeController {
 	
 	@RequestMapping("/test")
 	public ModelAndView test() {
-		int portNo = 131;
+		int portNo = 5;
 		BackTestCompoVO compVO = service.getPortCondi(portNo);
 		
-		List<BackTestResultAccVO> accList = service.getAccResult(compVO);
-		List<BackTestResultFlucVO> stockDayList = service.getStockDayList(compVO);
-		
+		BackTestRecommendListVO setRecommendVO = new BackTestRecommendListVO();
+		setRecommendVO.setPortNum(compVO.getPortNum());
+		setRecommendVO.setUserId(compVO.getUserId());
+		setRecommendVO.setStockCnt(28);
+		List<BackTestRecommendVO> recommendList = service.getRecommendList(setRecommendVO);
+		for (BackTestRecommendVO backTestRecommendVO : recommendList) {
+			
+			System.out.println(backTestRecommendVO);
+		}
 		Gson gson = new Gson();
 		ModelAndView mav = new ModelAndView("/test");
-		mav.addObject("accList", gson.toJson(accList));
-		mav.addObject("stockDayList", gson.toJson(stockDayList));
 		
 		return mav;
 	}
