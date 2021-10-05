@@ -15,14 +15,14 @@
   
 
 # 2. 프로젝트 제안서
-   <img src="./제안서.png"/><br>
-   <a href="project-git.pptx">[프로젝트 제안서]</a><br>
+   <a href="project-git.pptx"><img src="./제안서.png"/><br>
+   프로젝트 제안서</a><br>
 
 
 # 3. 프로젝트 결과
  ## 발표 ppt 
-   <img src="./최종.png"/><br>
-   <a href="프로젝트 최종 보고서.pptx">발표자료</a>
+   <a href="프로젝트 최종 보고서.pptx"><img src="./최종.png"/><br>
+   발표자료</a>
 
 ## 시연 동영상 
 <a target="_blank" rel="noopener noreferrer" href="https://youtu.be/SJPJ6cgxPUE">
