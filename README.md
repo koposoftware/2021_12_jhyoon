@@ -20,9 +20,8 @@
 
 
 # 3. 프로젝트 결과
-  ## 주요 기술 1)
+  ## 주요 기술
   <img src="./tech1.png"/><br>
-  ## 주요 기술 2)
   <img src="./tech2.png"/><br>
   ## ERD
   <img src="./erd.png"/><br>
