@@ -1,4 +1,4 @@
--- «¡∑ŒΩ√¿˙ (¡æ«’ «¡∑ŒΩ√¿˙¿”, ¿œ∫∞ µ•¿Ã≈Õ π›»Ø «¡∑ŒΩ√¿˙)
+-- ÌîÑÎ°úÏãúÏ†Ä (Ï¢ÖÌï© ÌîÑÎ°úÏãúÏ†ÄÏûÑ, ÏùºÎ≥Ñ Îç∞Ïù¥ÌÑ∞ Î∞òÌôò ÌîÑÎ°úÏãúÏ†Ä)
 drop PROCEDURE BACK_TEST;
 create or replace PROCEDURE BACK_TEST(
     P_port_num in number,
@@ -10,43 +10,48 @@ create or replace PROCEDURE BACK_TEST(
     V_end_no t_trans_stock.baCK_no%type;
 
 BEGIN
-STOCK_LOGIC(P_port_num,p_user_id);
-p_transfer(P_port_num,p_user_id);
-select max(back_no) into v_end_no from t_trans_stock where PORT_num = P_port_num and user_id = p_user_id;
+	BEGIN
+	STOCK_LOGIC(P_port_num,p_user_id);
+	p_transfer(P_port_num,p_user_id);
+	select max(back_no) into v_end_no from t_trans_stock where PORT_num = P_port_num and user_id = p_user_id;
 
-WHILE V_NOW_NO < V_END_NO
-LOOP
- --¿Ãπ¯¥ﬁ
- select max(back_date) into V_START_DATE from t_trans_stock where back_no=V_now_no AND USER_ID =p_user_id AND PORT_NUM = P_port_num;
- select max(back_date) into V_END_DATE from t_trans_stock where back_no=V_now_no+1 AND USER_ID = p_user_id AND PORT_NUM=P_port_num;
+	WHILE V_NOW_NO < V_END_NO
+	LOOP
+	 --Ïù¥Î≤àÎã¨
+	 select max(back_date) into V_START_DATE from t_trans_stock where back_no=V_now_no AND USER_ID =p_user_id AND PORT_NUM = P_port_num;
+	 select max(back_date) into V_END_DATE from t_trans_stock where back_no=V_now_no+1 AND USER_ID = p_user_id AND PORT_NUM=P_port_num;
 
-insert into T_YIELD(back_no, port_num, user_id, stock_date, stock_day_fluc, kospi_day_fluc, kosdaq_day_fluc)
- select  V_NOW_NO,P_port_num, p_user_id, a.stock_date, sum(stock_fluc_rate) as stock_day_fluc, sum(kospi_fluc) as kospi_day_fluc,sum(kosdaq_fluc) as kosdaq_day_fluc from t_total_stock a, t_stock_index b
-where a.stock_date between V_START_DATE+1 and V_END_DATE and a.STOCK_DATE = b.STOCK_DATE and (a.stock_code) in 
-(select stock_code from t_trans_stock where port_num = P_port_num and back_no = V_NOW_NO and user_id = p_user_id and total_stock_cnt not in 0) group by a.stock_date, V_NOW_NO, P_port_num, p_user_id order by stock_date;
-commit;
-V_NOW_NO := V_NOW_NO + 1;
+	insert into T_YIELD(back_no, port_num, user_id, stock_date, stock_day_fluc, kospi_day_fluc, kosdaq_day_fluc)
+	 select  V_NOW_NO,P_port_num, p_user_id, a.stock_date, sum(stock_fluc_rate) as stock_day_fluc, sum(kospi_fluc) as kospi_day_fluc,sum(kosdaq_fluc) as kosdaq_day_fluc from t_total_stock a, t_stock_index b
+	where a.stock_date between V_START_DATE+1 and V_END_DATE and a.STOCK_DATE = b.STOCK_DATE and (a.stock_code) in 
+	(select stock_code from t_trans_stock where port_num = P_port_num and back_no = V_NOW_NO and user_id = p_user_id and total_stock_cnt not in 0) group by a.stock_date, V_NOW_NO, P_port_num, p_user_id order by stock_date;
+	commit;
+	V_NOW_NO := V_NOW_NO + 1;
 
-END LOOP;
-update t_yield a set (a.stock_fluc, a.kospi_fluc, a.kosdaq_fluc) = (select stock_fluc,kospi_fluc,kosdaq_fluc from (select back_no, stock_date, sum(stock_day_fluc) over (order by stock_date) as stock_fluc, sum(kospi_day_fluc) over (order by stock_date) as kospi_fluc, sum(kosdaq_day_fluc) over (order by stock_date) as kosdaq_fluc from
-t_yield  where port_num = P_port_num and user_id = p_user_id) b where a.stock_date = b.stock_date and a.back_no=b.back_no) where port_num = P_port_num and user_id = p_user_id;
-commit;
-insert into t_total_result(port_num, user_id, start_asset, final_bal, earning_rate, profit_loss, total_cagr, avg_dayfluc, avg_fluc, winning_rate)
-	select P_port_num,p_user_id, start_asset,final_bal,earning_rate, (final_bal-start_asset) as profit_loss,(round(Power(final_bal/start_asset,(1/year)),3)-1)*100 as total_cagr, avg_dayfluc, avg_fluc,  (select round(sum(case when earn>0 then 1 else 0 end)/count(*)*100,1) as wining_rate
-        from (select stock_code, avg(earning_rate) as earn from t_trans_stock where port_num=P_port_num and earning_rate not in 0 group by stock_code)) as winning_rate
-		from (
-		select max(total_bal) KEEP(DENSE_RANK FIRST ORDER BY back_date) as start_asset, max(total_bal) KEEP(DENSE_RANK FIRST ORDER BY back_date DESC) as final_bal,  max(EARNING_RATE) KEEP(DENSE_RANK FIRST ORDER BY back_date DESC) as earning_rate,   
-		round((max(back_date)-min(back_date))/365,2) as year
-		from t_back_result where port_num = P_port_num and user_id = p_user_id ) a , 
-		(select round(avg(stock_day_fluc),2) as avg_dayfluc, round(avg(stock_fluc),2) as avg_fluc 
-		from t_yield where port_num = P_port_num group by port_num) b;
-        
-commit;
+	END LOOP;
+	update t_yield a set (a.stock_fluc, a.kospi_fluc, a.kosdaq_fluc) = (select stock_fluc,kospi_fluc,kosdaq_fluc from (select back_no, stock_date, sum(stock_day_fluc) over (order by stock_date) as stock_fluc, sum(kospi_day_fluc) over (order by stock_date) as kospi_fluc, sum(kosdaq_day_fluc) over (order by stock_date) as kosdaq_fluc from
+	t_yield  where port_num = P_port_num and user_id = p_user_id) b where a.stock_date = b.stock_date and a.back_no=b.back_no) where port_num = P_port_num and user_id = p_user_id;
+	commit;
+	insert into t_total_result(port_num, user_id, start_asset, final_bal, earning_rate, profit_loss, total_cagr, avg_dayfluc, avg_fluc, winning_rate)
+		select P_port_num,p_user_id, start_asset,final_bal,earning_rate, (final_bal-start_asset) as profit_loss,(round(Power(final_bal/start_asset,(1/year)),3)-1)*100 as total_cagr, avg_dayfluc, avg_fluc,  (select round(sum(case when earn>0 then 1 else 0 end)/count(*)*100,1) as wining_rate
+		from (select stock_code, avg(earning_rate) as earn from t_trans_stock where port_num=P_port_num and earning_rate not in 0 group by stock_code)) as winning_rate
+			from (
+			select max(total_bal) KEEP(DENSE_RANK FIRST ORDER BY back_date) as start_asset, max(total_bal) KEEP(DENSE_RANK FIRST ORDER BY back_date DESC) as final_bal,  max(EARNING_RATE) KEEP(DENSE_RANK FIRST ORDER BY back_date DESC) as earning_rate,   
+			round((max(back_date)-min(back_date))/365,2) as year
+			from t_back_result where port_num = P_port_num and user_id = p_user_id ) a , 
+			(select round(avg(stock_day_fluc),2) as avg_dayfluc, round(avg(stock_fluc),2) as avg_fluc 
+			from t_yield where port_num = P_port_num group by port_num) b;
+
+	commit;
+    EXCEPTION
+        WHEN OTHERS THEN
+            DBMS_OUTPUT.PUT_LINE('SQL ERROR MESSAGE: ' || SQLERRM);
+   END;
 
 END;
 /
 
---¡æ∏Ò ∏ÆΩ∫∆Æ «¡∑ŒΩ√¿˙ 
+--Ï¢ÖÎ™© Î¶¨Ïä§Ìä∏ ÌîÑÎ°úÏãúÏ†Ä 
 
 drop procedure stock_val;
 CREATE OR REPLACE PROCEDURE STOCK_VAL (
@@ -91,7 +96,7 @@ BEGIN
     V_BACK_BUY_PRICE,V_BACK_SELL_PRICE,V_BACK_MIN_PRICES , V_BACK_MIN_PRICEV,V_BACK_MIN_PRICE ,V_BACK_CAP_UPDOWN ,V_BACK_CAP_RATE , V_BACK_STOCK_CNT, V_back_pbr, V_back_per,V_back_pcr, V_back_psr, V_back_roa, V_back_roe, V_back_ros , V_back_cfps
     FROM T_BACKPORT_CONDI WHERE port_num = P_port_num AND USER_ID = p_user_id;
     commit;
-    -- ∫“∑Øø√ ≥Ø¿⁄ º≥¡§
+    -- Î∂àÎü¨Ïò¨ ÎÇ†Ïûê ÏÑ§Ï†ï
     insert into T_TRANS_STOCK(back_no, port_num, user_id,stock_name, stock_code,back_date,stock_price)
         select P_port_cnt, P_port_num, p_user_id, stock_name, stock_code,stock_date,price from
          (select stock_name, stock_code,stock_date, (case when V_BACK_MIN_PRICEV = 'open' then p_open else p_end end) as price,
@@ -106,17 +111,17 @@ BEGIN
                        PERCENT_RANK() OVER (ORDER BY stock_market_cap) stock_market_cap 
             from t_total_stock
                  where stock_date = P_check_date
-                    and stock_market = (CASE WHEN V_BACK_MARKET = 'ALL' THEN stock_market ELSE V_BACK_MARKET END) -- Ω√¿Â ∞Àªˆ
-                    and nvl(is_delisting,0) = (case when V_BACK_MANAGE = 0 then '0' else is_delisting end)--∞¸∏Æ¡æ∏Ò ¡æ∏Ò¿Œ¡ˆ
-                    and STOCK_KIND = (case when V_BACK_PREFERRED = 0 then '∫∏≈Î¡÷' else STOCK_KIND end) --øÏº±¡÷ ¡æ∏Ò¿Œ¡ˆ
-                    and net_income > (case when V_BACK_PROFIT=1 then 0 else (select min(net_income) from T_FINANCIAL_STAT) end)  --¥Á±‚º¯¿Ã¿Õ æÁºˆ
-                    and stock_cash_flow > (case when V_BACK_CASHFLOW=1 then 0 else (select min(stock_cash_flow) from T_FINANCIAL_STAT) end) -- «ˆ±›»Â∏ß æÁºˆ
-                    and ((V_BACK_AMT = 'gt' and stock_trans_amt > TO_NUMBER(V_BACK_TRANS_AMT)) OR -- ¿œ¿œ ∞≈∑°¥Î±› π¸¿ß
+                    and stock_market = (CASE WHEN V_BACK_MARKET = 'ALL' THEN stock_market ELSE V_BACK_MARKET END) -- ÏãúÏû• Í≤ÄÏÉâ
+                    and nvl(is_delisting,0) = (case when V_BACK_MANAGE = 0 then '0' else is_delisting end)--Í¥ÄÎ¶¨Ï¢ÖÎ™© Ï¢ÖÎ™©Ïù∏ÏßÄ
+                    and STOCK_KIND = (case when V_BACK_PREFERRED = 0 then 'Î≥¥ÌÜµÏ£º' else STOCK_KIND end) --Ïö∞ÏÑ†Ï£º Ï¢ÖÎ™©Ïù∏ÏßÄ
+                    and net_income > (case when V_BACK_PROFIT=1 then 0 else (select min(net_income) from T_FINANCIAL_STAT) end)  --ÎãπÍ∏∞ÏàúÏù¥Ïùµ ÏñëÏàò
+                    and stock_cash_flow > (case when V_BACK_CASHFLOW=1 then 0 else (select min(stock_cash_flow) from T_FINANCIAL_STAT) end) -- ÌòÑÍ∏àÌùêÎ¶Ñ ÏñëÏàò
+                    and ((V_BACK_AMT = 'gt' and stock_trans_amt > TO_NUMBER(V_BACK_TRANS_AMT)) OR -- ÏùºÏùº Í±∞ÎûòÎåÄÍ∏à Î≤îÏúÑ
                        (V_BACK_AMT = 'gte' and stock_trans_amt >= TO_NUMBER(V_BACK_TRANS_AMT)) OR
                        (V_BACK_AMT = 'lt' and stock_trans_amt < TO_NUMBER(V_BACK_TRANS_AMT)) OR
                        (V_BACK_AMT = 'lte' and stock_trans_amt <= TO_NUMBER(V_BACK_TRANS_AMT))
                     )
-                    and ((V_BACK_CAP = 'gt' and stock_market_cap > TO_NUMBER(V_BACK_MARKET_CAP)) OR  --Ω√∞°√—æ◊ π¸¿ß
+                    and ((V_BACK_CAP = 'gt' and stock_market_cap > TO_NUMBER(V_BACK_MARKET_CAP)) OR  --ÏãúÍ∞ÄÏ¥ùÏï° Î≤îÏúÑ
                     (V_BACK_CAP = 'gte' and stock_market_cap >= TO_NUMBER(V_BACK_MARKET_CAP)) OR
                      (V_BACK_CAP = 'lt' and stock_market_cap < TO_NUMBER(V_BACK_MARKET_CAP)) OR
                      (V_BACK_CAP = 'lte' and stock_market_cap <= TO_NUMBER(V_BACK_MARKET_CAP))
@@ -128,15 +133,12 @@ BEGIN
              (V_BACK_CAP_UPDOWN = 'desc' and stock_market_cap >=  V_BACK_CAP_RATE/100) )
              order by total) where rownum <= V_BACK_STOCK_CNT ;
     commit;
-    EXCEPTION
-        WHEN OTHERS THEN
-            DBMS_OUTPUT.PUT_LINE('SQL ERROR MESSAGE: ' || SQLERRM);
-   END;
+
 END;
 /
 
 
---¿œ¿⁄∫∞ ∞¯»ﬁ¿œ √º≈© «¡∑ŒΩ√¿˙
+--ÏùºÏûêÎ≥Ñ Í≥µÌú¥Ïùº Ï≤¥ÌÅ¨ ÌîÑÎ°úÏãúÏ†Ä
 DROP PROCEDURE STOCK_LOGIC;
 CREATE OR REPLACE PROCEDURE STOCK_LOGIC (
     P_port_num in number,
@@ -155,13 +157,13 @@ BEGIN
     V_INPUT_DATE := to_date(V_START_DATE);
     WHILE V_INPUT_DATE <= V_END_DATE
     LOOP
-    --π˝¡§ øµæ˜¿œ(≈‰,¿œ ¡¶ø‹) ∆«¥‹¡Öº≠ ≥÷æÓ¡÷±‚
+    --Î≤ïÏ†ï ÏòÅÏóÖÏùº(ÌÜ†,Ïùº Ï†úÏô∏) ÌåêÎã®¬ÖÏÑú ÎÑ£Ïñ¥Ï£ºÍ∏∞
     V_CNT_RESULT :=0;
     IF TO_CHAR(V_INPUT_DATE,'D') = 7
     THEN V_INPUT_DATE := V_INPUT_DATE+2;
     ELSIF TO_CHAR(V_INPUT_DATE,'D') = 1
     THEN V_INPUT_DATE := V_INPUT_DATE+1;
-    -- ¡Ö¥Á¿œ¿Ã ∞¯»ﬁ¿œ¿Œ¡ˆ √º≈©(µ•¿Ã≈Õ∞° ¿÷¥¬¡ˆ »Æ¿Œ)
+    -- ¬ÖÎãπÏùºÏù¥ Í≥µÌú¥ÏùºÏù∏ÏßÄ Ï≤¥ÌÅ¨(Îç∞Ïù¥ÌÑ∞Í∞Ä ÏûàÎäîÏßÄ ÌôïÏù∏)
     END IF;
     V_YEAR := extract(YEAR FROM V_INPUT_DATE);
     WHILE V_CNT_RESULT = 0
@@ -197,7 +199,7 @@ BEGIN
     END LOOP;
     STOCK_VAL(v_cnt, P_port_num,p_user_id,to_char(V_INPUT_DATE,'yy/mm/dd'));
     DBMS_OUTPUT.PUT_LINE(V_INPUT_DATE);
-    -- ¥Ÿ¿Ω¥ﬁ √π¬∞¿œ ≥÷±‚
+    -- Îã§ÏùåÎã¨ Ï≤´Ïß∏Ïùº ÎÑ£Í∏∞
     commit;
     v_cnt := v_cnt+1;
     
@@ -224,14 +226,14 @@ create or replace PROCEDURE p_transfer (
     v_past_date date;
     v_past_deposit number;
 BEGIN
-    --  ªÁøÎ¿⁄ ∏≈ºˆ∏≈µµ, ºº±› ∫Ò¿≤ ¡∂∞« ∞°¡Æø¿±‚
+    --  ÏÇ¨Ïö©Ïûê Îß§ÏàòÎß§ÎèÑ, ÏÑ∏Í∏à ÎπÑÏú® Ï°∞Í±¥ Í∞ÄÏ†∏Ïò§Í∏∞
     SELECT (BACK_START_ASSET*BACK_INVEST_RATE)*10000, BACK_TAX_RATE,BACK_INVEST_RATE,BACK_FEE_RATE, BACK_STOCK_CNT INTO V_ASSET,V_TAX_RATE,V_INVEST_RATE,V_FEE_RATE, V_STOCK_CNT FROM T_BACKPORT_CONDI WHERE port_num = P_port_num;
-    -- «— ¡æ∏Ò¥Á ∏≈ºˆ ±›æ◊ º±¡§
+    -- Ìïú Ï¢ÖÎ™©Îãπ Îß§Ïàò Í∏àÏï° ÏÑ†Ï†ï
     V_PER_ASSET := V_ASSET / V_STOCK_CNT;
-    -- √— BACK ∞≥ºˆ ∞°¡Æø¿±‚
+    -- Ï¥ù BACK Í∞úÏàò Í∞ÄÏ†∏Ïò§Í∏∞
     select max(back_no) into v_end_no from t_trans_stock where PORT_num = P_port_num;
-    -- √π∞™ SETTING
-    UPDATE t_trans_stock SET TRANS_KIND = 'Ω≈±‘∏≈ºˆ', STOCK_CNT = TRUNC(V_PER_ASSET/STOCK_PRICE), BUY_PRICE = STOCK_PRICE, BUY_DATE = BACK_DATE, EARNING_RATE = 0, SALE_price =TRUNC(V_PER_ASSET/STOCK_PRICE)*stock_price, TOTAL_STOCK_CNT=TRUNC(V_PER_ASSET/STOCK_PRICE),TOTAL_STOCK_PRICE =TRUNC(V_PER_ASSET/STOCK_PRICE)*STOCK_PRICE   WHERE BACK_NO = V_now_no AND USER_ID = p_user_id and port_num = P_port_num;
+    -- Ï≤´Í∞í SETTING
+    UPDATE t_trans_stock SET TRANS_KIND = 'Ïã†Í∑úÎß§Ïàò', STOCK_CNT = TRUNC(V_PER_ASSET/STOCK_PRICE), BUY_PRICE = STOCK_PRICE, BUY_DATE = BACK_DATE, EARNING_RATE = 0, SALE_price =TRUNC(V_PER_ASSET/STOCK_PRICE)*stock_price, TOTAL_STOCK_CNT=TRUNC(V_PER_ASSET/STOCK_PRICE),TOTAL_STOCK_PRICE =TRUNC(V_PER_ASSET/STOCK_PRICE)*STOCK_PRICE   WHERE BACK_NO = V_now_no AND USER_ID = p_user_id and port_num = P_port_num;
 
     insert into t_back_result(back_no,port_num,user_id,back_date,total_bal,total_deposit,buy_total_price,sell_total_price, TOTAL_STOCK_price,back_fee,earning_rate )
             select back_no, port_num, user_id, back_date, V_ASSET/V_INVEST_RATE, V_ASSET/V_INVEST_RATE-sum(sale_price),sum(sale_price), 0, sum(total_stock_price), trunc(sum(sale_price)*0.015/100), 0 
@@ -240,7 +242,7 @@ BEGIN
   while V_now_no < v_end_no
   LOOP 
   commit;
-    -- ¡ˆ≥≠¥ﬁ
+    -- ÏßÄÎÇúÎã¨
     select max(back_date) into v_past_date from t_trans_stock where back_no=V_now_no AND USER_ID =p_user_id AND PORT_NUM = P_port_num;
     V_now_no := V_now_no+1;
     select max(back_date) into v_now_date from t_trans_stock where back_no=V_now_no AND USER_ID = p_user_id AND PORT_NUM=P_port_num;
@@ -248,29 +250,29 @@ BEGIN
     select sum(t.stock_price_end*s.total_stock_cnt)  into V_ASSET
     from t_total_stock t, t_trans_stock s where s.port_num = P_port_num and s.user_id = p_user_id and s.back_no = V_now_no-1 and t.stock_code=s.stock_code and t.stock_date = v_now_date;
     select total_deposit into v_past_deposit from t_back_result where port_num = P_port_num and user_id = p_user_id and back_no = V_now_no-1;
-    -- «ˆ¿Á¥ﬁ
+    -- ÌòÑÏû¨Îã¨
     V_ASSET := (V_ASSET+v_past_deposit)*V_INVEST_RATE;
     V_PER_ASSET := trunc(V_ASSET / V_STOCK_CNT);
     
-    -- µŒπ¯¬∞∞™ºº∆√∫Œ≈Õ ºº∆√
-    --1. √ππ¯¬∞ µŒπ¯¬∞ «◊∏Ò∫Ò±≥, æ¯¥¬∞≈ √‚∑¬(ºˆ¡§øœ∑· 9/21)
+    -- ÎëêÎ≤àÏß∏Í∞íÏÑ∏ÌåÖÎ∂ÄÌÑ∞ ÏÑ∏ÌåÖ
+    --1. Ï≤´Î≤àÏß∏ ÎëêÎ≤àÏß∏ Ìï≠Î™©ÎπÑÍµê, ÏóÜÎäîÍ±∞ Ï∂úÎ†•(ÏàòÏ†ïÏôÑÎ£å 9/21)
     
 
     dbms_output.put_line(v_now_date);
    insert into T_TRANS_STOCK(back_no, port_num, user_id, stock_name, stock_code, back_date, trans_kind, stock_price, stock_cnt, buy_price, buy_date,total_stock_cnt,TOTAL_STOCK_PRICE) 
-    (select V_now_no, port_num, user_id, stock_name, stock_code, v_past_date, '¿¸∑Æ∏≈µµ' , (select stock_price_end from t_total_stock where STOCK_DATE=v_now_date and stock_code = S.stock_code),total_stock_cnt,buy_price,buy_date, total_stock_cnt,0
+    (select V_now_no, port_num, user_id, stock_name, stock_code, v_past_date, 'Ï†ÑÎüâÎß§ÎèÑ' , (select stock_price_end from t_total_stock where STOCK_DATE=v_now_date and stock_code = S.stock_code),total_stock_cnt,buy_price,buy_date, total_stock_cnt,0
        from T_TRANS_STOCK S where user_id=p_user_id and port_num = P_port_num and back_no =  V_now_no-1 and back_date = v_past_date and total_stock_price not in 0 and stock_code not in 
            (select a.stock_code from T_TRANS_STOCK a, T_TRANS_STOCK b 
                 where a.back_no=V_now_no-1 and b.back_no=V_now_no and a.stock_code = b.stock_code and a.total_stock_price not in 0 and a.back_date = v_past_date and a.user_id=p_user_id and a.port_num = P_port_num and b.port_num = P_port_num));
     
     commit;
-    --1-1) ¿¸∑Æ∏≈µµ update
+    --1-1) Ï†ÑÎüâÎß§ÎèÑ update
     update t_trans_stock set sell_price = stock_price, sell_date = v_now_date, earning_rate = round((stock_price-buy_price)/stock_price*100,1),  SALE_price=stock_cnt*stock_price, total_stock_cnt = total_stock_cnt-stock_cnt 
     where user_id=p_user_id and port_num = P_port_num and back_no =  V_now_no and back_date=v_past_date;                
     commit;
-    --2. ¡æ∏Ò ∫Œ∫–∏≈µµ
+    --2. Ï¢ÖÎ™© Î∂ÄÎ∂ÑÎß§ÎèÑ
 UPDATE T_TRANS_STOCK B
-    SET B.TRANS_KIND = '∫Œ∫–∏≈µµ', B.STOCK_CNT = (SELECT A.TOTAL_STOCK_CNT FROM T_TRANS_STOCK A WHERE  A.BACK_NO = V_now_no-1 AND B.BACK_NO = V_now_no AND A.STOCK_CODE = B.STOCK_CODE AND A.TOTAL_STOCK_CNT > TRUNC(V_PER_ASSET/B.STOCK_PRICE) AND B.BACK_DATE = v_now_date AND B.user_id=p_user_id and a.port_num = P_port_num and B.port_num = P_port_num)- TRUNC(V_PER_ASSET/B.STOCK_PRICE),
+    SET B.TRANS_KIND = 'Î∂ÄÎ∂ÑÎß§ÎèÑ', B.STOCK_CNT = (SELECT A.TOTAL_STOCK_CNT FROM T_TRANS_STOCK A WHERE  A.BACK_NO = V_now_no-1 AND B.BACK_NO = V_now_no AND A.STOCK_CODE = B.STOCK_CODE AND A.TOTAL_STOCK_CNT > TRUNC(V_PER_ASSET/B.STOCK_PRICE) AND B.BACK_DATE = v_now_date AND B.user_id=p_user_id and a.port_num = P_port_num and B.port_num = P_port_num)- TRUNC(V_PER_ASSET/B.STOCK_PRICE),
     B.BUY_PRICE = (SELECT A.BUY_PRICE FROM T_TRANS_STOCK A WHERE  A.BACK_NO =V_now_no -1 AND B.BACK_NO = V_now_no AND A.STOCK_CODE = B.STOCK_CODE AND A.TOTAL_STOCK_CNT > TRUNC(V_PER_ASSET/B.STOCK_PRICE) AND B.BACK_DATE = v_now_date AND B.user_id=p_user_id and B.port_num = P_port_num and a.port_num = P_port_num), 
     B.BUY_DATE = (SELECT A.BUY_DATE FROM T_TRANS_STOCK A WHERE  A.BACK_NO = V_now_no-1 AND B.BACK_NO = V_now_no AND A.STOCK_CODE = B.STOCK_CODE AND A.TOTAL_STOCK_CNT > TRUNC(V_PER_ASSET/B.STOCK_PRICE) AND B.BACK_DATE = v_now_date AND B.user_id=p_user_id and B.port_num = P_port_num and a.port_num = P_port_num),
     B.SELL_PRICE = B.STOCK_PRICE,
@@ -281,17 +283,17 @@ UPDATE T_TRANS_STOCK B
     B.TOTAL_STOCK_PRICE = TRUNC(V_PER_ASSET/B.STOCK_PRICE)*B.STOCK_PRICE
     WHERE (BACK_NO, PORT_NUM, STOCK_CODE,BACK_DATE) IN (SELECT B.BACK_NO, B.PORT_NUM, B.STOCK_CODE, B.BACK_DATE FROM T_TRANS_STOCK A WHERE  A.BACK_NO = V_now_no-1 AND B.BACK_NO = V_now_no AND A.STOCK_CODE = B.STOCK_CODE AND A.TOTAL_STOCK_CNT > TRUNC(V_PER_ASSET/B.STOCK_PRICE) AND B.BACK_DATE = v_now_date AND B.user_id=p_user_id and a.port_num = P_port_num and B.port_num = P_port_num);       
 commit;
-    --2. Ω≈±‘ ¡æ∏Ò Ω≈±‘ ∏≈ºˆ 
-    update T_TRANS_STOCK set trans_kind = 'Ω≈±‘∏≈ºˆ', stock_cnt = TRUNC(V_PER_ASSET/STOCK_PRICE), total_stock_cnt=TRUNC(V_PER_ASSET/STOCK_PRICE),BUY_PRICE = STOCK_PRICE, BUY_DATE =BACK_DATE, EARNING_RATE = 0,
+    --2. Ïã†Í∑ú Ï¢ÖÎ™© Ïã†Í∑ú Îß§Ïàò 
+    update T_TRANS_STOCK set trans_kind = 'Ïã†Í∑úÎß§Ïàò', stock_cnt = TRUNC(V_PER_ASSET/STOCK_PRICE), total_stock_cnt=TRUNC(V_PER_ASSET/STOCK_PRICE),BUY_PRICE = STOCK_PRICE, BUY_DATE =BACK_DATE, EARNING_RATE = 0,
     SALE_price=TRUNC(V_PER_ASSET/STOCK_PRICE)*stock_price, TOTAL_STOCK_PRICE = TRUNC(V_PER_ASSET/STOCK_PRICE)*stock_price
     where back_no = v_now_no AND USER_ID = p_user_id and port_num = P_port_num and back_date=v_now_date 
     and stock_code not in 
     (select b.stock_code from T_TRANS_STOCK a, T_TRANS_STOCK b where a.back_no=v_now_no-1 and b.back_no=v_now_no and a.stock_code = b.stock_code and a.back_date = v_past_date and b.back_date = v_now_date and b.port_num = P_port_num  and a.port_num = P_port_num) ; 
 commit;
 
-    --3. ¡æ∏Ò ∫Œ∫–∏≈ºˆ
+    --3. Ï¢ÖÎ™© Î∂ÄÎ∂ÑÎß§Ïàò
 UPDATE T_TRANS_STOCK B
-    SET B.TRANS_KIND = '∫Œ∫–∏≈ºˆ', B.STOCK_CNT = TRUNC(V_PER_ASSET/B.STOCK_PRICE)- (SELECT A.TOTAL_STOCK_CNT FROM T_TRANS_STOCK A WHERE  A.BACK_NO = V_now_no-1 AND B.BACK_NO = V_now_no AND A.STOCK_CODE = B.STOCK_CODE AND A.TOTAL_STOCK_CNT < TRUNC(V_PER_ASSET/B.STOCK_PRICE) AND B.BACK_DATE = v_now_date AND B.user_id=p_user_id and B.port_num = P_port_num and a.port_num = P_port_num),
+    SET B.TRANS_KIND = 'Î∂ÄÎ∂ÑÎß§Ïàò', B.STOCK_CNT = TRUNC(V_PER_ASSET/B.STOCK_PRICE)- (SELECT A.TOTAL_STOCK_CNT FROM T_TRANS_STOCK A WHERE  A.BACK_NO = V_now_no-1 AND B.BACK_NO = V_now_no AND A.STOCK_CODE = B.STOCK_CODE AND A.TOTAL_STOCK_CNT < TRUNC(V_PER_ASSET/B.STOCK_PRICE) AND B.BACK_DATE = v_now_date AND B.user_id=p_user_id and B.port_num = P_port_num and a.port_num = P_port_num),
     B.BUY_PRICE = B.STOCK_PRICE, B.BUY_DATE = B.BACK_DATE, B.EARNING_RATE = 0,
     B.SALE_price = (TRUNC(V_PER_ASSET/B.STOCK_PRICE)- (SELECT A.TOTAL_STOCK_CNT FROM T_TRANS_STOCK A WHERE  A.BACK_NO = V_now_no-1 AND B.BACK_NO = V_now_no AND A.STOCK_CODE = B.STOCK_CODE AND A.TOTAL_STOCK_CNT < TRUNC(V_PER_ASSET/B.STOCK_PRICE) AND B.BACK_DATE = v_now_date AND B.user_id=p_user_id and a.port_num = P_port_num and B.port_num = P_port_num))*B.STOCK_PRICE,
     B.TOTAL_STOCK_CNT = TRUNC(V_PER_ASSET/B.STOCK_PRICE), B.TOTAL_STOCK_PRICE = TRUNC(V_PER_ASSET/B.STOCK_PRICE)*B.STOCK_PRICE
@@ -301,16 +303,16 @@ UPDATE T_TRANS_STOCK B
 commit;
 
 DBMS_OUTPUT.PUT_LINE(V_now_no);
--- 5. §∑§–§∏§”
+-- 5. „Öá„Ö†„Öà„Ö£
 update  T_TRANS_STOCK B
-    SET B.TRANS_KIND = '¿Ø¡ˆ',sale_price = 0, stock_cnt=0,earning_rate = 0, 
+    SET B.TRANS_KIND = 'Ïú†ÏßÄ',sale_price = 0, stock_cnt=0,earning_rate = 0, 
     (buy_price, buy_date,total_stock_cnt, total_stock_price) =(SELECT A.buy_price, a.buy_date, a.total_stock_cnt, a.total_stock_price FROM T_TRANS_STOCK A 
         WHERE  A.BACK_NO = V_now_no-1 AND B.BACK_NO = V_now_no AND A.STOCK_CODE = B.STOCK_CODE AND A.TOTAL_STOCK_CNT = TRUNC(V_PER_ASSET/B.STOCK_PRICE) AND B.BACK_DATE = v_now_date AND B.user_id=p_user_id and a.port_num = P_port_num and B.port_num = P_port_num)
 WHERE (BACK_NO, PORT_NUM, STOCK_CODE,BACK_DATE) IN (SELECT B.BACK_NO, B.PORT_NUM, B.STOCK_CODE, B.BACK_DATE FROM T_TRANS_STOCK A WHERE  A.BACK_NO = V_now_no-1 AND B.BACK_NO = V_now_no AND A.STOCK_CODE = B.STOCK_CODE AND A.TOTAL_STOCK_CNT = TRUNC(V_PER_ASSET/B.STOCK_PRICE) AND B.BACK_DATE = v_now_date AND B.user_id=p_user_id and a.port_num = P_port_num and B.port_num = P_port_num);
 commit;
 -- deposit
 insert into t_back_result(back_no,port_num,user_id,buy_total_price,sell_total_price, TOTAL_STOCK_price)
-        select back_no,port_num,user_id ,sum(case when trans_kind in  ('Ω≈±‘∏≈ºˆ' ,'∫Œ∫–∏≈ºˆ') then sale_price else 0 end),sum(case when trans_kind in  ('¿¸∑Æ∏≈µµ' ,'∫Œ∫–∏≈µµ') then sale_price else 0 end), sum(total_stock_price) from t_trans_stock where port_num = P_port_num and back_no=V_now_no and user_id = p_user_id group by back_no,port_num,user_id;
+        select back_no,port_num,user_id ,sum(case when trans_kind in  ('Ïã†Í∑úÎß§Ïàò' ,'Î∂ÄÎ∂ÑÎß§Ïàò') then sale_price else 0 end),sum(case when trans_kind in  ('Ï†ÑÎüâÎß§ÎèÑ' ,'Î∂ÄÎ∂ÑÎß§ÎèÑ') then sale_price else 0 end), sum(total_stock_price) from t_trans_stock where port_num = P_port_num and back_no=V_now_no and user_id = p_user_id group by back_no,port_num,user_id;
 commit;
 update t_back_result set back_date = v_now_date, total_bal = (select total_deposit from t_back_result where back_no=V_now_no-1 and port_num =P_port_num and user_id=p_user_id)-buy_total_price+sell_total_price + total_stock_price,
 total_deposit = (select total_deposit from t_back_result where back_no=V_now_no-1 and port_num =P_port_num and user_id=p_user_id)-buy_total_price+sell_total_price, back_fee=trunc((buy_total_price+sell_total_price)*0.0015/100),
@@ -324,7 +326,7 @@ END;
 
 ---------------------------------------------------------------------------
 
---√÷±Ÿ≥Ø¬•∑Œ ¡æ∏Ò √ﬂ√µ«ÿ¡÷¥¬ «¡∑ŒΩ√¿˙
+--ÏµúÍ∑ºÎÇ†ÏßúÎ°ú Ï¢ÖÎ™© Ï∂îÏ≤úÌï¥Ï£ºÎäî ÌîÑÎ°úÏãúÏ†Ä
 drop PROCEDURE Select_Current_Stock;
 CREATE OR REPLACE PROCEDURE Select_Current_Stock (
     P_port_num in number,
@@ -371,7 +373,7 @@ BEGIN
     V_BACK_BUY_PRICE,V_BACK_SELL_PRICE,V_BACK_MIN_PRICES , V_BACK_MIN_PRICEV,V_BACK_MIN_PRICE ,V_BACK_CAP_UPDOWN ,V_BACK_CAP_RATE , V_BACK_STOCK_CNT, V_back_pbr, V_back_per,V_back_pcr, V_back_psr, V_back_roa, V_back_roe, V_back_ros , V_back_cfps
     FROM T_BACKPORT_CONDI WHERE port_num = P_port_num AND USER_ID = p_user_id;
     commit;
-    -- ∫“∑Øø√ ≥Ø¿⁄ º≥¡§
+    -- Î∂àÎü¨Ïò¨ ÎÇ†Ïûê ÏÑ§Ï†ï
     v_is_Date := P_check_date;
     select count(*) into V_is_null from t_total_stock where stock_date = v_is_Date and is_delisting is null;
     while(V_is_null = 0)
@@ -395,17 +397,17 @@ BEGIN
                        PERCENT_RANK() OVER (ORDER BY stock_market_cap) stock_market_cap 
             from t_total_stock
                  where stock_date = v_is_Date
-                    and stock_market = (CASE WHEN V_BACK_MARKET = 'ALL' THEN stock_market ELSE V_BACK_MARKET END) -- Ω√¿Â ∞Àªˆ
-                    and nvl(is_delisting,0) = (case when V_BACK_MANAGE = 0 then '0' else is_delisting end)--∞¸∏Æ¡æ∏Ò ¡æ∏Ò¿Œ¡ˆ
-                    and STOCK_KIND = (case when V_BACK_PREFERRED = 0 then '∫∏≈Î¡÷' else STOCK_KIND end) --øÏº±¡÷ ¡æ∏Ò¿Œ¡ˆ
-                    and net_income > (case when V_BACK_PROFIT=1 then 0 else (select min(net_income) from T_FINANCIAL_STAT) end)  --¥Á±‚º¯¿Ã¿Õ æÁºˆ
-                    and stock_cash_flow > (case when V_BACK_CASHFLOW=1 then 0 else (select min(stock_cash_flow) from T_FINANCIAL_STAT) end) -- «ˆ±›»Â∏ß æÁºˆ
-                    and ((V_BACK_AMT = 'gt' and stock_trans_amt > TO_NUMBER(V_BACK_TRANS_AMT)) OR -- ¿œ¿œ ∞≈∑°¥Î±› π¸¿ß
+                    and stock_market = (CASE WHEN V_BACK_MARKET = 'ALL' THEN stock_market ELSE V_BACK_MARKET END) -- ÏãúÏû• Í≤ÄÏÉâ
+                    and nvl(is_delisting,0) = (case when V_BACK_MANAGE = 0 then '0' else is_delisting end)--Í¥ÄÎ¶¨Ï¢ÖÎ™© Ï¢ÖÎ™©Ïù∏ÏßÄ
+                    and STOCK_KIND = (case when V_BACK_PREFERRED = 0 then 'Î≥¥ÌÜµÏ£º' else STOCK_KIND end) --Ïö∞ÏÑ†Ï£º Ï¢ÖÎ™©Ïù∏ÏßÄ
+                    and net_income > (case when V_BACK_PROFIT=1 then 0 else (select min(net_income) from T_FINANCIAL_STAT) end)  --ÎãπÍ∏∞ÏàúÏù¥Ïùµ ÏñëÏàò
+                    and stock_cash_flow > (case when V_BACK_CASHFLOW=1 then 0 else (select min(stock_cash_flow) from T_FINANCIAL_STAT) end) -- ÌòÑÍ∏àÌùêÎ¶Ñ ÏñëÏàò
+                    and ((V_BACK_AMT = 'gt' and stock_trans_amt > TO_NUMBER(V_BACK_TRANS_AMT)) OR -- ÏùºÏùº Í±∞ÎûòÎåÄÍ∏à Î≤îÏúÑ
                        (V_BACK_AMT = 'gte' and stock_trans_amt >= TO_NUMBER(V_BACK_TRANS_AMT)) OR
                        (V_BACK_AMT = 'lt' and stock_trans_amt < TO_NUMBER(V_BACK_TRANS_AMT)) OR
                        (V_BACK_AMT = 'lte' and stock_trans_amt <= TO_NUMBER(V_BACK_TRANS_AMT))
                     )
-                    and ((V_BACK_CAP = 'gt' and stock_market_cap > TO_NUMBER(V_BACK_MARKET_CAP)) OR  --Ω√∞°√—æ◊ π¸¿ß
+                    and ((V_BACK_CAP = 'gt' and stock_market_cap > TO_NUMBER(V_BACK_MARKET_CAP)) OR  --ÏãúÍ∞ÄÏ¥ùÏï° Î≤îÏúÑ
                     (V_BACK_CAP = 'gte' and stock_market_cap >= TO_NUMBER(V_BACK_MARKET_CAP)) OR
                      (V_BACK_CAP = 'lt' and stock_market_cap < TO_NUMBER(V_BACK_MARKET_CAP)) OR
                      (V_BACK_CAP = 'lte' and stock_market_cap <= TO_NUMBER(V_BACK_MARKET_CAP))
